@@ -1,0 +1,34 @@
+{
+  "note": "reconstructed after the fact from args.json (this run predates run_config.json); defaults added by later code: train_style=all, format_bonus=0.0",
+  "args": {
+    "train_split": "clean",
+    "out": "runs/clean",
+    "steps": 150,
+    "prompts_per_step": 4,
+    "group_size": 8,
+    "max_new_tokens": 24,
+    "lr": 5e-05,
+    "beta": 0.0,
+    "lora_r": 16,
+    "max_grad_norm": 1.0,
+    "eval_every": 25,
+    "eval_n": 48,
+    "eval_bs": 8,
+    "save_every": 25,
+    "seed": 0,
+    "train_style": "all",
+    "format_bonus": 0.0
+  },
+  "train_seed_range": [
+    0,
+    600
+  ],
+  "model_id": "Qwen/Qwen2-VL-2B-Instruct",
+  "reward": "1[click in box]; unparseable = 0",
+  "versions": {
+    "torch": "2.11.0+cu128",
+    "transformers": "5.20.2",
+    "peft": "0.21.2",
+    "gpu": "RTX 5050 Laptop 8GB"
+  }
+}

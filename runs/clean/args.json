@@ -1,0 +1,17 @@
+{
+  "train_split": "clean",
+  "out": "runs/clean",
+  "steps": 150,
+  "prompts_per_step": 4,
+  "group_size": 8,
+  "max_new_tokens": 24,
+  "lr": 5e-05,
+  "beta": 0.0,
+  "lora_r": 16,
+  "max_grad_norm": 1.0,
+  "eval_every": 25,
+  "eval_n": 48,
+  "eval_bs": 8,
+  "save_every": 25,
+  "seed": 0
+}

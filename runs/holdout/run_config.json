@@ -1,0 +1,75 @@
+{
+  "timestamp": "2026-10-23T16:21:07",
+  "model_id": "Qwen/Qwen2-VL-2B-Instruct",
+  "prompt": "{instruction}\nReply with only the click point as (x, y), where x and y are integers from 0 to 1000 giving the position relative to the image width and height.",
+  "image_size": [
+    672,
+    448
+  ],
+  "coordinate_convention": "model answers (x, y) in 0-1000 normalised image coords; boxes are x0,y0,x1,y1 in the same space",
+  "versions": {
+    "python": "3.11.6",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.20.2",
+    "peft": "0.21.2",
+    "cuda_device": "NVIDIA GeForce RTX 5050 Laptop GPU"
+  },
+  "git_commit": null,
+  "data": {
+    "splits": {
+      "clean": [
+        null,
+        null
+      ],
+      "biased": [
+        0.9,
+        0.9
+      ],
+      "unbiased_test": [
+        null,
+        null
+      ],
+      "iid_biased_test": [
+        0.9,
+        0.9
+      ],
+      "adversarial_test": [
+        0.0,
+        0.0
+      ]
+    },
+    "test_seed_base": 10000000,
+    "fonts_available": [
+      "arial.ttf",
+      "segoeui.ttf",
+      "calibri.ttf",
+      "verdana.ttf",
+      "tahoma.ttf"
+    ],
+    "n_themes": 4
+  },
+  "args": {
+    "train_split": "clean",
+    "train_style": "seen",
+    "format_bonus": 0.1,
+    "out": "runs/holdout",
+    "steps": 150,
+    "prompts_per_step": 4,
+    "group_size": 8,
+    "max_new_tokens": 24,
+    "lr": 5e-05,
+    "beta": 0.0,
+    "lora_r": 16,
+    "max_grad_norm": 1.0,
+    "eval_every": 50,
+    "eval_n": 48,
+    "eval_bs": 8,
+    "save_every": 25,
+    "seed": 0
+  },
+  "train_seed_range": [
+    0,
+    600
+  ],
+  "reward": "1[click in box] + 0.1 * 1[parseable]; unparseable = 0"
+}
