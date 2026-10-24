@@ -1,0 +1,395 @@
+{
+ "baseline_center": {
+  "n": 400,
+  "acc": 0.025,
+  "ci": [
+   0.013634943739762435,
+   0.045402064829934204
+  ],
+  "valid_format": 1.0,
+  "by_data_source": {
+   "android": {
+    "n": 94,
+    "acc": 0.02127659574468085
+   },
+   "forum": {
+    "n": 32,
+    "acc": 0.0625
+   },
+   "gitlab": {
+    "n": 22,
+    "acc": 0.0
+   },
+   "ios": {
+    "n": 81,
+    "acc": 0.04938271604938271
+   },
+   "macos": {
+    "n": 55,
+    "acc": 0.01818181818181818
+   },
+   "shop": {
+    "n": 39,
+    "acc": 0.0
+   },
+   "tool": {
+    "n": 32,
+    "acc": 0.0
+   },
+   "windows": {
+    "n": 45,
+    "acc": 0.022222222222222223
+   }
+  },
+  "by_data_type": {
+   "icon": {
+    "n": 193,
+    "acc": 0.015544041450777202
+   },
+   "text": {
+    "n": 207,
+    "acc": 0.033816425120772944
+   }
+  },
+  "by_size": {
+   "small": {
+    "n": 134,
+    "acc": 0.0,
+    "mean_area": 2616.720101896042
+   },
+   "medium": {
+    "n": 133,
+    "acc": 0.0,
+    "mean_area": 8356.871828488918
+   },
+   "large": {
+    "n": 133,
+    "acc": 0.07518796992481203,
+    "mean_area": 55032.62074307504
+   }
+  }
+ },
+ "baseline_random_point": {
+  "n": 400,
+  "acc": 0.0225,
+  "ci": [
+   0.011881448169963291,
+   0.04220312360273175
+  ],
+  "valid_format": 1.0,
+  "by_data_source": {
+   "android": {
+    "n": 94,
+    "acc": 0.031914893617021274
+   },
+   "forum": {
+    "n": 32,
+    "acc": 0.03125
+   },
+   "gitlab": {
+    "n": 22,
+    "acc": 0.0
+   },
+   "ios": {
+    "n": 81,
+    "acc": 0.024691358024691357
+   },
+   "macos": {
+    "n": 55,
+    "acc": 0.01818181818181818
+   },
+   "shop": {
+    "n": 39,
+    "acc": 0.0
+   },
+   "tool": {
+    "n": 32,
+    "acc": 0.03125
+   },
+   "windows": {
+    "n": 45,
+    "acc": 0.022222222222222223
+   }
+  },
+  "by_data_type": {
+   "icon": {
+    "n": 193,
+    "acc": 0.010362694300518135
+   },
+   "text": {
+    "n": 207,
+    "acc": 0.033816425120772944
+   }
+  },
+  "by_size": {
+   "small": {
+    "n": 134,
+    "acc": 0.0,
+    "mean_area": 2616.720101896042
+   },
+   "medium": {
+    "n": 133,
+    "acc": 0.007518796992481203,
+    "mean_area": 8356.871828488918
+   },
+   "large": {
+    "n": 133,
+    "acc": 0.06015037593984962,
+    "mean_area": 55032.62074307504
+   }
+  }
+ },
+ "baseline_oracle_box_centre": {
+  "n": 400,
+  "acc": 1.0,
+  "ci": [
+   0.9904873594003194,
+   1.0
+  ],
+  "valid_format": 1.0,
+  "by_data_source": {
+   "android": {
+    "n": 94,
+    "acc": 1.0
+   },
+   "forum": {
+    "n": 32,
+    "acc": 1.0
+   },
+   "gitlab": {
+    "n": 22,
+    "acc": 1.0
+   },
+   "ios": {
+    "n": 81,
+    "acc": 1.0
+   },
+   "macos": {
+    "n": 55,
+    "acc": 1.0
+   },
+   "shop": {
+    "n": 39,
+    "acc": 1.0
+   },
+   "tool": {
+    "n": 32,
+    "acc": 1.0
+   },
+   "windows": {
+    "n": 45,
+    "acc": 1.0
+   }
+  },
+  "by_data_type": {
+   "icon": {
+    "n": 193,
+    "acc": 1.0
+   },
+   "text": {
+    "n": 207,
+    "acc": 1.0
+   }
+  },
+  "by_size": {
+   "small": {
+    "n": 134,
+    "acc": 1.0,
+    "mean_area": 2616.720101896042
+   },
+   "medium": {
+    "n": 133,
+    "acc": 1.0,
+    "mean_area": 8356.871828488918
+   },
+   "large": {
+    "n": 133,
+    "acc": 1.0,
+    "mean_area": 55032.62074307504
+   }
+  }
+ },
+ "model": {
+  "n": 400,
+  "acc": 0.085,
+  "ci": [
+   0.061462653163424086,
+   0.11643283853431088
+  ],
+  "valid_format": 0.865,
+  "by_data_source": {
+   "android": {
+    "n": 94,
+    "acc": 0.09574468085106383
+   },
+   "forum": {
+    "n": 32,
+    "acc": 0.03125
+   },
+   "gitlab": {
+    "n": 22,
+    "acc": 0.09090909090909091
+   },
+   "ios": {
+    "n": 81,
+    "acc": 0.09876543209876543
+   },
+   "macos": {
+    "n": 55,
+    "acc": 0.03636363636363636
+   },
+   "shop": {
+    "n": 39,
+    "acc": 0.1282051282051282
+   },
+   "tool": {
+    "n": 32,
+    "acc": 0.0625
+   },
+   "windows": {
+    "n": 45,
+    "acc": 0.1111111111111111
+   }
+  },
+  "by_data_type": {
+   "icon": {
+    "n": 193,
+    "acc": 0.06735751295336788
+   },
+   "text": {
+    "n": 207,
+    "acc": 0.10144927536231885
+   }
+  },
+  "by_size": {
+   "small": {
+    "n": 134,
+    "acc": 0.05223880597014925,
+    "mean_area": 2616.720101896042
+   },
+   "medium": {
+    "n": 133,
+    "acc": 0.09022556390977443,
+    "mean_area": 8356.871828488918
+   },
+   "large": {
+    "n": 133,
+    "acc": 0.11278195488721804,
+    "mean_area": 55032.62074307504
+   }
+  },
+  "examples": [
+   [
+    "minimize calculator",
+    "(1000, 100)"
+   ],
+   [
+    "input method toolbar",
+    "(250, 100)"
+   ],
+   [
+    "access the personal account interface",
+    "(100, 100)"
+   ],
+   [
+    "network and internet settings",
+    "(500, 500)"
+   ],
+   [
+    "file processing",
+    "(50, 100)"
+   ],
+   [
+    "open settings",
+    "(0, 100)"
+   ],
+   [
+    "personal account",
+    "(200, 500)"
+   ],
+   [
+    "settings and more",
+    "(879, 100)"
+   ]
+  ]
+ },
+ "meta": {
+  "timestamp": "2026-10-23T18:27:20",
+  "model_id": "Qwen/Qwen2-VL-2B-Instruct",
+  "prompt": "{instruction}\nReply with only the click point as (x, y), where x and y are integers from 0 to 1000 giving the position relative to the image width and height.",
+  "image_size": [
+   672,
+   448
+  ],
+  "coordinate_convention": "model answers (x, y) in 0-1000 normalised image coords; boxes are x0,y0,x1,y1 in the same space",
+  "versions": {
+   "python": "3.11.6",
+   "torch": "2.11.0+cu128",
+   "transformers": "5.20.2",
+   "peft": "0.21.2",
+   "cuda_device": "NVIDIA GeForce RTX 5050 Laptop GPU"
+  },
+  "git_commit": null,
+  "data": {
+   "splits": {
+    "clean": [
+     null,
+     null
+    ],
+    "biased": [
+     0.9,
+     0.9
+    ],
+    "unbiased_test": [
+     null,
+     null
+    ],
+    "iid_biased_test": [
+     0.9,
+     0.9
+    ],
+    "adversarial_test": [
+     0.0,
+     0.0
+    ],
+    "pos_aligned_test": [
+     1.0,
+     null
+    ],
+    "pos_anti_test": [
+     0.0,
+     null
+    ],
+    "ring_aligned_test": [
+     null,
+     1.0
+    ],
+    "ring_anti_test": [
+     null,
+     0.0
+    ]
+   },
+   "test_seed_base": 10000000,
+   "fonts_available": [
+    "arial.ttf",
+    "segoeui.ttf",
+    "calibri.ttf",
+    "verdana.ttf",
+    "tahoma.ttf"
+   ],
+   "n_themes": 4
+  },
+  "eval_args": {
+   "name": "base",
+   "adapter": null,
+   "n": 400,
+   "seed": 0,
+   "bs": 2,
+   "max_pixels": 1003520,
+   "draw": 6,
+   "dataset": "bevaya/ScreenSpot"
+  },
+  "dataset": "bevaya/ScreenSpot",
+  "n_dataset": 1272
+ }
+}

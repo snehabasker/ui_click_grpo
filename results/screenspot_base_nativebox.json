@@ -1,0 +1,396 @@
+{
+ "baseline_center": {
+  "n": 400,
+  "acc": 0.025,
+  "ci": [
+   0.013634943739762435,
+   0.045402064829934204
+  ],
+  "valid_format": 1.0,
+  "by_data_source": {
+   "android": {
+    "n": 94,
+    "acc": 0.02127659574468085
+   },
+   "forum": {
+    "n": 32,
+    "acc": 0.0625
+   },
+   "gitlab": {
+    "n": 22,
+    "acc": 0.0
+   },
+   "ios": {
+    "n": 81,
+    "acc": 0.04938271604938271
+   },
+   "macos": {
+    "n": 55,
+    "acc": 0.01818181818181818
+   },
+   "shop": {
+    "n": 39,
+    "acc": 0.0
+   },
+   "tool": {
+    "n": 32,
+    "acc": 0.0
+   },
+   "windows": {
+    "n": 45,
+    "acc": 0.022222222222222223
+   }
+  },
+  "by_data_type": {
+   "icon": {
+    "n": 193,
+    "acc": 0.015544041450777202
+   },
+   "text": {
+    "n": 207,
+    "acc": 0.033816425120772944
+   }
+  },
+  "by_size": {
+   "small": {
+    "n": 134,
+    "acc": 0.0,
+    "mean_area": 2616.720101896042
+   },
+   "medium": {
+    "n": 133,
+    "acc": 0.0,
+    "mean_area": 8356.871828488918
+   },
+   "large": {
+    "n": 133,
+    "acc": 0.07518796992481203,
+    "mean_area": 55032.62074307504
+   }
+  }
+ },
+ "baseline_random_point": {
+  "n": 400,
+  "acc": 0.0225,
+  "ci": [
+   0.011881448169963291,
+   0.04220312360273175
+  ],
+  "valid_format": 1.0,
+  "by_data_source": {
+   "android": {
+    "n": 94,
+    "acc": 0.031914893617021274
+   },
+   "forum": {
+    "n": 32,
+    "acc": 0.03125
+   },
+   "gitlab": {
+    "n": 22,
+    "acc": 0.0
+   },
+   "ios": {
+    "n": 81,
+    "acc": 0.024691358024691357
+   },
+   "macos": {
+    "n": 55,
+    "acc": 0.01818181818181818
+   },
+   "shop": {
+    "n": 39,
+    "acc": 0.0
+   },
+   "tool": {
+    "n": 32,
+    "acc": 0.03125
+   },
+   "windows": {
+    "n": 45,
+    "acc": 0.022222222222222223
+   }
+  },
+  "by_data_type": {
+   "icon": {
+    "n": 193,
+    "acc": 0.010362694300518135
+   },
+   "text": {
+    "n": 207,
+    "acc": 0.033816425120772944
+   }
+  },
+  "by_size": {
+   "small": {
+    "n": 134,
+    "acc": 0.0,
+    "mean_area": 2616.720101896042
+   },
+   "medium": {
+    "n": 133,
+    "acc": 0.007518796992481203,
+    "mean_area": 8356.871828488918
+   },
+   "large": {
+    "n": 133,
+    "acc": 0.06015037593984962,
+    "mean_area": 55032.62074307504
+   }
+  }
+ },
+ "baseline_oracle_box_centre": {
+  "n": 400,
+  "acc": 1.0,
+  "ci": [
+   0.9904873594003194,
+   1.0
+  ],
+  "valid_format": 1.0,
+  "by_data_source": {
+   "android": {
+    "n": 94,
+    "acc": 1.0
+   },
+   "forum": {
+    "n": 32,
+    "acc": 1.0
+   },
+   "gitlab": {
+    "n": 22,
+    "acc": 1.0
+   },
+   "ios": {
+    "n": 81,
+    "acc": 1.0
+   },
+   "macos": {
+    "n": 55,
+    "acc": 1.0
+   },
+   "shop": {
+    "n": 39,
+    "acc": 1.0
+   },
+   "tool": {
+    "n": 32,
+    "acc": 1.0
+   },
+   "windows": {
+    "n": 45,
+    "acc": 1.0
+   }
+  },
+  "by_data_type": {
+   "icon": {
+    "n": 193,
+    "acc": 1.0
+   },
+   "text": {
+    "n": 207,
+    "acc": 1.0
+   }
+  },
+  "by_size": {
+   "small": {
+    "n": 134,
+    "acc": 1.0,
+    "mean_area": 2616.720101896042
+   },
+   "medium": {
+    "n": 133,
+    "acc": 1.0,
+    "mean_area": 8356.871828488918
+   },
+   "large": {
+    "n": 133,
+    "acc": 1.0,
+    "mean_area": 55032.62074307504
+   }
+  }
+ },
+ "model": {
+  "n": 400,
+  "acc": 0.0975,
+  "ci": [
+   0.07214471685094813,
+   0.1305129588317948
+  ],
+  "valid_format": 0.6075,
+  "by_data_source": {
+   "android": {
+    "n": 94,
+    "acc": 0.031914893617021274
+   },
+   "forum": {
+    "n": 32,
+    "acc": 0.1875
+   },
+   "gitlab": {
+    "n": 22,
+    "acc": 0.13636363636363635
+   },
+   "ios": {
+    "n": 81,
+    "acc": 0.04938271604938271
+   },
+   "macos": {
+    "n": 55,
+    "acc": 0.0
+   },
+   "shop": {
+    "n": 39,
+    "acc": 0.2564102564102564
+   },
+   "tool": {
+    "n": 32,
+    "acc": 0.21875
+   },
+   "windows": {
+    "n": 45,
+    "acc": 0.13333333333333333
+   }
+  },
+  "by_data_type": {
+   "icon": {
+    "n": 193,
+    "acc": 0.09326424870466321
+   },
+   "text": {
+    "n": 207,
+    "acc": 0.10144927536231885
+   }
+  },
+  "by_size": {
+   "small": {
+    "n": 134,
+    "acc": 0.05223880597014925,
+    "mean_area": 2616.720101896042
+   },
+   "medium": {
+    "n": 133,
+    "acc": 0.11278195488721804,
+    "mean_area": 8356.871828488918
+   },
+   "large": {
+    "n": 133,
+    "acc": 0.12781954887218044,
+    "mean_area": 55032.62074307504
+   }
+  },
+  "examples": [
+   [
+    "minimize calculator",
+    "The target element is located at (666, 333), (777, 42"
+   ],
+   [
+    "input method toolbar",
+    "The target element is located at the top left corner of the image, with the bounding box coordinates (100,"
+   ],
+   [
+    "access the personal account interface",
+    "The target element is located at the top right corner of the image, with coordinates (682, 29"
+   ],
+   [
+    "network and internet settings",
+    "(420,0),(789,365)"
+   ],
+   [
+    "file processing",
+    "The bounding box of the target element is (0, 333), (100, 40"
+   ],
+   [
+    "open settings",
+    "(0, 375), (100, 719)"
+   ],
+   [
+    "personal account",
+    "The target element is located at (783, 146) with coordinates (825, "
+   ],
+   [
+    "settings and more",
+    "The target element is a button with the text \"Sign in\". Its bounding box is (781, 1"
+   ]
+  ]
+ },
+ "meta": {
+  "timestamp": "2026-10-23T22:02:20",
+  "model_id": "Qwen/Qwen2-VL-2B-Instruct",
+  "prompt": "{instruction}\nOutput the bounding box of the target element as (x1, y1), (x2, y2), with coordinates normalised to 0-1000 relative to the image width and height.",
+  "image_size": [
+   672,
+   448
+  ],
+  "coordinate_convention": "model answers (x, y) in 0-1000 normalised image coords; boxes are x0,y0,x1,y1 in the same space",
+  "versions": {
+   "python": "3.11.6",
+   "torch": "2.11.0+cu128",
+   "transformers": "5.20.2",
+   "peft": "0.21.2",
+   "cuda_device": "NVIDIA GeForce RTX 5050 Laptop GPU"
+  },
+  "git_commit": null,
+  "data": {
+   "splits": {
+    "clean": [
+     null,
+     null
+    ],
+    "biased": [
+     0.9,
+     0.9
+    ],
+    "unbiased_test": [
+     null,
+     null
+    ],
+    "iid_biased_test": [
+     0.9,
+     0.9
+    ],
+    "adversarial_test": [
+     0.0,
+     0.0
+    ],
+    "pos_aligned_test": [
+     1.0,
+     null
+    ],
+    "pos_anti_test": [
+     0.0,
+     null
+    ],
+    "ring_aligned_test": [
+     null,
+     1.0
+    ],
+    "ring_anti_test": [
+     null,
+     0.0
+    ]
+   },
+   "test_seed_base": 10000000,
+   "fonts_available": [
+    "arial.ttf",
+    "segoeui.ttf",
+    "calibri.ttf",
+    "verdana.ttf",
+    "tahoma.ttf"
+   ],
+   "n_themes": 4
+  },
+  "eval_args": {
+   "name": "base_nativebox",
+   "adapter": null,
+   "n": 400,
+   "seed": 0,
+   "bs": 2,
+   "max_pixels": 1003520,
+   "draw": 0,
+   "mode": "box",
+   "dataset": "bevaya/ScreenSpot"
+  },
+  "dataset": "bevaya/ScreenSpot",
+  "n_dataset": 1272
+ }
+}

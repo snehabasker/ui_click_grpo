@@ -1,0 +1,570 @@
+{
+ "name": "clean",
+ "adapter": "runs/clean/adapter",
+ "n": 300,
+ "results": {
+  "unbiased_test": {
+   "real": {
+    "n": 300,
+    "acc": 0.6333333333333333,
+    "ci": [
+     0.5774356684994387,
+     0.6858594168344984
+    ],
+    "valid_format": 1.0,
+    "decoy_rate": 0.007547169811320755,
+    "click_mean": [
+     469.4,
+     407.8
+    ],
+    "click_std": [
+     244.8,
+     154.3
+    ],
+    "left_click_rate": 0.55,
+    "top_click_share": 0.006666666666666667,
+    "target_left_rate": 0.5733333333333334,
+    "by_kind": {
+     "button": {
+      "n": 91,
+      "acc": 0.9010989010989011
+     },
+     "checkbox": {
+      "n": 43,
+      "acc": 0.06976744186046512
+     },
+     "icon": {
+      "n": 57,
+      "acc": 0.6140350877192983
+     },
+     "input": {
+      "n": 35,
+      "acc": 0.8571428571428571
+     },
+     "link": {
+      "n": 35,
+      "acc": 0.7142857142857143
+     },
+     "tab": {
+      "n": 39,
+      "acc": 0.38461538461538464
+     }
+    },
+    "by_size": {
+     "small": {
+      "n": 100,
+      "acc": 0.38,
+      "mean_area": 2734.2089179421773
+     },
+     "medium": {
+      "n": 100,
+      "acc": 0.71,
+      "mean_area": 5889.435852465988
+     },
+     "large": {
+      "n": 100,
+      "acc": 0.81,
+      "mean_area": 12966.524500425172
+     }
+    },
+    "examples": [
+     "(535,574)",
+     "(107, 379)",
+     "(204, 339)",
+     "(735,219)",
+     "(669, 812)"
+    ]
+   },
+   "shuffled_instr": {
+    "n": 300,
+    "acc": 0.05,
+    "ci": [
+     0.030531367290852585,
+     0.08084771970710952
+    ],
+    "valid_format": 1.0,
+    "decoy_rate": 0.09433962264150944,
+    "click_mean": [
+     370.2,
+     431.4
+    ],
+    "click_std": [
+     262.6,
+     146.9
+    ],
+    "left_click_rate": 0.6966666666666667,
+    "top_click_share": 0.01,
+    "target_left_rate": 0.5733333333333334,
+    "by_kind": {
+     "button": {
+      "n": 91,
+      "acc": 0.07692307692307693
+     },
+     "checkbox": {
+      "n": 43,
+      "acc": 0.0
+     },
+     "icon": {
+      "n": 57,
+      "acc": 0.07017543859649122
+     },
+     "input": {
+      "n": 35,
+      "acc": 0.05714285714285714
+     },
+     "link": {
+      "n": 35,
+      "acc": 0.05714285714285714
+     },
+     "tab": {
+      "n": 39,
+      "acc": 0.0
+     }
+    },
+    "by_size": {
+     "small": {
+      "n": 100,
+      "acc": 0.04,
+      "mean_area": 2734.2089179421773
+     },
+     "medium": {
+      "n": 100,
+      "acc": 0.05,
+      "mean_area": 5889.435852465988
+     },
+     "large": {
+      "n": 100,
+      "acc": 0.06,
+      "mean_area": 12966.524500425172
+     }
+    },
+    "examples": [
+     "(369, 574)",
+     "(131, 419)",
+     "(417, 342)",
+     "(154, 221)",
+     "(131, 515)"
+    ]
+   },
+   "blank_image": {
+    "n": 300,
+    "acc": 0.0033333333333333335,
+    "ci": [
+     0.0005886425761407379,
+     0.018637164554943353
+    ],
+    "valid_format": 1.0,
+    "decoy_rate": 0.011320754716981131,
+    "click_mean": [
+     200.0,
+     212.7
+    ],
+    "click_std": [
+     71.8,
+     120.3
+    ],
+    "left_click_rate": 1.0,
+    "top_click_share": 0.08,
+    "target_left_rate": 0.5733333333333334,
+    "by_kind": {
+     "button": {
+      "n": 91,
+      "acc": 0.0
+     },
+     "checkbox": {
+      "n": 43,
+      "acc": 0.0
+     },
+     "icon": {
+      "n": 57,
+      "acc": 0.0
+     },
+     "input": {
+      "n": 35,
+      "acc": 0.02857142857142857
+     },
+     "link": {
+      "n": 35,
+      "acc": 0.0
+     },
+     "tab": {
+      "n": 39,
+      "acc": 0.0
+     }
+    },
+    "by_size": {
+     "small": {
+      "n": 100,
+      "acc": 0.0,
+      "mean_area": 2734.2089179421773
+     },
+     "medium": {
+      "n": 100,
+      "acc": 0.0,
+      "mean_area": 5889.435852465988
+     },
+     "large": {
+      "n": 100,
+      "acc": 0.01,
+      "mean_area": 12966.524500425172
+     }
+    },
+    "examples": [
+     "(299, 222)",
+     "(255, 22)",
+     "(154, 118)",
+     "(154, 208)",
+     "(117, 222)"
+    ]
+   }
+  },
+  "iid_biased_test": {
+   "real": {
+    "n": 300,
+    "acc": 0.6666666666666666,
+    "ci": [
+     0.6115114164576771,
+     0.7176074402097443
+    ],
+    "valid_format": 1.0,
+    "decoy_rate": 0.0,
+    "click_mean": [
+     312.6,
+     399.6
+    ],
+    "click_std": [
+     183.5,
+     157.2
+    ],
+    "left_click_rate": 0.8666666666666667,
+    "top_click_share": 0.013333333333333334,
+    "target_left_rate": 0.8966666666666666,
+    "by_kind": {
+     "button": {
+      "n": 94,
+      "acc": 0.8617021276595744
+     },
+     "checkbox": {
+      "n": 47,
+      "acc": 0.1276595744680851
+     },
+     "icon": {
+      "n": 43,
+      "acc": 0.5116279069767442
+     },
+     "input": {
+      "n": 32,
+      "acc": 0.9375
+     },
+     "link": {
+      "n": 31,
+      "acc": 0.8064516129032258
+     },
+     "tab": {
+      "n": 53,
+      "acc": 0.6792452830188679
+     }
+    },
+    "by_size": {
+     "small": {
+      "n": 101,
+      "acc": 0.3564356435643564,
+      "mean_area": 2729.928605105408
+     },
+     "medium": {
+      "n": 99,
+      "acc": 0.7777777777777778,
+      "mean_area": 6024.551155689549
+     },
+     "large": {
+      "n": 100,
+      "acc": 0.87,
+      "mean_area": 12265.093537414969
+     }
+    },
+    "examples": [
+     "(449, 277)",
+     "(115, 189)",
+     "(289,266)",
+     "(228, 239)",
+     "(257,391)"
+    ]
+   }
+  },
+  "adversarial_test": {
+   "real": {
+    "n": 300,
+    "acc": 0.6666666666666666,
+    "ci": [
+     0.6115114164576771,
+     0.7176074402097443
+    ],
+    "valid_format": 1.0,
+    "decoy_rate": 0.006666666666666667,
+    "click_mean": [
+     687.9,
+     454.1
+    ],
+    "click_std": [
+     141.4,
+     154.2
+    ],
+    "left_click_rate": 0.03666666666666667,
+    "top_click_share": 0.01,
+    "target_left_rate": 0.0,
+    "by_kind": {
+     "button": {
+      "n": 112,
+      "acc": 0.8125
+     },
+     "checkbox": {
+      "n": 34,
+      "acc": 0.23529411764705882
+     },
+     "icon": {
+      "n": 58,
+      "acc": 0.43103448275862066
+     },
+     "input": {
+      "n": 48,
+      "acc": 0.8125
+     },
+     "link": {
+      "n": 47,
+      "acc": 0.7872340425531915
+     },
+     "tab": {
+      "n": 1,
+      "acc": 0.0
+     }
+    },
+    "by_size": {
+     "small": {
+      "n": 101,
+      "acc": 0.42574257425742573,
+      "mean_area": 2992.7986819727903
+     },
+     "medium": {
+      "n": 99,
+      "acc": 0.7474747474747475,
+      "mean_area": 6000.595077045969
+     },
+     "large": {
+      "n": 100,
+      "acc": 0.83,
+      "mean_area": 14525.171396683676
+     }
+    },
+    "examples": [
+     "(689, 609)",
+     "(511, 482)",
+     "(599, 689)",
+     "(609,759)",
+     "(710,515)"
+    ]
+   },
+   "shuffled_instr": {
+    "n": 300,
+    "acc": 0.05,
+    "ci": [
+     0.030531367290852585,
+     0.08084771970710952
+    ],
+    "valid_format": 1.0,
+    "decoy_rate": 0.07,
+    "click_mean": [
+     382.2,
+     445.9
+    ],
+    "click_std": [
+     267.5,
+     160.8
+    ],
+    "left_click_rate": 0.6533333333333333,
+    "top_click_share": 0.01,
+    "target_left_rate": 0.0,
+    "by_kind": {
+     "button": {
+      "n": 112,
+      "acc": 0.07142857142857142
+     },
+     "checkbox": {
+      "n": 34,
+      "acc": 0.0
+     },
+     "icon": {
+      "n": 58,
+      "acc": 0.034482758620689655
+     },
+     "input": {
+      "n": 48,
+      "acc": 0.0625
+     },
+     "link": {
+      "n": 47,
+      "acc": 0.0425531914893617
+     },
+     "tab": {
+      "n": 1,
+      "acc": 0.0
+     }
+    },
+    "by_size": {
+     "small": {
+      "n": 101,
+      "acc": 0.019801980198019802,
+      "mean_area": 2992.7986819727903
+     },
+     "medium": {
+      "n": 99,
+      "acc": 0.08080808080808081,
+      "mean_area": 6000.595077045969
+     },
+     "large": {
+      "n": 100,
+      "acc": 0.05,
+      "mean_area": 14525.171396683676
+     }
+    },
+    "examples": [
+     "(91, 909)",
+     "(229, 342)",
+     "(478,668)",
+     "(229, 429)",
+     "(411,515)"
+    ]
+   },
+   "blank_image": {
+    "n": 300,
+    "acc": 0.0,
+    "ci": [
+     0.0,
+     0.012643429997735661
+    ],
+    "valid_format": 0.9966666666666667,
+    "decoy_rate": 0.01,
+    "click_mean": [
+     206.0,
+     201.9
+    ],
+    "click_std": [
+     72.0,
+     86.1
+    ],
+    "left_click_rate": 1.0,
+    "top_click_share": 0.07023411371237458,
+    "target_left_rate": 0.0,
+    "by_kind": {
+     "button": {
+      "n": 112,
+      "acc": 0.0
+     },
+     "checkbox": {
+      "n": 34,
+      "acc": 0.0
+     },
+     "icon": {
+      "n": 58,
+      "acc": 0.0
+     },
+     "input": {
+      "n": 48,
+      "acc": 0.0
+     },
+     "link": {
+      "n": 47,
+      "acc": 0.0
+     },
+     "tab": {
+      "n": 1,
+      "acc": 0.0
+     }
+    },
+    "by_size": {
+     "small": {
+      "n": 101,
+      "acc": 0.0,
+      "mean_area": 2992.7986819727903
+     },
+     "medium": {
+      "n": 99,
+      "acc": 0.0,
+      "mean_area": 6000.595077045969
+     },
+     "large": {
+      "n": 100,
+      "acc": 0.0,
+      "mean_area": 14525.171396683676
+     }
+    },
+    "examples": [
+     "(127, 139)",
+     "(199, 154)",
+     "(154, 222)",
+     "(111, 109)",
+     "(127, 130)"
+    ]
+   }
+  }
+ },
+ "style_eval": {},
+ "meta": {
+  "timestamp": "2026-10-23T15:56:23",
+  "model_id": "Qwen/Qwen2-VL-2B-Instruct",
+  "prompt": "{instruction}\nReply with only the click point as (x, y), where x and y are integers from 0 to 1000 giving the position relative to the image width and height.",
+  "image_size": [
+   672,
+   448
+  ],
+  "coordinate_convention": "model answers (x, y) in 0-1000 normalised image coords; boxes are x0,y0,x1,y1 in the same space",
+  "versions": {
+   "python": "3.11.6",
+   "torch": "2.11.0+cu128",
+   "transformers": "5.20.2",
+   "peft": "0.21.2",
+   "cuda_device": "NVIDIA GeForce RTX 5050 Laptop GPU"
+  },
+  "git_commit": null,
+  "data": {
+   "splits": {
+    "clean": [
+     null,
+     null
+    ],
+    "biased": [
+     0.9,
+     0.9
+    ],
+    "unbiased_test": [
+     null,
+     null
+    ],
+    "iid_biased_test": [
+     0.9,
+     0.9
+    ],
+    "adversarial_test": [
+     0.0,
+     0.0
+    ]
+   },
+   "test_seed_base": 10000000,
+   "fonts_available": [
+    "arial.ttf",
+    "segoeui.ttf",
+    "calibri.ttf",
+    "verdana.ttf",
+    "tahoma.ttf"
+   ],
+   "n_themes": 4
+  },
+  "eval_args": {
+   "name": "clean",
+   "adapter": "runs/clean/adapter",
+   "n": 300,
+   "bs": 8,
+   "style_only": false,
+   "style_eval": false
+  }
+ }
+}
