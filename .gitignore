@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# trained LoRA weights (~71 MB each): regenerate with scripts/train.py
+runs/*/adapter/
+
+# raw stdout from eval runs: noisy library warnings with local absolute paths (JSON results are kept)
+results/*.log
+
+# overlays of third-party ScreenSpot screenshots: regenerate with eval_screenspot.py --draw
+results/convention_screenspot_*.png
