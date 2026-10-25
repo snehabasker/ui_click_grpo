@@ -1,0 +1,54 @@
+{
+ "kind": "merge_diff",
+ "source": "merge_verify_20261026-004301.json",
+ "env": {
+  "date": "2026-10-26T00:43:33+01:00",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "python": "3.11.6",
+  "command": "serving/scripts/merge_diff.py serving/results/raw/merge_verify_20261026-004301.json",
+  "gpu": {
+   "gpus": [
+    {
+     "name": "NVIDIA GeForce RTX 5050 Laptop GPU",
+     "driver": "592.82",
+     "memory_total": "8151 MiB",
+     "compute_cap": "12.0"
+    }
+   ],
+   "driver_cuda_version": "13.1"
+  },
+  "packages": {
+   "torch": "2.11.0+cu128",
+   "transformers": "5.20.2",
+   "peft": "0.21.2",
+   "aiohttp": "3.14.5"
+  },
+  "model_dir": null,
+  "model_hash": null,
+  "repo_commit": "cc479b9fd889ed76b6a68ac9f906bfc5665963e8"
+ },
+ "results": {
+  "synth300": {
+   "n_both_valid": 300,
+   "identical_point": 0.5833333333333334,
+   "shift_p50": 0.0,
+   "shift_p90": 10.0,
+   "shift_max": 98.0,
+   "shift_mean": 3.9433333333333334,
+   "hit_to_miss": 2,
+   "miss_to_hit": 2,
+   "unit": "max(|dx|,|dy|) in the model's 0-1000 coordinate space (1 unit = 0.1% of the image side)"
+  },
+  "screenspot400": {
+   "n_both_valid": 392,
+   "identical_point": 0.548469387755102,
+   "shift_p50": 0.0,
+   "shift_p90": 18.799999999999955,
+   "shift_max": 725.0,
+   "shift_mean": 17.915816326530614,
+   "hit_to_miss": 3,
+   "miss_to_hit": 5,
+   "unit": "max(|dx|,|dy|) in the model's 0-1000 coordinate space (1 unit = 0.1% of the image side)"
+  }
+ }
+}

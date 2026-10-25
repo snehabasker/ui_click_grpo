@@ -1,0 +1,34 @@
+{
+  "base_model": "Qwen/Qwen2-VL-2B-Instruct",
+  "base_revision": null,
+  "adapter": "runs/clean/adapter",
+  "adapter_sha256": "eb95dd8f864728cccc3b2204e28fad343c3fb2981143d177582c0c0fb32ba46f",
+  "merge_dtype": "bfloat16",
+  "model_hash": "f4945dbb7c5b459fe0cce1b78362bff134b12a4a15108e9342c8c6b3a1d0de7f",
+  "env": {
+    "date": "2026-10-26T00:06:33+01:00",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.11.6",
+    "command": "serving/scripts/merge_adapter.py --adapter runs/clean/adapter --out serving/models/merged-clean",
+    "gpu": {
+      "gpus": [
+        {
+          "name": "NVIDIA GeForce RTX 5050 Laptop GPU",
+          "driver": "592.82",
+          "memory_total": "8151 MiB",
+          "compute_cap": "12.0"
+        }
+      ],
+      "driver_cuda_version": "13.1"
+    },
+    "packages": {
+      "torch": "2.11.0+cu128",
+      "transformers": "5.20.2",
+      "peft": "0.21.2",
+      "aiohttp": "3.14.5"
+    },
+    "model_dir": "serving\\models\\merged-clean",
+    "model_hash": "f4945dbb7c5b459fe0cce1b78362bff134b12a4a15108e9342c8c6b3a1d0de7f",
+    "repo_commit": "cc479b9fd889ed76b6a68ac9f906bfc5665963e8"
+  }
+}
