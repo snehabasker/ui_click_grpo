@@ -1,0 +1,77 @@
+{
+ "kind": "client_timing",
+ "env": {
+  "date": "2026-10-26T00:46:55+01:00",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "python": "3.11.6",
+  "command": "serving/scripts/validate_client_timing.py",
+  "gpu": {
+   "gpus": [
+    {
+     "name": "NVIDIA GeForce RTX 5050 Laptop GPU",
+     "driver": "592.82",
+     "memory_total": "8151 MiB",
+     "compute_cap": "12.0"
+    }
+   ],
+   "driver_cuda_version": "13.1"
+  },
+  "packages": {
+   "torch": "2.11.0+cu128",
+   "transformers": "5.20.2",
+   "peft": "0.21.2",
+   "aiohttp": "3.14.5"
+  },
+  "model_dir": null,
+  "model_hash": null,
+  "repo_commit": "cc479b9fd889ed76b6a68ac9f906bfc5665963e8"
+ },
+ "results": {
+  "client_vs_exact_spacing": [
+   {
+    "true_spacing_ms": 10.0,
+    "raw_socket_median_ms": 10.028199991211295,
+    "raw_n": 72,
+    "servebench_client_median_ms": 10.02834999235347,
+    "client_n": 72,
+    "client_request_errors": 0,
+    "client_error_messages": [],
+    "client_minus_raw_ms": 0.0001500011421740055
+   },
+   {
+    "true_spacing_ms": 20.0,
+    "raw_socket_median_ms": 20.064250042196363,
+    "raw_n": 72,
+    "servebench_client_median_ms": 20.0530500151217,
+    "client_n": 72,
+    "client_request_errors": 0,
+    "client_error_messages": [],
+    "client_minus_raw_ms": -0.011200027074664831
+   },
+   {
+    "true_spacing_ms": 40.0,
+    "raw_socket_median_ms": 40.083149971906096,
+    "raw_n": 72,
+    "servebench_client_median_ms": 40.09700001915917,
+    "client_n": 72,
+    "client_request_errors": 0,
+    "client_error_messages": [],
+    "client_minus_raw_ms": 0.013850047253072262
+   }
+  ],
+  "asyncio_sleep_granularity": [
+   {
+    "requested_ms": 3.0,
+    "actual_median_ms": 15.951799985487014
+   },
+   {
+    "requested_ms": 10.0,
+    "actual_median_ms": 16.052949998993427
+   },
+   {
+    "requested_ms": 30.0,
+    "actual_median_ms": 34.630099951755255
+   }
+  ]
+ }
+}
