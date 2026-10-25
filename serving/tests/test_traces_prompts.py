@@ -13,9 +13,15 @@ def trace(tmp_path_factory):
 
 
 def test_prompt_matches_training_prompt():
-    pytest.importorskip("transformers")
-    from uiclick.model import PROMPT as TRAIN_PROMPT
-    assert PROMPT == TRAIN_PROMPT
+    """Read PROMPT from the training module's source instead of importing it: importing uiclick.model pulls in torch and
+    transformers, which makes the test fail on machines whose ML stack is unrelated to what is being checked."""
+    import ast
+    from pathlib import Path
+
+    src = (Path(__file__).resolve().parents[2] / "uiclick" / "model.py").read_text(encoding="utf-8")
+    train_prompt = next(ast.literal_eval(n.value) for n in ast.parse(src).body
+                        if isinstance(n, ast.Assign) and any(getattr(t, "id", None) == "PROMPT" for t in n.targets))
+    assert PROMPT == train_prompt
 
 
 def test_turn_counts_and_shared_fraction_are_exact(trace):
