@@ -1,0 +1,5 @@
+# client-side tooling (runs anywhere). The engines (vllm / sglang / tensorrt-llm) are installed separately, see README.
+aiohttp
+numpy
+pillow
+pytest

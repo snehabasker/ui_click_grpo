@@ -11,3 +11,9 @@ results/*.log
 
 # overlays of third-party ScreenSpot screenshots: regenerate with eval_screenspot.py --draw
 results/convention_screenspot_*.png
+
+# serving/: large generated artefacts (regenerate with serving/scripts); manifests and trace.jsonl carry the sha256 checksums
+serving/models/
+serving/data/*/images/
+serving/traces/*/images/
+serving/results/raw/_*.log
