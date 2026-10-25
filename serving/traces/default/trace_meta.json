@@ -1,0 +1,36 @@
+{
+ "config": {
+  "name": "default",
+  "n_sessions": 96,
+  "min_turns": 3,
+  "max_turns": 8,
+  "shared_fraction": 0.75,
+  "n_shared_groups": 4,
+  "n_fewshot": 2,
+  "history": "text",
+  "warmup_sessions": 4,
+  "seed": 0
+ },
+ "n_sessions": 96,
+ "n_requests": 560,
+ "n_shared_sessions": 72,
+ "sessions_per_prefix": {
+  "shared-0": 33,
+  "shared-1": 18,
+  "shared-2": 12,
+  "shared-3": 9
+ },
+ "turns_per_session": {
+  "min": 3,
+  "max": 8
+ },
+ "n_images": 644,
+ "fonts": [
+  "arial.ttf",
+  "segoeui.ttf",
+  "calibri.ttf",
+  "verdana.ttf",
+  "tahoma.ttf"
+ ],
+ "trace_sha256": "b43edd719846b1b21ccf4ca69d11bfa1d7fc5ba3acde318b6ff61db6f26b6798"
+}

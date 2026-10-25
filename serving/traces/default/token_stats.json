@@ -1,0 +1,36 @@
+{
+ "trace": "default",
+ "history": "text",
+ "tokens_first_turn_with_prefix": 1666,
+ "tokens_last_turn": 1861,
+ "last_turn_index": 3,
+ "tokens_single_image_no_prefix": 412,
+ "shared_prefix_tokens_approx": 1254,
+ "note": "token counts from the real Qwen2-VL processor; 'approx' = first turn minus a bare one-image request",
+ "env": {
+  "date": "2026-10-26T00:14:01+01:00",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "python": "3.11.6",
+  "command": "serving/scripts/gen_traces.py --name default --stats",
+  "gpu": {
+   "gpus": [
+    {
+     "name": "NVIDIA GeForce RTX 5050 Laptop GPU",
+     "driver": "592.82",
+     "memory_total": "8151 MiB",
+     "compute_cap": "12.0"
+    }
+   ],
+   "driver_cuda_version": "13.1"
+  },
+  "packages": {
+   "torch": "2.11.0+cu128",
+   "transformers": "5.20.2",
+   "peft": "0.21.2",
+   "aiohttp": "3.14.5"
+  },
+  "model_dir": null,
+  "model_hash": null,
+  "repo_commit": "cc479b9fd889ed76b6a68ac9f906bfc5665963e8"
+ }
+}
