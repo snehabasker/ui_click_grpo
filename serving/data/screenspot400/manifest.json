@@ -1,0 +1,7237 @@
+{
+ "meta": {
+  "name": "screenspot400",
+  "dataset": "bevaya/ScreenSpot",
+  "n": 400,
+  "seed": 0,
+  "note": "third-party screenshots: not committed",
+  "env": {
+   "date": "2026-10-26T00:05:40+01:00",
+   "platform": "Windows-10-10.0.26200-SP0",
+   "python": "3.11.6",
+   "command": "serving/scripts/export_sets.py",
+   "gpu": {
+    "gpus": [
+     {
+      "name": "NVIDIA GeForce RTX 5050 Laptop GPU",
+      "driver": "592.82",
+      "memory_total": "8151 MiB",
+      "compute_cap": "12.0"
+     }
+    ],
+    "driver_cuda_version": "13.1"
+   },
+   "packages": {
+    "torch": "2.11.0+cu128",
+    "transformers": "5.20.2",
+    "peft": "0.21.2",
+    "aiohttp": "3.14.5"
+   },
+   "model_dir": null,
+   "model_hash": null,
+   "repo_commit": "cc479b9fd889ed76b6a68ac9f906bfc5665963e8"
+  }
+ },
+ "items": [
+  {
+   "id": "ssp-00005",
+   "image": "images/0000.png",
+   "sha256": "c141989019fde1efd030f2472b0caa4ffdb69d17ef84527e257aa5df90005d60",
+   "instruction": "minimize calculator",
+   "box": [
+    726.0416666666667,
+    116.66666666666667,
+    761.4583333333334,
+    175.92592592592592
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_f0122b91-3f8b-4510-9a6e-f0239d84b94e.png",
+    "dataset_index": 5
+   }
+  },
+  {
+   "id": "ssp-00012",
+   "image": "images/0001.png",
+   "sha256": "ee254c0646b9ef4a6ba637eb991ded17ec7ec978dd99660550e1463d2d6c00d3",
+   "instruction": "input method toolbar",
+   "box": [
+    919.7916666666666,
+    918.5185185185185,
+    984.375,
+    1000.0
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_e618dc7e-8ffb-4a37-a317-9d3908c38395.png",
+    "dataset_index": 12
+   }
+  },
+  {
+   "id": "ssp-00013",
+   "image": "images/0002.png",
+   "sha256": "20cc4b56917e61668ce9fa3b2765478d7a8e052133f87ecdc98b50dc6f7f3280",
+   "instruction": "access the personal account interface",
+   "box": [
+    810.4166666666666,
+    7.407407407407407,
+    850.0,
+    83.33333333333333
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_54779155-8627-4cac-8ea6-98277cfe0647.png",
+    "dataset_index": 13
+   }
+  },
+  {
+   "id": "ssp-00014",
+   "image": "images/0003.png",
+   "sha256": "c000205b16242bbb7983d44f8bb64e694a4b20715ef02d5351ce6cc85e51ce0e",
+   "instruction": "network and internet settings",
+   "box": [
+    962.5,
+    918.5185185185185,
+    996.875,
+    1000.0
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_ad16765f-de52-4903-b406-fb5213b94db9.png",
+    "dataset_index": 14
+   }
+  },
+  {
+   "id": "ssp-00016",
+   "image": "images/0004.png",
+   "sha256": "37a584fb0eb02a2290df5ca1b070e5b0bfb183336a2417c295703d64bafa9476",
+   "instruction": "file processing",
+   "box": [
+    10.416666666666666,
+    155.55555555555557,
+    62.5,
+    227.77777777777777
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_221d3c5a-0a1b-456e-9676-7b5ff95cc1b1.png",
+    "dataset_index": 16
+   }
+  },
+  {
+   "id": "ssp-00017",
+   "image": "images/0005.png",
+   "sha256": "aee01fde19e23c213ac727806c4396021e03f54ee65b031b4a4b54a02e7aa7cc",
+   "instruction": "open settings",
+   "box": [
+    1.0416666666666667,
+    55.55555555555555,
+    43.75,
+    127.77777777777777
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_a8b0f843-7aaf-4369-ac2b-a121f1ccb024.png",
+    "dataset_index": 17
+   }
+  },
+  {
+   "id": "ssp-00023",
+   "image": "images/0006.png",
+   "sha256": "8ceda4ce1f483d222cb477378340ec9b759d6e13e9c446f707e7609cb1061a13",
+   "instruction": "personal account",
+   "box": [
+    0.0,
+    0.0,
+    41.666666666666664,
+    59.25925925925926
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_bd6711e1-ddc1-4873-8cf1-19654285f4ea.png",
+    "dataset_index": 23
+   }
+  },
+  {
+   "id": "ssp-00024",
+   "image": "images/0007.png",
+   "sha256": "729a83a2066e86fb1683a3843823de2ee08eb62ca7b782145a8870c0623bb39c",
+   "instruction": "settings and more",
+   "box": [
+    954.1666666666667,
+    24.074074074074073,
+    1000.0,
+    96.29629629629629
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_83462e63-b0cd-4921-9d19-8a534ed445c7.png",
+    "dataset_index": 24
+   }
+  },
+  {
+   "id": "ssp-00026",
+   "image": "images/0008.png",
+   "sha256": "8276f3e11cd59811c92b8a68bc04f4dc0e0551b03d0989c403dabcde6a5ffe7e",
+   "instruction": "undo",
+   "box": [
+    2.0833333333333335,
+    0.0,
+    35.416666666666664,
+    55.55555555555555
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_1f371830-d909-41ac-a340-921a594f05b0.png",
+    "dataset_index": 26
+   }
+  },
+  {
+   "id": "ssp-00032",
+   "image": "images/0009.png",
+   "sha256": "051c9863eb64ecdfc464628600d4476e6917248ce66e3a471c30ae351aa61c6b",
+   "instruction": "fill in red",
+   "box": [
+    630.2083333333334,
+    483.3333333333333,
+    647.9166666666667,
+    514.8148148148148
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_61beef4d-1a93-47b3-8aff-ba0f7774cb43.png",
+    "dataset_index": 32
+   }
+  },
+  {
+   "id": "ssp-00035",
+   "image": "images/0010.png",
+   "sha256": "36d9cd34a6e5498a7f15f7802c31e96f20bed63b3512316b63e785a5f02e2366",
+   "instruction": "open account protection",
+   "box": [
+    0.0,
+    194.44444444444446,
+    330.2083333333333,
+    268.51851851851853
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_eb0b756c-e471-40eb-bfaa-06b432094ac6.png",
+    "dataset_index": 35
+   }
+  },
+  {
+   "id": "ssp-00037",
+   "image": "images/0011.png",
+   "sha256": "2f00791c3f06704d5c7202b054d50bf6aa382b40c8dc9e30b6c6fd04a2087b22",
+   "instruction": "minimize the window",
+   "box": [
+    626.0416666666667,
+    35.18518518518519,
+    664.5833333333333,
+    98.14814814814815
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_41efdca0-442c-471e-8188-45457f9287c3.png",
+    "dataset_index": 37
+   }
+  },
+  {
+   "id": "ssp-00050",
+   "image": "images/0012.png",
+   "sha256": "a6a5cf7c65b6396f37a476154f1d84f1c9d57eb8042ab5b2d7f3adf12c3cec0f",
+   "instruction": "check hourly weather",
+   "box": [
+    241.66666666666666,
+    772.2222222222223,
+    333.3333333333333,
+    850.0
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_4ba904da-bd51-42ea-a96f-c5681c630058.png",
+    "dataset_index": 50
+   }
+  },
+  {
+   "id": "ssp-00051",
+   "image": "images/0013.png",
+   "sha256": "f12dfd11c8966fccfd3b3f43dc0e05b70a4b5ccaf00182342ec228649a629ced",
+   "instruction": "open the menu of windows",
+   "box": [
+    0.0,
+    922.2222222222223,
+    50.0,
+    1000.0
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_4cb20510-1be3-4ef8-ac47-2b49f4463555.png",
+    "dataset_index": 51
+   }
+  },
+  {
+   "id": "ssp-00055",
+   "image": "images/0014.png",
+   "sha256": "1829a07870eb34924071d2a07806a4b1dc1dc38e55d66a9e2b14bfe79b2090a3",
+   "instruction": "open the playlist",
+   "box": [
+    0.0,
+    457.40740740740745,
+    331.25,
+    542.5925925925926
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_aa124117-8877-4805-9c69-0ce80e1afc71.png",
+    "dataset_index": 55
+   }
+  },
+  {
+   "id": "ssp-00057",
+   "image": "images/0015.png",
+   "sha256": "7cb29d2228b16f806bb33660d4ff11579b8c5f4888a79631e3fae5b287675d83",
+   "instruction": "back to previous folder",
+   "box": [
+    7.291666666666667,
+    375.9259259259259,
+    36.458333333333336,
+    448.14814814814815
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_88dde48f-6594-4f17-b117-3529b2bde02e.png",
+    "dataset_index": 57
+   }
+  },
+  {
+   "id": "ssp-00058",
+   "image": "images/0016.png",
+   "sha256": "9068ab11626aae10dcdbfc8232521ed03c73ea4c875ce870af64b5b9740a145d",
+   "instruction": "open windows store",
+   "box": [
+    157.29166666666666,
+    387.037037037037,
+    268.75,
+    581.4814814814815
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_5b1e5fe2-e063-463f-ab56-2b09d17b88a5.png",
+    "dataset_index": 58
+   }
+  },
+  {
+   "id": "ssp-00066",
+   "image": "images/0017.png",
+   "sha256": "8709d3dee091c650fd3e054602068af6464e386a7f0b225c04a2a26ea4ccbd02",
+   "instruction": "show in folder",
+   "box": [
+    941.6666666666666,
+    464.8148148148148,
+    984.375,
+    562.962962962963
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_21d4f79d-2603-4f10-a535-9401ee47cb94.png",
+    "dataset_index": 66
+   }
+  },
+  {
+   "id": "ssp-00069",
+   "image": "images/0018.png",
+   "sha256": "ce6b8cc3b37717f32db12e0a2da99605a08604730d572d33d62c103816f3a6ae",
+   "instruction": "refresh the page",
+   "box": [
+    923.9583333333334,
+    37.03703703703704,
+    962.5,
+    103.7037037037037
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_3a625c5d-db8a-41fb-b533-16a7c8a4f345.png",
+    "dataset_index": 69
+   }
+  },
+  {
+   "id": "ssp-00073",
+   "image": "images/0019.png",
+   "sha256": "c9c95278830fb00873171b6b0f9f61d8be48807a4faa6e77e89fcb597545f93e",
+   "instruction": "sound settings.",
+   "box": [
+    190.625,
+    44.44444444444444,
+    519.7916666666666,
+    125.92592592592591
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_8fc42b3c-c8bc-4866-b787-aed98a86d614.png",
+    "dataset_index": 73
+   }
+  },
+  {
+   "id": "ssp-00075",
+   "image": "images/0020.png",
+   "sha256": "49afe7355a20f2d008116cec9402fb32afc899fd5605b6c211a2fce934c8f280",
+   "instruction": "send current page",
+   "box": [
+    954.1666666666667,
+    842.5925925925926,
+    1000.0,
+    918.5185185185185
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_07faaa86-6e6b-457b-9a51-9b30edff21da.png",
+    "dataset_index": 75
+   }
+  },
+  {
+   "id": "ssp-00076",
+   "image": "images/0021.png",
+   "sha256": "a2a3ee1a5616c78980c98f9fb0a6e35e7cf72017ee7d9919453405d36b211cdb",
+   "instruction": "shape option",
+   "box": [
+    81.25,
+    53.7037037037037,
+    130.20833333333334,
+    222.2222222222222
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_ec8508be-641d-492a-bccc-a8279ae5bf9b.png",
+    "dataset_index": 76
+   }
+  },
+  {
+   "id": "ssp-00081",
+   "image": "images/0022.png",
+   "sha256": "4db25e5fb494811e96388d4ddaafaed8d5fb2ea41a4013cf2bf5ebaff3fb1cdd",
+   "instruction": "learn more",
+   "box": [
+    31.25,
+    738.8888888888889,
+    143.75,
+    807.4074074074075
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_ecde084e-e461-4c7c-9ddc-bccabc874747.png",
+    "dataset_index": 81
+   }
+  },
+  {
+   "id": "ssp-00084",
+   "image": "images/0023.png",
+   "sha256": "f8b8b8d6532c4ca834fe766305afdba4a8a3d5767fdee0a2a83a3340a38526f9",
+   "instruction": "multiplicate",
+   "box": [
+    151.04166666666666,
+    24.074074074074073,
+    235.41666666666666,
+    127.77777777777777
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_986f4ae9-9dd8-4c5c-b3d8-fb3fb5557d17.png",
+    "dataset_index": 84
+   }
+  },
+  {
+   "id": "ssp-00087",
+   "image": "images/0024.png",
+   "sha256": "230a0b24105786773a9976ed360ae7ab82b287bd339a9de9097bcd3151573a78",
+   "instruction": "restart the computer",
+   "box": [
+    0.0,
+    850.0,
+    270.8333333333333,
+    925.925925925926
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_c00e575a-fa2d-47c7-83cc-9f4e99f15720.png",
+    "dataset_index": 87
+   }
+  },
+  {
+   "id": "ssp-00090",
+   "image": "images/0025.png",
+   "sha256": "e7e38a57636a67d23c8b15c8b00eab6e1ae591951a046060d8f32002a7c15dcc",
+   "instruction": "choose the pig",
+   "box": [
+    422.9166666666667,
+    150.0,
+    788.5416666666667,
+    688.8888888888889
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_1f3eb0eb-2ab2-4e48-b278-de334846ee0d.png",
+    "dataset_index": 90
+   }
+  },
+  {
+   "id": "ssp-00091",
+   "image": "images/0026.png",
+   "sha256": "6611bd33f36f039049625286be1b73fe71f98548133a8d909e10ec04ebd64c21",
+   "instruction": "input a url",
+   "box": [
+    50.520833333333336,
+    30.555555555555554,
+    858.3333333333333,
+    62.962962962962955
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_6a8d5384-ca12-4ae2-b14c-4c9dc08d4896.png",
+    "dataset_index": 91
+   }
+  },
+  {
+   "id": "ssp-00094",
+   "image": "images/0027.png",
+   "sha256": "ca74ad0b803776ac5655c7cd11714b6db250761d4dfb298259db891409f8fc92",
+   "instruction": "choose wechat",
+   "box": [
+    58.333333333333336,
+    727.7777777777777,
+    514.5833333333333,
+    944.4444444444445
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_4c43fbd2-d84e-4bb4-8169-7a748530c1af.png",
+    "dataset_index": 94
+   }
+  },
+  {
+   "id": "ssp-00096",
+   "image": "images/0028.png",
+   "sha256": "4473065ab723a946570f09a4a590b90cae0dfd4d6f5a19be7eb9b1a510182435",
+   "instruction": "file sorting method",
+   "box": [
+    120.83333333333333,
+    40.74074074074075,
+    356.25,
+    92.59259259259258
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_bb73a431-c05e-47a8-bd27-8c7cbc2f7f23.png",
+    "dataset_index": 96
+   }
+  },
+  {
+   "id": "ssp-00097",
+   "image": "images/0029.png",
+   "sha256": "bd8de3879955b561ab2b4a3971e9d40251435c0df75644dc4146e97f73095b75",
+   "instruction": "microsoft edge",
+   "box": [
+    2.0833333333333335,
+    185.18518518518516,
+    83.33333333333333,
+    355.55555555555554
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_b4d4f0c2-5f8e-409e-ac20-b1a2c7d6f440.png",
+    "dataset_index": 97
+   }
+  },
+  {
+   "id": "ssp-00098",
+   "image": "images/0030.png",
+   "sha256": "316e62fade8f4bd8621c03ccf2b502271c0924dfcb96c53ec7ad0375e3f0687d",
+   "instruction": "open the file",
+   "box": [
+    335.41666666666663,
+    124.07407407407408,
+    626.0416666666667,
+    172.22222222222223
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_5da8f8cd-8ba2-490a-86e0-5c82421a9bee.png",
+    "dataset_index": 98
+   }
+  },
+  {
+   "id": "ssp-00099",
+   "image": "images/0031.png",
+   "sha256": "41a74051183a52fa6a1f7d807e374b92a7792f17970949db3cf229456daf08c4",
+   "instruction": "search for files",
+   "box": [
+    8.333333333333334,
+    61.11111111111111,
+    309.375,
+    124.07407407407408
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_2d42ba96-b43d-4f3f-81c1-80c8c107ca1c.png",
+    "dataset_index": 99
+   }
+  },
+  {
+   "id": "ssp-00104",
+   "image": "images/0032.png",
+   "sha256": "f0965b0f3aa450ec136a121a2fc11f4a6b76692b6dfffed13de2c8c8526f1e22",
+   "instruction": "paste option",
+   "box": [
+    113.54166666666667,
+    266.6666666666667,
+    166.66666666666666,
+    401.85185185185185
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_01c641cb-aa78-4bae-80ea-dda820dd00eb.png",
+    "dataset_index": 104
+   }
+  },
+  {
+   "id": "ssp-00106",
+   "image": "images/0033.png",
+   "sha256": "bc567bc60f4080a48203191bff43a93d39748307514e2a92fbf5372211795415",
+   "instruction": "next track",
+   "box": [
+    188.54166666666666,
+    829.6296296296296,
+    220.83333333333331,
+    925.925925925926
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_471e7c2d-8c16-4626-9b8e-7e0fd79e3a32.png",
+    "dataset_index": 106
+   }
+  },
+  {
+   "id": "ssp-00108",
+   "image": "images/0034.png",
+   "sha256": "fca9c2775836f8cd6259f63bca3557a8deb42aadb17dc0602c8744f3e1365ed6",
+   "instruction": "check for two unread messages",
+   "box": [
+    944.7916666666667,
+    924.074074074074,
+    996.875,
+    1000.0
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_daa34642-1973-424e-a752-3b309fa6512b.png",
+    "dataset_index": 108
+   }
+  },
+  {
+   "id": "ssp-00109",
+   "image": "images/0035.png",
+   "sha256": "3aa93950efccc04794e46a1d81e9d72efc44fcc24247b18bd6991d7b2bdbbc88",
+   "instruction": "windows settings",
+   "box": [
+    0.0,
+    753.7037037037037,
+    52.083333333333336,
+    837.0370370370371
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_58d89b93-10e2-41fe-8b6d-3532fd3bb832.png",
+    "dataset_index": 109
+   }
+  },
+  {
+   "id": "ssp-00110",
+   "image": "images/0036.png",
+   "sha256": "bf5bd1ab238a544b04b0d639408e413b6683e0457aaefa6ff16fc232d66785eb",
+   "instruction": "dismiss the account protection",
+   "box": [
+    429.16666666666663,
+    603.7037037037037,
+    504.16666666666663,
+    687.037037037037
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_79377abe-731c-4d3b-ab04-b332c4054b81.png",
+    "dataset_index": 110
+   }
+  },
+  {
+   "id": "ssp-00112",
+   "image": "images/0037.png",
+   "sha256": "e2a08efc066327747578283e043a6d0c73e7c97825776b66f1027c7e8e9655b6",
+   "instruction": "personal account options",
+   "box": [
+    0.0,
+    724.0740740740741,
+    48.958333333333336,
+    801.8518518518518
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_c8b036c3-da02-490e-a09b-0a42b8d9f344.png",
+    "dataset_index": 112
+   }
+  },
+  {
+   "id": "ssp-00119",
+   "image": "images/0038.png",
+   "sha256": "a8061821f4ff754010013029892987390ca8080fc8f27e42b3165dc54ce1c090",
+   "instruction": "open fax",
+   "box": [
+    266.72240802675583,
+    298.8133764832794,
+    468.2274247491639,
+    350.5933117583603
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_17b94559-9897-4b8e-ae34-c47ce5b5d46f.png",
+    "dataset_index": 119
+   }
+  },
+  {
+   "id": "ssp-00120",
+   "image": "images/0039.png",
+   "sha256": "a8061821f4ff754010013029892987390ca8080fc8f27e42b3165dc54ce1c090",
+   "instruction": "need some help",
+   "box": [
+    758.3612040133779,
+    394.82200647249186,
+    946.4882943143813,
+    429.3419633225459
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_17b94559-9897-4b8e-ae34-c47ce5b5d46f.png",
+    "dataset_index": 120
+   }
+  },
+  {
+   "id": "ssp-00122",
+   "image": "images/0040.png",
+   "sha256": "385addf9ac7c306751c26b2d8f14f4debe37d820a935cd1f582a670b1aaee7a7",
+   "instruction": "switch to documents",
+   "box": [
+    143.5897435897436,
+    3.1545741324921135,
+    251.28205128205127,
+    69.4006309148265
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_5377c04c-7d8f-4377-b1ed-d7994722871f.png",
+    "dataset_index": 122
+   }
+  },
+  {
+   "id": "ssp-00123",
+   "image": "images/0041.png",
+   "sha256": "385addf9ac7c306751c26b2d8f14f4debe37d820a935cd1f582a670b1aaee7a7",
+   "instruction": "view the game for me",
+   "box": [
+    474.35897435897436,
+    802.839116719243,
+    643.5897435897436,
+    856.4668769716088
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_5377c04c-7d8f-4377-b1ed-d7994722871f.png",
+    "dataset_index": 123
+   }
+  },
+  {
+   "id": "ssp-00137",
+   "image": "images/0042.png",
+   "sha256": "15b41b4c0fbc4d3909c8af5ab209fb90230c3735680d6c8b9e1d8258e6b45df1",
+   "instruction": "sign in",
+   "box": [
+    810.0,
+    34.261241970021416,
+    946.6666666666666,
+    107.06638115631692
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_efc1c0f0-366b-47a0-8e3f-0d197023a2bb.png",
+    "dataset_index": 137
+   }
+  },
+  {
+   "id": "ssp-00139",
+   "image": "images/0043.png",
+   "sha256": "ed6e30dbdec30b9e23b2b72a6c54292210e8cbf64d15048d4f2a20361e49d1eb",
+   "instruction": "adjust the volume",
+   "box": [
+    12.5,
+    747.6459510357815,
+    531.25,
+    821.0922787193974
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "windows",
+    "file_name": "pc_f2244f33-a9c9-44e7-bacb-3e51f72d619e.png",
+    "dataset_index": 139
+   }
+  },
+  {
+   "id": "ssp-00140",
+   "image": "images/0044.png",
+   "sha256": "ada9a59ea56009a855be77748fd2dd3f54d051e49c47b22d49c1b6fa803f0b68",
+   "instruction": "add a new one",
+   "box": [
+    5.524861878453039,
+    6.3897763578274756,
+    88.39779005524862,
+    102.23642172523961
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "windows",
+    "file_name": "pc_639ab093-46ed-4332-9229-125647aad9da.png",
+    "dataset_index": 140
+   }
+  },
+  {
+   "id": "ssp-00163",
+   "image": "images/0045.png",
+   "sha256": "9f9dfd7fd5377bbd186d90439332e526e231d756c0f31103b3b2363f3312ecd4",
+   "instruction": "view the language & region settings",
+   "box": [
+    760.8370702541106,
+    270.1908957415565,
+    851.270553064275,
+    378.1204111600587
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_6f79b56c-2b0f-471d-9f9d-93932c69a0ce.png",
+    "dataset_index": 163
+   }
+  },
+  {
+   "id": "ssp-00169",
+   "image": "images/0046.png",
+   "sha256": "a4d672ef0d2c1eb91d78aa10d57ab33f9251ae717b551de3e77b58d277c79926",
+   "instruction": "choose the ken burns",
+   "box": [
+    73.88059701492537,
+    367.64705882352945,
+    206.71641791044775,
+    494.80968858131484
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_66906e9c-dc3c-49e9-aaf0-0e7d5efc97db.png",
+    "dataset_index": 169
+   }
+  },
+  {
+   "id": "ssp-00171",
+   "image": "images/0047.png",
+   "sha256": "9cc64b6d07e7a79ed9814ce4dcd27430cb3607e118fa11dea02f1d845039665e",
+   "instruction": "switch to dark mode",
+   "box": [
+    501.4925373134328,
+    101.82584269662921,
+    607.4626865671642,
+    195.92696629213484
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_772a850b-eb35-4efb-9767-ef0eadeb70f0.png",
+    "dataset_index": 171
+   }
+  },
+  {
+   "id": "ssp-00172",
+   "image": "images/0048.png",
+   "sha256": "9cc64b6d07e7a79ed9814ce4dcd27430cb3607e118fa11dea02f1d845039665e",
+   "instruction": "choose highlight color",
+   "box": [
+    372.3880597014925,
+    278.08988764044943,
+    599.2537313432837,
+    306.1797752808989
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_772a850b-eb35-4efb-9767-ef0eadeb70f0.png",
+    "dataset_index": 172
+   }
+  },
+  {
+   "id": "ssp-00173",
+   "image": "images/0049.png",
+   "sha256": "9cc64b6d07e7a79ed9814ce4dcd27430cb3607e118fa11dea02f1d845039665e",
+   "instruction": "set default web browser",
+   "box": [
+    373.13432835820896,
+    625.7022471910112,
+    602.2388059701492,
+    658.0056179775281
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_772a850b-eb35-4efb-9767-ef0eadeb70f0.png",
+    "dataset_index": 173
+   }
+  },
+  {
+   "id": "ssp-00175",
+   "image": "images/0050.png",
+   "sha256": "cd4215513b0b1f380c527b2acee7d297480a2a8deba4de305ae9423b124aaeea",
+   "instruction": "switch to apps",
+   "box": [
+    508.96860986547085,
+    228.38345864661656,
+    593.423019431988,
+    270.6766917293233
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_3ffab0d5-e99d-47b8-9684-ec9d8d063419.png",
+    "dataset_index": 175
+   }
+  },
+  {
+   "id": "ssp-00176",
+   "image": "images/0051.png",
+   "sha256": "cd4215513b0b1f380c527b2acee7d297480a2a8deba4de305ae9423b124aaeea",
+   "instruction": "add a language",
+   "box": [
+    58.29596412556054,
+    794.172932330827,
+    97.90732436472346,
+    833.6466165413534
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_3ffab0d5-e99d-47b8-9684-ec9d8d063419.png",
+    "dataset_index": 176
+   }
+  },
+  {
+   "id": "ssp-00177",
+   "image": "images/0052.png",
+   "sha256": "cd4215513b0b1f380c527b2acee7d297480a2a8deba4de305ae9423b124aaeea",
+   "instruction": "translation languages setting",
+   "box": [
+    250.37369207772798,
+    922.9323308270677,
+    502.9895366218237,
+    963.3458646616542
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_3ffab0d5-e99d-47b8-9684-ec9d8d063419.png",
+    "dataset_index": 177
+   }
+  },
+  {
+   "id": "ssp-00179",
+   "image": "images/0053.png",
+   "sha256": "570c200db077faa0afa23960f0957fc1170837974849c22a9df7db6b69dcf251",
+   "instruction": "check the battery",
+   "box": [
+    482.5227963525836,
+    12.380952380952381,
+    541.7933130699089,
+    60.95238095238095
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_819d6d6a-0ea9-46e0-869d-e17d271381ca.png",
+    "dataset_index": 179
+   }
+  },
+  {
+   "id": "ssp-00180",
+   "image": "images/0054.png",
+   "sha256": "570c200db077faa0afa23960f0957fc1170837974849c22a9df7db6b69dcf251",
+   "instruction": "siri",
+   "box": [
+    750.0,
+    12.380952380952381,
+    795.5927051671733,
+    58.095238095238095
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_819d6d6a-0ea9-46e0-869d-e17d271381ca.png",
+    "dataset_index": 180
+   }
+  },
+  {
+   "id": "ssp-00184",
+   "image": "images/0055.png",
+   "sha256": "eb272b5e796263a66435e5a42278c5e84fb032ffd83c488570c380ed1d2c73e2",
+   "instruction": "go to music app",
+   "box": [
+    536.9496855345913,
+    655.4702495201535,
+    975.62893081761,
+    775.4318618042226
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_15bd214f-b45f-48f8-8125-21d79373a99e.png",
+    "dataset_index": 184
+   }
+  },
+  {
+   "id": "ssp-00185",
+   "image": "images/0056.png",
+   "sha256": "eb272b5e796263a66435e5a42278c5e84fb032ffd83c488570c380ed1d2c73e2",
+   "instruction": "check bluetooth",
+   "box": [
+    551.1006289308176,
+    202.49520153550864,
+    699.6855345911949,
+    262.95585412667947
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_15bd214f-b45f-48f8-8125-21d79373a99e.png",
+    "dataset_index": 185
+   }
+  },
+  {
+   "id": "ssp-00192",
+   "image": "images/0057.png",
+   "sha256": "81e228eb091f87f35728683375810004a8c4a3b531855c1224e884fc9e52b0f2",
+   "instruction": "share my location",
+   "box": [
+    16.08187134502924,
+    951.8879415347138,
+    153.99610136452242,
+    985.9926918392205
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_33eb9249-4ee4-4752-9541-8466efda3845.png",
+    "dataset_index": 192
+   }
+  },
+  {
+   "id": "ssp-00197",
+   "image": "images/0058.png",
+   "sha256": "9f491d03eb7ed805d4c7f99707e86b920eb1db548d72491ef14a68b61b83be6a",
+   "instruction": "finder",
+   "box": [
+    20.17195767195767,
+    947.0468431771894,
+    47.61904761904761,
+    995.417515274949
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_64100146-b681-4263-b86c-16d6932b8078.png",
+    "dataset_index": 197
+   }
+  },
+  {
+   "id": "ssp-00198",
+   "image": "images/0059.png",
+   "sha256": "9f491d03eb7ed805d4c7f99707e86b920eb1db548d72491ef14a68b61b83be6a",
+   "instruction": "trash",
+   "box": [
+    952.7116402116402,
+    947.0468431771894,
+    977.5132275132275,
+    994.3991853360488
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_64100146-b681-4263-b86c-16d6932b8078.png",
+    "dataset_index": 198
+   }
+  },
+  {
+   "id": "ssp-00201",
+   "image": "images/0060.png",
+   "sha256": "c6ae827473d09accc8bf8d0fa002e4cf7b1572a9cbb81ca6bda36c58af4cdaf4",
+   "instruction": "connect wifi",
+   "box": [
+    456.0931899641577,
+    1.5432098765432098,
+    516.1290322580645,
+    100.30864197530865
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_dde13919-4c5b-49a1-8c8a-7d03f363c7ac.png",
+    "dataset_index": 201
+   }
+  },
+  {
+   "id": "ssp-00204",
+   "image": "images/0061.png",
+   "sha256": "44e4e8b95efebea2c228ce12fcb1a0bfd04ccfd2ea85c60f50eafb2b8aa5ffe9",
+   "instruction": "turn off airdrop",
+   "box": [
+    872.4954462659381,
+    158.06451612903226,
+    947.1766848816029,
+    248.38709677419354
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_7ba3945d-3975-45f3-9145-71805a9723de.png",
+    "dataset_index": 204
+   }
+  },
+  {
+   "id": "ssp-00214",
+   "image": "images/0062.png",
+   "sha256": "14f9091b335b16881543e7056386592d2a63e505265d9be8ac946621cae83e26",
+   "instruction": "open bluetooth preferences for me",
+   "box": [
+    17.721518987341774,
+    499.0740740740741,
+    618.9873417721519,
+    562.037037037037
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_65c6ab58-5f56-4a53-a65d-5e88511bbe0f.png",
+    "dataset_index": 214
+   }
+  },
+  {
+   "id": "ssp-00215",
+   "image": "images/0063.png",
+   "sha256": "c01c3e8bad81e81c3a261596d98c7f4167f9a84a007f485f424dba48fce6a283",
+   "instruction": "hidden all shortcut",
+   "box": [
+    151.95246179966043,
+    260.0,
+    657.8947368421053,
+    380.0
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_015a0262-924c-4ced-9f4d-23d07f94a657.png",
+    "dataset_index": 215
+   }
+  },
+  {
+   "id": "ssp-00216",
+   "image": "images/0064.png",
+   "sha256": "c01c3e8bad81e81c3a261596d98c7f4167f9a84a007f485f424dba48fce6a283",
+   "instruction": "open wechat",
+   "box": [
+    152.8013582342954,
+    4.615384615384616,
+    230.89983022071306,
+    110.76923076923077
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_015a0262-924c-4ced-9f4d-23d07f94a657.png",
+    "dataset_index": 216
+   }
+  },
+  {
+   "id": "ssp-00218",
+   "image": "images/0065.png",
+   "sha256": "ebbd823c4b506377e3826138f86041cd0bb338a40207b111e30270795799885e",
+   "instruction": "select network",
+   "box": [
+    537.5375375375376,
+    328.86435331230285,
+    910.6606606606606,
+    361.198738170347
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_2773ea59-8493-4c89-957a-d2ec661e6384.png",
+    "dataset_index": 218
+   }
+  },
+  {
+   "id": "ssp-00219",
+   "image": "images/0066.png",
+   "sha256": "ebbd823c4b506377e3826138f86041cd0bb338a40207b111e30270795799885e",
+   "instruction": "add a device",
+   "box": [
+    27.777777777777775,
+    861.1987381703469,
+    66.06606606606606,
+    898.2649842271293
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_2773ea59-8493-4c89-957a-d2ec661e6384.png",
+    "dataset_index": 219
+   }
+  },
+  {
+   "id": "ssp-00220",
+   "image": "images/0067.png",
+   "sha256": "ebbd823c4b506377e3826138f86041cd0bb338a40207b111e30270795799885e",
+   "instruction": "delete an item",
+   "box": [
+    66.06606606606606,
+    860.410094637224,
+    105.85585585585585,
+    900.6309148264984
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_2773ea59-8493-4c89-957a-d2ec661e6384.png",
+    "dataset_index": 220
+   }
+  },
+  {
+   "id": "ssp-00229",
+   "image": "images/0068.png",
+   "sha256": "a31de29660b8c41a5643a4f7daa54e1354d4532c2d2edf3df3444aa316023c73",
+   "instruction": "cancel the calculator",
+   "box": [
+    133.9820359281437,
+    373.5632183908046,
+    866.7664670658683,
+    408.04597701149424
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_63f20c0b-0abc-4cd5-a3cb-2ea0cb2ba3c8.png",
+    "dataset_index": 229
+   }
+  },
+  {
+   "id": "ssp-00231",
+   "image": "images/0069.png",
+   "sha256": "07fa0b578a42d2d061cab92a350c5112f68bed4369d65b6213bf9a7f85e32067",
+   "instruction": "switch to alerts mode",
+   "box": [
+    766.4670658682635,
+    305.36451169188445,
+    925.1497005988024,
+    433.2874828060523
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_514bf9d5-ca63-4d33-94cb-dc1b11994199.png",
+    "dataset_index": 231
+   }
+  },
+  {
+   "id": "ssp-00232",
+   "image": "images/0070.png",
+   "sha256": "07fa0b578a42d2d061cab92a350c5112f68bed4369d65b6213bf9a7f85e32067",
+   "instruction": "allow notifications",
+   "box": [
+    437.87425149700596,
+    226.27235213204952,
+    509.7305389221557,
+    270.97661623108667
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_514bf9d5-ca63-4d33-94cb-dc1b11994199.png",
+    "dataset_index": 232
+   }
+  },
+  {
+   "id": "ssp-00233",
+   "image": "images/0071.png",
+   "sha256": "0cf9379206c12cbdc8ed10ec0c139170476323d035112c1c642bc29906d883ae",
+   "instruction": "open do not disturb mode",
+   "box": [
+    396.55172413793105,
+    183.63136176066024,
+    464.76761619190404,
+    233.14993122420907
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_ed2173e7-c929-4f52-9777-db36a36e0c3e.png",
+    "dataset_index": 233
+   }
+  },
+  {
+   "id": "ssp-00234",
+   "image": "images/0072.png",
+   "sha256": "0cf9379206c12cbdc8ed10ec0c139170476323d035112c1c642bc29906d883ae",
+   "instruction": "add an people that allowed notifications from",
+   "box": [
+    401.79910044977515,
+    466.29986244841814,
+    452.023988005997,
+    510.3163686382394
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_ed2173e7-c929-4f52-9777-db36a36e0c3e.png",
+    "dataset_index": 234
+   }
+  },
+  {
+   "id": "ssp-00246",
+   "image": "images/0073.png",
+   "sha256": "f4fe5060d5b2ba8a58987ab62d7215e30f32ef431e88faddc7459ab29734b881",
+   "instruction": "forward email",
+   "box": [
+    874.6065057712486,
+    0.0,
+    917.6285414480587,
+    76.86567164179105
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_75eae2f4-193e-4365-a5f1-b9b5340d02ff.png",
+    "dataset_index": 246
+   }
+  },
+  {
+   "id": "ssp-00247",
+   "image": "images/0074.png",
+   "sha256": "5613723bd4c9fc8b42a8ee9a857e92d17d3ca2a1a009185baa6afc264fc0bd46",
+   "instruction": "search in emails",
+   "box": [
+    898.9690721649484,
+    0.0,
+    1000.0,
+    79.1044776119403
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_1e16b18c-5d91-4155-9e49-4ad5d9453fc7.png",
+    "dataset_index": 247
+   }
+  },
+  {
+   "id": "ssp-00249",
+   "image": "images/0075.png",
+   "sha256": "289586f2e21134547594ec0c2efec2eb8ef5e9dc87c50e582ca8786362c5c065",
+   "instruction": "add images",
+   "box": [
+    896.4601769911504,
+    19.95798319327731,
+    984.9557522123894,
+    95.58823529411764
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_63a274e4-38e1-4a50-a102-33b31aee3a62.png",
+    "dataset_index": 249
+   }
+  },
+  {
+   "id": "ssp-00251",
+   "image": "images/0076.png",
+   "sha256": "289586f2e21134547594ec0c2efec2eb8ef5e9dc87c50e582ca8786362c5c065",
+   "instruction": "adjust font size",
+   "box": [
+    715.0442477876106,
+    19.95798319327731,
+    789.3805309734513,
+    95.58823529411764
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_63a274e4-38e1-4a50-a102-33b31aee3a62.png",
+    "dataset_index": 251
+   }
+  },
+  {
+   "id": "ssp-00257",
+   "image": "images/0077.png",
+   "sha256": "7412b69f748c823cb99551affde84d304dfefae0d09fa5cdd971418f1600e8ff",
+   "instruction": "take a photo to insert into the memo",
+   "box": [
+    624.6056782334385,
+    156.25,
+    831.230283911672,
+    192.0731707317073
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_2086f81a-7a9f-472f-bfe7-50394f5a2bc6.png",
+    "dataset_index": 257
+   }
+  },
+  {
+   "id": "ssp-00259",
+   "image": "images/0078.png",
+   "sha256": "97fdbc0ae8727727c8a40b79f1b3c8f28eeb700163af5ec1dbcde32bba0f7161",
+   "instruction": "search in app store",
+   "box": [
+    9.01803607214429,
+    80.12326656394453,
+    211.92384769539078,
+    124.03697996918336
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_1d6fb8dc-8ba5-4c0d-a532-188e5d579686.png",
+    "dataset_index": 259
+   }
+  },
+  {
+   "id": "ssp-00270",
+   "image": "images/0079.png",
+   "sha256": "61e5a73fef75b8bac76d478b25cf8e12f5afecbb8aff6ecb490d2ce04a33a8b1",
+   "instruction": "open the file",
+   "box": [
+    882.9787234042553,
+    895.3229398663697,
+    978.0976220275344,
+    967.706013363029
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_09fff6da-5dd8-4288-a0e7-f503273c1908.png",
+    "dataset_index": 270
+   }
+  },
+  {
+   "id": "ssp-00274",
+   "image": "images/0080.png",
+   "sha256": "26fe9b180c241c296924cd3a6734eed494b14f92634c1c30220a9eaeac0bfeaf",
+   "instruction": "my account",
+   "box": [
+    13.463324048282265,
+    71.99471598414796,
+    68.24512534818942,
+    155.87846763540293
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_bf63137d-d442-4bb9-a145-e07cb48abb64.png",
+    "dataset_index": 274
+   }
+  },
+  {
+   "id": "ssp-00275",
+   "image": "images/0081.png",
+   "sha256": "21c4e1e1d5f8a2af37b08852fc059295bdf5db8e86af3c8b5f3f43e8cb400c29",
+   "instruction": "enlarge font size",
+   "box": [
+    300.0,
+    86.22908622908623,
+    336.84210526315786,
+    122.9086229086229
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_e73c6749-043f-4a24-8e56-6c829f78255d.png",
+    "dataset_index": 275
+   }
+  },
+  {
+   "id": "ssp-00279",
+   "image": "images/0082.png",
+   "sha256": "d87a13109058fa2c97b830839b9a5cd07b2ea8798e3ca2641be81cb9701c2aa9",
+   "instruction": "adjust orientation",
+   "box": [
+    129.08878504672896,
+    83.97435897435896,
+    202.68691588785046,
+    160.8974358974359
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_0205fe68-a787-4651-8cfa-495802d6beb6.png",
+    "dataset_index": 279
+   }
+  },
+  {
+   "id": "ssp-00280",
+   "image": "images/0083.png",
+   "sha256": "d87a13109058fa2c97b830839b9a5cd07b2ea8798e3ca2641be81cb9701c2aa9",
+   "instruction": "adjust the left indent",
+   "box": [
+    516.3551401869158,
+    112.17948717948718,
+    610.3971962616822,
+    140.3846153846154
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_0205fe68-a787-4651-8cfa-495802d6beb6.png",
+    "dataset_index": 280
+   }
+  },
+  {
+   "id": "ssp-00282",
+   "image": "images/0084.png",
+   "sha256": "a518ef597710d6ff2ab22bd74c40319ef11f645e59b48380fe8a6bc477776aa6",
+   "instruction": "add a screenshot",
+   "box": [
+    339.57845433255267,
+    165.80976863753213,
+    411.59250585480095,
+    237.7892030848329
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_00b0c9f6-b24f-4bff-b492-12117b50e63b.png",
+    "dataset_index": 282
+   }
+  },
+  {
+   "id": "ssp-00284",
+   "image": "images/0085.png",
+   "sha256": "8344dd348630e7febf0f3793bdcdd638d17d10a2b096dbe475a731cb02b1ebfa",
+   "instruction": "insert a left arrow",
+   "box": [
+    110.07025761124122,
+    806.803594351733,
+    163.93442622950818,
+    851.7329910141207
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_7fe3e2d7-db08-47b1-80a1-36775ab888a4.png",
+    "dataset_index": 284
+   }
+  },
+  {
+   "id": "ssp-00287",
+   "image": "images/0086.png",
+   "sha256": "51829b90d388f7db824dbc19c2eeabcc3eaaf3ab6102e398d8e246ef8519322b",
+   "instruction": "switch to 20 size font",
+   "box": [
+    238.01169590643275,
+    494.86521181001285,
+    312.280701754386,
+    521.181001283697
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_41147eb1-3e27-4aa0-b9f9-71363b9be5c9.png",
+    "dataset_index": 287
+   }
+  },
+  {
+   "id": "ssp-00288",
+   "image": "images/0087.png",
+   "sha256": "51829b90d388f7db824dbc19c2eeabcc3eaaf3ab6102e398d8e246ef8519322b",
+   "instruction": "share the word file",
+   "box": [
+    908.7719298245614,
+    42.36200256739409,
+    991.812865497076,
+    78.94736842105263
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_41147eb1-3e27-4aa0-b9f9-71363b9be5c9.png",
+    "dataset_index": 288
+   }
+  },
+  {
+   "id": "ssp-00289",
+   "image": "images/0088.png",
+   "sha256": "3b80d6ea0667b4512fb9c0eca642f8211cf58b0c2338673092980e38bba714a0",
+   "instruction": "choose ms pgothic for heading",
+   "box": [
+    119.60326721120187,
+    269.9228791773779,
+    593.3488914819136,
+    305.2699228791774
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_c2ffa4d3-4cf7-4813-986d-d741f1260c4c.png",
+    "dataset_index": 289
+   }
+  },
+  {
+   "id": "ssp-00292",
+   "image": "images/0089.png",
+   "sha256": "b01d2aff416dca89bbc9964b028c57192389d83c761b3462335a9a1b0a42fad1",
+   "instruction": "go back to home",
+   "box": [
+    78.53881278538813,
+    0.0,
+    106.39269406392694,
+    36.9284876905041
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_71e8f8bd-7ff0-4846-ada6-ce337a0f5ebc.png",
+    "dataset_index": 292
+   }
+  },
+  {
+   "id": "ssp-00294",
+   "image": "images/0090.png",
+   "sha256": "68f5d33c6dcda5fd3889e0f834366c56c65b96fec6c32d67d01cdfff90374301",
+   "instruction": "choose the 1), 2), 3) \u2026",
+   "box": [
+    724.6575342465753,
+    113.79716981132076,
+    805.4794520547946,
+    221.69811320754718
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_b113f651-ec99-4a84-8c15-ff0fc1aee615.png",
+    "dataset_index": 294
+   }
+  },
+  {
+   "id": "ssp-00295",
+   "image": "images/0091.png",
+   "sha256": "68f5d33c6dcda5fd3889e0f834366c56c65b96fec6c32d67d01cdfff90374301",
+   "instruction": "bullets and numbering settings",
+   "box": [
+    546.5753424657535,
+    337.26415094339626,
+    957.9908675799087,
+    375.0
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_b113f651-ec99-4a84-8c15-ff0fc1aee615.png",
+    "dataset_index": 295
+   }
+  },
+  {
+   "id": "ssp-00311",
+   "image": "images/0092.png",
+   "sha256": "71387fd1ccc98af9bf231589d82c5aa1d8e0a1f21bd50354ffb293229b6cea8b",
+   "instruction": "stop the debugger",
+   "box": [
+    17.452006980802793,
+    671.069182389937,
+    42.75741710296684,
+    701.8867924528302
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_668258b4-f214-4a57-a500-d03aa94b0e65.png",
+    "dataset_index": 311
+   }
+  },
+  {
+   "id": "ssp-00313",
+   "image": "images/0093.png",
+   "sha256": "b6a26f7daa438486aecc58c94680e1fa856047adbbee6ff80b527c8cbe999b4c",
+   "instruction": "select the gzip file format",
+   "box": [
+    65.1085141903172,
+    733.5766423357665,
+    938.2303839732889,
+    777.3722627737226
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_f656ce46-13af-4cd1-9126-f3c45a4e696c.png",
+    "dataset_index": 313
+   }
+  },
+  {
+   "id": "ssp-00316",
+   "image": "images/0094.png",
+   "sha256": "9081497f67c2f1ab1de0f85ae69a0b54b51862aec077a6b04cd4768d4641f490",
+   "instruction": "hide menu icon",
+   "box": [
+    323.5294117647059,
+    182.34165067178503,
+    495.89603283173733,
+    232.24568138195778
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_e9abfe29-8665-47e1-ba30-f79a0089278a.png",
+    "dataset_index": 316
+   }
+  },
+  {
+   "id": "ssp-00317",
+   "image": "images/0095.png",
+   "sha256": "9081497f67c2f1ab1de0f85ae69a0b54b51862aec077a6b04cd4768d4641f490",
+   "instruction": "switch to display",
+   "box": [
+    468.5362517099863,
+    52.783109404990405,
+    544.4596443228454,
+    143.95393474088291
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_e9abfe29-8665-47e1-ba30-f79a0089278a.png",
+    "dataset_index": 317
+   }
+  },
+  {
+   "id": "ssp-00318",
+   "image": "images/0096.png",
+   "sha256": "1d6677da4ea53567f33e24b3afbef7be9a4efad7abca1dbf6b16aa486d72c2ef",
+   "instruction": "buy betterdisplay pro",
+   "box": [
+    240.08207934336525,
+    832.3615160349855,
+    488.3720930232558,
+    896.5014577259475
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_ec085abc-591d-4dcc-830c-defddc958f47.png",
+    "dataset_index": 318
+   }
+  },
+  {
+   "id": "ssp-00319",
+   "image": "images/0097.png",
+   "sha256": "b2ea8bf2f3923c0ee719709303674c63a4791b1dcbd6d4115f8359302fdd0652",
+   "instruction": "start record",
+   "box": [
+    117.53494282083862,
+    896.9889064976229,
+    195.04447268106733,
+    985.7369255150554
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_c69e46cd-d2a9-4dbf-8d0a-4532b750a691.png",
+    "dataset_index": 319
+   }
+  },
+  {
+   "id": "ssp-00320",
+   "image": "images/0098.png",
+   "sha256": "174e700f38903525d5936d98b526473068346709bb1387cb77d81c70e10b2f3f",
+   "instruction": "search in activity monitor",
+   "box": [
+    934.3707713125846,
+    13.13755795981453,
+    992.5575101488497,
+    72.64296754250387
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "macos",
+    "file_name": "pc_141ec1f5-ccf8-42f0-8b0b-8aba284ce81a.png",
+    "dataset_index": 320
+   }
+  },
+  {
+   "id": "ssp-00326",
+   "image": "images/0099.png",
+   "sha256": "89329bda409fd9a3a847fb4197e4091238b1411c2a7698571e9731125487be9e",
+   "instruction": "switch to apps",
+   "box": [
+    842.3423423423422,
+    146.55172413793102,
+    987.0495495495496,
+    178.16091954022988
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "macos",
+    "file_name": "pc_2c2b6cbd-39cf-4bd2-80aa-d953890c21e5.png",
+    "dataset_index": 326
+   }
+  },
+  {
+   "id": "ssp-00335",
+   "image": "images/0100.png",
+   "sha256": "0a6859ee867aaeeff2ea8b571821d7f1a14a2685a96d4840b1228a165e673a24",
+   "instruction": "view world clock",
+   "box": [
+    372.45762711864404,
+    45.73170731707317,
+    626.2711864406779,
+    209.7560975609756
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_1ca5b944-293a-46a1-af95-eb35bc8a0b2a.png",
+    "dataset_index": 335
+   }
+  },
+  {
+   "id": "ssp-00337",
+   "image": "images/0101.png",
+   "sha256": "0a6859ee867aaeeff2ea8b571821d7f1a14a2685a96d4840b1228a165e673a24",
+   "instruction": "open the camera",
+   "box": [
+    820.3389830508474,
+    491.4634146341463,
+    871.1864406779662,
+    592.6829268292682
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_1ca5b944-293a-46a1-af95-eb35bc8a0b2a.png",
+    "dataset_index": 337
+   }
+  },
+  {
+   "id": "ssp-00350",
+   "image": "images/0102.png",
+   "sha256": "ac69e991567e551c34798065bd3fb669fceb1c91369a73ad951c174debeb08f3",
+   "instruction": "locked rotation",
+   "box": [
+    711.0169491525423,
+    265.8536585365854,
+    770.3389830508474,
+    349.390243902439
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_1c1d54b4-5ac1-40cd-9dc6-21a8d3c97d6e.png",
+    "dataset_index": 350
+   }
+  },
+  {
+   "id": "ssp-00357",
+   "image": "images/0103.png",
+   "sha256": "a19ff3cd973cff44d25d4186047878bf2ab03372b61c5c5b65b723adc3ed1a36",
+   "instruction": "icloud drive",
+   "box": [
+    1.271186440677966,
+    328.6585365853659,
+    268.22033898305085,
+    381.0975609756098
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_4b1df148-c6ac-452a-b55d-f8e6c6dee059.png",
+    "dataset_index": 357
+   }
+  },
+  {
+   "id": "ssp-00359",
+   "image": "images/0104.png",
+   "sha256": "a19ff3cd973cff44d25d4186047878bf2ab03372b61c5c5b65b723adc3ed1a36",
+   "instruction": "add a new file",
+   "box": [
+    622.457627118644,
+    35.36585365853658,
+    657.6271186440678,
+    85.97560975609755
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_4b1df148-c6ac-452a-b55d-f8e6c6dee059.png",
+    "dataset_index": 359
+   }
+  },
+  {
+   "id": "ssp-00362",
+   "image": "images/0105.png",
+   "sha256": "294af61e51a9f6915ffea66338da3b7d28aad81c3796112bf39490ab2bc4e9f0",
+   "instruction": "more information",
+   "box": [
+    963.5593220338983,
+    35.36585365853658,
+    996.1864406779662,
+    82.31707317073172
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_a8181231-d30c-4051-9ff2-16808694adbf.png",
+    "dataset_index": 362
+   }
+  },
+  {
+   "id": "ssp-00364",
+   "image": "images/0106.png",
+   "sha256": "fa533a339680b9a052000f6be2d7cee4bfa099b3c2a3c8d069318ef036894404",
+   "instruction": "check the pinned files",
+   "box": [
+    258.47457627118644,
+    120.73170731707317,
+    314.4067796610169,
+    197.5609756097561
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_5313a7b6-4c3a-442f-a5d3-6d53fc8d3ad9.png",
+    "dataset_index": 364
+   }
+  },
+  {
+   "id": "ssp-00366",
+   "image": "images/0107.png",
+   "sha256": "62ef206310e46b5370ee55960f1bb7a9a11d84aaf3ece5c983686d962be7af2f",
+   "instruction": "flight mode",
+   "box": [
+    117.09401709401709,
+    171.8009478672986,
+    264.1025641025641,
+    239.73143759873616
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_1a514eae-4ee0-4780-a059-c47715828e3b.png",
+    "dataset_index": 366
+   }
+  },
+  {
+   "id": "ssp-00368",
+   "image": "images/0108.png",
+   "sha256": "62ef206310e46b5370ee55960f1bb7a9a11d84aaf3ece5c983686d962be7af2f",
+   "instruction": "screen recorder",
+   "box": [
+    517.948717948718,
+    663.1121642969983,
+    702.5641025641025,
+    748.4202211690363
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_1a514eae-4ee0-4780-a059-c47715828e3b.png",
+    "dataset_index": 368
+   }
+  },
+  {
+   "id": "ssp-00371",
+   "image": "images/0109.png",
+   "sha256": "f73064a7ff5e10bf11bedd359565ff09968fec5bc4a8c41aff6fd1c3203fd0ac",
+   "instruction": "clock",
+   "box": [
+    300.85470085470087,
+    204.18641390205372,
+    467.52136752136755,
+    301.34281200631915
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_93dec21b-d612-41df-9f76-933ceadaba66.png",
+    "dataset_index": 371
+   }
+  },
+  {
+   "id": "ssp-00372",
+   "image": "images/0110.png",
+   "sha256": "f73064a7ff5e10bf11bedd359565ff09968fec5bc4a8c41aff6fd1c3203fd0ac",
+   "instruction": "app store",
+   "box": [
+    300.85470085470087,
+    437.99368088467617,
+    467.52136752136755,
+    535.1500789889415
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_93dec21b-d612-41df-9f76-933ceadaba66.png",
+    "dataset_index": 372
+   }
+  },
+  {
+   "id": "ssp-00383",
+   "image": "images/0111.png",
+   "sha256": "a70c782eebb2f72d5d6cc2c0ab286fe71988cd7c30d74e31b9a33fa64ae1ea96",
+   "instruction": "choose the pjlab-guest",
+   "box": [
+    38.46153846153847,
+    390.9952606635071,
+    959.8290598290598,
+    448.2622432859399
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_5c9fb5f1-7d84-4283-8ba4-7821a9545c95.png",
+    "dataset_index": 383
+   }
+  },
+  {
+   "id": "ssp-00399",
+   "image": "images/0112.png",
+   "sha256": "d1f75e58329509ec6308ac2e773d4908b4e9a5b07df668f315994a2bcd6463ea",
+   "instruction": "switch to 0.5x",
+   "box": [
+    397.4358974358974,
+    697.0774091627172,
+    498.29059829059827,
+    740.1263823064771
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_907cb7d2-9953-476e-b589-5526587c3913.png",
+    "dataset_index": 399
+   }
+  },
+  {
+   "id": "ssp-00400",
+   "image": "images/0113.png",
+   "sha256": "d1f75e58329509ec6308ac2e773d4908b4e9a5b07df668f315994a2bcd6463ea",
+   "instruction": "invert the lens",
+   "box": [
+    824.7863247863247,
+    831.3586097946287,
+    948.7179487179487,
+    891.785150078989
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_907cb7d2-9953-476e-b589-5526587c3913.png",
+    "dataset_index": 400
+   }
+  },
+  {
+   "id": "ssp-00402",
+   "image": "images/0114.png",
+   "sha256": "29365f5054604aa9d26a61710ee60946e5a4a609a6e17288901792064fba823b",
+   "instruction": "add an event",
+   "box": [
+    894.8717948717949,
+    67.9304897314376,
+    961.5384615384615,
+    95.18167456556083
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_f1247381-fcf6-440f-8787-19bce69e28de.png",
+    "dataset_index": 402
+   }
+  },
+  {
+   "id": "ssp-00409",
+   "image": "images/0115.png",
+   "sha256": "3fbe16dc571003a3619a6b133e608e6dcbe3c89b4b545e3fd352f5751e6b8b34",
+   "instruction": "adjust end time",
+   "box": [
+    733.3333333333333,
+    410.7424960505529,
+    922.2222222222223,
+    454.5813586097947
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_e9d69310-692c-4a78-8b8d-b961a5cfec70.png",
+    "dataset_index": 409
+   }
+  },
+  {
+   "id": "ssp-00410",
+   "image": "images/0116.png",
+   "sha256": "3fbe16dc571003a3619a6b133e608e6dcbe3c89b4b545e3fd352f5751e6b8b34",
+   "instruction": "set the repeat mode",
+   "box": [
+    41.88034188034188,
+    550.9478672985782,
+    958.1196581196582,
+    603.870458135861
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_e9d69310-692c-4a78-8b8d-b961a5cfec70.png",
+    "dataset_index": 410
+   }
+  },
+  {
+   "id": "ssp-00411",
+   "image": "images/0117.png",
+   "sha256": "7996e55cfef921b3a983661abf0a2ee590ce3b3ea0c9ede742566d855bdd2a81",
+   "instruction": "start a timer",
+   "box": [
+    742.7350427350427,
+    464.0600315955766,
+    954.7008547008547,
+    562.0063191153239
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_1f9b6434-df6c-4c95-b325-4f7a4d90d304.png",
+    "dataset_index": 411
+   }
+  },
+  {
+   "id": "ssp-00413",
+   "image": "images/0118.png",
+   "sha256": "7996e55cfef921b3a983661abf0a2ee590ce3b3ea0c9ede742566d855bdd2a81",
+   "instruction": "view alarm",
+   "box": [
+    300.85470085470087,
+    898.8941548183254,
+    446.1538461538462,
+    968.7993680884675
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_1f9b6434-df6c-4c95-b325-4f7a4d90d304.png",
+    "dataset_index": 413
+   }
+  },
+  {
+   "id": "ssp-00414",
+   "image": "images/0119.png",
+   "sha256": "e18ce90468cd714fb6fa5c4359454966cc39b93430c03bb3b52a0593fd65f643",
+   "instruction": "check my account",
+   "box": [
+    4.273504273504274,
+    171.8009478672986,
+    999.1452991452992,
+    252.3696682464455
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_e0fb2f66-6e2c-42d6-8cfd-34e510f1ab2e.png",
+    "dataset_index": 414
+   }
+  },
+  {
+   "id": "ssp-00419",
+   "image": "images/0120.png",
+   "sha256": "a92bf4c1dbc10821333b49e9fc8edabe8235332401520b4a4c159c7246dde096",
+   "instruction": "airplane mode",
+   "box": [
+    183.76068376068378,
+    293.0489731437599,
+    411.96581196581195,
+    406.00315955766195
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_2b707da9-bf86-410d-b886-cba08b6efb35.png",
+    "dataset_index": 419
+   }
+  },
+  {
+   "id": "ssp-00420",
+   "image": "images/0121.png",
+   "sha256": "b4c1a43b83ffb9b288e03323d7cf902a28bcec468f107bccfe0e928f705d3eb4",
+   "instruction": "my account",
+   "box": [
+    855.5555555555555,
+    116.11374407582939,
+    947.008547008547,
+    156.00315955766192
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_0affae67-191e-43fa-890d-778555ffbab0.png",
+    "dataset_index": 420
+   }
+  },
+  {
+   "id": "ssp-00422",
+   "image": "images/0122.png",
+   "sha256": "b4c1a43b83ffb9b288e03323d7cf902a28bcec468f107bccfe0e928f705d3eb4",
+   "instruction": "cancel the ads",
+   "box": [
+    871.7948717948718,
+    248.81516587677723,
+    938.4615384615385,
+    281.9905213270142
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_0affae67-191e-43fa-890d-778555ffbab0.png",
+    "dataset_index": 422
+   }
+  },
+  {
+   "id": "ssp-00423",
+   "image": "images/0123.png",
+   "sha256": "b4c1a43b83ffb9b288e03323d7cf902a28bcec468f107bccfe0e928f705d3eb4",
+   "instruction": "try it free",
+   "box": [
+    219.65811965811966,
+    608.214849921011,
+    783.7606837606837,
+    651.2638230647709
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_0affae67-191e-43fa-890d-778555ffbab0.png",
+    "dataset_index": 423
+   }
+  },
+  {
+   "id": "ssp-00428",
+   "image": "images/0124.png",
+   "sha256": "d5d86cf1a2681dcbadbbab2235bb508bb38b0f62ed6ad13fabbc5f1e24b4ed18",
+   "instruction": "back",
+   "box": [
+    17.094017094017097,
+    63.98104265402843,
+    94.01709401709401,
+    98.73617693522907
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_8da8fbf4-c2b0-495f-88d3-9eb682c15ce7.png",
+    "dataset_index": 428
+   }
+  },
+  {
+   "id": "ssp-00434",
+   "image": "images/0125.png",
+   "sha256": "69f33beb4344e86c4e4a6081f0f54eee4fdfb3a602e7368bfb002d47ca49328e",
+   "instruction": "learn more",
+   "box": [
+    41.88034188034188,
+    364.13902053712485,
+    959.8290598290598,
+    424.565560821485
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_efa861a6-0810-4c8a-9bca-4f481641d03d.png",
+    "dataset_index": 434
+   }
+  },
+  {
+   "id": "ssp-00435",
+   "image": "images/0126.png",
+   "sha256": "69f33beb4344e86c4e4a6081f0f54eee4fdfb3a602e7368bfb002d47ca49328e",
+   "instruction": "add or scan accessory",
+   "box": [
+    40.17094017094018,
+    665.4818325434439,
+    436.7521367521368,
+    825.829383886256
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_efa861a6-0810-4c8a-9bca-4f481641d03d.png",
+    "dataset_index": 435
+   }
+  },
+  {
+   "id": "ssp-00438",
+   "image": "images/0127.png",
+   "sha256": "2dd8d7eb6c5a4918f41f5dd40b3fcedac174ee467034e6d195ffa3eb7ca44ca7",
+   "instruction": "view shared",
+   "box": [
+    429.91452991452996,
+    902.8436018957347,
+    570.0854700854701,
+    961.6903633491312
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_7d7609e2-696b-449e-a230-792dce8dd134.png",
+    "dataset_index": 438
+   }
+  },
+  {
+   "id": "ssp-00439",
+   "image": "images/0128.png",
+   "sha256": "5ac47c1efb4ca991a0974c58358693bd37012ba568f16019d2ff97ee560bab48",
+   "instruction": "login with wechat",
+   "box": [
+    76.06837606837607,
+    473.1437598736177,
+    920.5128205128204,
+    525.2764612954186
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_c1f1188d-1bd3-4ce6-8e3f-96628d07b0b9.png",
+    "dataset_index": 439
+   }
+  },
+  {
+   "id": "ssp-00443",
+   "image": "images/0129.png",
+   "sha256": "0a77b102dce458f30263ceb11b74c538023bbea709e5e13b4e96ef455430a473",
+   "instruction": "plus",
+   "box": [
+    751.2820512820513,
+    709.7156398104265,
+    956.4102564102565,
+    802.5276461295418
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_fbadc3d2-cde6-43f5-a33c-a648a9299963.png",
+    "dataset_index": 443
+   }
+  },
+  {
+   "id": "ssp-00444",
+   "image": "images/0130.png",
+   "sha256": "e9fe686ed37a7629b6a271c435d17d81473d1848d0dc9ef3daa34f57d9bad08e",
+   "instruction": "search bar",
+   "box": [
+    268.37606837606836,
+    63.1911532385466,
+    876.9230769230769,
+    100.71090047393365
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_3a1f306e-784a-411a-98cb-f11a2157a5c7.png",
+    "dataset_index": 444
+   }
+  },
+  {
+   "id": "ssp-00449",
+   "image": "images/0131.png",
+   "sha256": "8caac2c6d72958007f5c66815ad140775d20df8704020874a57975a63833f0cf",
+   "instruction": "try it now",
+   "box": [
+    711.965811965812,
+    317.14060031595574,
+    929.0598290598291,
+    357.03001579778834
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_d8a4069b-ec35-4a62-a3cd-5b5e7d95b50c.png",
+    "dataset_index": 449
+   }
+  },
+  {
+   "id": "ssp-00450",
+   "image": "images/0132.png",
+   "sha256": "8caac2c6d72958007f5c66815ad140775d20df8704020874a57975a63833f0cf",
+   "instruction": "search",
+   "box": [
+    893.1623931623932,
+    73.85466034755133,
+    959.8290598290598,
+    109.39968404423381
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_d8a4069b-ec35-4a62-a3cd-5b5e7d95b50c.png",
+    "dataset_index": 450
+   }
+  },
+  {
+   "id": "ssp-00458",
+   "image": "images/0133.png",
+   "sha256": "74359350a0088e4a448fb9f8f656777398854c15ca3d8bd338cd6478810e8544",
+   "instruction": "favorite the music",
+   "box": [
+    829.0598290598291,
+    551.73775671406,
+    923.931623931624,
+    599.9210110584519
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_a14fb632-fab9-4537-8c7b-8c650fd91bd7.png",
+    "dataset_index": 458
+   }
+  },
+  {
+   "id": "ssp-00460",
+   "image": "images/0134.png",
+   "sha256": "74359350a0088e4a448fb9f8f656777398854c15ca3d8bd338cd6478810e8544",
+   "instruction": "view comments",
+   "box": [
+    638.4615384615385,
+    736.9668246445498,
+    755.5555555555555,
+    791.0742496050553
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_a14fb632-fab9-4537-8c7b-8c650fd91bd7.png",
+    "dataset_index": 460
+   }
+  },
+  {
+   "id": "ssp-00461",
+   "image": "images/0135.png",
+   "sha256": "74359350a0088e4a448fb9f8f656777398854c15ca3d8bd338cd6478810e8544",
+   "instruction": "play the music",
+   "box": [
+    413.6752136752136,
+    832.5434439178515,
+    582.9059829059829,
+    908.7677725118484
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_a14fb632-fab9-4537-8c7b-8c650fd91bd7.png",
+    "dataset_index": 461
+   }
+  },
+  {
+   "id": "ssp-00467",
+   "image": "images/0136.png",
+   "sha256": "e27973019eb45f0c4d107b171a13e68300c8495389be49d33275d8850ab98a99",
+   "instruction": "search",
+   "box": [
+    40.17094017094018,
+    171.01105845181675,
+    956.4102564102565,
+    214.84992101105846
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_9bd1779a-91ee-4a59-8904-3850434b1421.png",
+    "dataset_index": 467
+   }
+  },
+  {
+   "id": "ssp-00468",
+   "image": "images/0137.png",
+   "sha256": "0fa703fd44f1beafaa4ab18297623a11225cef973cb5c93c9d47a14b00d34d69",
+   "instruction": "set focus time to 60 mins",
+   "box": [
+    285.1851851851852,
+    713.75,
+    485.18518518518516,
+    802.0833333333334
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_8d5dea76-69b8-4076-82ef-38b2fb8a1b30.png",
+    "dataset_index": 468
+   }
+  },
+  {
+   "id": "ssp-00470",
+   "image": "images/0138.png",
+   "sha256": "0fa703fd44f1beafaa4ab18297623a11225cef973cb5c93c9d47a14b00d34d69",
+   "instruction": "customize focus time",
+   "box": [
+    737.0370370370371,
+    710.0,
+    962.9629629629629,
+    803.3333333333334
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_8d5dea76-69b8-4076-82ef-38b2fb8a1b30.png",
+    "dataset_index": 470
+   }
+  },
+  {
+   "id": "ssp-00472",
+   "image": "images/0139.png",
+   "sha256": "d8fe7cec86a35d6d29044ff6db07184d44baac28218da58ef214349dc744ebda",
+   "instruction": "display data by week",
+   "box": [
+    485.18518518518516,
+    160.83333333333331,
+    948.1481481481482,
+    233.75
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_b012267b-fcd6-4d0c-991a-f2a4afd0a2ff.png",
+    "dataset_index": 472
+   }
+  },
+  {
+   "id": "ssp-00474",
+   "image": "images/0140.png",
+   "sha256": "8ed47aa887997761b203677826e03594a1a897e1eacc7e580d082dd4be5abacf",
+   "instruction": "open system apps settings",
+   "box": [
+    44.44444444444444,
+    203.33333333333334,
+    982.4074074074074,
+    250.83333333333334
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_faa33d8c-ff72-4c74-98df-cb46cc0516aa.png",
+    "dataset_index": 474
+   }
+  },
+  {
+   "id": "ssp-00475",
+   "image": "images/0141.png",
+   "sha256": "8ed47aa887997761b203677826e03594a1a897e1eacc7e580d082dd4be5abacf",
+   "instruction": "manage home screen shortcuts",
+   "box": [
+    62.962962962962955,
+    340.8333333333333,
+    944.4444444444445,
+    418.75
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_faa33d8c-ff72-4c74-98df-cb46cc0516aa.png",
+    "dataset_index": 475
+   }
+  },
+  {
+   "id": "ssp-00476",
+   "image": "images/0142.png",
+   "sha256": "8ed47aa887997761b203677826e03594a1a897e1eacc7e580d082dd4be5abacf",
+   "instruction": "back to previous page",
+   "box": [
+    29.62962962962963,
+    57.5,
+    184.25925925925927,
+    103.33333333333333
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_faa33d8c-ff72-4c74-98df-cb46cc0516aa.png",
+    "dataset_index": 476
+   }
+  },
+  {
+   "id": "ssp-00479",
+   "image": "images/0143.png",
+   "sha256": "3144e052966cdf408ad78b9df6626bd018838bb6f615c7a088aa9dc4cf999eb1",
+   "instruction": "return previous page",
+   "box": [
+    48.148148148148145,
+    54.16666666666667,
+    150.0,
+    89.58333333333333
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_db3c83d0-b179-4661-88d4-baf938bcf477.png",
+    "dataset_index": 479
+   }
+  },
+  {
+   "id": "ssp-00480",
+   "image": "images/0144.png",
+   "sha256": "3f48e42f007d8bfff73681ffa12eaf3976cf723ed6a087b735625d453691c2c3",
+   "instruction": "turn on earpiece mode",
+   "box": [
+    737.0370370370371,
+    220.41666666666669,
+    937.037037037037,
+    271.25
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_06d5a5b9-8dda-439a-84a5-7af28ab2dab8.png",
+    "dataset_index": 480
+   }
+  },
+  {
+   "id": "ssp-00483",
+   "image": "images/0145.png",
+   "sha256": "119508d14c3ec7c32b3f1c524594cf7b050cda9ad74b82547d4c73561915e408",
+   "instruction": "open a photo",
+   "box": [
+    33.333333333333336,
+    106.66666666666667,
+    978.7037037037037,
+    872.9166666666666
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_5c883ab7-6769-436e-a677-96b0f5a4c950.png",
+    "dataset_index": 483
+   }
+  },
+  {
+   "id": "ssp-00486",
+   "image": "images/0146.png",
+   "sha256": "b38459c68e1ac1b39084e2e24360fbd18cbc14f6877e0aecd798c601198ea1c8",
+   "instruction": "add new event on calendar",
+   "box": [
+    797.2222222222223,
+    830.4166666666667,
+    985.1851851851852,
+    900.0
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_c346d616-ffcb-4638-a049-2fc45d665e91.png",
+    "dataset_index": 486
+   }
+  },
+  {
+   "id": "ssp-00487",
+   "image": "images/0147.png",
+   "sha256": "b38459c68e1ac1b39084e2e24360fbd18cbc14f6877e0aecd798c601198ea1c8",
+   "instruction": "open documents",
+   "box": [
+    534.2592592592592,
+    917.0833333333334,
+    639.8148148148148,
+    976.25
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_c346d616-ffcb-4638-a049-2fc45d665e91.png",
+    "dataset_index": 487
+   }
+  },
+  {
+   "id": "ssp-00498",
+   "image": "images/0148.png",
+   "sha256": "71527cf23256d13680da7e5d629bfeb68de97123e12d62919be317ca2903b2ac",
+   "instruction": "agree",
+   "box": [
+    507.4074074074074,
+    864.5833333333334,
+    948.1481481481482,
+    952.9166666666666
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_ef01fd08-a7fd-42a3-b1aa-fe22b3f79730.png",
+    "dataset_index": 498
+   }
+  },
+  {
+   "id": "ssp-00501",
+   "image": "images/0149.png",
+   "sha256": "dba270d9b18b700be8ebcae77b1c2e5ea03050ef12ec4080655fb2e21839bc40",
+   "instruction": "view help",
+   "box": [
+    89.81481481481482,
+    579.5833333333334,
+    914.8148148148149,
+    722.0833333333333
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_aae20de3-7aab-4bcc-8d83-f187fe3a2e76.png",
+    "dataset_index": 501
+   }
+  },
+  {
+   "id": "ssp-00504",
+   "image": "images/0150.png",
+   "sha256": "ef42055573042d6091d052492ceab545b347d9a2d4534c7ed22a1e04d32ff5cb",
+   "instruction": "sort by size",
+   "box": [
+    492.5925925925926,
+    218.75,
+    959.2592592592592,
+    267.9166666666667
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_7bbecc1d-4220-4287-8ec7-14f9eec203e2.png",
+    "dataset_index": 504
+   }
+  },
+  {
+   "id": "ssp-00511",
+   "image": "images/0151.png",
+   "sha256": "d636a229e8293e93b9261a0c28b980ea0154f7b8916045dbb026a19340bc5009",
+   "instruction": "display all photos\u00a0",
+   "box": [
+    262.96296296296293,
+    500.0,
+    496.2962962962963,
+    633.75
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_74f38270-ccc5-423e-813e-b7f1ac6ff665.png",
+    "dataset_index": 511
+   }
+  },
+  {
+   "id": "ssp-00512",
+   "image": "images/0152.png",
+   "sha256": "d636a229e8293e93b9261a0c28b980ea0154f7b8916045dbb026a19340bc5009",
+   "instruction": "show all documents",
+   "box": [
+    21.296296296296294,
+    235.41666666666666,
+    254.62962962962965,
+    349.1666666666667
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_74f38270-ccc5-423e-813e-b7f1ac6ff665.png",
+    "dataset_index": 512
+   }
+  },
+  {
+   "id": "ssp-00515",
+   "image": "images/0153.png",
+   "sha256": "d24cba660aad13facbe993c09dcd73b79a38ff61ac56c903d32622ef623ca9fd",
+   "instruction": "display recent opened files",
+   "box": [
+    55.55555555555555,
+    91.66666666666666,
+    345.3703703703704,
+    162.91666666666666
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_275415f1-ade1-4210-9e92-8f998a671c96.png",
+    "dataset_index": 515
+   }
+  },
+  {
+   "id": "ssp-00516",
+   "image": "images/0154.png",
+   "sha256": "ed2d6c55d612333c30114738abbf3ce2fc2340ff276ec8af7b3cb47bdb87ab67",
+   "instruction": "stop",
+   "box": [
+    206.4814814814815,
+    849.1666666666666,
+    410.1851851851852,
+    935.4166666666666
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_1c87bbf1-afc8-4fe3-aaf0-d3bacc52a2bf.png",
+    "dataset_index": 516
+   }
+  },
+  {
+   "id": "ssp-00521",
+   "image": "images/0155.png",
+   "sha256": "968c27282523461685084e8d91a309044874580a77b72b93cbf44610eb97259d",
+   "instruction": "show details of 7:30 clock",
+   "box": [
+    21.296296296296294,
+    233.75,
+    1000.0,
+    372.9166666666667
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_4fafbd92-0af2-4b02-9cf8-952227fd9993.png",
+    "dataset_index": 521
+   }
+  },
+  {
+   "id": "ssp-00523",
+   "image": "images/0156.png",
+   "sha256": "ed5c611f6db078351d5297e5280ddfc4af0f3e9fbaeac4aafb468959b63677fa",
+   "instruction": "done",
+   "box": [
+    740.7407407407406,
+    525.4166666666666,
+    928.7037037037037,
+    552.5
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_2b80c9bf-0040-492e-8dca-d81cc9042b5a.png",
+    "dataset_index": 523
+   }
+  },
+  {
+   "id": "ssp-00527",
+   "image": "images/0157.png",
+   "sha256": "a314bf6b871880d865ffdca137b9900b3b24de253bfbcfd9fc9935e9c46cc43b",
+   "instruction": "open notes",
+   "box": [
+    40.74074074074075,
+    108.33333333333334,
+    341.6666666666667,
+    169.16666666666666
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_caaf7ec0-c1ee-4edc-8b42-37bfa11c4dd3.png",
+    "dataset_index": 527
+   }
+  },
+  {
+   "id": "ssp-00529",
+   "image": "images/0158.png",
+   "sha256": "ce7cc571d5cb6519bea32f67c367e745cea1fc60d943ddf372b894815da92f01",
+   "instruction": "use huge font size",
+   "box": [
+    387.037037037037,
+    744.1666666666666,
+    937.037037037037,
+    815.4166666666666
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_2a2da2de-b63c-46e0-88cf-f88ef8aec6e0.png",
+    "dataset_index": 529
+   }
+  },
+  {
+   "id": "ssp-00534",
+   "image": "images/0159.png",
+   "sha256": "5aa78b5fd7a899ebff7438c79c4df4b65cbd75e84803ca67fd6754f670a2b62c",
+   "instruction": "open options",
+   "box": [
+    857.4074074074074,
+    47.5,
+    966.6666666666666,
+    100.0
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_414acb14-025e-462a-9d1c-6410df04db7f.png",
+    "dataset_index": 534
+   }
+  },
+  {
+   "id": "ssp-00543",
+   "image": "images/0160.png",
+   "sha256": "954ce8a3f04949ac43d2ff52e4f15ea89ae1444d927b10c1b48907515c25b987",
+   "instruction": "control center or status bar",
+   "box": [
+    59.25925925925926,
+    823.75,
+    835.1851851851851,
+    874.5833333333334
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_6e08b93a-9271-40ac-9dd0-f1f95f8d8675.png",
+    "dataset_index": 543
+   }
+  },
+  {
+   "id": "ssp-00547",
+   "image": "images/0161.png",
+   "sha256": "91639117615ec6f0cba4b87206c3d0e88cad2dbe1148beb36afa47614f39a127",
+   "instruction": "return upper page",
+   "box": [
+    33.333333333333336,
+    32.08333333333333,
+    176.85185185185185,
+    95.0
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_d52263df-908a-4f53-93de-b51d691ad995.png",
+    "dataset_index": 547
+   }
+  },
+  {
+   "id": "ssp-00549",
+   "image": "images/0162.png",
+   "sha256": "ea33b3d31c203ee0c0650fd2596912637a147c700c8e77f99831a461cb3f018d",
+   "instruction": "open vpn options",
+   "box": [
+    37.03703703703704,
+    76.25,
+    975.0,
+    169.58333333333334
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_3607031a-15bb-48cd-a2e6-84a7ce433173.png",
+    "dataset_index": 549
+   }
+  },
+  {
+   "id": "ssp-00551",
+   "image": "images/0163.png",
+   "sha256": "cf9dcf817cba8d78530b102d0ffff96c2f1ebd4e07d018eafaf379ee38afdace",
+   "instruction": "quick control ball",
+   "box": [
+    55.55555555555555,
+    605.0,
+    970.3703703703703,
+    676.25
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_f61ea850-a79c-41b8-891f-8c55326e1530.png",
+    "dataset_index": 551
+   }
+  },
+  {
+   "id": "ssp-00552",
+   "image": "images/0164.png",
+   "sha256": "9ccd88526d20b66cd040f24adf5d61b0bd46334ead494290857825f330c38e98",
+   "instruction": "\u00a0battery options",
+   "box": [
+    827.7777777777777,
+    44.166666666666664,
+    971.2962962962963,
+    103.33333333333333
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_04545977-3f36-4a33-a787-72ec8a9dd4f2.png",
+    "dataset_index": 552
+   }
+  },
+  {
+   "id": "ssp-00553",
+   "image": "images/0165.png",
+   "sha256": "9ccd88526d20b66cd040f24adf5d61b0bd46334ead494290857825f330c38e98",
+   "instruction": "change battery setting for better performance",
+   "box": [
+    635.1851851851852,
+    350.8333333333333,
+    981.4814814814815,
+    439.16666666666663
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_04545977-3f36-4a33-a787-72ec8a9dd4f2.png",
+    "dataset_index": 553
+   }
+  },
+  {
+   "id": "ssp-00554",
+   "image": "images/0166.png",
+   "sha256": "9ccd88526d20b66cd040f24adf5d61b0bd46334ead494290857825f330c38e98",
+   "instruction": "open ultra battery saver",
+   "box": [
+    744.4444444444445,
+    471.25,
+    951.8518518518518,
+    532.0833333333334
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_04545977-3f36-4a33-a787-72ec8a9dd4f2.png",
+    "dataset_index": 554
+   }
+  },
+  {
+   "id": "ssp-00557",
+   "image": "images/0167.png",
+   "sha256": "9931599555d33456523beb0926140d1114dcf121cd2bbb51f61d62c684a47a1c",
+   "instruction": "divide",
+   "box": [
+    722.2222222222222,
+    459.1666666666667,
+    944.4444444444445,
+    550.8333333333333
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_3b5ab7d3-8e84-4be1-83ba-801882db294b.png",
+    "dataset_index": 557
+   }
+  },
+  {
+   "id": "ssp-00560",
+   "image": "images/0168.png",
+   "sha256": "86381732cd4f2954c9554ef78fe52ad2e328b9c6a8cdf3f8f9e78a6777ad37ea",
+   "instruction": "add new email account",
+   "box": [
+    13.888888888888888,
+    269.5833333333333,
+    168.5185185185185,
+    334.1666666666667
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_cebc7e07-8ab3-4232-acdd-aa2884af2e66.png",
+    "dataset_index": 560
+   }
+  },
+  {
+   "id": "ssp-00565",
+   "image": "images/0169.png",
+   "sha256": "a225d94f986175cf38f8ad5c36ad28c75f3f962347d0bbface49811d29fac8bc",
+   "instruction": "open instagram",
+   "box": [
+    25.0,
+    371.25,
+    269.44444444444446,
+    486.6666666666667
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_9aa2c4bf-aa52-43ed-ac30-f22798c14668.png",
+    "dataset_index": 565
+   }
+  },
+  {
+   "id": "ssp-00567",
+   "image": "images/0170.png",
+   "sha256": "a225d94f986175cf38f8ad5c36ad28c75f3f962347d0bbface49811d29fac8bc",
+   "instruction": "open massage",
+   "box": [
+    37.03703703703704,
+    500.0,
+    270.3703703703704,
+    630.4166666666666
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_9aa2c4bf-aa52-43ed-ac30-f22798c14668.png",
+    "dataset_index": 567
+   }
+  },
+  {
+   "id": "ssp-00568",
+   "image": "images/0171.png",
+   "sha256": "701ebb749dbed5926d64c015fdad7e9ae53915ab8f1f73593d2770b7a3153187",
+   "instruction": "start outdoor running",
+   "box": [
+    2.7777777777777777,
+    144.16666666666666,
+    492.5925925925926,
+    295.0
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_88c8a639-8051-4241-943c-41104b363caa.png",
+    "dataset_index": 568
+   }
+  },
+  {
+   "id": "ssp-00570",
+   "image": "images/0172.png",
+   "sha256": "701ebb749dbed5926d64c015fdad7e9ae53915ab8f1f73593d2770b7a3153187",
+   "instruction": "start threadmill recordding",
+   "box": [
+    492.5925925925926,
+    308.33333333333337,
+    975.0,
+    474.58333333333337
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_88c8a639-8051-4241-943c-41104b363caa.png",
+    "dataset_index": 570
+   }
+  },
+  {
+   "id": "ssp-00576",
+   "image": "images/0173.png",
+   "sha256": "a47c718dffa184fc020b0f7d3eeaf1933f7a95c181fc8c12c105188bdc6812a9",
+   "instruction": "switch to workout page",
+   "box": [
+    288.88888888888886,
+    911.6666666666666,
+    473.14814814814815,
+    976.25
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_e277f0fc-fe73-4304-9d8e-2bc4613e1986.png",
+    "dataset_index": 576
+   }
+  },
+  {
+   "id": "ssp-00586",
+   "image": "images/0174.png",
+   "sha256": "b49867e4838883a9d55e706786f0eb05dd7a31d782dd41d4c23a5fb9e916a4cb",
+   "instruction": "search setttings",
+   "box": [
+    40.74074074074075,
+    176.25,
+    963.8888888888889,
+    239.16666666666666
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_182c66dd-3836-4bce-909f-166abd570fde.png",
+    "dataset_index": 586
+   }
+  },
+  {
+   "id": "ssp-00588",
+   "image": "images/0175.png",
+   "sha256": "4a7a7302383d346c06ea2122872e4aafe211f49792e9ef175fd7a88fa9bddd19",
+   "instruction": "display unread massages",
+   "box": [
+    352.7777777777778,
+    110.0,
+    575.0,
+    162.5
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_6a0ba48e-0ed8-44ba-a40b-adbbdba2dee4.png",
+    "dataset_index": 588
+   }
+  },
+  {
+   "id": "ssp-00591",
+   "image": "images/0176.png",
+   "sha256": "86a94c2524196de63daf476a056187273446738e0a39b583d8d9eaab2010faa1",
+   "instruction": "turn off wifi",
+   "box": [
+    62.962962962962955,
+    176.25,
+    488.88888888888886,
+    295.0
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_ee2362d3-17a7-479e-9f99-fd8378aae866.png",
+    "dataset_index": 591
+   }
+  },
+  {
+   "id": "ssp-00592",
+   "image": "images/0177.png",
+   "sha256": "86a94c2524196de63daf476a056187273446738e0a39b583d8d9eaab2010faa1",
+   "instruction": "change phone options",
+   "box": [
+    737.0370370370371,
+    118.75,
+    824.074074074074,
+    166.25
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_ee2362d3-17a7-479e-9f99-fd8378aae866.png",
+    "dataset_index": 592
+   }
+  },
+  {
+   "id": "ssp-00593",
+   "image": "images/0178.png",
+   "sha256": "86a94c2524196de63daf476a056187273446738e0a39b583d8d9eaab2010faa1",
+   "instruction": "manage the outlayer",
+   "box": [
+    835.1851851851851,
+    108.33333333333334,
+    940.7407407407408,
+    176.25
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_ee2362d3-17a7-479e-9f99-fd8378aae866.png",
+    "dataset_index": 593
+   }
+  },
+  {
+   "id": "ssp-00595",
+   "image": "images/0179.png",
+   "sha256": "2d0a602d398f314f045e30b3fa3bf47bb2f89408d03e25f10b3cf90bed0cec78",
+   "instruction": "open settings",
+   "box": [
+    737.0370370370371,
+    542.5,
+    985.1851851851852,
+    674.5833333333333
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_f53240ec-a09f-4857-9ca1-db5fb79455c3.png",
+    "dataset_index": 595
+   }
+  },
+  {
+   "id": "ssp-00602",
+   "image": "images/0180.png",
+   "sha256": "ac4853de09660ce5f7ebf5dbdc92c8dbd454d9fd186d18fd471cfed1c98631d7",
+   "instruction": "switch to show link attributes",
+   "box": [
+    394.0677966101695,
+    486.5853658536585,
+    958.0508474576271,
+    539.6341463414634
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_6ded1777-d4c3-485f-b28a-7754e0e9c024.png",
+    "dataset_index": 602
+   }
+  },
+  {
+   "id": "ssp-00603",
+   "image": "images/0181.png",
+   "sha256": "9101a1f191ea78e85f5a4d5bee461012216b491c2324d40ba33df2f8a912991d",
+   "instruction": "open files in ipad",
+   "box": [
+    371.6101694915254,
+    246.34146341463415,
+    625.8474576271187,
+    409.7560975609756
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_ed417132-c4e4-41c9-adae-d150aecada69.png",
+    "dataset_index": 603
+   }
+  },
+  {
+   "id": "ssp-00604",
+   "image": "images/0182.png",
+   "sha256": "d253ca483f87cdda1d5eb599ac0d454efb236916308abfe19024051d66f225b4",
+   "instruction": "open memo app",
+   "box": [
+    338.135593220339,
+    875.609756097561,
+    400.0,
+    965.8536585365854
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_124e877d-d29c-45e4-bdc2-cbc729c702c9.png",
+    "dataset_index": 604
+   }
+  },
+  {
+   "id": "ssp-00606",
+   "image": "images/0183.png",
+   "sha256": "3890c10cf3cdf03ea60a71bdf027cc17bbc165298e77afba51b5dd6726b962f1",
+   "instruction": "refresh the page",
+   "box": [
+    98.72881355932203,
+    84.14634146341464,
+    138.98305084745763,
+    140.85365853658536
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_f859f69e-20c1-4630-9435-e959c43590d5.png",
+    "dataset_index": 606
+   }
+  },
+  {
+   "id": "ssp-00608",
+   "image": "images/0184.png",
+   "sha256": "6317eb4aed4374c5e04c19985f7fe9b25cd7784f72f9b63e4310895dbca5cf5d",
+   "instruction": "clear browsing data",
+   "box": [
+    679.2372881355933,
+    646.3414634146342,
+    969.4915254237288,
+    706.7073170731707
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_41aa1b5c-01f3-455d-807e-9c90c705dd1f.png",
+    "dataset_index": 608
+   }
+  },
+  {
+   "id": "ssp-00609",
+   "image": "images/0185.png",
+   "sha256": "6317eb4aed4374c5e04c19985f7fe9b25cd7784f72f9b63e4310895dbca5cf5d",
+   "instruction": "open downloads page",
+   "box": [
+    841.9491525423729,
+    178.65853658536585,
+    902.1186440677966,
+    282.92682926829264
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_41aa1b5c-01f3-455d-807e-9c90c705dd1f.png",
+    "dataset_index": 609
+   }
+  },
+  {
+   "id": "ssp-00613",
+   "image": "images/0186.png",
+   "sha256": "e34284a5e489d50c41e683790c1a6717f7da15ede0e33068af1340307bf32c2d",
+   "instruction": "check device location",
+   "box": [
+    96.1864406779661,
+    866.4634146341464,
+    152.1186440677966,
+    926.829268292683
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_9d30c621-fe06-4f6a-86e7-6664cc3bb566.png",
+    "dataset_index": 613
+   }
+  },
+  {
+   "id": "ssp-00615",
+   "image": "images/0187.png",
+   "sha256": "5e86285d61f41a2f9f235ffe79a9514f07088cf4b1bb6b7384a1062424323fd5",
+   "instruction": "create a new workbook for total a list",
+   "box": [
+    558.4745762711865,
+    109.7560975609756,
+    732.2033898305085,
+    304.8780487804878
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_f5b4ae93-55f8-4f0c-9c9e-dda8685c37b5.png",
+    "dataset_index": 615
+   }
+  },
+  {
+   "id": "ssp-00618",
+   "image": "images/0188.png",
+   "sha256": "b7a980858742fd0d1c224950b3bf968a82b9e6815307cd1076ef01a2b2913167",
+   "instruction": "open the entertainment",
+   "box": [
+    514.8305084745763,
+    204.8780487804878,
+    647.0338983050847,
+    420.1219512195122
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_043c3a5e-c12c-4991-bb7f-676c617b2f9b.png",
+    "dataset_index": 618
+   }
+  },
+  {
+   "id": "ssp-00620",
+   "image": "images/0189.png",
+   "sha256": "0cbec6d088104844a7bf58045fb0634b5f26982f28e9856dff59c2990af4a0c9",
+   "instruction": "add a new app to the desktop",
+   "box": [
+    11.440677966101696,
+    16.463414634146343,
+    65.67796610169492,
+    54.26829268292683
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_6778b255-174f-401e-ab98-b5bbe554a141.png",
+    "dataset_index": 620
+   }
+  },
+  {
+   "id": "ssp-00623",
+   "image": "images/0190.png",
+   "sha256": "ae35b4caa3ad1dcd5ae884ccb034cf88be9b388c14c46cea851544b87d47c164",
+   "instruction": "remove the camera from the included controls",
+   "box": [
+    396.1864406779661,
+    575.0,
+    434.74576271186436,
+    626.829268292683
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_08782c89-65da-43ca-8eb6-8ca71e9f8ea7.png",
+    "dataset_index": 623
+   }
+  },
+  {
+   "id": "ssp-00625",
+   "image": "images/0191.png",
+   "sha256": "1dc2997fa7bd55a3e5e6e1a659edfa3bec123a2518bc683e657ce3c8fe535cd8",
+   "instruction": "adjust display & brightness",
+   "box": [
+    44.44444444444444,
+    313.5860979462875,
+    956.4102564102565,
+    366.9036334913112
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_c784c6c1-0203-4193-8131-f34cef16d400.png",
+    "dataset_index": 625
+   }
+  },
+  {
+   "id": "ssp-00627",
+   "image": "images/0192.png",
+   "sha256": "c366f1e2b285011304bfa0aa6f96692b25dc0be92831e6ef3a4777cd6eb55363",
+   "instruction": "adjust the brightness",
+   "box": [
+    39.31623931623932,
+    700.6319115323855,
+    958.974358974359,
+    750.3949447077409
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_1152be83-7090-45b9-9465-e5acc02d867d.png",
+    "dataset_index": 627
+   }
+  },
+  {
+   "id": "ssp-00628",
+   "image": "images/0193.png",
+   "sha256": "f51fe6872fc2eadf58e0e8a455f30baacc02f83649a89d3afd037497e98d7a98",
+   "instruction": "manage the password for aliyunidaas.com",
+   "box": [
+    39.31623931623932,
+    439.1785150078989,
+    961.5384615384615,
+    509.08372827804106
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_d8a299f2-f432-4bef-abc4-5a005cf4c40f.png",
+    "dataset_index": 628
+   }
+  },
+  {
+   "id": "ssp-00630",
+   "image": "images/0194.png",
+   "sha256": "7e7c4c968c03972e85c0e9ceb6a3cf37d4bf7349bf065b2effe1555aa5bbc0ef",
+   "instruction": "allow google maps to send notifications",
+   "box": [
+    779.4871794871794,
+    154.02843601895736,
+    928.2051282051283,
+    195.49763033175356
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_f45826c5-d796-46cf-b0c3-c4095206735c.png",
+    "dataset_index": 630
+   }
+  },
+  {
+   "id": "ssp-00633",
+   "image": "images/0195.png",
+   "sha256": "165691f7efd2deacfbabdf272b1e6d191961016e7cb9d64f38e1919fa6ac0150",
+   "instruction": "add a new place to favourities",
+   "box": [
+    72.64957264957266,
+    746.8404423380726,
+    244.44444444444443,
+    857.0300157977882
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_18b2ff57-9a0c-48e6-a754-de728b5a0479.png",
+    "dataset_index": 633
+   }
+  },
+  {
+   "id": "ssp-00634",
+   "image": "images/0196.png",
+   "sha256": "165691f7efd2deacfbabdf272b1e6d191961016e7cb9d64f38e1919fa6ac0150",
+   "instruction": "search for a place or address",
+   "box": [
+    36.75213675213676,
+    631.911532385466,
+    841.025641025641,
+    681.6745655608215
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_18b2ff57-9a0c-48e6-a754-de728b5a0479.png",
+    "dataset_index": 634
+   }
+  },
+  {
+   "id": "ssp-00643",
+   "image": "images/0197.png",
+   "sha256": "3e485e217f3dce911ebeac63f60c37979b9e78752feecc6db7808a922946e1c7",
+   "instruction": "input through voice recognition",
+   "box": [
+    851.2820512820513,
+    169.03633491311214,
+    953.8461538461539,
+    221.1690363349131
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_6cc4e2c1-b5bd-4347-bee4-63a1217d052c.png",
+    "dataset_index": 643
+   }
+  },
+  {
+   "id": "ssp-00648",
+   "image": "images/0198.png",
+   "sha256": "f4ed2d558c39661665542e29c8aa720e8531a1b906ef8d3fe21d10a10f205645",
+   "instruction": "choose the place called \"\u9999\u6e2f\u5e7f\u573a\"",
+   "box": [
+    743.5897435897436,
+    338.4676145339652,
+    961.5384615384615,
+    416.6666666666667
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_f6f4bdd0-01eb-41a4-b696-42fcc45097b6.png",
+    "dataset_index": 648
+   }
+  },
+  {
+   "id": "ssp-00651",
+   "image": "images/0199.png",
+   "sha256": "f220d59754e972c8c40b0965f0ec8c54ed89aeab1a52fa97ea9a10044c659239",
+   "instruction": "input the destination",
+   "box": [
+    143.5897435897436,
+    148.1042654028436,
+    855.5555555555555,
+    188.38862559241707
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_c81bb812-68b7-4557-95bb-1260f3b787f1.png",
+    "dataset_index": 651
+   }
+  },
+  {
+   "id": "ssp-00652",
+   "image": "images/0200.png",
+   "sha256": "b33ee930c4f376e011d4923a5d5a6a42f36d7b49fb5edf67ecd95a310c2c29ae",
+   "instruction": "check the wallet",
+   "box": [
+    356.4102564102564,
+    196.28751974723536,
+    643.5897435897436,
+    298.1832543443918
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_c9c47c96-1b18-45dd-8e88-f0b48c54617d.png",
+    "dataset_index": 652
+   }
+  },
+  {
+   "id": "ssp-00657",
+   "image": "images/0201.png",
+   "sha256": "7c9bd1492b9df2540d168c5ac6b4f9a5deb125d1b570cce9b337d7aa9c012d0b",
+   "instruction": "open additional options",
+   "box": [
+    878.6324786324786,
+    34.360189573459714,
+    973.5042735042734,
+    84.12322274881517
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_a2cdff8e-fd92-46fb-8d83-228f2116c087.png",
+    "dataset_index": 657
+   }
+  },
+  {
+   "id": "ssp-00658",
+   "image": "images/0202.png",
+   "sha256": "b2b0c26eccb8a586efcf0ed4961f1d7d2461e36e4316b1f146b308625fc6a4d2",
+   "instruction": "crop the photo",
+   "box": [
+    49.57264957264957,
+    439.1785150078989,
+    231.62393162393164,
+    523.301737756714
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_641346f3-50a8-4235-8a74-e0c9ee49136f.png",
+    "dataset_index": 658
+   }
+  },
+  {
+   "id": "ssp-00661",
+   "image": "images/0203.png",
+   "sha256": "faa9e2d0f856d5ac617629db41632172e1312eb78af846f4e5aa34e47f801269",
+   "instruction": "show more about workouts",
+   "box": [
+    694.8717948717948,
+    544.2338072669827,
+    982.051282051282,
+    593.996840442338
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_6126718c-82ef-4406-8d00-3d4bf7a414c4.png",
+    "dataset_index": 661
+   }
+  },
+  {
+   "id": "ssp-00662",
+   "image": "images/0204.png",
+   "sha256": "faa9e2d0f856d5ac617629db41632172e1312eb78af846f4e5aa34e47f801269",
+   "instruction": "view the outdoor cycle report",
+   "box": [
+    34.188034188034194,
+    693.522906793049,
+    966.6666666666666,
+    788.3096366508688
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_6126718c-82ef-4406-8d00-3d4bf7a414c4.png",
+    "dataset_index": 662
+   }
+  },
+  {
+   "id": "ssp-00663",
+   "image": "images/0205.png",
+   "sha256": "81297ba9fbeeeb4d014ac67eef45150fa979791a543a08424e89b6434f919e7e",
+   "instruction": "view exercise log on map",
+   "box": [
+    39.31623931623932,
+    637.8357030015798,
+    956.4102564102565,
+    838.8625592417062
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_b4a1ee35-b1b3-4ea6-bd37-22e326ea8620.png",
+    "dataset_index": 663
+   }
+  },
+  {
+   "id": "ssp-00665",
+   "image": "images/0206.png",
+   "sha256": "f703a98d5afa36b932927e571f36b3cd3765c9a2bbe74cbd821a8da555380718",
+   "instruction": "open exercise log calendar",
+   "box": [
+    723.0769230769231,
+    55.687203791469194,
+    835.8974358974359,
+    111.37440758293839
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_3475adcf-26f0-43b9-8758-cae8601d33d1.png",
+    "dataset_index": 665
+   }
+  },
+  {
+   "id": "ssp-00668",
+   "image": "images/0207.png",
+   "sha256": "95e716bddf23e646cba056f0ac2719a03e2cec3680cccef419692da42c6dcf6e",
+   "instruction": "sign up to zoom ",
+   "box": [
+    29.05982905982906,
+    787.1248025276461,
+    976.9230769230769,
+    847.5513428120063
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_268e1246-9870-47c7-a702-cadd117e11d4.png",
+    "dataset_index": 668
+   }
+  },
+  {
+   "id": "ssp-00677",
+   "image": "images/0208.png",
+   "sha256": "8f3b473ce243d798cf4cb77d686e6b74ca7c79cff21299248cdd921d8330f5eb",
+   "instruction": "add profile picture",
+   "box": [
+    379.48717948717945,
+    347.9462875197472,
+    610.2564102564103,
+    388.2306477093207
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_7532d8a8-0ee9-4aa6-9780-de5b481ef137.png",
+    "dataset_index": 677
+   }
+  },
+  {
+   "id": "ssp-00678",
+   "image": "images/0209.png",
+   "sha256": "68654c532cac8f337b1a33a4437370e6af2664bb8ba3d47f70d57739eb5c23c9",
+   "instruction": "display more functions",
+   "box": [
+    650.0,
+    55.83333333333333,
+    750.0,
+    103.75
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_bed2b5e8-9102-405e-80f3-85207ed1bbf0.png",
+    "dataset_index": 678
+   }
+  },
+  {
+   "id": "ssp-00679",
+   "image": "images/0210.png",
+   "sha256": "68654c532cac8f337b1a33a4437370e6af2664bb8ba3d47f70d57739eb5c23c9",
+   "instruction": "open high resolution 50mp mode",
+   "box": [
+    112.03703703703704,
+    162.5,
+    492.5925925925926,
+    341.25
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_bed2b5e8-9102-405e-80f3-85207ed1bbf0.png",
+    "dataset_index": 679
+   }
+  },
+  {
+   "id": "ssp-00683",
+   "image": "images/0211.png",
+   "sha256": "843bbbcac1524c46d323e159feae1087974971e31a100b2acc37e94a2d3ab8b8",
+   "instruction": "safety informations",
+   "box": [
+    713.8888888888889,
+    46.66666666666667,
+    811.1111111111111,
+    91.66666666666666
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_f6431461-6800-4054-a29d-d74b01514198.png",
+    "dataset_index": 683
+   }
+  },
+  {
+   "id": "ssp-00688",
+   "image": "images/0212.png",
+   "sha256": "a70fb7cf59a074f1a22eeddaf4e43d804a2e93a7c63862b9a2f12d0561d87144",
+   "instruction": "open hdr shoting mode",
+   "box": [
+    219.44444444444443,
+    55.83333333333333,
+    343.5185185185185,
+    102.5
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_b099c8b7-0ff4-404b-a1a2-10691a313a8b.png",
+    "dataset_index": 688
+   }
+  },
+  {
+   "id": "ssp-00691",
+   "image": "images/0213.png",
+   "sha256": "06700503ed7495ded816554a602900a3971dd108b03fe002bc6153611b5cb86f",
+   "instruction": "next step",
+   "box": [
+    25.925925925925924,
+    884.1666666666666,
+    964.8148148148148,
+    955.0
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_8ed6041f-f845-4495-8ca6-def7f40471fd.png",
+    "dataset_index": 691
+   }
+  },
+  {
+   "id": "ssp-00698",
+   "image": "images/0214.png",
+   "sha256": "37e14133cb725e5d7577c2868ed6bf7aecbc8e044a9904f3ad37f616f456b353",
+   "instruction": "play video",
+   "box": [
+    362.962962962963,
+    178.75,
+    496.2962962962963,
+    242.08333333333334
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_07c1d6c0-7f94-457e-94b4-1e855dc1aded.png",
+    "dataset_index": 698
+   }
+  },
+  {
+   "id": "ssp-00699",
+   "image": "images/0215.png",
+   "sha256": "37e14133cb725e5d7577c2868ed6bf7aecbc8e044a9904f3ad37f616f456b353",
+   "instruction": "search",
+   "box": [
+    890.7407407407408,
+    57.083333333333336,
+    977.7777777777777,
+    90.0
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_07c1d6c0-7f94-457e-94b4-1e855dc1aded.png",
+    "dataset_index": 699
+   }
+  },
+  {
+   "id": "ssp-00700",
+   "image": "images/0216.png",
+   "sha256": "37e14133cb725e5d7577c2868ed6bf7aecbc8e044a9904f3ad37f616f456b353",
+   "instruction": "back",
+   "box": [
+    28.703703703703702,
+    47.91666666666667,
+    128.7037037037037,
+    90.0
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_07c1d6c0-7f94-457e-94b4-1e855dc1aded.png",
+    "dataset_index": 700
+   }
+  },
+  {
+   "id": "ssp-00702",
+   "image": "images/0217.png",
+   "sha256": "18906b65adbd8d35d7b6f90e6e4d7493a33397cff57878c66bad69c0ba2b06b6",
+   "instruction": "cancel",
+   "box": [
+    25.925925925925924,
+    46.66666666666667,
+    200.0,
+    94.58333333333334
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_97752e81-d94b-49a1-8cb2-709395d63372.png",
+    "dataset_index": 702
+   }
+  },
+  {
+   "id": "ssp-00705",
+   "image": "images/0218.png",
+   "sha256": "5819bbab838a2c5a65d422b91ec39039afd78233b48a834948ae212590f3854e",
+   "instruction": "arrange a meeting in schedula",
+   "box": [
+    503.70370370370364,
+    114.16666666666667,
+    690.7407407407408,
+    231.66666666666666
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_6049f1b2-a8b8-4e39-bbac-ddd647cd3248.png",
+    "dataset_index": 705
+   }
+  },
+  {
+   "id": "ssp-00707",
+   "image": "images/0219.png",
+   "sha256": "28131e3dbda50fc1c5204dad2f320343e828f2e75187f2cdd86457de8f6e1b1a",
+   "instruction": "settings",
+   "box": [
+    887.9629629629629,
+    42.083333333333336,
+    987.9629629629629,
+    82.5
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_b92938f8-6822-49e4-9612-67debab64e9d.png",
+    "dataset_index": 707
+   }
+  },
+  {
+   "id": "ssp-00709",
+   "image": "images/0220.png",
+   "sha256": "28131e3dbda50fc1c5204dad2f320343e828f2e75187f2cdd86457de8f6e1b1a",
+   "instruction": "display phone files",
+   "box": [
+    426.85185185185185,
+    88.75,
+    580.5555555555557,
+    150.41666666666666
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_b92938f8-6822-49e4-9612-67debab64e9d.png",
+    "dataset_index": 709
+   }
+  },
+  {
+   "id": "ssp-00711",
+   "image": "images/0221.png",
+   "sha256": "fd3bb297f3677c078cb5724e9bd6ba272ef2d649e2a8b29ef311ff96f2582ef7",
+   "instruction": "display ip address",
+   "box": [
+    526.851851851852,
+    425.4166666666667,
+    650.9259259259259,
+    470.41666666666663
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_aacb7bd4-e54a-4798-876a-eef079e17b2d.png",
+    "dataset_index": 711
+   }
+  },
+  {
+   "id": "ssp-00712",
+   "image": "images/0222.png",
+   "sha256": "fd3bb297f3677c078cb5724e9bd6ba272ef2d649e2a8b29ef311ff96f2582ef7",
+   "instruction": "turn off rule-based mode",
+   "box": [
+    72.22222222222221,
+    493.33333333333337,
+    433.33333333333337,
+    532.5
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_aacb7bd4-e54a-4798-876a-eef079e17b2d.png",
+    "dataset_index": 712
+   }
+  },
+  {
+   "id": "ssp-00713",
+   "image": "images/0223.png",
+   "sha256": "68e1eb2031e9a72c19546c25b22a45252e2876ef37d19993785afae704929508",
+   "instruction": "post a new article",
+   "box": [
+    857.4074074074074,
+    49.583333333333336,
+    974.0740740740741,
+    91.66666666666666
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_674f6746-05c0-4e7d-93de-adf054f0eaf6.png",
+    "dataset_index": 713
+   }
+  },
+  {
+   "id": "ssp-00714",
+   "image": "images/0224.png",
+   "sha256": "68e1eb2031e9a72c19546c25b22a45252e2876ef37d19993785afae704929508",
+   "instruction": "more settings",
+   "box": [
+    15.740740740740739,
+    45.0,
+    132.40740740740742,
+    94.58333333333334
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_674f6746-05c0-4e7d-93de-adf054f0eaf6.png",
+    "dataset_index": 714
+   }
+  },
+  {
+   "id": "ssp-00725",
+   "image": "images/0225.png",
+   "sha256": "57a8ba94f1c20ba29f8f14dd81d73ca343e3f3ebe44dfdf5f4ad51d62ee4318d",
+   "instruction": "persuit 9.9 as telephone fee",
+   "box": [
+    42.59259259259259,
+    281.25,
+    474.0740740740741,
+    387.9166666666667
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_a1c4c142-4b8e-4db8-a74f-f84f047cbf46.png",
+    "dataset_index": 725
+   }
+  },
+  {
+   "id": "ssp-00728",
+   "image": "images/0226.png",
+   "sha256": "df45bf6765626f535252a5ca6946291f444f05e4570bff90ba8f0e69f0e0dd0e",
+   "instruction": "log out",
+   "box": [
+    603.7037037037037,
+    57.083333333333336,
+    787.0370370370371,
+    103.75
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_8d60dcfe-4771-4a34-9053-9195df7264c9.png",
+    "dataset_index": 728
+   }
+  },
+  {
+   "id": "ssp-00730",
+   "image": "images/0227.png",
+   "sha256": "df45bf6765626f535252a5ca6946291f444f05e4570bff90ba8f0e69f0e0dd0e",
+   "instruction": "display phone billings",
+   "box": [
+    45.370370370370374,
+    563.75,
+    981.4814814814815,
+    638.75
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_8d60dcfe-4771-4a34-9053-9195df7264c9.png",
+    "dataset_index": 730
+   }
+  },
+  {
+   "id": "ssp-00736",
+   "image": "images/0228.png",
+   "sha256": "8fead885fe8fe00652781c31ee541b7e477f386058f3f5b5877b4b16ee0c616b",
+   "instruction": "deny",
+   "box": [
+    55.55555555555555,
+    725.0,
+    924.074074074074,
+    794.1666666666667
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_48d10f78-a92e-43fb-ace1-c1a4f5bccb90.png",
+    "dataset_index": 736
+   }
+  },
+  {
+   "id": "ssp-00739",
+   "image": "images/0229.png",
+   "sha256": "c34b157c716d4a7882528a0386abb943530b4ebbfd9764e47fea4e9329d09a7a",
+   "instruction": "done",
+   "box": [
+    212.96296296296296,
+    801.6666666666666,
+    784.2592592592592,
+    887.5
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_d9e451e3-6238-496f-8cc4-37e019e1a9c3.png",
+    "dataset_index": 739
+   }
+  },
+  {
+   "id": "ssp-00740",
+   "image": "images/0230.png",
+   "sha256": "5e614aac8be4768a913afa7939187a7f63bf789be3e61074fbb8754594cb689b",
+   "instruction": "edit the overlay of this page",
+   "box": [
+    674.074074074074,
+    132.5,
+    804.6296296296296,
+    168.75
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_41049254-5e60-485c-b974-174ad6e98bd0.png",
+    "dataset_index": 740
+   }
+  },
+  {
+   "id": "ssp-00741",
+   "image": "images/0231.png",
+   "sha256": "5e614aac8be4768a913afa7939187a7f63bf789be3e61074fbb8754594cb689b",
+   "instruction": "return to homepage",
+   "box": [
+    12.037037037037036,
+    54.16666666666667,
+    162.03703703703704,
+    108.33333333333334
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_41049254-5e60-485c-b974-174ad6e98bd0.png",
+    "dataset_index": 741
+   }
+  },
+  {
+   "id": "ssp-00742",
+   "image": "images/0232.png",
+   "sha256": "5e614aac8be4768a913afa7939187a7f63bf789be3e61074fbb8754594cb689b",
+   "instruction": "add new email account",
+   "box": [
+    5.555555555555555,
+    269.1666666666667,
+    162.962962962963,
+    329.1666666666667
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_41049254-5e60-485c-b974-174ad6e98bd0.png",
+    "dataset_index": 742
+   }
+  },
+  {
+   "id": "ssp-00743",
+   "image": "images/0233.png",
+   "sha256": "5589a6ef30ded39a1000a033f2e43b3bf62c0db26899b9fab6113d4a69f39c7d",
+   "instruction": "open my own twitch group",
+   "box": [
+    22.22222222222222,
+    269.1666666666667,
+    977.7777777777777,
+    356.25
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_b4e274d0-a7b6-4cad-97ee-5581ef41c6a0.png",
+    "dataset_index": 743
+   }
+  },
+  {
+   "id": "ssp-00744",
+   "image": "images/0234.png",
+   "sha256": "5589a6ef30ded39a1000a033f2e43b3bf62c0db26899b9fab6113d4a69f39c7d",
+   "instruction": "join a twitch server",
+   "box": [
+    35.18518518518519,
+    908.3333333333334,
+    961.1111111111111,
+    977.5
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_b4e274d0-a7b6-4cad-97ee-5581ef41c6a0.png",
+    "dataset_index": 744
+   }
+  },
+  {
+   "id": "ssp-00745",
+   "image": "images/0235.png",
+   "sha256": "5589a6ef30ded39a1000a033f2e43b3bf62c0db26899b9fab6113d4a69f39c7d",
+   "instruction": "use shool group template",
+   "box": [
+    12.037037037037036,
+    491.66666666666663,
+    981.4814814814815,
+    597.0833333333333
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_b4e274d0-a7b6-4cad-97ee-5581ef41c6a0.png",
+    "dataset_index": 745
+   }
+  },
+  {
+   "id": "ssp-00747",
+   "image": "images/0236.png",
+   "sha256": "805c032842bf308aaaa90b9683933d93a7e101f45511091404772bcd01d80e77",
+   "instruction": "display more information",
+   "box": [
+    419.44444444444446,
+    460.0,
+    683.3333333333334,
+    488.75
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_508e7610-9e30-4626-9ea3-37bf194cb1dd.png",
+    "dataset_index": 747
+   }
+  },
+  {
+   "id": "ssp-00749",
+   "image": "images/0237.png",
+   "sha256": "46134fdd0d8dd3ec40093951a11e397ab5fd208eed4bc845efc492b657b2cd31",
+   "instruction": "open settings",
+   "box": [
+    697.2222222222222,
+    138.33333333333334,
+    914.8148148148149,
+    257.0833333333333
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_5c444b03-c5ca-41d8-b4cb-e12f4f4a4387.png",
+    "dataset_index": 749
+   }
+  },
+  {
+   "id": "ssp-00750",
+   "image": "images/0238.png",
+   "sha256": "46134fdd0d8dd3ec40093951a11e397ab5fd208eed4bc845efc492b657b2cd31",
+   "instruction": "search",
+   "box": [
+    112.03703703703704,
+    141.25,
+    286.1111111111111,
+    245.0
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_5c444b03-c5ca-41d8-b4cb-e12f4f4a4387.png",
+    "dataset_index": 750
+   }
+  },
+  {
+   "id": "ssp-00755",
+   "image": "images/0239.png",
+   "sha256": "9f4c880148b34b8a81534b152d1070a7a05d624603812ac50761fcefbd0cb402",
+   "instruction": "close",
+   "box": [
+    904.6296296296297,
+    108.33333333333334,
+    1000.0,
+    157.91666666666669
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_b84d7f20-7c25-4613-829f-6c620e223593.png",
+    "dataset_index": 755
+   }
+  },
+  {
+   "id": "ssp-00756",
+   "image": "images/0240.png",
+   "sha256": "9f4c880148b34b8a81534b152d1070a7a05d624603812ac50761fcefbd0cb402",
+   "instruction": "show news",
+   "box": [
+    115.74074074074075,
+    52.5,
+    412.962962962963,
+    99.16666666666667
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_b84d7f20-7c25-4613-829f-6c620e223593.png",
+    "dataset_index": 756
+   }
+  },
+  {
+   "id": "ssp-00757",
+   "image": "images/0241.png",
+   "sha256": "9f4c880148b34b8a81534b152d1070a7a05d624603812ac50761fcefbd0cb402",
+   "instruction": "use fire emoji",
+   "box": [
+    165.74074074074073,
+    529.1666666666666,
+    309.25925925925924,
+    568.3333333333334
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_b84d7f20-7c25-4613-829f-6c620e223593.png",
+    "dataset_index": 757
+   }
+  },
+  {
+   "id": "ssp-00762",
+   "image": "images/0242.png",
+   "sha256": "8af801bd2073e81ee6bfc01986deced02eb8fd6070e0eca3c849c9197e17e92f",
+   "instruction": "display more functional icon",
+   "box": [
+    867.5925925925926,
+    40.416666666666664,
+    984.2592592592592,
+    92.91666666666666
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_df977636-55ed-4c99-8ff1-569ef8e6c78a.png",
+    "dataset_index": 762
+   }
+  },
+  {
+   "id": "ssp-00763",
+   "image": "images/0243.png",
+   "sha256": "8af801bd2073e81ee6bfc01986deced02eb8fd6070e0eca3c849c9197e17e92f",
+   "instruction": "transfer money",
+   "box": [
+    787.0370370370371,
+    186.66666666666669,
+    980.5555555555555,
+    272.5
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_df977636-55ed-4c99-8ff1-569ef8e6c78a.png",
+    "dataset_index": 763
+   }
+  },
+  {
+   "id": "ssp-00766",
+   "image": "images/0244.png",
+   "sha256": "c1fe6c712b9339b6402f662126e4f2cca51315ae607bc2a724cf7cc335ce6e14",
+   "instruction": "show all message ",
+   "box": [
+    840.7407407407408,
+    925.0,
+    964.8148148148148,
+    979.1666666666666
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_c988d05c-1c6d-4b0d-aacb-eafb866320fb.png",
+    "dataset_index": 766
+   }
+  },
+  {
+   "id": "ssp-00768",
+   "image": "images/0245.png",
+   "sha256": "8b7053fc4bd5921d2cdc8dc308ec8e90a1293eb3443f7d21633a503e7331edd7",
+   "instruction": "auto play video and gif in wifi or use traffic",
+   "box": [
+    817.5925925925925,
+    197.08333333333334,
+    975.0,
+    257.0833333333333
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_8f5ecfa3-33b9-4306-bc67-87aacadfc45b.png",
+    "dataset_index": 768
+   }
+  },
+  {
+   "id": "ssp-00769",
+   "image": "images/0246.png",
+   "sha256": "8b7053fc4bd5921d2cdc8dc308ec8e90a1293eb3443f7d21633a503e7331edd7",
+   "instruction": "change language translated into",
+   "box": [
+    8.333333333333334,
+    575.8333333333333,
+    977.7777777777777,
+    646.6666666666666
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_8f5ecfa3-33b9-4306-bc67-87aacadfc45b.png",
+    "dataset_index": 769
+   }
+  },
+  {
+   "id": "ssp-00771",
+   "image": "images/0247.png",
+   "sha256": "588ae411ae32c014b248eaf5c5df6373c7a1645f9d46ffd4bd0979fc55d24964",
+   "instruction": "share to twitter",
+   "box": [
+    543.5185185185185,
+    755.0,
+    720.3703703703703,
+    851.25
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_a84e2cd2-1d45-42c1-8e2e-5c06fa3419af.png",
+    "dataset_index": 771
+   }
+  },
+  {
+   "id": "ssp-00774",
+   "image": "images/0248.png",
+   "sha256": "ba4e70fca93fc8cf16ea0222139dd473de87c5e1ca34b0a55995303494dcb83c",
+   "instruction": "set dark mode follow system",
+   "box": [
+    817.5925925925925,
+    709.5833333333334,
+    981.4814814814815,
+    783.3333333333334
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_99daacb4-408c-4cdf-8f14-2c01675fda1f.png",
+    "dataset_index": 774
+   }
+  },
+  {
+   "id": "ssp-00776",
+   "image": "images/0249.png",
+   "sha256": "d0a1e6783e54f1ddce3e092af9b824643beb199599698ced11a5b116bb88b02d",
+   "instruction": "flod this content",
+   "box": [
+    850.925925925926,
+    197.08333333333334,
+    964.8148148148148,
+    252.91666666666669
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_597cf265-2586-43ab-8048-99e06141f39f.png",
+    "dataset_index": 776
+   }
+  },
+  {
+   "id": "ssp-00778",
+   "image": "images/0250.png",
+   "sha256": "d0a1e6783e54f1ddce3e092af9b824643beb199599698ced11a5b116bb88b02d",
+   "instruction": "more options",
+   "box": [
+    5.555555555555555,
+    49.583333333333336,
+    138.88888888888889,
+    97.5
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_597cf265-2586-43ab-8048-99e06141f39f.png",
+    "dataset_index": 778
+   }
+  },
+  {
+   "id": "ssp-00779",
+   "image": "images/0251.png",
+   "sha256": "59ee1d4b77dc9c0de073f6972dae8a742ed12ebfb4e3055cbbcbc3f9634b0a3c",
+   "instruction": "filte unread feeds",
+   "box": [
+    122.22222222222221,
+    200.0,
+    776.851851851852,
+    247.91666666666669
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_7618dc0d-3998-4dd2-82db-86df2cc97da3.png",
+    "dataset_index": 779
+   }
+  },
+  {
+   "id": "ssp-00780",
+   "image": "images/0252.png",
+   "sha256": "59ee1d4b77dc9c0de073f6972dae8a742ed12ebfb4e3055cbbcbc3f9634b0a3c",
+   "instruction": "filte group weibo",
+   "box": [
+    125.92592592592591,
+    383.33333333333337,
+    757.4074074074074,
+    439.16666666666663
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_7618dc0d-3998-4dd2-82db-86df2cc97da3.png",
+    "dataset_index": 780
+   }
+  },
+  {
+   "id": "ssp-00781",
+   "image": "images/0253.png",
+   "sha256": "59ee1d4b77dc9c0de073f6972dae8a742ed12ebfb4e3055cbbcbc3f9634b0a3c",
+   "instruction": "new post",
+   "box": [
+    790.7407407407408,
+    836.25,
+    967.5925925925926,
+    911.25
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_7618dc0d-3998-4dd2-82db-86df2cc97da3.png",
+    "dataset_index": 781
+   }
+  },
+  {
+   "id": "ssp-00782",
+   "image": "images/0254.png",
+   "sha256": "27c88601fd0a3d445834997bd3331f61c229e4c0922878608dadbb6d81ffee75",
+   "instruction": "close sounds",
+   "box": [
+    813.8888888888889,
+    619.5833333333334,
+    961.1111111111111,
+    660.0
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_c3af996a-2d6c-47c2-ba3d-aae699016f0e.png",
+    "dataset_index": 782
+   }
+  },
+  {
+   "id": "ssp-00785",
+   "image": "images/0255.png",
+   "sha256": "7043f332775bd8a94deec81ea3a276e969b5eeab5146ba5cf30e16d203d71d1f",
+   "instruction": "show all downloading apps",
+   "box": [
+    850.925925925926,
+    55.83333333333333,
+    957.4074074074074,
+    117.5
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "android",
+    "file_name": "mobile_bce7a892-9cb2-432a-b678-2429d4f51d3d.png",
+    "dataset_index": 785
+   }
+  },
+  {
+   "id": "ssp-00786",
+   "image": "images/0256.png",
+   "sha256": "7043f332775bd8a94deec81ea3a276e969b5eeab5146ba5cf30e16d203d71d1f",
+   "instruction": "show softwares",
+   "box": [
+    550.0,
+    115.83333333333333,
+    790.7407407407408,
+    147.5
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_bce7a892-9cb2-432a-b678-2429d4f51d3d.png",
+    "dataset_index": 786
+   }
+  },
+  {
+   "id": "ssp-00787",
+   "image": "images/0257.png",
+   "sha256": "78eaa305f9bd5ba9538153058abadb69137e86d20559a411ba5ad4c36d42462b",
+   "instruction": "view details",
+   "box": [
+    774.074074074074,
+    597.0833333333333,
+    954.6296296296296,
+    642.0833333333334
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_daf338f0-ebfc-488e-9a55-f8cc03394148.png",
+    "dataset_index": 787
+   }
+  },
+  {
+   "id": "ssp-00789",
+   "image": "images/0258.png",
+   "sha256": "78eaa305f9bd5ba9538153058abadb69137e86d20559a411ba5ad4c36d42462b",
+   "instruction": "view all folding apps",
+   "box": [
+    366.66666666666663,
+    439.16666666666663,
+    637.0370370370371,
+    460.41666666666663
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_daf338f0-ebfc-488e-9a55-f8cc03394148.png",
+    "dataset_index": 789
+   }
+  },
+  {
+   "id": "ssp-00792",
+   "image": "images/0259.png",
+   "sha256": "8fac36efb789f03e21cf52c251dd60db1cd5e6de87ee560a0153351cad842a2f",
+   "instruction": "open cleaner",
+   "box": [
+    450.0,
+    175.83333333333334,
+    961.1111111111111,
+    327.9166666666667
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "android",
+    "file_name": "mobile_31f8a5c2-e28a-488c-bb28-a31c823c9c83.png",
+    "dataset_index": 792
+   }
+  },
+  {
+   "id": "ssp-00797",
+   "image": "images/0260.png",
+   "sha256": "9d4e28a29934bf40e2ca6057e358a4ca3bee67449f882027ff7be4cddf30c766",
+   "instruction": "open data roaming",
+   "box": [
+    776.9230769230769,
+    153.63349131121643,
+    929.9145299145299,
+    196.6824644549763
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_5a0b24f9-66fe-4593-bcf5-4752d5332bcf.png",
+    "dataset_index": 797
+   }
+  },
+  {
+   "id": "ssp-00799",
+   "image": "images/0261.png",
+   "sha256": "d06d7e0a70d84c85a9895b30fe6780e4584e8f70a05e17243cf674cae37f7e3b",
+   "instruction": "view last month cellular data",
+   "box": [
+    488.88888888888886,
+    606.6350710900474,
+    947.008547008547,
+    642.1800947867299
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_9bbed1c6-3a9f-46ea-b2d3-39ae8abde54e.png",
+    "dataset_index": 799
+   }
+  },
+  {
+   "id": "ssp-00800",
+   "image": "images/0262.png",
+   "sha256": "d06d7e0a70d84c85a9895b30fe6780e4584e8f70a05e17243cf674cae37f7e3b",
+   "instruction": "select network",
+   "box": [
+    41.88034188034188,
+    323.4597156398104,
+    958.1196581196582,
+    377.56714060031595
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_9bbed1c6-3a9f-46ea-b2d3-39ae8abde54e.png",
+    "dataset_index": 800
+   }
+  },
+  {
+   "id": "ssp-00803",
+   "image": "images/0263.png",
+   "sha256": "3e3e50df7e31b7439c8cdbb7b1b1999ffbad1dfeae56e523b90cfeafad68746f",
+   "instruction": "search in app library",
+   "box": [
+    64.95726495726497,
+    73.85466034755133,
+    932.4786324786324,
+    130.33175355450237
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_6bfcd1af-894e-4c63-b1c1-c5fabf589029.png",
+    "dataset_index": 803
+   }
+  },
+  {
+   "id": "ssp-00804",
+   "image": "images/0264.png",
+   "sha256": "3e3e50df7e31b7439c8cdbb7b1b1999ffbad1dfeae56e523b90cfeafad68746f",
+   "instruction": "view travel apps",
+   "box": [
+    521.3675213675214,
+    632.3064770932069,
+    932.4786324786324,
+    844.7867298578199
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_6bfcd1af-894e-4c63-b1c1-c5fabf589029.png",
+    "dataset_index": 804
+   }
+  },
+  {
+   "id": "ssp-00805",
+   "image": "images/0265.png",
+   "sha256": "9fdfdf142a3694ad9a5fb2c4a8219dd1656149a157c6674326d16735a444061d",
+   "instruction": "canel password input",
+   "box": [
+    803.4188034188035,
+    61.21642969984202,
+    982.9059829059829,
+    105.84518167456557
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_59fde6e1-8df2-4009-ad8d-aa44bffd2bf2.png",
+    "dataset_index": 805
+   }
+  },
+  {
+   "id": "ssp-00806",
+   "image": "images/0266.png",
+   "sha256": "a7cbf87046841066dbca0306c2c3c36d8e9cd48dccce2b2722f9020ea7f6aadb",
+   "instruction": "switch language",
+   "box": [
+    35.042735042735046,
+    477.09320695102684,
+    961.5384615384615,
+    531.2006319115325
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_46f8e4b9-c563-43f2-a651-4b1e80ee9907.png",
+    "dataset_index": 806
+   }
+  },
+  {
+   "id": "ssp-00809",
+   "image": "images/0267.png",
+   "sha256": "a7cbf87046841066dbca0306c2c3c36d8e9cd48dccce2b2722f9020ea7f6aadb",
+   "instruction": "set notifications",
+   "box": [
+    38.46153846153847,
+    276.4612954186414,
+    961.5384615384615,
+    345.1816745655608
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_46f8e4b9-c563-43f2-a651-4b1e80ee9907.png",
+    "dataset_index": 809
+   }
+  },
+  {
+   "id": "ssp-00813",
+   "image": "images/0268.png",
+   "sha256": "6933d2437c66ce88ba48eefc3d0c85ee7e95ac1bf73de36d7e2aa1dd8a063d81",
+   "instruction": "books setting",
+   "box": [
+    38.46153846153847,
+    236.57187993680884,
+    961.5384615384615,
+    289.4944707740916
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_8a1fada9-3afa-4eb7-8cef-8896bb2ab30e.png",
+    "dataset_index": 813
+   }
+  },
+  {
+   "id": "ssp-00814",
+   "image": "images/0269.png",
+   "sha256": "6933d2437c66ce88ba48eefc3d0c85ee7e95ac1bf73de36d7e2aa1dd8a063d81",
+   "instruction": "apple store",
+   "box": [
+    38.46153846153847,
+    580.173775671406,
+    961.5384615384615,
+    633.0963665086888
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_8a1fada9-3afa-4eb7-8cef-8896bb2ab30e.png",
+    "dataset_index": 814
+   }
+  },
+  {
+   "id": "ssp-00820",
+   "image": "images/0270.png",
+   "sha256": "82f110da96f11c1fc285e90f0c91819375afab21c541ba99dd147d9d4ba686a0",
+   "instruction": "add a new song to the album",
+   "box": [
+    767.5213675213676,
+    63.98104265402843,
+    853.8461538461538,
+    101.50078988941549
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_6e041214-1095-476a-8779-04db83de5781.png",
+    "dataset_index": 820
+   }
+  },
+  {
+   "id": "ssp-00824",
+   "image": "images/0271.png",
+   "sha256": "b3a44016952b42e52029435169d0ca33a086843d4be178c9fc053711cbec3876",
+   "instruction": "previous one",
+   "box": [
+    144.44444444444443,
+    729.4628751974723,
+    313.6752136752137,
+    804.8973143759873
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_f6313b8a-4258-47d1-97af-7868e04979a4.png",
+    "dataset_index": 824
+   }
+  },
+  {
+   "id": "ssp-00826",
+   "image": "images/0272.png",
+   "sha256": "9dea7a9bf2655428a9325a376373ddb055decaef56cf9e39dcc4b045a82155c7",
+   "instruction": "check the play list",
+   "box": [
+    692.3076923076923,
+    899.6840442338072,
+    821.3675213675214,
+    955.3712480252765
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_ec01cb13-de9a-4a4b-9a79-5f810b034474.png",
+    "dataset_index": 826
+   }
+  },
+  {
+   "id": "ssp-00828",
+   "image": "images/0273.png",
+   "sha256": "8612cce7e061b02732ac08f53f4adc45a025236caebf13e10c01c7dcd09e7a0f",
+   "instruction": "view country music",
+   "box": [
+    31.62393162393162,
+    310.42654028436016,
+    338.46153846153845,
+    360.18957345971563
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "ios",
+    "file_name": "mobile_86bad4a5-d11b-4f2d-b367-5180a49ca4b5.png",
+    "dataset_index": 828
+   }
+  },
+  {
+   "id": "ssp-00835",
+   "image": "images/0274.png",
+   "sha256": "891269400bb43b75956810c42cd00500ad6b8a0e24d9ffb57c74dbd6c354d2eb",
+   "instruction": "sequential music playback",
+   "box": [
+    829.0598290598291,
+    205.7661927330174,
+    929.9145299145299,
+    253.9494470774092
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "ios",
+    "file_name": "mobile_c9fe8f06-aa80-4f6a-abe2-5886567fdea3.png",
+    "dataset_index": 835
+   }
+  },
+  {
+   "id": "ssp-00838",
+   "image": "images/0275.png",
+   "sha256": "00bc1e1e4157b5fbb62a04e7edfe6979dfdfc9acea132a6239a045818fbb5756",
+   "instruction": "search in gitlab",
+   "box": [
+    75.78125,
+    10.416666666666666,
+    327.734375,
+    56.25
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "gitlab",
+    "file_name": "web_e40f1b3f-0f26-4313-a6a2-d79e1047951b.png",
+    "dataset_index": 838
+   }
+  },
+  {
+   "id": "ssp-00843",
+   "image": "images/0276.png",
+   "sha256": "b7e543fe8d6368fac14ec3eade8fbaec2122d8d2c28b3428da9879b202020963",
+   "instruction": "star the project with 56 stars",
+   "box": [
+    625.390625,
+    243.05555555555554,
+    670.703125,
+    288.88888888888886
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "gitlab",
+    "file_name": "web_4e1d5837-4731-43f3-8101-52375498c4ad.png",
+    "dataset_index": 843
+   }
+  },
+  {
+   "id": "ssp-00849",
+   "image": "images/0277.png",
+   "sha256": "3224fc78a9ae4fefbd5bb2801d7569c838d3fd7428603d389f7ebaa681c58f9b",
+   "instruction": "create a new issus",
+   "box": [
+    915.625,
+    141.66666666666666,
+    989.84375,
+    190.27777777777777
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "gitlab",
+    "file_name": "web_e0f18fd6-2a59-4fab-89f0-864c70bba241.png",
+    "dataset_index": 849
+   }
+  },
+  {
+   "id": "ssp-00851",
+   "image": "images/0278.png",
+   "sha256": "3224fc78a9ae4fefbd5bb2801d7569c838d3fd7428603d389f7ebaa681c58f9b",
+   "instruction": "search or filter results",
+   "box": [
+    264.453125,
+    221.52777777777777,
+    842.96875,
+    267.3611111111111
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "gitlab",
+    "file_name": "web_e0f18fd6-2a59-4fab-89f0-864c70bba241.png",
+    "dataset_index": 851
+   }
+  },
+  {
+   "id": "ssp-00852",
+   "image": "images/0279.png",
+   "sha256": "cb8e7f55f02ee808acd148b96bfb1f28e793fc814ccfeb243ae320d21bfa5dcb",
+   "instruction": "choose type of issue",
+   "box": [
+    209.765625,
+    420.8333333333333,
+    408.59375,
+    474.30555555555554
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "gitlab",
+    "file_name": "web_6c677961-e540-4cc5-b725-5e301019a9f9.png",
+    "dataset_index": 852
+   }
+  },
+  {
+   "id": "ssp-00857",
+   "image": "images/0280.png",
+   "sha256": "d751fb3b1f03822de6050d847231c7a56702091a7ef6994b7e112a496760445c",
+   "instruction": "sort by created date",
+   "box": [
+    949.21875,
+    220.13888888888889,
+    975.390625,
+    267.3611111111111
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "gitlab",
+    "file_name": "web_9443f61f-7d14-4e60-8297-29df73b7cbdd.png",
+    "dataset_index": 857
+   }
+  },
+  {
+   "id": "ssp-00859",
+   "image": "images/0281.png",
+   "sha256": "cf48fab5bf7fc665a90d5df954fcfd8db1345a69b51c95255d7299ea9ae21e32",
+   "instruction": "search my projects",
+   "box": [
+    238.28125,
+    75.69444444444444,
+    476.5625,
+    122.91666666666666
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "gitlab",
+    "file_name": "web_af76d21a-0a23-49c3-bc5b-842073bf28af.png",
+    "dataset_index": 859
+   }
+  },
+  {
+   "id": "ssp-00864",
+   "image": "images/0282.png",
+   "sha256": "5cd5d1468de5dd90f1c34910bf0b64870b73e94ba966a7ab4d2bbb6a4710ad00",
+   "instruction": "thumb down",
+   "box": [
+    258.59375,
+    487.5,
+    301.171875,
+    531.9444444444445
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "gitlab",
+    "file_name": "web_b97bb6a3-999c-463a-b957-5584c14c8395.png",
+    "dataset_index": 864
+   }
+  },
+  {
+   "id": "ssp-00868",
+   "image": "images/0283.png",
+   "sha256": "26ac158f97f31fc1e677ad0258f37bc988321cd55c958a1dfbc6ce1d389f8394",
+   "instruction": "add a todo",
+   "box": [
+    789.0625,
+    81.94444444444444,
+    860.546875,
+    113.88888888888889
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "gitlab",
+    "file_name": "web_5a35d9c2-2c2d-4a49-ad0a-1408d9cac78e.png",
+    "dataset_index": 868
+   }
+  },
+  {
+   "id": "ssp-00870",
+   "image": "images/0284.png",
+   "sha256": "53cf19886612859ab35482d44d03b1efd70451012c5c0bf760b0c466c5aab922",
+   "instruction": "check followers",
+   "box": [
+    418.75,
+    527.7777777777778,
+    504.68749999999994,
+    577.7777777777777
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "gitlab",
+    "file_name": "web_e640514e-5946-4808-922f-f50c51b0da78.png",
+    "dataset_index": 870
+   }
+  },
+  {
+   "id": "ssp-00874",
+   "image": "images/0285.png",
+   "sha256": "85e8a3daa16d35cd4795fcac24e24c3020579fd5fb7ef990a746347bcac1068d",
+   "instruction": "close the window",
+   "box": [
+    963.671875,
+    85.41666666666667,
+    991.40625,
+    135.41666666666666
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "gitlab",
+    "file_name": "web_c8e2a933-b6e5-4046-a360-5dbd54dc9753.png",
+    "dataset_index": 874
+   }
+  },
+  {
+   "id": "ssp-00887",
+   "image": "images/0286.png",
+   "sha256": "6e9731b076e32fb8de454098edda81c6ccbf7f87fdba05a5697eda16b051de5a",
+   "instruction": "view supported cloud",
+   "box": [
+    755.46875,
+    413.1944444444444,
+    944.140625,
+    477.7777777777778
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "gitlab",
+    "file_name": "web_32fce6b7-8437-4877-8436-f67c99d82f81.png",
+    "dataset_index": 887
+   }
+  },
+  {
+   "id": "ssp-00888",
+   "image": "images/0287.png",
+   "sha256": "6e9731b076e32fb8de454098edda81c6ccbf7f87fdba05a5697eda16b051de5a",
+   "instruction": "contact gitlab",
+   "box": [
+    541.796875,
+    102.77777777777777,
+    622.265625,
+    180.55555555555554
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "gitlab",
+    "file_name": "web_32fce6b7-8437-4877-8436-f67c99d82f81.png",
+    "dataset_index": 888
+   }
+  },
+  {
+   "id": "ssp-00890",
+   "image": "images/0288.png",
+   "sha256": "f65566b7260f5bac97d51913b99b1eb6fccbee396e4fd84f4933cd4c7f6c6269",
+   "instruction": "have installed",
+   "box": [
+    757.03125,
+    559.0277777777778,
+    886.71875,
+    626.3888888888889
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "gitlab",
+    "file_name": "web_37acd27f-731c-4292-8caf-159b9be41189.png",
+    "dataset_index": 890
+   }
+  },
+  {
+   "id": "ssp-00895",
+   "image": "images/0289.png",
+   "sha256": "30f99be1ec5cf222379c9f5f364bf3e7858c7d8ef679b3228f0ee68729d078ef",
+   "instruction": "switch to govern",
+   "box": [
+    860.15625,
+    152.08333333333331,
+    938.671875,
+    263.19444444444446
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "gitlab",
+    "file_name": "web_94a52247-8dd4-4f19-82ea-19185a9b2649.png",
+    "dataset_index": 895
+   }
+  },
+  {
+   "id": "ssp-00897",
+   "image": "images/0290.png",
+   "sha256": "f5a410655ebc38cbb679da6eef0487ffe7242ddeb8a0e192a5a840bd8c70ae50",
+   "instruction": "choose use-case",
+   "box": [
+    42.578125,
+    720.1388888888889,
+    252.34374999999997,
+    787.5
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "gitlab",
+    "file_name": "web_d48576d2-c431-4030-9cc0-c811c752c3a8.png",
+    "dataset_index": 897
+   }
+  },
+  {
+   "id": "ssp-00899",
+   "image": "images/0291.png",
+   "sha256": "8d9ab05cad94bf3ec3a201dab85707039b927af666dbb6c8a1c276eb5c88ff2f",
+   "instruction": "create a blank project",
+   "box": [
+    71.484375,
+    212.5,
+    493.359375,
+    547.9166666666667
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "gitlab",
+    "file_name": "web_a0cf11b1-c931-41d7-8649-39986460da5f.png",
+    "dataset_index": 899
+   }
+  },
+  {
+   "id": "ssp-00900",
+   "image": "images/0292.png",
+   "sha256": "e10a85b9bfcea0d9bd59b36ef29a1cef57aabbf6d185a3a5013ca85d6f75c8fc",
+   "instruction": "switch to projects",
+   "box": [
+    43.75,
+    118.05555555555556,
+    231.25,
+    167.3611111111111
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "gitlab",
+    "file_name": "web_eab83369-92a1-4819-ae45-eb2c0ab5b131.png",
+    "dataset_index": 900
+   }
+  },
+  {
+   "id": "ssp-00904",
+   "image": "images/0293.png",
+   "sha256": "2dc67fbff0be1cb0f1842700d78ceb8cc8b15e3c6e453e67c68db9182addfa7d",
+   "instruction": "sort by updated date",
+   "box": [
+    949.21875,
+    251.38888888888889,
+    973.4375,
+    297.22222222222223
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "gitlab",
+    "file_name": "web_6d17bf02-a44b-4af7-9791-a4a59881ea3c.png",
+    "dataset_index": 904
+   }
+  },
+  {
+   "id": "ssp-00907",
+   "image": "images/0294.png",
+   "sha256": "6bc0a4d62ded7682ba96ebed3d43f7b8ed1c1c1657c602d5c89e90ef675fc300",
+   "instruction": "edit this issue",
+   "box": [
+    733.59375,
+    229.16666666666666,
+    760.9375,
+    275.69444444444446
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "gitlab",
+    "file_name": "web_3fed2169-3c3d-43e7-baaa-3bf0e0c7134c.png",
+    "dataset_index": 907
+   }
+  },
+  {
+   "id": "ssp-00919",
+   "image": "images/0295.png",
+   "sha256": "62773e63ac6ccd63541a4271300364f0b7675d76569c6861f097057c5b63958b",
+   "instruction": "download the file",
+   "box": [
+    948.046875,
+    367.36111111111114,
+    973.046875,
+    411.1111111111111
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "gitlab",
+    "file_name": "web_3eca74aa-1d45-45a3-ae2b-694ae83b0068.png",
+    "dataset_index": 919
+   }
+  },
+  {
+   "id": "ssp-00921",
+   "image": "images/0296.png",
+   "sha256": "3e911ebf60236822dbfc352ac16314cc1c848d7c793ea5c282fca788cec40097",
+   "instruction": "more information of n-lab project",
+   "box": [
+    948.046875,
+    237.5,
+    975.390625,
+    290.97222222222223
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "gitlab",
+    "file_name": "web_48737870-2f75-4199-a2d0-176d04543b2b.png",
+    "dataset_index": 921
+   }
+  },
+  {
+   "id": "ssp-00926",
+   "image": "images/0297.png",
+   "sha256": "6de251ea125fd6eb105ad3f7044700e6f9de2505c7ca683ab6d4b80b3d740b40",
+   "instruction": "check notification",
+   "box": [
+    848.828125,
+    97.91666666666667,
+    883.59375,
+    163.19444444444446
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "shop",
+    "file_name": "web_7d1b09cc-3602-4670-9fb2-d81afb5ec381.png",
+    "dataset_index": 926
+   }
+  },
+  {
+   "id": "ssp-00927",
+   "image": "images/0298.png",
+   "sha256": "6de251ea125fd6eb105ad3f7044700e6f9de2505c7ca683ab6d4b80b3d740b40",
+   "instruction": "has question about scope",
+   "box": [
+    246.875,
+    218.75,
+    283.59375,
+    284.02777777777777
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "shop",
+    "file_name": "web_7d1b09cc-3602-4670-9fb2-d81afb5ec381.png",
+    "dataset_index": 927
+   }
+  },
+  {
+   "id": "ssp-00928",
+   "image": "images/0299.png",
+   "sha256": "83b0a1dadcef563d55b55280268e3e34ff76bf2046e383c9780fb774f049a09a",
+   "instruction": "view orders",
+   "box": [
+    67.96875,
+    128.4722222222222,
+    277.734375,
+    188.19444444444443
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "shop",
+    "file_name": "web_d0e6082c-90d2-4637-ab9f-65b768240848.png",
+    "dataset_index": 928
+   }
+  },
+  {
+   "id": "ssp-00933",
+   "image": "images/0300.png",
+   "sha256": "bb0b659a7a8ef67bb2599f2ddd3e5cf0b973cb7281b8f876b92e41f035cfa9b1",
+   "instruction": "adjusting the number of displays per page",
+   "box": [
+    655.859375,
+    421.52777777777777,
+    725.390625,
+    470.8333333333333
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "shop",
+    "file_name": "web_d2dd06b0-8826-4dd6-a3b7-0d88c123a04b.png",
+    "dataset_index": 933
+   }
+  },
+  {
+   "id": "ssp-00934",
+   "image": "images/0301.png",
+   "sha256": "0aa492fa6315d511f0492395d9cd754394a38518332ce2be14f88da85ed6cde2",
+   "instruction": "go back",
+   "box": [
+    891.015625,
+    222.91666666666669,
+    956.640625,
+    279.86111111111114
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "shop",
+    "file_name": "web_ddeabd10-ccfc-4881-b301-9364d7a04279.png",
+    "dataset_index": 934
+   }
+  },
+  {
+   "id": "ssp-00936",
+   "image": "images/0302.png",
+   "sha256": "3429d30171d54844dae633627d61c8f9f21ad99fde201c383464aec39c614357",
+   "instruction": "select the div garg",
+   "box": [
+    91.40625,
+    617.3611111111111,
+    133.203125,
+    674.3055555555557
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "shop",
+    "file_name": "web_de7dcaf3-f2e3-49f4-84fd-36088f39238c.png",
+    "dataset_index": 936
+   }
+  },
+  {
+   "id": "ssp-00939",
+   "image": "images/0303.png",
+   "sha256": "ff50303e7b9a152fc77b18aa17fb72fd9e7ede61c7ddf9f44071a176ea63ccd3",
+   "instruction": "ticked items",
+   "box": [
+    90.234375,
+    340.97222222222223,
+    132.8125,
+    444.4444444444444
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "shop",
+    "file_name": "web_2b491da3-f798-4866-b002-a25ab7d15263.png",
+    "dataset_index": 939
+   }
+  },
+  {
+   "id": "ssp-00942",
+   "image": "images/0304.png",
+   "sha256": "ede048f2737bf4de5994e878b70f26b5c7769c39c52178e5929e1a8cf5fa71aa",
+   "instruction": "view all users",
+   "box": [
+    290.234375,
+    188.88888888888889,
+    486.328125,
+    252.77777777777777
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "shop",
+    "file_name": "web_10e24c0f-e9af-4542-b074-5a14a7645717.png",
+    "dataset_index": 942
+   }
+  },
+  {
+   "id": "ssp-00944",
+   "image": "images/0305.png",
+   "sha256": "b2a6668deebebaac9f540ac226879e66443c411f9706a97494f8d0d1cee384ce",
+   "instruction": "reset fliter",
+   "box": [
+    157.03125,
+    344.44444444444446,
+    230.078125,
+    396.52777777777777
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "shop",
+    "file_name": "web_dd867d69-511e-4ab2-834e-2e111c7b3198.png",
+    "dataset_index": 944
+   }
+  },
+  {
+   "id": "ssp-00945",
+   "image": "images/0306.png",
+   "sha256": "b2a6668deebebaac9f540ac226879e66443c411f9706a97494f8d0d1cee384ce",
+   "instruction": "go to next page",
+   "box": [
+    940.625,
+    406.25,
+    975.78125,
+    455.55555555555554
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "shop",
+    "file_name": "web_dd867d69-511e-4ab2-834e-2e111c7b3198.png",
+    "dataset_index": 945
+   }
+  },
+  {
+   "id": "ssp-00947",
+   "image": "images/0307.png",
+   "sha256": "4c3c4956003d6ff4710035470aeebfa1c8a96a6caa6d54d663bf50681e2fdb52",
+   "instruction": "add the first product into cart",
+   "box": [
+    12.890625,
+    823.6111111111111,
+    103.125,
+    873.6111111111111
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "shop",
+    "file_name": "web_d3f48983-3396-4249-990c-d1214fbed944.png",
+    "dataset_index": 947
+   }
+  },
+  {
+   "id": "ssp-00950",
+   "image": "images/0308.png",
+   "sha256": "1f359c2aecd8e5943b2bb00d3bf2779b0efcc2c2ebbc2436e00f1a4a204fb56e",
+   "instruction": "view clothing, shoes",
+   "box": [
+    299.21875,
+    177.77777777777777,
+    464.84375,
+    250.0
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "shop",
+    "file_name": "web_55e57d6e-0cb0-4024-b89f-89a3c594f20e.png",
+    "dataset_index": 950
+   }
+  },
+  {
+   "id": "ssp-00951",
+   "image": "images/0309.png",
+   "sha256": "1f359c2aecd8e5943b2bb00d3bf2779b0efcc2c2ebbc2436e00f1a4a204fb56e",
+   "instruction": "view vedio games",
+   "box": [
+    562.5,
+    251.38888888888889,
+    659.765625,
+    322.9166666666667
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "shop",
+    "file_name": "web_55e57d6e-0cb0-4024-b89f-89a3c594f20e.png",
+    "dataset_index": 951
+   }
+  },
+  {
+   "id": "ssp-00955",
+   "image": "images/0310.png",
+   "sha256": "1a20f257986cb56eb4717c8896bb88cf043dfd17270701c0e48e5d13104b4572",
+   "instruction": "close",
+   "box": [
+    965.234375,
+    154.16666666666669,
+    992.96875,
+    198.6111111111111
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "shop",
+    "file_name": "web_f4ee1ae3-a244-40f8-90cb-e68411f00636.png",
+    "dataset_index": 955
+   }
+  },
+  {
+   "id": "ssp-00958",
+   "image": "images/0311.png",
+   "sha256": "1a20f257986cb56eb4717c8896bb88cf043dfd17270701c0e48e5d13104b4572",
+   "instruction": "adjust the quantity with 5",
+   "box": [
+    795.3125,
+    490.9722222222222,
+    831.25,
+    537.5
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "shop",
+    "file_name": "web_f4ee1ae3-a244-40f8-90cb-e68411f00636.png",
+    "dataset_index": 958
+   }
+  },
+  {
+   "id": "ssp-00959",
+   "image": "images/0312.png",
+   "sha256": "f63aa065019d49d0181348fa6a6a81736e919cd07f82b9c57f42a7ac49e4d275",
+   "instruction": "change password",
+   "box": [
+    241.40625,
+    627.0833333333334,
+    370.3125,
+    681.9444444444445
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "shop",
+    "file_name": "web_d00882a8-4d93-4116-91ad-e8bb8fdd8ff2.png",
+    "dataset_index": 959
+   }
+  },
+  {
+   "id": "ssp-00961",
+   "image": "images/0313.png",
+   "sha256": "51e0c7eb355e88f765f5e9719456f41c147b6bdbe98302cce62d8e63a92ddba8",
+   "instruction": "go to next page",
+   "box": [
+    637.890625,
+    475.0,
+    669.53125,
+    525.0
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "shop",
+    "file_name": "web_9043e264-b5ec-4da5-ae7a-b19cfc1d178b.png",
+    "dataset_index": 961
+   }
+  },
+  {
+   "id": "ssp-00962",
+   "image": "images/0314.png",
+   "sha256": "51e0c7eb355e88f765f5e9719456f41c147b6bdbe98302cce62d8e63a92ddba8",
+   "instruction": "adjust the number show per page",
+   "box": [
+    885.15625,
+    475.0,
+    932.03125,
+    521.5277777777778
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "shop",
+    "file_name": "web_9043e264-b5ec-4da5-ae7a-b19cfc1d178b.png",
+    "dataset_index": 962
+   }
+  },
+  {
+   "id": "ssp-00964",
+   "image": "images/0315.png",
+   "sha256": "fe6082b16fe3f059360901b1078b8ef4b4cbf22698b8400f5c77751c0726a26a",
+   "instruction": "comment to elmwood inn fine tea",
+   "box": [
+    613.671875,
+    792.3611111111111,
+    792.1875,
+    849.3055555555555
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "shop",
+    "file_name": "web_f80a102f-7b1a-40f4-ad52-193e52d0cda0.png",
+    "dataset_index": 964
+   }
+  },
+  {
+   "id": "ssp-00967",
+   "image": "images/0316.png",
+   "sha256": "dde19f1f4db33878678d80045ecc7dc53e6e84671f0d38473ec7d8ceae6e9b9b",
+   "instruction": "view ps4",
+   "box": [
+    562.109375,
+    476.38888888888886,
+    743.359375,
+    525.0
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "shop",
+    "file_name": "web_589e44b7-401b-45f7-a223-b93ac59c5506.png",
+    "dataset_index": 967
+   }
+  },
+  {
+   "id": "ssp-00971",
+   "image": "images/0317.png",
+   "sha256": "d4276b5a34da26d64360f50ef7819a55beb9c583a32471c758434949138127a1",
+   "instruction": "enter email address",
+   "box": [
+    728.125,
+    688.1944444444445,
+    903.90625,
+    735.4166666666667
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "shop",
+    "file_name": "web_c576ac89-3f3e-4f4d-9efd-1ad4b959a630.png",
+    "dataset_index": 971
+   }
+  },
+  {
+   "id": "ssp-00977",
+   "image": "images/0318.png",
+   "sha256": "a9a184520528e5ded4454a0a8b5bc9d0577dc624f41ae59651e327c8e24e9a97",
+   "instruction": "next page",
+   "box": [
+    278.125,
+    854.8611111111111,
+    308.59375,
+    903.4722222222223
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "shop",
+    "file_name": "web_e891e448-0f8e-4673-9122-405a48cabad3.png",
+    "dataset_index": 977
+   }
+  },
+  {
+   "id": "ssp-00978",
+   "image": "images/0319.png",
+   "sha256": "a9a184520528e5ded4454a0a8b5bc9d0577dc624f41ae59651e327c8e24e9a97",
+   "instruction": "page 5",
+   "box": [
+    253.125,
+    850.6944444444445,
+    271.09375,
+    904.8611111111111
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "shop",
+    "file_name": "web_e891e448-0f8e-4673-9122-405a48cabad3.png",
+    "dataset_index": 978
+   }
+  },
+  {
+   "id": "ssp-00980",
+   "image": "images/0320.png",
+   "sha256": "57353250b1020bf891821c873f1cb82984b201c48f8c7c7aefc5b69a7f6df8d1",
+   "instruction": "enter email address",
+   "box": [
+    135.546875,
+    616.6666666666667,
+    488.671875,
+    665.9722222222222
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "shop",
+    "file_name": "web_60786716-b5ae-47f4-bd46-c5f9a0e87293.png",
+    "dataset_index": 980
+   }
+  },
+  {
+   "id": "ssp-00989",
+   "image": "images/0321.png",
+   "sha256": "6f06d6e8470a1cd303d0c7cd1ec8a55052c20faeb82e4256e8bd88011138b52c",
+   "instruction": "add the sandals to cart",
+   "box": [
+    405.078125,
+    697.9166666666666,
+    494.921875,
+    745.1388888888889
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "shop",
+    "file_name": "web_0c5f692d-4c32-4533-ac2a-d6f8d7c6d7c1.png",
+    "dataset_index": 989
+   }
+  },
+  {
+   "id": "ssp-00990",
+   "image": "images/0322.png",
+   "sha256": "544e8f9df0a973ba8aee7f57e6d5aedc0923e2a14f22fe2d2c8571631f08090e",
+   "instruction": "choose size 14",
+   "box": [
+    588.28125,
+    640.2777777777777,
+    637.890625,
+    683.3333333333334
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "shop",
+    "file_name": "web_f8c6a82c-5e0e-4067-a560-06e9615e65fe.png",
+    "dataset_index": 990
+   }
+  },
+  {
+   "id": "ssp-00992",
+   "image": "images/0323.png",
+   "sha256": "0482e2f7d1dc81f1b8d9a55f33b2eeceed1501b68725d2849cc5a249cd69995b",
+   "instruction": "enter lowest price",
+   "box": [
+    138.28125,
+    782.6388888888889,
+    299.609375,
+    825.6944444444443
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "shop",
+    "file_name": "web_96671728-050c-4e62-bdb8-5bd68b603de0.png",
+    "dataset_index": 992
+   }
+  },
+  {
+   "id": "ssp-00994",
+   "image": "images/0324.png",
+   "sha256": "8112c0a23c4da1a4ec40b767ed4619f7b9b46dcbc404a252574fb86527efe9de",
+   "instruction": "show password",
+   "box": [
+    133.203125,
+    643.75,
+    240.625,
+    679.8611111111111
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "shop",
+    "file_name": "web_70a307b8-62fb-4d66-921a-7c4445af3e65.png",
+    "dataset_index": 994
+   }
+  },
+  {
+   "id": "ssp-01001",
+   "image": "images/0325.png",
+   "sha256": "42384ed266d9d84e336e2978e9d3901db415a5245a89eaf556204cca5fafac72",
+   "instruction": "back to previous page",
+   "box": [
+    78.90625,
+    107.6388888888889,
+    104.6875,
+    151.38888888888889
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "forum",
+    "file_name": "web_fd8befe1-4e5b-4de2-9978-db25d2be2173.png",
+    "dataset_index": 1001
+   }
+  },
+  {
+   "id": "ssp-01003",
+   "image": "images/0326.png",
+   "sha256": "6281356bcac979e87788d54549251d4a8ab81f931c0a8cfc5bc4bd1e3ab07c05",
+   "instruction": "unsubscribe the book ",
+   "box": [
+    742.578125,
+    343.75,
+    836.71875,
+    406.25
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "forum",
+    "file_name": "web_587b0743-0e7a-4291-811b-4d6fb5510fb3.png",
+    "dataset_index": 1003
+   }
+  },
+  {
+   "id": "ssp-01004",
+   "image": "images/0327.png",
+   "sha256": "b4390833ae24eeb13322b3029e101c8514e1bea28547dbe644c6cd4e524d4972",
+   "instruction": "unsupport the book",
+   "box": [
+    47.65625,
+    243.75,
+    69.53125,
+    275.0
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "forum",
+    "file_name": "web_89d60b8b-3f6d-4160-93d4-1791d4899455.png",
+    "dataset_index": 1004
+   }
+  },
+  {
+   "id": "ssp-01013",
+   "image": "images/0328.png",
+   "sha256": "700413f75f9f819f4e90218066f324b251eb3286178b07e6f557a3f02a564877",
+   "instruction": "subscribe the second book",
+   "box": [
+    810.546875,
+    452.77777777777777,
+    903.90625,
+    512.5
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "forum",
+    "file_name": "web_4af68da5-d7bb-4910-b434-1301097cda1f.png",
+    "dataset_index": 1013
+   }
+  },
+  {
+   "id": "ssp-01019",
+   "image": "images/0329.png",
+   "sha256": "74d87450efa8ceffaab8a42e2b3f64d852c902f75081ccd65e9e5a8aa3f7f7b5",
+   "instruction": "check the profile of user knittedjedi",
+   "box": [
+    17.96875,
+    459.02777777777777,
+    64.453125,
+    500.0
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "forum",
+    "file_name": "web_0481a1db-93fd-4d1e-9146-15526e37eacd.png",
+    "dataset_index": 1019
+   }
+  },
+  {
+   "id": "ssp-01021",
+   "image": "images/0330.png",
+   "sha256": "93453c1b56a8871870626423238ada64b3d8b3a3ac883401185a450a3dcfcea0",
+   "instruction": "input the forum name",
+   "box": [
+    37.890625,
+    236.80555555555554,
+    520.703125,
+    295.8333333333333
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "forum",
+    "file_name": "web_5766e094-3b76-4b5f-8399-e47ff5506df2.png",
+    "dataset_index": 1021
+   }
+  },
+  {
+   "id": "ssp-01022",
+   "image": "images/0331.png",
+   "sha256": "93453c1b56a8871870626423238ada64b3d8b3a3ac883401185a450a3dcfcea0",
+   "instruction": "input the title",
+   "box": [
+    39.0625,
+    347.91666666666663,
+    520.3125,
+    404.86111111111114
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "forum",
+    "file_name": "web_5766e094-3b76-4b5f-8399-e47ff5506df2.png",
+    "dataset_index": 1022
+   }
+  },
+  {
+   "id": "ssp-01023",
+   "image": "images/0332.png",
+   "sha256": "93453c1b56a8871870626423238ada64b3d8b3a3ac883401185a450a3dcfcea0",
+   "instruction": "input the description of the forum",
+   "box": [
+    37.5,
+    456.94444444444446,
+    519.921875,
+    547.9166666666667
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "forum",
+    "file_name": "web_5766e094-3b76-4b5f-8399-e47ff5506df2.png",
+    "dataset_index": 1023
+   }
+  },
+  {
+   "id": "ssp-01027",
+   "image": "images/0333.png",
+   "sha256": "6e7e14423ac808fe481ff9abc5cc6287e0c0cce79d023eb8fd8650bc6ac2ef62",
+   "instruction": "input the body of the submission",
+   "box": [
+    38.28125,
+    543.0555555555555,
+    520.3125,
+    889.5833333333333
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "forum",
+    "file_name": "web_f680f8e6-e068-4ca9-9be6-2f78c2899e0a.png",
+    "dataset_index": 1027
+   }
+  },
+  {
+   "id": "ssp-01028",
+   "image": "images/0334.png",
+   "sha256": "6e7e14423ac808fe481ff9abc5cc6287e0c0cce79d023eb8fd8650bc6ac2ef62",
+   "instruction": "upload a image for the submission",
+   "box": [
+    79.6875,
+    212.5,
+    130.078125,
+    252.08333333333331
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "forum",
+    "file_name": "web_f680f8e6-e068-4ca9-9be6-2f78c2899e0a.png",
+    "dataset_index": 1028
+   }
+  },
+  {
+   "id": "ssp-01029",
+   "image": "images/0335.png",
+   "sha256": "6e7e14423ac808fe481ff9abc5cc6287e0c0cce79d023eb8fd8650bc6ac2ef62",
+   "instruction": "input an url",
+   "box": [
+    37.5,
+    259.0277777777778,
+    520.3125,
+    315.97222222222223
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "forum",
+    "file_name": "web_f680f8e6-e068-4ca9-9be6-2f78c2899e0a.png",
+    "dataset_index": 1029
+   }
+  },
+  {
+   "id": "ssp-01030",
+   "image": "images/0336.png",
+   "sha256": "3a8c85637959708f0455598ed574d6ff09184c7044ff73386180b342c28a9afd",
+   "instruction": "choose the forum of askreddit",
+   "box": [
+    37.890625,
+    525.0,
+    176.953125,
+    572.2222222222222
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "forum",
+    "file_name": "web_13e31182-318c-43d9-9378-a69da2dc1b01.png",
+    "dataset_index": 1030
+   }
+  },
+  {
+   "id": "ssp-01034",
+   "image": "images/0337.png",
+   "sha256": "fe17d0219d76afeb439a5e569207d9485e762574a1e2f26b1dd82373ee2af370",
+   "instruction": "open external links in the new tab",
+   "box": [
+    171.09375,
+    575.6944444444443,
+    188.28125,
+    606.25
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "forum",
+    "file_name": "web_6c4e07ff-3589-4a78-99cf-fcf703a33a74.png",
+    "dataset_index": 1034
+   }
+  },
+  {
+   "id": "ssp-01035",
+   "image": "images/0338.png",
+   "sha256": "fe17d0219d76afeb439a5e569207d9485e762574a1e2f26b1dd82373ee2af370",
+   "instruction": "don't show thumbnails",
+   "box": [
+    169.921875,
+    628.4722222222222,
+    187.890625,
+    659.7222222222222
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "forum",
+    "file_name": "web_6c4e07ff-3589-4a78-99cf-fcf703a33a74.png",
+    "dataset_index": 1035
+   }
+  },
+  {
+   "id": "ssp-01036",
+   "image": "images/0339.png",
+   "sha256": "fe17d0219d76afeb439a5e569207d9485e762574a1e2f26b1dd82373ee2af370",
+   "instruction": "don't show post previews",
+   "box": [
+    171.09375,
+    785.4166666666666,
+    188.28125,
+    816.6666666666666
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "forum",
+    "file_name": "web_6c4e07ff-3589-4a78-99cf-fcf703a33a74.png",
+    "dataset_index": 1036
+   }
+  },
+  {
+   "id": "ssp-01037",
+   "image": "images/0340.png",
+   "sha256": "fe17d0219d76afeb439a5e569207d9485e762574a1e2f26b1dd82373ee2af370",
+   "instruction": "switch the language",
+   "box": [
+    171.875,
+    255.55555555555554,
+    328.90625,
+    315.27777777777777
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "forum",
+    "file_name": "web_6c4e07ff-3589-4a78-99cf-fcf703a33a74.png",
+    "dataset_index": 1037
+   }
+  },
+  {
+   "id": "ssp-01045",
+   "image": "images/0341.png",
+   "sha256": "4587038cdff2524d9df64e12b1ba159cfb06205e99c83c793dd8bb5b319cb255",
+   "instruction": "share to twitter/x",
+   "box": [
+    72.265625,
+    382.63888888888886,
+    96.875,
+    426.38888888888886
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "forum",
+    "file_name": "web_2f3df3a1-d287-4457-91b3-a672d0f72f84.png",
+    "dataset_index": 1045
+   }
+  },
+  {
+   "id": "ssp-01046",
+   "image": "images/0342.png",
+   "sha256": "7dc3aa90f5d9bfd4b8c8fabf56554a081612280ed5fce8084b85f4505a8f32e3",
+   "instruction": "search in the website",
+   "box": [
+    948.828125,
+    13.194444444444445,
+    981.25,
+    64.58333333333334
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "forum",
+    "file_name": "web_659de266-0af1-47bc-a2dc-5edc4dbb29d8.png",
+    "dataset_index": 1046
+   }
+  },
+  {
+   "id": "ssp-01048",
+   "image": "images/0343.png",
+   "sha256": "a7765bc2b9c926f35fcea4679511054d77d976f75138df015124f87fd9e36abc",
+   "instruction": "subscribe the website",
+   "box": [
+    684.765625,
+    8.333333333333334,
+    869.140625,
+    67.36111111111111
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "forum",
+    "file_name": "web_6f420f7d-e710-428d-99fa-9606adb5f509.png",
+    "dataset_index": 1048
+   }
+  },
+  {
+   "id": "ssp-01049",
+   "image": "images/0344.png",
+   "sha256": "1a53d76bfd68c8c76c4cae193af495d44b91082a18c82a8f6feea5c246e49eb1",
+   "instruction": "check the letters",
+   "box": [
+    505.859375,
+    353.47222222222223,
+    921.875,
+    436.80555555555554
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "forum",
+    "file_name": "web_ff1666cb-81cb-4180-94ee-661a111749e4.png",
+    "dataset_index": 1049
+   }
+  },
+  {
+   "id": "ssp-01050",
+   "image": "images/0345.png",
+   "sha256": "1a53d76bfd68c8c76c4cae193af495d44b91082a18c82a8f6feea5c246e49eb1",
+   "instruction": "check the index",
+   "box": [
+    504.68749999999994,
+    627.7777777777777,
+    923.046875,
+    729.1666666666666
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "forum",
+    "file_name": "web_ff1666cb-81cb-4180-94ee-661a111749e4.png",
+    "dataset_index": 1050
+   }
+  },
+  {
+   "id": "ssp-01053",
+   "image": "images/0346.png",
+   "sha256": "03f7b0584df854ab08ce3298ee14743ebde096bd9680666dbe9d18dd38a1e89f",
+   "instruction": "check the books on true crime",
+   "box": [
+    350.78125,
+    77.77777777777779,
+    435.546875,
+    138.88888888888889
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "forum",
+    "file_name": "web_4e4113f0-12bd-4b49-84c4-88a5bbf7924b.png",
+    "dataset_index": 1053
+   }
+  },
+  {
+   "id": "ssp-01054",
+   "image": "images/0347.png",
+   "sha256": "854bbf43cb132e80350ccb4cc6e8876bfd67d8585da4eb8618d6a52efb5c6552",
+   "instruction": "go to book marks",
+   "box": [
+    705.078125,
+    0.0,
+    801.171875,
+    66.66666666666667
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "forum",
+    "file_name": "web_44f9b58e-0964-4a89-bdb0-18e60f6eb07f.png",
+    "dataset_index": 1054
+   }
+  },
+  {
+   "id": "ssp-01058",
+   "image": "images/0348.png",
+   "sha256": "c639d1cd08ea0f71f58e2398083fe4d1afd1a6569f3919a3798d628497ae55b5",
+   "instruction": "check the image",
+   "box": [
+    78.515625,
+    288.88888888888886,
+    524.21875,
+    770.1388888888889
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "forum",
+    "file_name": "web_4bf90a3b-dcde-4d16-ba02-470eb8976199.png",
+    "dataset_index": 1058
+   }
+  },
+  {
+   "id": "ssp-01059",
+   "image": "images/0349.png",
+   "sha256": "3f75c6b28d048f922ca4096ba9c91615675ee731a4ee8891389b4a9ff26dd6b7",
+   "instruction": "log out my account",
+   "box": [
+    850.0,
+    366.66666666666663,
+    960.9375,
+    420.8333333333333
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "forum",
+    "file_name": "web_626e849e-afe2-47c7-8e67-da7331497c25.png",
+    "dataset_index": 1059
+   }
+  },
+  {
+   "id": "ssp-01061",
+   "image": "images/0350.png",
+   "sha256": "7d35fbde5ffc383c10f15881bdf634d8084084beb30dd769315869659edb6328",
+   "instruction": "filter with featured creteria",
+   "box": [
+    214.84375,
+    119.44444444444446,
+    302.34375,
+    170.83333333333334
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "forum",
+    "file_name": "web_9618f323-7310-4d6e-9c79-a476427ca1ae.png",
+    "dataset_index": 1061
+   }
+  },
+  {
+   "id": "ssp-01065",
+   "image": "images/0351.png",
+   "sha256": "10c5872a1e4a536927fb43635782cb4fadb2ac6f3119d51947b146d60b7d683d",
+   "instruction": "search in the website",
+   "box": [
+    360.546875,
+    11.11111111111111,
+    524.609375,
+    68.05555555555554
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "forum",
+    "file_name": "web_533f02b1-e687-462f-9d14-5a25f54d9464.png",
+    "dataset_index": 1065
+   }
+  },
+  {
+   "id": "ssp-01066",
+   "image": "images/0352.png",
+   "sha256": "c59fdd093ead9c7cc9464e3d575586a2d92e31fd7f60b82c626cf01fff1f6ff2",
+   "instruction": "change the sorting method",
+   "box": [
+    213.671875,
+    206.94444444444443,
+    277.734375,
+    261.11111111111114
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "forum",
+    "file_name": "web_7562f51e-fb02-4c70-a69c-bf02a6b253fa.png",
+    "dataset_index": 1066
+   }
+  },
+  {
+   "id": "ssp-01069",
+   "image": "images/0353.png",
+   "sha256": "c59fdd093ead9c7cc9464e3d575586a2d92e31fd7f60b82c626cf01fff1f6ff2",
+   "instruction": "check the details of the third new",
+   "box": [
+    72.265625,
+    577.0833333333333,
+    648.828125,
+    734.0277777777777
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "forum",
+    "file_name": "web_7fa2512c-eaa9-4195-a8a3-a1ad5d359ff1.png",
+    "dataset_index": 1069
+   }
+  },
+  {
+   "id": "ssp-01073",
+   "image": "images/0354.png",
+   "sha256": "bfda4e161ca9b64d4855ffe9d72fe6f00ae2fe8869559fce5f8aef2191152e5c",
+   "instruction": "log in by x account",
+   "box": [
+    773.046875,
+    329.8611111111111,
+    800.78125,
+    372.9166666666667
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "forum",
+    "file_name": "web_d9841866-2ee7-4afd-a77a-8c0e52f6691c.png",
+    "dataset_index": 1073
+   }
+  },
+  {
+   "id": "ssp-01079",
+   "image": "images/0355.png",
+   "sha256": "1bb383bf93cf2968bef4ad808719e2e2a6acc9464b0e5514729b3f0510938ba3",
+   "instruction": "adjust reading speed",
+   "box": [
+    585.546875,
+    565.2777777777777,
+    630.859375,
+    612.5
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "forum",
+    "file_name": "web_d977cce9-21cf-4eab-8d17-2aa9a616ba2f.png",
+    "dataset_index": 1079
+   }
+  },
+  {
+   "id": "ssp-01081",
+   "image": "images/0356.png",
+   "sha256": "2b53b5bdffbe0c43fc9b8bd91ee10cb7cd5a57730862abf129d7b9ed0bdee634",
+   "instruction": "check sports news",
+   "box": [
+    370.3125,
+    149.30555555555554,
+    426.953125,
+    232.63888888888889
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "forum",
+    "file_name": "web_573eb5de-79cc-411a-a984-d7c28d8e5ce3.png",
+    "dataset_index": 1081
+   }
+  },
+  {
+   "id": "ssp-01086",
+   "image": "images/0357.png",
+   "sha256": "c6c2ae549e7faaaeb73afffba3e0c53d1217b952cda5028e4d30d2a2e8fdb8e4",
+   "instruction": "zoom in on the map",
+   "box": [
+    966.015625,
+    88.19444444444446,
+    999.21875,
+    145.1388888888889
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "tool",
+    "file_name": "web_20979acb-d8af-4fa2-becf-ed38f73f5fcb.png",
+    "dataset_index": 1086
+   }
+  },
+  {
+   "id": "ssp-01087",
+   "image": "images/0358.png",
+   "sha256": "942ad233950aee009e788dbaf1255512c2793c57e7f96847ffdcc250b12c7cd0",
+   "instruction": "sign up",
+   "box": [
+    930.46875,
+    14.583333333333334,
+    990.234375,
+    63.888888888888886
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "tool",
+    "file_name": "web_ea184924-e155-4745-abaa-1f9d0e870c67.png",
+    "dataset_index": 1087
+   }
+  },
+  {
+   "id": "ssp-01088",
+   "image": "images/0359.png",
+   "sha256": "942ad233950aee009e788dbaf1255512c2793c57e7f96847ffdcc250b12c7cd0",
+   "instruction": "zoom out",
+   "box": [
+    967.96875,
+    145.1388888888889,
+    998.828125,
+    196.52777777777777
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "tool",
+    "file_name": "web_ea184924-e155-4745-abaa-1f9d0e870c67.png",
+    "dataset_index": 1088
+   }
+  },
+  {
+   "id": "ssp-01091",
+   "image": "images/0360.png",
+   "sha256": "f521de27ec6f7c72fa71d3201222502544e7694bc7177e05192a5fd550cc9c58",
+   "instruction": "search the result",
+   "box": [
+    199.609375,
+    86.11111111111111,
+    229.296875,
+    129.86111111111111
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "tool",
+    "file_name": "web_2d6ce349-19b2-438b-bc41-611bb64ee63b.png",
+    "dataset_index": 1091
+   }
+  },
+  {
+   "id": "ssp-01099",
+   "image": "images/0361.png",
+   "sha256": "f59cc7c0ddc6f42e18540bd44142e5e6ad1144fedf0fd6c4622c4082d08992f5",
+   "instruction": "more option of edit button",
+   "box": [
+    192.1875,
+    12.5,
+    213.671875,
+    61.80555555555556
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "tool",
+    "file_name": "web_da9f908d-568d-4d65-8587-47870f78f678.png",
+    "dataset_index": 1099
+   }
+  },
+  {
+   "id": "ssp-01101",
+   "image": "images/0362.png",
+   "sha256": "ad7766be294990473ced1640c21ca0f25e81c760c641173319070dafbb88391e",
+   "instruction": "switch map layer to the opnvkarte",
+   "box": [
+    819.53125,
+    346.52777777777777,
+    982.8125,
+    414.58333333333337
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "tool",
+    "file_name": "web_7872daa1-5a12-4ada-95cc-0dd9e655fb4f.png",
+    "dataset_index": 1101
+   }
+  },
+  {
+   "id": "ssp-01103",
+   "image": "images/0363.png",
+   "sha256": "99fb91d07816d5e033817d4e29fa6d2e93629ab113223085cdcd4151823f4edf",
+   "instruction": "check communities",
+   "box": [
+    644.53125,
+    22.22222222222222,
+    724.609375,
+    58.333333333333336
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "tool",
+    "file_name": "web_4b78be88-30cd-401d-8d6d-4ef5a035fbda.png",
+    "dataset_index": 1103
+   }
+  },
+  {
+   "id": "ssp-01118",
+   "image": "images/0364.png",
+   "sha256": "3df211d2c418b250f7a0b0722da5caa38382108610b654bbf74c5692647c2e31",
+   "instruction": "register now",
+   "box": [
+    234.765625,
+    264.5833333333333,
+    311.71875,
+    290.97222222222223
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "tool",
+    "file_name": "web_c1b9d596-c60c-47e2-a863-ef92324405ef.png",
+    "dataset_index": 1118
+   }
+  },
+  {
+   "id": "ssp-01119",
+   "image": "images/0365.png",
+   "sha256": "3df211d2c418b250f7a0b0722da5caa38382108610b654bbf74c5692647c2e31",
+   "instruction": "enter email address or username",
+   "box": [
+    103.515625,
+    365.27777777777777,
+    894.53125,
+    424.30555555555554
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "tool",
+    "file_name": "web_c1b9d596-c60c-47e2-a863-ef92324405ef.png",
+    "dataset_index": 1119
+   }
+  },
+  {
+   "id": "ssp-01124",
+   "image": "images/0366.png",
+   "sha256": "9f58d135f88e1700e1b7127ff715dc76f7b86cc2ee615b03b2db613c1ee2f377",
+   "instruction": "edit note",
+   "box": [
+    11.71875,
+    452.77777777777777,
+    285.9375,
+    845.8333333333334
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "tool",
+    "file_name": "web_c5db0d44-6584-42e2-85c7-e4802276bad0.png",
+    "dataset_index": 1124
+   }
+  },
+  {
+   "id": "ssp-01138",
+   "image": "images/0367.png",
+   "sha256": "e768123d416e614f88a213f0e916fecde0922710ffdf3ed29e7ecf68c0b97b68",
+   "instruction": "download in apple app store",
+   "box": [
+    194.140625,
+    575.6944444444443,
+    287.109375,
+    630.5555555555555
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "tool",
+    "file_name": "web_c6e1ac03-ebaf-4ebe-8fb2-5d6f8769f385.png",
+    "dataset_index": 1138
+   }
+  },
+  {
+   "id": "ssp-01140",
+   "image": "images/0368.png",
+   "sha256": "5808c1d5abfd4db3d8b288dc91fe814eafa9942d0738abf9079cf76523099d32",
+   "instruction": "support with a donation",
+   "box": [
+    80.078125,
+    930.5555555555555,
+    303.125,
+    956.9444444444445
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "tool",
+    "file_name": "web_467ae916-9a16-4517-85cc-f439c79e8c44.png",
+    "dataset_index": 1140
+   }
+  },
+  {
+   "id": "ssp-01141",
+   "image": "images/0369.png",
+   "sha256": "5808c1d5abfd4db3d8b288dc91fe814eafa9942d0738abf9079cf76523099d32",
+   "instruction": "search result",
+   "box": [
+    645.703125,
+    547.2222222222223,
+    694.921875,
+    621.5277777777778
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "tool",
+    "file_name": "web_467ae916-9a16-4517-85cc-f439c79e8c44.png",
+    "dataset_index": 1141
+   }
+  },
+  {
+   "id": "ssp-01142",
+   "image": "images/0370.png",
+   "sha256": "5c1b4714db01fddb122d86ec725833c7b443197cd09b1e46c44481d192aaa68e",
+   "instruction": "check wikipedia",
+   "box": [
+    651.171875,
+    932.6388888888889,
+    704.6875,
+    957.6388888888889
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "tool",
+    "file_name": "web_df166734-1f33-4e1d-887f-292ee9c21502.png",
+    "dataset_index": 1142
+   }
+  },
+  {
+   "id": "ssp-01147",
+   "image": "images/0371.png",
+   "sha256": "8e1e6cfbd57a307723c53c66ac6e4cbc3e6913007e8515a8b5065c04eff88fef",
+   "instruction": "look into reference [1]",
+   "box": [
+    406.640625,
+    718.0555555555555,
+    421.484375,
+    743.0555555555555
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "tool",
+    "file_name": "web_7777a073-0358-46a8-babb-60c07c7bb17d.png",
+    "dataset_index": 1147
+   }
+  },
+  {
+   "id": "ssp-01149",
+   "image": "images/0372.png",
+   "sha256": "39ee11ee5d4dbdcb7ebdcdf731d144c828bed3ae4d29c65c4bc80c6b01009d89",
+   "instruction": "check the hyponyms of deep learning",
+   "box": [
+    215.625,
+    748.6111111111111,
+    305.078125,
+    782.6388888888889
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "tool",
+    "file_name": "web_77e68e05-bbe4-4f54-96fa-79f714c17505.png",
+    "dataset_index": 1149
+   }
+  },
+  {
+   "id": "ssp-01151",
+   "image": "images/0373.png",
+   "sha256": "9e811707dee74463d7ed0419e9cfac953e5be6731dd8d8536ee848c7527a3f47",
+   "instruction": "click on the picture of the day",
+   "box": [
+    210.15625,
+    517.3611111111112,
+    650.0,
+    957.6388888888889
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "tool",
+    "file_name": "web_6547e373-2b01-422b-a104-988a43742ba8.png",
+    "dataset_index": 1151
+   }
+  },
+  {
+   "id": "ssp-01155",
+   "image": "images/0374.png",
+   "sha256": "c0d73c6b743248211c81140baa354dc4c034e590c6d94b6fb011d0a591c23576",
+   "instruction": "download current webpage to local as pdf file",
+   "box": [
+    26.5625,
+    615.9722222222223,
+    123.828125,
+    644.4444444444445
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "tool",
+    "file_name": "web_e402fd4e-8ee3-4e90-9f08-4e6b8d223022.png",
+    "dataset_index": 1155
+   }
+  },
+  {
+   "id": "ssp-01157",
+   "image": "images/0375.png",
+   "sha256": "edb6c0d04b83dde63bb84ae592bbced6529fa8dc8bca6bb3430dc4e05724ebb6",
+   "instruction": "open mediawiki",
+   "box": [
+    784.375,
+    574.3055555555555,
+    826.171875,
+    655.5555555555555
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "tool",
+    "file_name": "web_dc5cf80d-74c4-475e-928f-ee6b7ef254a1.png",
+    "dataset_index": 1157
+   }
+  },
+  {
+   "id": "ssp-01158",
+   "image": "images/0376.png",
+   "sha256": "47f1e31d435f5fcf669fe777be173b4b907d49ff8df53e20bb9249b47ed89f90",
+   "instruction": "input word to search in wikidata",
+   "box": [
+    757.8125,
+    80.55555555555556,
+    926.5625,
+    127.77777777777777
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "tool",
+    "file_name": "web_6f93090a-81f6-489e-bb35-1a2838b18c01.png",
+    "dataset_index": 1158
+   }
+  },
+  {
+   "id": "ssp-01166",
+   "image": "images/0377.png",
+   "sha256": "94b5c39edb037df455adf110decc4ff3ce87a1afc9b31990602fa944469de949",
+   "instruction": "open page about arsene wenger",
+   "box": [
+    305.078125,
+    761.8055555555555,
+    644.53125,
+    864.5833333333334
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "tool",
+    "file_name": "web_3357799b-92ed-4ce8-8c01-452993f9397b.png",
+    "dataset_index": 1166
+   }
+  },
+  {
+   "id": "ssp-01169",
+   "image": "images/0378.png",
+   "sha256": "4d409d856f923889f954f8aeaee5ad18b0783a1a682f52085c087f9aaf7cbd5d",
+   "instruction": "unflod items about players",
+   "box": [
+    39.453125,
+    847.2222222222222,
+    125.0,
+    890.9722222222223
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "tool",
+    "file_name": "web_2bda50e8-15d0-473a-a8cb-bd0777963756.png",
+    "dataset_index": 1169
+   }
+  },
+  {
+   "id": "ssp-01171",
+   "image": "images/0379.png",
+   "sha256": "87000e11f0f3281b7fdb74cac14d42e5300289176e8259950738ac178a6364d7",
+   "instruction": "add language",
+   "box": [
+    245.3125,
+    780.5555555555555,
+    420.3125,
+    863.8888888888889
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "tool",
+    "file_name": "web_cd72d06c-67ca-4ed8-b550-dcf4b33e5381.png",
+    "dataset_index": 1171
+   }
+  },
+  {
+   "id": "ssp-01188",
+   "image": "images/0380.png",
+   "sha256": "50874ada7c6e03f8558476e1ec0ed2d1c8b49ceb7c96733ab8e80ec931e9c6b7",
+   "instruction": "let website remmeber account information for no logging in the next year",
+   "box": [
+    40.625,
+    552.7777777777778,
+    62.89062500000001,
+    592.3611111111111
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "tool",
+    "file_name": "web_0092e09d-acc7-4ced-8871-47cb05a0a554.png",
+    "dataset_index": 1188
+   }
+  },
+  {
+   "id": "ssp-01195",
+   "image": "images/0381.png",
+   "sha256": "751f2aa559a645bae2e1169e762e52991093560a25b4e362030a8f541f4887dc",
+   "instruction": "return the homepage of mediawiki",
+   "box": [
+    78.90625,
+    4.861111111111112,
+    268.75,
+    97.91666666666667
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "tool",
+    "file_name": "web_dd6b5395-a2da-4d88-a971-c2815899f84d.png",
+    "dataset_index": 1195
+   }
+  },
+  {
+   "id": "ssp-01196",
+   "image": "images/0382.png",
+   "sha256": "751f2aa559a645bae2e1169e762e52991093560a25b4e362030a8f541f4887dc",
+   "instruction": "switch to the discussion page",
+   "box": [
+    120.703125,
+    290.97222222222223,
+    198.4375,
+    322.9166666666667
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "tool",
+    "file_name": "web_dd6b5395-a2da-4d88-a971-c2815899f84d.png",
+    "dataset_index": 1196
+   }
+  },
+  {
+   "id": "ssp-01197",
+   "image": "images/0383.png",
+   "sha256": "751f2aa559a645bae2e1169e762e52991093560a25b4e362030a8f541f4887dc",
+   "instruction": "open the photo of the wikidemiad hackathon 2023",
+   "box": [
+    639.453125,
+    406.94444444444446,
+    954.296875,
+    545.1388888888888
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "tool",
+    "file_name": "web_dd6b5395-a2da-4d88-a971-c2815899f84d.png",
+    "dataset_index": 1197
+   }
+  },
+  {
+   "id": "ssp-01206",
+   "image": "images/0384.png",
+   "sha256": "cca8d8ab8153b46b81c56bf3564ff0b800dfabb47259b0180f33ebc3f9a1cfe2",
+   "instruction": "open image of book named machined learning",
+   "box": [
+    726.171875,
+    294.44444444444446,
+    925.0,
+    822.9166666666666
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "tool",
+    "file_name": "web_14c5f53b-8827-4d97-9adb-b3cbc4d6116a.png",
+    "dataset_index": 1206
+   }
+  },
+  {
+   "id": "ssp-01207",
+   "image": "images/0385.png",
+   "sha256": "cca8d8ab8153b46b81c56bf3564ff0b800dfabb47259b0180f33ebc3f9a1cfe2",
+   "instruction": "enter page of peer-reviewd scientific journal",
+   "box": [
+    404.6875,
+    236.80555555555554,
+    611.71875,
+    265.97222222222223
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "tool",
+    "file_name": "web_14c5f53b-8827-4d97-9adb-b3cbc4d6116a.png",
+    "dataset_index": 1207
+   }
+  },
+  {
+   "id": "ssp-01213",
+   "image": "images/0386.png",
+   "sha256": "98c3463d80f500d36b2ea096c24eb5698d0454684e2bedf4594ceb76189944bb",
+   "instruction": "go to page of darpa",
+   "box": [
+    739.453125,
+    381.25,
+    782.03125,
+    406.25
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "tool",
+    "file_name": "web_45f9eb11-1663-440f-9e73-78a34793ac95.png",
+    "dataset_index": 1213
+   }
+  },
+  {
+   "id": "ssp-01219",
+   "image": "images/0387.png",
+   "sha256": "465652ae0a8e5f23091a21db616bc487c51cba6ee8f2c413c3f99017a1224edb",
+   "instruction": "show advanced searching options",
+   "box": [
+    43.75,
+    386.11111111111114,
+    725.390625,
+    438.19444444444446
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "tool",
+    "file_name": "web_147f0485-994a-4176-bd82-88d81ab8607a.png",
+    "dataset_index": 1219
+   }
+  },
+  {
+   "id": "ssp-01221",
+   "image": "images/0388.png",
+   "sha256": "44eb8fae7cd115897adb97d43b83f2a99a17c6d0537abded5775e56564bc984e",
+   "instruction": "open page of gpt-2",
+   "box": [
+    410.9375,
+    752.0833333333334,
+    457.421875,
+    775.6944444444445
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "tool",
+    "file_name": "web_78657904-325d-4ee2-b319-36dc1abe7e54.png",
+    "dataset_index": 1221
+   }
+  },
+  {
+   "id": "ssp-01227",
+   "image": "images/0389.png",
+   "sha256": "20d046b6875323db076563c645e7a9dbbdfdbabbe9c017433c7fca5f20b02d9d",
+   "instruction": "close the pop-up window",
+   "box": [
+    969.53125,
+    177.08333333333334,
+    985.9375,
+    216.66666666666669
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "shop",
+    "file_name": "web_bd7a1ecb-e3e7-4a79-ba7e-91ae27a861ba.png",
+    "dataset_index": 1227
+   }
+  },
+  {
+   "id": "ssp-01229",
+   "image": "images/0390.png",
+   "sha256": "20d046b6875323db076563c645e7a9dbbdfdbabbe9c017433c7fca5f20b02d9d",
+   "instruction": "check the detailed information of the first product in the cart",
+   "box": [
+    747.65625,
+    424.30555555555554,
+    948.4375,
+    484.02777777777777
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "shop",
+    "file_name": "web_bd7a1ecb-e3e7-4a79-ba7e-91ae27a861ba.png",
+    "dataset_index": 1229
+   }
+  },
+  {
+   "id": "ssp-01239",
+   "image": "images/0391.png",
+   "sha256": "6071062cde88e7233832a39c96671651ec8799028112b1b3787e2ebaf3b42833",
+   "instruction": "add the creole seasoning to favorites",
+   "box": [
+    450.390625,
+    681.9444444444445,
+    473.828125,
+    714.5833333333334
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "shop",
+    "file_name": "web_8998df3c-ece5-4f78-9f34-8b6ef91b1ddb.png",
+    "dataset_index": 1239
+   }
+  },
+  {
+   "id": "ssp-01247",
+   "image": "images/0392.png",
+   "sha256": "4323344c26cc0cf4243f05cafc4b79878fe2b1cb774e309b7fc68b079e2fe3c9",
+   "instruction": "check the information of the first product",
+   "box": [
+    189.84375,
+    297.9166666666667,
+    374.609375,
+    813.8888888888889
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "shop",
+    "file_name": "web_2450df5d-6082-4941-8fe5-ee61df8e7021.png",
+    "dataset_index": 1247
+   }
+  },
+  {
+   "id": "ssp-01253",
+   "image": "images/0393.png",
+   "sha256": "13842981f53dc2000d12493534ffed2debcdd41250318aa90782b7a8957810c0",
+   "instruction": "close the image window",
+   "box": [
+    933.203125,
+    6.25,
+    997.265625,
+    114.58333333333333
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "shop",
+    "file_name": "web_8c185a73-f24a-4548-851f-eae8962b2649.png",
+    "dataset_index": 1253
+   }
+  },
+  {
+   "id": "ssp-01255",
+   "image": "images/0394.png",
+   "sha256": "e10fa1aee3691779130d6a4a294eedfb9e5d657b06693aa85753feb596f570e1",
+   "instruction": "check computers and accessories items ",
+   "box": [
+    327.734375,
+    629.8611111111111,
+    524.609375,
+    685.4166666666666
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "shop",
+    "file_name": "web_2e26b177-1a3c-4e1d-b961-a584add014b7.png",
+    "dataset_index": 1255
+   }
+  },
+  {
+   "id": "ssp-01259",
+   "image": "images/0395.png",
+   "sha256": "d24bd1dc1dbeea5446dc3fc36804d622d5918174daf253ceb33396e58171e185",
+   "instruction": "view the product photos",
+   "box": [
+    93.359375,
+    413.1944444444444,
+    486.71875,
+    997.2222222222223
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "shop",
+    "file_name": "web_0437294c-e652-4bc4-acbf-f0c4cf3759ba.png",
+    "dataset_index": 1259
+   }
+  },
+  {
+   "id": "ssp-01260",
+   "image": "images/0396.png",
+   "sha256": "d24bd1dc1dbeea5446dc3fc36804d622d5918174daf253ceb33396e58171e185",
+   "instruction": "change the purchase quantity of the product",
+   "box": [
+    595.3125,
+    485.4166666666667,
+    637.890625,
+    564.5833333333334
+   ],
+   "meta": {
+    "data_type": "icon",
+    "data_source": "shop",
+    "file_name": "web_0437294c-e652-4bc4-acbf-f0c4cf3759ba.png",
+    "dataset_index": 1260
+   }
+  },
+  {
+   "id": "ssp-01261",
+   "image": "images/0397.png",
+   "sha256": "d24bd1dc1dbeea5446dc3fc36804d622d5918174daf253ceb33396e58171e185",
+   "instruction": "add this item to compare",
+   "box": [
+    696.875,
+    624.3055555555555,
+    793.359375,
+    660.4166666666666
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "shop",
+    "file_name": "web_0437294c-e652-4bc4-acbf-f0c4cf3759ba.png",
+    "dataset_index": 1261
+   }
+  },
+  {
+   "id": "ssp-01264",
+   "image": "images/0398.png",
+   "sha256": "db2faa0854dde2766516f44925536faea20fb1f8f82c709b50979b99ad62ceb7",
+   "instruction": "submit my review",
+   "box": [
+    144.140625,
+    750.6944444444445,
+    259.765625,
+    799.3055555555557
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "shop",
+    "file_name": "web_29f17af5-5e60-41a0-8a0c-36a991a0a19d.png",
+    "dataset_index": 1264
+   }
+  },
+  {
+   "id": "ssp-01265",
+   "image": "images/0399.png",
+   "sha256": "01bf92548e859302f5b2c803d77f3263c32d3a05b2bfa05f2504d5326d3d2c38",
+   "instruction": "check the privacy and cookie policy",
+   "box": [
+    14.0625,
+    804.8611111111111,
+    155.078125,
+    837.5
+   ],
+   "meta": {
+    "data_type": "text",
+    "data_source": "shop",
+    "file_name": "web_c307580d-6e2e-4ffb-bb0d-3e156ec524e3.png",
+    "dataset_index": 1265
+   }
+  }
+ ]
+}

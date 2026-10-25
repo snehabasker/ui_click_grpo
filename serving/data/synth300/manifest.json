@@ -1,0 +1,4843 @@
+{
+ "meta": {
+  "name": "synth300",
+  "split": "unbiased_test",
+  "n": 300,
+  "source": "uiclick.synth",
+  "fonts": [
+   "arial.ttf",
+   "segoeui.ttf",
+   "calibri.ttf",
+   "verdana.ttf",
+   "tahoma.ttf"
+  ],
+  "env": {
+   "date": "2026-10-26T00:02:44+01:00",
+   "platform": "Windows-10-10.0.26200-SP0",
+   "python": "3.11.6",
+   "command": "serving/scripts/export_sets.py",
+   "gpu": {
+    "gpus": [
+     {
+      "name": "NVIDIA GeForce RTX 5050 Laptop GPU",
+      "driver": "592.82",
+      "memory_total": "8151 MiB",
+      "compute_cap": "12.0"
+     }
+    ],
+    "driver_cuda_version": "13.1"
+   },
+   "packages": {
+    "torch": "2.11.0+cu128",
+    "transformers": "5.20.2",
+    "peft": "0.21.2",
+    "aiohttp": "3.14.5"
+   },
+   "model_dir": null,
+   "model_hash": null,
+   "repo_commit": "cc479b9fd889ed76b6a68ac9f906bfc5665963e8"
+  }
+ },
+ "items": [
+  {
+   "id": "synth-0000",
+   "image": "images/0000.png",
+   "sha256": "c5389a5a06b871b185e87109997219ab6506542d04afd24366a4101efab37839",
+   "instruction": "Focus the Search... text box.",
+   "box": [
+    470.23809523809524,
+    541.7691878433961,
+    757.4404761904761,
+    619.8941878433961
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000000
+   }
+  },
+  {
+   "id": "synth-0001",
+   "image": "images/0001.png",
+   "sha256": "bfad448c0f0e745ca08653dc8489f3fcf3444bbc545c429ee77e84937e04e078",
+   "instruction": "Open the \"Security\" tab.",
+   "box": [
+    43.154761904761905,
+    212.05357142857142,
+    156.25,
+    276.7857142857143
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000001
+   }
+  },
+  {
+   "id": "synth-0002",
+   "image": "images/0002.png",
+   "sha256": "fb95a7b0321c2eb902f7257a2b3553f25aabc27fdc14c2e89943091499e1a9a2",
+   "instruction": "Click the checkbox next to \"Auto-save\".",
+   "box": [
+    205.35714285714286,
+    308.74144724391743,
+    239.58333333333334,
+    360.08073295820316
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000002
+   }
+  },
+  {
+   "id": "synth-0003",
+   "image": "images/0003.png",
+   "sha256": "762d4bccfc4879859094e10f51b425a93a202783c80bf5cfdc0276fb1a3470f2",
+   "instruction": "Select the button labeled \"Delete\".",
+   "box": [
+    674.1071428571429,
+    177.62944764361205,
+    796.1309523809523,
+    244.59373335789778
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000003
+   }
+  },
+  {
+   "id": "synth-0004",
+   "image": "images/0004.png",
+   "sha256": "f6ba4a1b04966a864352c8e3a34e8e39b277d8a96396be70d9f5d6c0fdcf48ca",
+   "instruction": "Select the button labeled \"Back\".",
+   "box": [
+    578.8690476190477,
+    787.7070357774761,
+    663.6904761904761,
+    843.5106072060476
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000004
+   }
+  },
+  {
+   "id": "synth-0005",
+   "image": "images/0005.png",
+   "sha256": "f172ca4d56b4ff628bc6e7dced66509fdcf3b0a2bd168ab1dec9fd6eff1b99c2",
+   "instruction": "Open the \"Team\" tab.",
+   "box": [
+    193.45238095238096,
+    118.30357142857143,
+    290.17857142857144,
+    178.57142857142858
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000005
+   }
+  },
+  {
+   "id": "synth-0006",
+   "image": "images/0006.png",
+   "sha256": "8ddfd2ab64c817b40d32d55e973c79231e00fc3ad3341a6dda13c637d3258d4d",
+   "instruction": "Press the Copy button.",
+   "box": [
+    578.125,
+    370.5991918174653,
+    662.9464285714286,
+    439.7956203888938
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000006
+   }
+  },
+  {
+   "id": "synth-0007",
+   "image": "images/0007.png",
+   "sha256": "4634cbc4ecc2261adb4a9bedaaba0d3f48d1950db3fe033c1050642bd9431281",
+   "instruction": "Open the \"Archive\" tab.",
+   "box": [
+    188.98809523809524,
+    109.375,
+    316.9642857142857,
+    176.33928571428572
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000007
+   }
+  },
+  {
+   "id": "synth-0008",
+   "image": "images/0008.png",
+   "sha256": "d41411ce941e7bfa1c015530701e57363099b2757eebd42041209f246d43c519",
+   "instruction": "Click the checkbox next to \"Enable notifications\".",
+   "box": [
+    453.8690476190476,
+    532.6157874418647,
+    488.0952380952381,
+    583.9550731561503
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000008
+   }
+  },
+  {
+   "id": "synth-0009",
+   "image": "images/0009.png",
+   "sha256": "a43d782b4534a1a221190ad60256fca3d9e39f1491b35b927d774933da1b045d",
+   "instruction": "Press the Edit button.",
+   "box": [
+    415.17857142857144,
+    229.4648609019591,
+    494.0476190476191,
+    287.5005751876734
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000009
+   }
+  },
+  {
+   "id": "synth-0010",
+   "image": "images/0010.png",
+   "sha256": "72d25a23b4ce98fe55a02de59504570acde35140f9b3924968250a3dd65596ba",
+   "instruction": "Click the \"Next\" button.",
+   "box": [
+    305.05952380952385,
+    494.64256032023684,
+    391.3690476190476,
+    552.6782746059512
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000010
+   }
+  },
+  {
+   "id": "synth-0011",
+   "image": "images/0011.png",
+   "sha256": "b0fa1745c8f68d8f0790b7c3eeb69b5973c38ecee234eb83a1d4e172a22b6fd6",
+   "instruction": "Tap the purple hexagon icon.",
+   "box": [
+    566.9642857142857,
+    219.6342088148366,
+    623.5119047619048,
+    304.45563738626515
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000011
+   }
+  },
+  {
+   "id": "synth-0012",
+   "image": "images/0012.png",
+   "sha256": "74e079ed768e6d799f33e5c40c81ad069d010ad533045d90b93ae589fae0b897",
+   "instruction": "Press the Skip button.",
+   "box": [
+    164.4345238095238,
+    330.38940542090774,
+    264.13690476190476,
+    408.51440542090774
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000012
+   }
+  },
+  {
+   "id": "synth-0013",
+   "image": "images/0013.png",
+   "sha256": "fdbaba746b16a55ca42abf60425a0ce13f26a8b863e73403069564bc8bfe3348",
+   "instruction": "Focus the Zip code text box.",
+   "box": [
+    340.7738095238095,
+    430.0217514453482,
+    583.3333333333334,
+    508.1467514453482
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000013
+   }
+  },
+  {
+   "id": "synth-0014",
+   "image": "images/0014.png",
+   "sha256": "99a7c6bf1df758862ad9546786095ab7cbec5bc1b4d929a4c6456ecc49e71ce6",
+   "instruction": "Click the pink cross icon.",
+   "box": [
+    129.46428571428572,
+    396.78169548799343,
+    174.10714285714286,
+    463.74598120227915
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000014
+   }
+  },
+  {
+   "id": "synth-0015",
+   "image": "images/0015.png",
+   "sha256": "34cb68e635b42d7fbadd66a93103ae3b8d675249e130ea11fabc24c3d9251d32",
+   "instruction": "Switch to the \"Activity\" tab.",
+   "box": [
+    248.51190476190476,
+    171.875,
+    351.19047619047615,
+    229.91071428571428
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000015
+   }
+  },
+  {
+   "id": "synth-0016",
+   "image": "images/0016.png",
+   "sha256": "a1f4fae772cb2f330c434022812112d3ade5f144b052d2f5354644fff5800148",
+   "instruction": "Press the Upload button.",
+   "box": [
+    831.8452380952382,
+    393.4855487787438,
+    953.8690476190477,
+    464.9141202073152
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000016
+   }
+  },
+  {
+   "id": "synth-0017",
+   "image": "images/0017.png",
+   "sha256": "f3c5e954a1da69c9f7038511dd2a43e3ff9aa69cd6cb86c531f3bd2e0379fabe",
+   "instruction": "Click the teal hexagon icon.",
+   "box": [
+    485.1190476190476,
+    306.3252774257377,
+    541.6666666666666,
+    391.14670599716624
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000017
+   }
+  },
+  {
+   "id": "synth-0018",
+   "image": "images/0018.png",
+   "sha256": "7845778e408aa3f493c857ab0e904aa49d7fe15796c7967efa31df5705f17aa0",
+   "instruction": "Tick the \"Share analytics\" checkbox.",
+   "box": [
+    714.2857142857143,
+    739.4459951132108,
+    748.5119047619048,
+    790.7852808274965
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000018
+   }
+  },
+  {
+   "id": "synth-0019",
+   "image": "images/0019.png",
+   "sha256": "6796bfcaae6d1ba30e7ea3d407c4e3f8b1d397427d1fd5402e67f01fd6e9fa6b",
+   "instruction": "Open the \"Overview\" tab.",
+   "box": [
+    428.57142857142856,
+    131.69642857142858,
+    569.9404761904761,
+    194.19642857142858
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000019
+   }
+  },
+  {
+   "id": "synth-0020",
+   "image": "images/0020.png",
+   "sha256": "514e841585d9a623018c7d434bba504fc51b2422d1cb56e0fb82a4cc91b439b5",
+   "instruction": "Switch to the \"Inbox\" tab.",
+   "box": [
+    163.6904761904762,
+    209.82142857142858,
+    257.44047619047615,
+    270.0892857142857
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000020
+   }
+  },
+  {
+   "id": "synth-0021",
+   "image": "images/0021.png",
+   "sha256": "1e0cbf3631fcacd3349aab75db33a29f7d3a794a7b25e5211d71b8c2036aa999",
+   "instruction": "Select the button labeled \"Edit\".",
+   "box": [
+    251.11607142857144,
+    563.2267480067735,
+    328.49702380952385,
+    627.9588908639164
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000021
+   }
+  },
+  {
+   "id": "synth-0022",
+   "image": "images/0022.png",
+   "sha256": "c7c740040493ba4cb5b4f38c86604aac137750922e4e93f33d4160aec6aa2301",
+   "instruction": "Click the checkbox next to \"Email receipts\".",
+   "box": [
+    655.5059523809523,
+    215.82327715753985,
+    691.2202380952382,
+    269.3947057289684
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000022
+   }
+  },
+  {
+   "id": "synth-0023",
+   "image": "images/0023.png",
+   "sha256": "d62b79aec2f3081359323b5177732ae242f1028b21d9206a2cec4dc9910cc3dc",
+   "instruction": "Click the red cross icon.",
+   "box": [
+    800.297619047619,
+    363.7958852915052,
+    844.940476190476,
+    430.76017100579094
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000023
+   }
+  },
+  {
+   "id": "synth-0024",
+   "image": "images/0024.png",
+   "sha256": "39446e189a33a5b16df013a4f8f724c5a36e3df6a731250969324722a29558eb",
+   "instruction": "Focus the Zip code text box.",
+   "box": [
+    148.0654761904762,
+    267.15611637110993,
+    451.63690476190476,
+    343.0489735139671
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000024
+   }
+  },
+  {
+   "id": "synth-0025",
+   "image": "images/0025.png",
+   "sha256": "458fef2c6b2a4ca3bca252ecce6a9900e01405ea0c2fbb643a03863189eaf3a9",
+   "instruction": "Open the \"Archive\" tab.",
+   "box": [
+    175.59523809523807,
+    140.625,
+    291.6666666666667,
+    198.66071428571428
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000025
+   }
+  },
+  {
+   "id": "synth-0026",
+   "image": "images/0026.png",
+   "sha256": "458effd64617d4cff0a5c7a7ac6867c8455f17afe2f6392c9dd58829ef48c8c1",
+   "instruction": "Click the \"Add\" button.",
+   "box": [
+    319.94047619047615,
+    275.7884554228273,
+    389.8809523809524,
+    329.3598839942559
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000026
+   }
+  },
+  {
+   "id": "synth-0027",
+   "image": "images/0027.png",
+   "sha256": "22d3df5fe19d50cd08e4898056abc63b371bcc198cd5ee9b51f99488da8a70a4",
+   "instruction": "Click the checkbox next to \"Remember me\".",
+   "box": [
+    343.75,
+    363.03987066641065,
+    377.9761904761905,
+    414.3791563806963
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000027
+   }
+  },
+  {
+   "id": "synth-0028",
+   "image": "images/0028.png",
+   "sha256": "1e402264b3b008232770612ff553a6b0339445d8f94100d19aadb7e8b4ec83f8",
+   "instruction": "Click the checkbox next to \"Keep me signed in\".",
+   "box": [
+    41.666666666666664,
+    533.579079807698,
+    75.89285714285714,
+    584.9183655219837
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000028
+   }
+  },
+  {
+   "id": "synth-0029",
+   "image": "images/0029.png",
+   "sha256": "ea54178efe49b09edbbc29341db91876962c5577fa4d6fc05d506ae732986385",
+   "instruction": "Click the checkbox next to \"Share analytics\".",
+   "box": [
+    495.5357142857143,
+    235.30368562174726,
+    531.25,
+    288.8751141931758
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000029
+   }
+  },
+  {
+   "id": "synth-0030",
+   "image": "images/0030.png",
+   "sha256": "56f5f9bf8cd46b950e847ebc058a415b0a0a7e272a2278c4623ada555608bbed",
+   "instruction": "Focus the Website text box.",
+   "box": [
+    580.3571428571429,
+    553.8862886959232,
+    904.7619047619048,
+    625.3148601244947
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000030
+   }
+  },
+  {
+   "id": "synth-0031",
+   "image": "images/0031.png",
+   "sha256": "b4d69ce91c829ced72b3482f286837590d6a3f7e1cac0e018e02d59a32ca0001",
+   "instruction": "Tap the purple circle icon.",
+   "box": [
+    626.4880952380952,
+    747.3341712839456,
+    668.1547619047618,
+    809.8341712839456
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000031
+   }
+  },
+  {
+   "id": "synth-0032",
+   "image": "images/0032.png",
+   "sha256": "e54666d7964f58b967e2d30a6a17f80b13312968b180a5d58933b6f52ba0c980",
+   "instruction": "Click the yellow plus icon.",
+   "box": [
+    78.125,
+    314.86926158402866,
+    130.20833333333334,
+    392.99426158402866
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000032
+   }
+  },
+  {
+   "id": "synth-0033",
+   "image": "images/0033.png",
+   "sha256": "d87bb74ceb72debc10d9231dfebbda4030de3f6400c428aab9260bcab9586244",
+   "instruction": "Click the \"Password\" input field.",
+   "box": [
+    200.89285714285714,
+    618.7163076716141,
+    433.0357142857143,
+    692.3770219573283
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000033
+   }
+  },
+  {
+   "id": "synth-0034",
+   "image": "images/0034.png",
+   "sha256": "404419e08ef27d8dd08cb4e04f4202d061b0fc89b5c135008f9d80f50730b62e",
+   "instruction": "Switch to the \"Archive\" tab.",
+   "box": [
+    308.0357142857143,
+    118.30357142857143,
+    444.94047619047615,
+    183.03571428571428
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000034
+   }
+  },
+  {
+   "id": "synth-0035",
+   "image": "images/0035.png",
+   "sha256": "e8b3144db9b5bbc25c792826fea2af4952b4a0038a69248a3d5eae815597c0e9",
+   "instruction": "Click the \"Zip code\" input field.",
+   "box": [
+    212.79761904761904,
+    378.2608351232722,
+    516.3690476190477,
+    456.3858351232722
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000035
+   }
+  },
+  {
+   "id": "synth-0036",
+   "image": "images/0036.png",
+   "sha256": "9bc5726f57c4df6d689acb4fb2c0ecd495496d6887db718921bd2e05a6fa9c34",
+   "instruction": "Select the button labeled \"Copy\".",
+   "box": [
+    585.5654761904761,
+    217.09472452296606,
+    664.4345238095239,
+    288.5232959515375
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000036
+   }
+  },
+  {
+   "id": "synth-0037",
+   "image": "images/0037.png",
+   "sha256": "03aa90d3ce3fef8ff866c3e0c01e8bf25e0051acdbf58fe7896bc18926646951",
+   "instruction": "Select the button labeled \"Redo\".",
+   "box": [
+    85.56547619047619,
+    255.4331305045963,
+    189.73214285714286,
+    315.7009876474534
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000037
+   }
+  },
+  {
+   "id": "synth-0038",
+   "image": "images/0038.png",
+   "sha256": "b3336b96a101580d6caffa2c911afdf5c05b29f503758a69cff6c079dfd3c2a2",
+   "instruction": "Click the \"Phone number\" input field.",
+   "box": [
+    363.0952380952381,
+    284.72991735668694,
+    675.5952380952382,
+    365.08706021382983
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000038
+   }
+  },
+  {
+   "id": "synth-0039",
+   "image": "images/0039.png",
+   "sha256": "b6003f746f0ce298525dbea078251106a8136a62e192ff58fd2b5df0f1c7c419",
+   "instruction": "Click the \"Release notes\" link.",
+   "box": [
+    280.5059523809524,
+    575.8627479039668,
+    415.9226190476191,
+    616.0413193325383
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000039
+   }
+  },
+  {
+   "id": "synth-0040",
+   "image": "images/0040.png",
+   "sha256": "6befe938e3ddec489734bcc45aa883318eaf5c06962cd485efa1fbef81efcc6c",
+   "instruction": "Click the \"Change plan\" link.",
+   "box": [
+    836.3095238095239,
+    430.80882931095755,
+    943.452380952381,
+    473.2195435966718
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000040
+   }
+  },
+  {
+   "id": "synth-0041",
+   "image": "images/0041.png",
+   "sha256": "a150c18cedf7e4c6639ed1ed236e020ac4cae44349c552c2d6797ebfbefeee1a",
+   "instruction": "Click the \"Phone number\" input field.",
+   "box": [
+    72.91666666666667,
+    487.217280730487,
+    415.17857142857144,
+    567.5744235876298
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000041
+   }
+  },
+  {
+   "id": "synth-0042",
+   "image": "images/0042.png",
+   "sha256": "7f9db9e40ad5be159497a3d89224ea725395aed8c566648e81f3c2268fdd172a",
+   "instruction": "Tick the \"Share analytics\" checkbox.",
+   "box": [
+    65.47619047619048,
+    606.865668881932,
+    101.19047619047619,
+    660.4370974533607
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000042
+   }
+  },
+  {
+   "id": "synth-0043",
+   "image": "images/0043.png",
+   "sha256": "fb1c5d77dc918a97a4260f35ac15310fa8e557c202b2af95fcfc31c8bb6cb90a",
+   "instruction": "Click the checkbox next to \"Show password\".",
+   "box": [
+    744.047619047619,
+    424.9800646067804,
+    778.2738095238095,
+    476.3193503210661
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000043
+   }
+  },
+  {
+   "id": "synth-0044",
+   "image": "images/0044.png",
+   "sha256": "832fef4e315258a332028f0007f3288c6bfaf0d6485f58a68edc772dafac5749",
+   "instruction": "Tap the yellow triangle icon.",
+   "box": [
+    445.83333333333337,
+    314.55398609854683,
+    487.50000000000006,
+    377.05398609854683
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000044
+   }
+  },
+  {
+   "id": "synth-0045",
+   "image": "images/0045.png",
+   "sha256": "8a37bc29da4f959210b3f84240bf8f6574814cf2de2c51231f737d3eb2098e51",
+   "instruction": "Switch to the \"Inbox\" tab.",
+   "box": [
+    441.9642857142857,
+    214.28571428571428,
+    547.6190476190477,
+    276.7857142857143
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000045
+   }
+  },
+  {
+   "id": "synth-0046",
+   "image": "images/0046.png",
+   "sha256": "5d4a0db5f9e4fed83788ea7f0089730850135a9c7c5a6d6546ccde43cef17403",
+   "instruction": "Open the \"Security\" tab.",
+   "box": [
+    264.8809523809524,
+    209.82142857142858,
+    382.44047619047615,
+    274.55357142857144
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000046
+   }
+  },
+  {
+   "id": "synth-0047",
+   "image": "images/0047.png",
+   "sha256": "b2776b8324f00deb7bd7a9b6a224a7dad64a07508bdd4adb8ab0e86da7952159",
+   "instruction": "Tick the \"Auto-save\" checkbox.",
+   "box": [
+    366.07142857142856,
+    505.3119808137357,
+    395.8333333333333,
+    549.9548379565929
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000047
+   }
+  },
+  {
+   "id": "synth-0048",
+   "image": "images/0048.png",
+   "sha256": "5bc9d442823f11a443790dd07dee174603f7af7dc18e85a90d0d6f24a4df99ef",
+   "instruction": "Click the checkbox next to \"Remember me\".",
+   "box": [
+    345.23809523809524,
+    245.34544732563552,
+    373.51190476190476,
+    287.7561616113498
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000048
+   }
+  },
+  {
+   "id": "synth-0049",
+   "image": "images/0049.png",
+   "sha256": "0b8376e6485a5198a863541e6523cd145482e3d980ec7ac295437a00f89378f5",
+   "instruction": "Press the Open button.",
+   "box": [
+    222.718253968254,
+    490.26240094659454,
+    314.9801587301588,
+    554.9945438037373
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000049
+   }
+  },
+  {
+   "id": "synth-0050",
+   "image": "images/0050.png",
+   "sha256": "03b6cb288c121b21f8e7a063c7372c0f17e6741d78fba2d190a776b8c865b438",
+   "instruction": "Tick the \"I agree to the terms\" checkbox.",
+   "box": [
+    300.5952380952381,
+    316.0893414696841,
+    327.3809523809524,
+    356.26791289825553
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000050
+   }
+  },
+  {
+   "id": "synth-0051",
+   "image": "images/0051.png",
+   "sha256": "ec1cde56727e66520b39be1eea229eeb1085623d2421d621f3fe393c7dcb4a1b",
+   "instruction": "Select the button labeled \"Refresh\".",
+   "box": [
+    603.1746031746032,
+    452.7755291153247,
+    732.6388888888889,
+    517.5076719724675
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000051
+   }
+  },
+  {
+   "id": "synth-0052",
+   "image": "images/0052.png",
+   "sha256": "a86a1233608812028788e5f551b43d45f6c43096e6df50035fdddb6c1578fa37",
+   "instruction": "Click the checkbox next to \"I agree to the terms\".",
+   "box": [
+    516.3690476190477,
+    445.50487623846044,
+    552.0833333333334,
+    499.07630480988894
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000052
+   }
+  },
+  {
+   "id": "synth-0053",
+   "image": "images/0053.png",
+   "sha256": "154babda18dad8e1605a08b4fbea60f167fbaf2df99e6073476b30bbd51d99f9",
+   "instruction": "Click the \"Contact us\" link.",
+   "box": [
+    232.14285714285714,
+    392.18061027713384,
+    340.7738095238095,
+    434.5913245628482
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000053
+   }
+  },
+  {
+   "id": "synth-0054",
+   "image": "images/0054.png",
+   "sha256": "0718dfcfb5c03a5c7a13ee17ea7791dfc6b0b5202cf5d68061d070b48116150c",
+   "instruction": "Tick the \"Email receipts\" checkbox.",
+   "box": [
+    663.6904761904761,
+    241.750833824449,
+    694.9404761904761,
+    288.625833824449
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000054
+   }
+  },
+  {
+   "id": "synth-0055",
+   "image": "images/0055.png",
+   "sha256": "8cbd5697201aef73ba9e04424fa5434b97787b059f31a3aa55fea0f4e0699010",
+   "instruction": "Click the checkbox next to \"Remember me\".",
+   "box": [
+    660.7142857142857,
+    637.2177531632334,
+    694.9404761904761,
+    688.5570388775191
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000055
+   }
+  },
+  {
+   "id": "synth-0056",
+   "image": "images/0056.png",
+   "sha256": "3a8a8473375f69cf0eaff3d3ca4c7889d6f2b2635a10dd816d23120d52340a2b",
+   "instruction": "Focus the Search... text box.",
+   "box": [
+    531.25,
+    298.90917018380935,
+    761.9047619047618,
+    374.8020273266665
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000056
+   }
+  },
+  {
+   "id": "synth-0057",
+   "image": "images/0057.png",
+   "sha256": "3545b4f530773d580f065339a888b6a5f0200d9d412f6b2c9b40699977463dba",
+   "instruction": "Press the Continue button.",
+   "box": [
+    91.51785714285714,
+    365.99570982614466,
+    223.95833333333334,
+    424.0314241118589
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000057
+   }
+  },
+  {
+   "id": "synth-0058",
+   "image": "images/0058.png",
+   "sha256": "8ffe160b685a8e92d62c52ed853ab7645a0b35fe40826b47402ff918ff0d398e",
+   "instruction": "Click the \"Coupon code\" input field.",
+   "box": [
+    269.3452380952381,
+    766.145742017657,
+    520.8333333333334,
+    846.5028848747999
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000058
+   }
+  },
+  {
+   "id": "synth-0059",
+   "image": "images/0059.png",
+   "sha256": "df7582553cf531d10a3a1ba7c3b4eaa98a0e211cc3762280320e734818e26a18",
+   "instruction": "Tap the orange cross icon.",
+   "box": [
+    620.5357142857143,
+    343.00846521321944,
+    677.0833333333334,
+    427.82989378464805
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000059
+   }
+  },
+  {
+   "id": "synth-0060",
+   "image": "images/0060.png",
+   "sha256": "324ceb1ac5928b0f1eb7f41fcc6dea2c29178c750685e9ea127b384479cbfa43",
+   "instruction": "Focus the Password text box.",
+   "box": [
+    629.4642857142857,
+    346.37440824207334,
+    950.8928571428571,
+    422.26726538493045
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000060
+   }
+  },
+  {
+   "id": "synth-0061",
+   "image": "images/0061.png",
+   "sha256": "fec6d0b8df2193cf1e774378272a164bbb42358bd048151df097910f943aa148",
+   "instruction": "Tick the \"Keep me signed in\" checkbox.",
+   "box": [
+    729.1666666666666,
+    488.9900514066025,
+    764.8809523809523,
+    542.561479978031
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000061
+   }
+  },
+  {
+   "id": "synth-0062",
+   "image": "images/0062.png",
+   "sha256": "b5c6a5f272ccdd4541d73a78708a094a41f0d44de7227c7bdffec50be80b32bf",
+   "instruction": "Click the purple circle icon.",
+   "box": [
+    805.0595238095239,
+    663.0960331916157,
+    860.1190476190477,
+    745.6853189059013
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000062
+   }
+  },
+  {
+   "id": "synth-0063",
+   "image": "images/0063.png",
+   "sha256": "c6e3360262c9c3b56736664d84fcec4cb90178e69e2859326f214f38fea3e612",
+   "instruction": "Click the \"Terms of Service\" link.",
+   "box": [
+    41.666666666666664,
+    564.8897689043231,
+    209.82142857142858,
+    607.3004831900374
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000063
+   }
+  },
+  {
+   "id": "synth-0064",
+   "image": "images/0064.png",
+   "sha256": "bfd4ccc6cfad9913347e0d25627c02c4458be45432eed9d0b8390f47fe716821",
+   "instruction": "Click the \"Password\" input field.",
+   "box": [
+    125.0,
+    410.48034632792474,
+    450.89285714285717,
+    484.141060613639
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000064
+   }
+  },
+  {
+   "id": "synth-0065",
+   "image": "images/0065.png",
+   "sha256": "50a5dd2a69f124ec52988429338571316e73e9b4140d428167c81ac5ef0e7bbc",
+   "instruction": "Tap the green circle icon.",
+   "box": [
+    473.2142857142857,
+    228.74925124392044,
+    520.8333333333334,
+    300.17782267249186
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000065
+   }
+  },
+  {
+   "id": "synth-0066",
+   "image": "images/0066.png",
+   "sha256": "2859ea0e73d9bd6ef1d57fa68fdde6b027bdeaaa6a287d7dbf10d274bed98cb7",
+   "instruction": "Open the \"Team\" tab.",
+   "box": [
+    49.107142857142854,
+    142.85714285714286,
+    148.8095238095238,
+    205.35714285714286
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000066
+   }
+  },
+  {
+   "id": "synth-0067",
+   "image": "images/0067.png",
+   "sha256": "cfd81dba80720051d808c9540790d909d9f39fec9140037289fe8ff27c95e81e",
+   "instruction": "Select the button labeled \"Export\".",
+   "box": [
+    531.25,
+    417.2808924350608,
+    645.8333333333334,
+    493.173749577918
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000067
+   }
+  },
+  {
+   "id": "synth-0068",
+   "image": "images/0068.png",
+   "sha256": "8c5b1c29ffc10b677f28dddd65b1ba876366e358a039c2266265d40a6a595467",
+   "instruction": "Click the \"Learn more\" link.",
+   "box": [
+    811.0119047619048,
+    677.8183403507178,
+    941.9642857142857,
+    722.461197493575
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000068
+   }
+  },
+  {
+   "id": "synth-0069",
+   "image": "images/0069.png",
+   "sha256": "b12ac8b2a7661225c70cba6330348b87be138eaef5233abef57e01893ced0e92",
+   "instruction": "Tick the \"I agree to the terms\" checkbox.",
+   "box": [
+    69.94047619047619,
+    476.4056192364788,
+    101.19047619047619,
+    523.2806192364789
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000069
+   }
+  },
+  {
+   "id": "synth-0070",
+   "image": "images/0070.png",
+   "sha256": "4b5593e8315a881ac00c1435d633296c141b6c7f52348130006eba44fdea045d",
+   "instruction": "Open the \"Drafts\" tab.",
+   "box": [
+    316.9642857142857,
+    142.85714285714286,
+    418.1547619047619,
+    203.125
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000070
+   }
+  },
+  {
+   "id": "synth-0071",
+   "image": "images/0071.png",
+   "sha256": "46b4ba44ebcd4b4a3d3662da84b81fed4de6f5beb93454c3c7c03cf1ed616538",
+   "instruction": "Click the \"Print\" button.",
+   "box": [
+    811.0119047619048,
+    166.08028609196194,
+    915.1785714285714,
+    233.04457180624766
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000071
+   }
+  },
+  {
+   "id": "synth-0072",
+   "image": "images/0072.png",
+   "sha256": "c909052c9ea251db28779d10cfd3161c45a965040d4dea4b8090e97dc68bd654",
+   "instruction": "Select the button labeled \"Add\".",
+   "box": [
+    59.52380952380952,
+    592.0426315541382,
+    130.95238095238096,
+    650.0783458398524
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000072
+   }
+  },
+  {
+   "id": "synth-0073",
+   "image": "images/0073.png",
+   "sha256": "2c1eeaf1104aa48c5042696e26efaf4e2ad3314d835caeb2b2e58c6be2e831a4",
+   "instruction": "Press the Upload button.",
+   "box": [
+    406.25,
+    278.9625519753668,
+    528.2738095238095,
+    348.1589805467954
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000073
+   }
+  },
+  {
+   "id": "synth-0074",
+   "image": "images/0074.png",
+   "sha256": "eba6960804a3038fe6ab4c70a36345d09dfc5abb4a06c5ae5f7ff53ab1966a6a",
+   "instruction": "Switch to the \"Inbox\" tab.",
+   "box": [
+    44.642857142857146,
+    205.35714285714286,
+    150.29761904761904,
+    270.0892857142857
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000074
+   }
+  },
+  {
+   "id": "synth-0075",
+   "image": "images/0075.png",
+   "sha256": "ccbf909c2fc8f77d31d746693466e6d16df4094902bdfd8f150031b5de42fa27",
+   "instruction": "Open the \"Inbox\" tab.",
+   "box": [
+    220.23809523809524,
+    212.05357142857142,
+    322.9166666666667,
+    274.55357142857144
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000075
+   }
+  },
+  {
+   "id": "synth-0076",
+   "image": "images/0076.png",
+   "sha256": "b2191d0b3b45af9bbf05e2604efddcadbeba726119fd52a1284c953a9e715429",
+   "instruction": "Tap the orange cross icon.",
+   "box": [
+    62.5,
+    212.9350332187836,
+    113.0952380952381,
+    288.82789036164075
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000076
+   }
+  },
+  {
+   "id": "synth-0077",
+   "image": "images/0077.png",
+   "sha256": "2518ee19f6d193e0d960c3aba90659f917185afac9af935ee1eb3671dbdd862d",
+   "instruction": "Select the button labeled \"Finish\".",
+   "box": [
+    151.78571428571428,
+    181.43126808303168,
+    242.5595238095238,
+    237.2348395116031
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000077
+   }
+  },
+  {
+   "id": "synth-0078",
+   "image": "images/0078.png",
+   "sha256": "1f8a0032c0834af2afc4784edc242a37944d822fe574d8a2af430ea1f2c6a215",
+   "instruction": "Click the \"Search\" button.",
+   "box": [
+    751.4880952380952,
+    498.73978189557045,
+    863.0952380952382,
+    554.5433533241419
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000078
+   }
+  },
+  {
+   "id": "synth-0079",
+   "image": "images/0079.png",
+   "sha256": "9fca839d0fc0ba867a8660ddb481a6757aeedcf821939c71f589923b88b5b45e",
+   "instruction": "Tap the yellow cross icon.",
+   "box": [
+    358.6309523809524,
+    304.49421893907,
+    403.2738095238095,
+    371.45850465335565
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000079
+   }
+  },
+  {
+   "id": "synth-0080",
+   "image": "images/0080.png",
+   "sha256": "76821f7d47c319f154e13b3079be25914ec2cc3818e3f6aae9267324cb1ca417",
+   "instruction": "Press the Redo button.",
+   "box": [
+    229.16666666666666,
+    274.3305835695143,
+    322.9166666666667,
+    336.8305835695143
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000080
+   }
+  },
+  {
+   "id": "synth-0081",
+   "image": "images/0081.png",
+   "sha256": "0dc2160b822052fb93b6a32d0e8da610ed47dcb01b0bafc5062e575c86547552",
+   "instruction": "Focus the Phone number text box.",
+   "box": [
+    603.6706349206349,
+    391.0511076058868,
+    829.8611111111111,
+    471.4082504630296
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000081
+   }
+  },
+  {
+   "id": "synth-0082",
+   "image": "images/0082.png",
+   "sha256": "eba527472fbabb3110639e45ed8a8970ed5250e29b1ca12d2dbd1a39f0972c94",
+   "instruction": "Click the green diamond icon.",
+   "box": [
+    460.56547619047615,
+    471.13417252954804,
+    517.1130952380952,
+    555.9556011009767
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000082
+   }
+  },
+  {
+   "id": "synth-0083",
+   "image": "images/0083.png",
+   "sha256": "52257bd497027b589bbb852a5dd3c082dc3e1e1ef08461869ba5bb26ad727dd2",
+   "instruction": "Open the \"Archive\" tab.",
+   "box": [
+    180.0595238095238,
+    142.85714285714286,
+    284.2261904761905,
+    200.89285714285714
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000083
+   }
+  },
+  {
+   "id": "synth-0084",
+   "image": "images/0084.png",
+   "sha256": "3848a6fbf25e4da7dca03eef43799ca6cc64773b4d15b6b5575be3904f16a3e2",
+   "instruction": "Press the Skip button.",
+   "box": [
+    187.5,
+    394.5780439244387,
+    272.32142857142856,
+    470.47090106729576
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000084
+   }
+  },
+  {
+   "id": "synth-0085",
+   "image": "images/0085.png",
+   "sha256": "62609a4956bf9b60f14051e2478864b69bfa04d8a7cde3f18d00a6e0a3eee0cd",
+   "instruction": "Click the orange hexagon icon.",
+   "box": [
+    539.4345238095239,
+    221.935386526958,
+    593.0059523809523,
+    302.2925293841009
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000085
+   }
+  },
+  {
+   "id": "synth-0086",
+   "image": "images/0086.png",
+   "sha256": "383539988499a2bbe0772fb60d56db06e2c42e19d37bf372a8d7469bc9464828",
+   "instruction": "Click the \"Documentation\" link.",
+   "box": [
+    696.4285714285714,
+    246.03030253627918,
+    897.3214285714286,
+    290.67315967913623
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000086
+   }
+  },
+  {
+   "id": "synth-0087",
+   "image": "images/0087.png",
+   "sha256": "88401262cdc15181001a44770af5ba2dfe4bed22849c2caac71aa788d68825ce",
+   "instruction": "Select the button labeled \"Refresh\".",
+   "box": [
+    52.083333333333336,
+    232.543590937389,
+    177.08333333333334,
+    299.50787665167474
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000087
+   }
+  },
+  {
+   "id": "synth-0088",
+   "image": "images/0088.png",
+   "sha256": "f92a53aae5d560c6e8add97719afca429ff0159bbe10ee93b07b7a58c809bfb9",
+   "instruction": "Click the green square icon.",
+   "box": [
+    717.2619047619048,
+    305.45163879993765,
+    758.9285714285714,
+    367.95163879993765
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000088
+   }
+  },
+  {
+   "id": "synth-0089",
+   "image": "images/0089.png",
+   "sha256": "efaa7a316e56675c351baa354e4da8e935e76aef58123068470dc3cd2b4ce76d",
+   "instruction": "Follow the \"Contact us\" link.",
+   "box": [
+    790.1785714285714,
+    819.6423837458138,
+    933.0357142857143,
+    864.2852408886711
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000089
+   }
+  },
+  {
+   "id": "synth-0090",
+   "image": "images/0090.png",
+   "sha256": "170a96a064bdf620e3b089621b4abed76fcf264e6522fd05d01d00c849a6addb",
+   "instruction": "Press the Upload button.",
+   "box": [
+    352.67857142857144,
+    529.3615442357625,
+    459.82142857142856,
+    596.3258299500483
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000090
+   }
+  },
+  {
+   "id": "synth-0091",
+   "image": "images/0091.png",
+   "sha256": "40b95fcc3e48cbcb2b757d67d8c237f730425d21cc5bcdf3d77801c39c65a77b",
+   "instruction": "Switch to the \"Sent\" tab.",
+   "box": [
+    174.10714285714286,
+    116.07142857142857,
+    257.44047619047615,
+    174.10714285714286
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000091
+   }
+  },
+  {
+   "id": "synth-0092",
+   "image": "images/0092.png",
+   "sha256": "0f653d17127bde9f595e7bd14c04679f5b4b94fd138fa41d482ad4bce8f206f5",
+   "instruction": "Click the \"Retry\" button.",
+   "box": [
+    829.6130952380952,
+    578.7731740059639,
+    932.2916666666666,
+    652.4338882916782
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000092
+   }
+  },
+  {
+   "id": "synth-0093",
+   "image": "images/0093.png",
+   "sha256": "d1b75438dc16009674ea84c665e80654089071f231a7d5b625ce8f02aaa6590d",
+   "instruction": "Click the \"Contact us\" link.",
+   "box": [
+    772.3214285714286,
+    198.31737725534015,
+    867.5595238095239,
+    236.26380582676873
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000093
+   }
+  },
+  {
+   "id": "synth-0094",
+   "image": "images/0094.png",
+   "sha256": "0e18718cad56551a4dd2af6bc6de39848248b42db2ec18174e20b6ad0358602c",
+   "instruction": "Click the \"Undo\" button.",
+   "box": [
+    236.60714285714286,
+    256.83021369516297,
+    333.3333333333333,
+    328.2587851237344
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000094
+   }
+  },
+  {
+   "id": "synth-0095",
+   "image": "images/0095.png",
+   "sha256": "a7a2336ee68f233ac7d7ff199eccff0ad66aeddd1c6315ee2e752ddbd5464fbd",
+   "instruction": "Select the button labeled \"Paste\".",
+   "box": [
+    377.9761904761905,
+    282.3629741060585,
+    485.1190476190476,
+    340.39868839177285
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000095
+   }
+  },
+  {
+   "id": "synth-0096",
+   "image": "images/0096.png",
+   "sha256": "082b47fd9472982bc658bca68ee0e0d85c6bb3aa40e1a10789be320664456feb",
+   "instruction": "Press the Upload button.",
+   "box": [
+    725.4464285714286,
+    328.44887249667755,
+    840.0297619047618,
+    393.1810153538204
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000096
+   }
+  },
+  {
+   "id": "synth-0097",
+   "image": "images/0097.png",
+   "sha256": "e5823b7257d6c8204a8c05e6aa8b7b00089e90bbd1888b6ab145c99b52bba9b2",
+   "instruction": "Open the \"Billing\" tab.",
+   "box": [
+    303.57142857142856,
+    104.91071428571429,
+    409.2261904761905,
+    174.10714285714286
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000097
+   }
+  },
+  {
+   "id": "synth-0098",
+   "image": "images/0098.png",
+   "sha256": "21ee5d19ce1612e5e61caf5d2f0d42b98f8f510a8b0265870f0ed0d86e826858",
+   "instruction": "Select the button labeled \"Close\".",
+   "box": [
+    197.91666666666666,
+    631.2979606975787,
+    284.2261904761905,
+    698.2622464118646
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000098
+   }
+  },
+  {
+   "id": "synth-0099",
+   "image": "images/0099.png",
+   "sha256": "8a45dc867d6d299ae00f537c8b76f858550929d25c3ee41606b71efd174a378d",
+   "instruction": "Switch to the \"Sent\" tab.",
+   "box": [
+    318.4523809523809,
+    118.30357142857143,
+    415.17857142857144,
+    183.03571428571428
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000099
+   }
+  },
+  {
+   "id": "synth-0100",
+   "image": "images/0100.png",
+   "sha256": "89304e3762b135f33f69a626ec4b34b3417240e1570a336a5dd53124d25232ec",
+   "instruction": "Switch to the \"Activity\" tab.",
+   "box": [
+    162.20238095238096,
+    122.76785714285714,
+    270.8333333333333,
+    187.5
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000100
+   }
+  },
+  {
+   "id": "synth-0101",
+   "image": "images/0101.png",
+   "sha256": "57ffaa7b7737ef078f9f1299364ecd029e1f69fe4453d67257f9aa6f89580469",
+   "instruction": "Click the checkbox next to \"Email receipts\".",
+   "box": [
+    520.8333333333334,
+    611.290225913711,
+    553.5714285714286,
+    660.3973687708537
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000101
+   }
+  },
+  {
+   "id": "synth-0102",
+   "image": "images/0102.png",
+   "sha256": "b53408df7cc8a19bded223e7e7d6942aee1b509b032fe0df3942b42aa4319920",
+   "instruction": "Click the \"Share\" button.",
+   "box": [
+    48.36309523809524,
+    158.57222792958467,
+    146.57738095238096,
+    214.3757993581561
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000102
+   }
+  },
+  {
+   "id": "synth-0103",
+   "image": "images/0103.png",
+   "sha256": "e26ee0fecc182117e76bf29bf4416663ef92263b9785d21f3d0eb8efac659f36",
+   "instruction": "Tick the \"Dark mode\" checkbox.",
+   "box": [
+    220.23809523809524,
+    690.3880121594526,
+    247.02380952380955,
+    730.5665835880241
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000103
+   }
+  },
+  {
+   "id": "synth-0104",
+   "image": "images/0104.png",
+   "sha256": "9d7d6d0727e754e55de34959494d1f72ae98d9f511388a4ccc891f4769701196",
+   "instruction": "Click the checkbox next to \"Remember me\".",
+   "box": [
+    712.797619047619,
+    292.95197830502724,
+    742.5595238095239,
+    337.5948354478844
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000104
+   }
+  },
+  {
+   "id": "synth-0105",
+   "image": "images/0105.png",
+   "sha256": "c8087d9f645596f14710c3bd67c06c5cc950f464e52972929d68103729b632b7",
+   "instruction": "Click the checkbox next to \"Enable notifications\".",
+   "box": [
+    587.797619047619,
+    375.8994815262941,
+    616.0714285714286,
+    418.3101958120084
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000105
+   }
+  },
+  {
+   "id": "synth-0106",
+   "image": "images/0106.png",
+   "sha256": "0a8c11a0a5379b53936dbd15a00d2dff4dbbf9c31376a630e78db2dd90973820",
+   "instruction": "Click the \"Paste\" button.",
+   "box": [
+    582.8373015873016,
+    282.88933897684416,
+    687.0039682539682,
+    352.0857675482727
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000106
+   }
+  },
+  {
+   "id": "synth-0107",
+   "image": "images/0107.png",
+   "sha256": "69047755baea844d9c4dedc3ebf82f9a3f85d7c9e6053cdcc8d29e0e363ebb58",
+   "instruction": "Focus the Company text box.",
+   "box": [
+    38.69047619047619,
+    483.74187417671993,
+    364.5833333333333,
+    564.0990170338628
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000107
+   }
+  },
+  {
+   "id": "synth-0108",
+   "image": "images/0108.png",
+   "sha256": "672d4fefa02a01ab8d7a8f475867931e7e948c49e794dc0bd81567021705a1b3",
+   "instruction": "Tap the red square icon.",
+   "box": [
+    71.42857142857143,
+    535.9384749196253,
+    123.51190476190477,
+    614.0634749196253
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000108
+   }
+  },
+  {
+   "id": "synth-0109",
+   "image": "images/0109.png",
+   "sha256": "7b4422a96d4d6db7fc9837b9d9a7ee39160f596ceb6a39817e6067d6efc4b200",
+   "instruction": "Click the orange cross icon.",
+   "box": [
+    450.89285714285717,
+    500.1141319115806,
+    495.5357142857143,
+    567.0784176258663
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000109
+   }
+  },
+  {
+   "id": "synth-0110",
+   "image": "images/0110.png",
+   "sha256": "b90e085cbbefc0a85b80db59aaa49653af6eee5bba074fe471a432b2e15831a5",
+   "instruction": "Tap the orange hexagon icon.",
+   "box": [
+    114.58333333333333,
+    374.95482687170323,
+    168.15476190476193,
+    455.31196972884607
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000110
+   }
+  },
+  {
+   "id": "synth-0111",
+   "image": "images/0111.png",
+   "sha256": "d88f43b90019f9b4dcba67429d90653a9938158e5d35151380b0e01d37a5f2d2",
+   "instruction": "Select the button labeled \"Add\".",
+   "box": [
+    583.3333333333334,
+    297.0443237578036,
+    668.1547619047618,
+    357.3121809006607
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000111
+   }
+  },
+  {
+   "id": "synth-0112",
+   "image": "images/0112.png",
+   "sha256": "b76bdf973ca2e461616db7363652c5c76b029e3679023cb797382d43aed48ef2",
+   "instruction": "Switch to the \"Security\" tab.",
+   "box": [
+    215.77380952380955,
+    220.98214285714286,
+    363.0952380952381,
+    290.17857142857144
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000112
+   }
+  },
+  {
+   "id": "synth-0113",
+   "image": "images/0113.png",
+   "sha256": "8ee772aaebe85ec6454b758f46bef95974546fe99ca0a6f05443d5b379bfb589",
+   "instruction": "Select the button labeled \"Copy\".",
+   "box": [
+    358.6309523809524,
+    638.1955842852268,
+    456.8452380952381,
+    709.6241557137982
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000113
+   }
+  },
+  {
+   "id": "synth-0114",
+   "image": "images/0114.png",
+   "sha256": "27ee67d1527a065fe2436134f4fb7e14c518b8717923ce21fde1abf726ca072b",
+   "instruction": "Click the \"Privacy Policy\" link.",
+   "box": [
+    453.8690476190476,
+    271.3079202107379,
+    589.2857142857143,
+    322.6472059250236
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000114
+   }
+  },
+  {
+   "id": "synth-0115",
+   "image": "images/0115.png",
+   "sha256": "b9e5ed80760ef442ebd13bd37916aa035af1f6022841bdfb62c5b5b4418d4dac",
+   "instruction": "Click the pink triangle icon.",
+   "box": [
+    824.4047619047618,
+    463.7455128259838,
+    873.5119047619048,
+    537.4062271116981
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000115
+   }
+  },
+  {
+   "id": "synth-0116",
+   "image": "images/0116.png",
+   "sha256": "cfb75067484fbc41a6b1a4e9c841c701ba7115eae36198e9e2c64e9a65defd3f",
+   "instruction": "Click the \"Reset\" button.",
+   "box": [
+    813.9880952380952,
+    320.36943065408013,
+    913.6904761904761,
+    378.40514493979435
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000116
+   }
+  },
+  {
+   "id": "synth-0117",
+   "image": "images/0117.png",
+   "sha256": "c9d9cd7bcab3cfe3a0fec55cad12fc70fb3c1052fc65212d20b51a0df21fdc8f",
+   "instruction": "Press the Reset button.",
+   "box": [
+    608.6309523809523,
+    379.68121189870703,
+    711.3095238095239,
+    446.6454976129927
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000117
+   }
+  },
+  {
+   "id": "synth-0118",
+   "image": "images/0118.png",
+   "sha256": "cb6a5b3c0b81a2ca95af21e65805f9245d8551bff9ad8f90aed2e6cd284494ff",
+   "instruction": "Follow the \"Forgot password?\" link.",
+   "box": [
+    651.7857142857143,
+    241.82596517044286,
+    843.75,
+    293.1652508847286
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000118
+   }
+  },
+  {
+   "id": "synth-0119",
+   "image": "images/0119.png",
+   "sha256": "e45c7e2fb3cb621c3ce076594d8ca21a73228a9c8fd432c8ba0b975093885acb",
+   "instruction": "Click the \"Upload\" button.",
+   "box": [
+    765.625,
+    680.2419324157546,
+    865.327380952381,
+    749.438360987183
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000119
+   }
+  },
+  {
+   "id": "synth-0120",
+   "image": "images/0120.png",
+   "sha256": "0a133de08b732a8b549304ae9605d5ba13584fbb1989b462cbfa84813c694126",
+   "instruction": "Select the button labeled \"Apply\".",
+   "box": [
+    660.4166666666666,
+    380.74199086591113,
+    757.1428571428571,
+    456.6348480087683
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000120
+   }
+  },
+  {
+   "id": "synth-0121",
+   "image": "images/0121.png",
+   "sha256": "91d85ddd3d312cfdc56c986eee21fb6081ece704019b4d153e720b491151a3b0",
+   "instruction": "Click the \"Submit\" button.",
+   "box": [
+    653.2738095238095,
+    367.28864089092053,
+    763.3928571428571,
+    425.32435517663487
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000121
+   }
+  },
+  {
+   "id": "synth-0122",
+   "image": "images/0122.png",
+   "sha256": "84789cfa3fe5334cb84e111cb2c2f192208f1025fca32d09fdc31c14effcffb1",
+   "instruction": "Press the Add button.",
+   "box": [
+    270.8333333333333,
+    369.1968295462688,
+    349.7023809523809,
+    438.3932581176974
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000122
+   }
+  },
+  {
+   "id": "synth-0123",
+   "image": "images/0123.png",
+   "sha256": "63b488ebe16e8085f38fad1aad511e84dae38b5d75cd460e64f1861bd6a6a5c2",
+   "instruction": "Follow the \"Terms of Service\" link.",
+   "box": [
+    379.4642857142857,
+    351.4564745166107,
+    563.9880952380952,
+    396.0993316594678
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000123
+   }
+  },
+  {
+   "id": "synth-0124",
+   "image": "images/0124.png",
+   "sha256": "f9716638d836364520d4beb9058e2bc6ae11fc7b957b4d6c3e9f8b1a024601d1",
+   "instruction": "Click the orange cross icon.",
+   "box": [
+    558.8860544217687,
+    278.91294353334325,
+    606.5051020408163,
+    350.34151496191464
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000124
+   }
+  },
+  {
+   "id": "synth-0125",
+   "image": "images/0125.png",
+   "sha256": "6ddb3488aa8d8c329f0fa9fb0ba7f1a8d3c965e5169418376540faf52ea05d4f",
+   "instruction": "Select the button labeled \"Save\".",
+   "box": [
+    536.4583333333334,
+    236.8204823792009,
+    616.8154761904761,
+    297.08833952205805
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000125
+   }
+  },
+  {
+   "id": "synth-0126",
+   "image": "images/0126.png",
+   "sha256": "c41a117096adf4e6285e384fd2f15b62990efb111cf2caed129f1ea00096d55e",
+   "instruction": "Tick the \"Auto-save\" checkbox.",
+   "box": [
+    428.8690476190477,
+    289.6282980314057,
+    463.0952380952382,
+    340.96758374569134
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000126
+   }
+  },
+  {
+   "id": "synth-0127",
+   "image": "images/0127.png",
+   "sha256": "b5eddcaecc166f58ee38a6c2a2560064a456d80e060db198dcc85321270ca906",
+   "instruction": "Select the button labeled \"Confirm\".",
+   "box": [
+    681.547619047619,
+    226.83364818444883,
+    821.4285714285714,
+    296.0300767558774
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000127
+   }
+  },
+  {
+   "id": "synth-0128",
+   "image": "images/0128.png",
+   "sha256": "2762591905923e4d5a4597a312e9464357cf3cecab2d2ae78ec465e4d717104b",
+   "instruction": "Click the \"Upload\" button.",
+   "box": [
+    819.9404761904761,
+    335.5716984674875,
+    940.4761904761905,
+    404.7681270389161
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000128
+   }
+  },
+  {
+   "id": "synth-0129",
+   "image": "images/0129.png",
+   "sha256": "ed44bcacb23a2038b0d173b2e7ddca65744272f4827be5eaef9f37ef070ca833",
+   "instruction": "Tap the pink hexagon icon.",
+   "box": [
+    471.7261904761905,
+    769.663070288354,
+    519.3452380952382,
+    841.0916417169254
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000129
+   }
+  },
+  {
+   "id": "synth-0130",
+   "image": "images/0130.png",
+   "sha256": "495c9f1a269417263424c96adec79ab78e889836506572392a69a94cc0a2038b",
+   "instruction": "Tap the green triangle icon.",
+   "box": [
+    232.14285714285714,
+    285.00903507372783,
+    285.7142857142857,
+    365.36617793087066
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000130
+   }
+  },
+  {
+   "id": "synth-0131",
+   "image": "images/0131.png",
+   "sha256": "3a66228a36990f69f35751b6b3dde865d8525fb39c486dba559494f82459ad19",
+   "instruction": "Click the orange star icon.",
+   "box": [
+    398.06547619047615,
+    356.7996649094374,
+    447.1726190476191,
+    430.46037919515175
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000131
+   }
+  },
+  {
+   "id": "synth-0132",
+   "image": "images/0132.png",
+   "sha256": "654dda59c7a3ebae3cb7f6bc97d693af0b1a00dce931bc8306c6e751e1025c98",
+   "instruction": "Switch to the \"Overview\" tab.",
+   "box": [
+    56.54761904761905,
+    142.85714285714286,
+    215.77380952380955,
+    205.35714285714286
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000132
+   }
+  },
+  {
+   "id": "synth-0133",
+   "image": "images/0133.png",
+   "sha256": "48a2e59d159745b71482aad61d063e2c054cd1aaf77f22d7c8136d76e5af414e",
+   "instruction": "Select the button labeled \"Confirm\".",
+   "box": [
+    415.7738095238095,
+    375.2477384036406,
+    539.2857142857142,
+    433.2834526893549
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000133
+   }
+  },
+  {
+   "id": "synth-0134",
+   "image": "images/0134.png",
+   "sha256": "4b234b93dd2d5e126f3e3919f81228fb6259c55882a0b2969b9db0b4f7668932",
+   "instruction": "Click the \"Zip code\" input field.",
+   "box": [
+    282.73809523809524,
+    675.8170238579314,
+    525.297619047619,
+    742.7813095722172
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000134
+   }
+  },
+  {
+   "id": "synth-0135",
+   "image": "images/0135.png",
+   "sha256": "aa34ab2d358eb5863b076e6012f7cb32c93fb867ccc94ba24e5550a201d9ccfa",
+   "instruction": "Focus the Zip code text box.",
+   "box": [
+    571.8005952380952,
+    584.8790997133486,
+    817.3363095238095,
+    656.30767114192
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000135
+   }
+  },
+  {
+   "id": "synth-0136",
+   "image": "images/0136.png",
+   "sha256": "2294134f0e701ebd42e9746bb42dd6209c3f6bc7d2b86d71bdeaa160a38203ff",
+   "instruction": "Click the \"Search...\" input field.",
+   "box": [
+    63.988095238095234,
+    618.7949445420246,
+    364.5833333333333,
+    694.6878016848818
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000136
+   }
+  },
+  {
+   "id": "synth-0137",
+   "image": "images/0137.png",
+   "sha256": "0dd138c7c0825445cc10e0727e177b53304b927d035b968a4b83021b1a6587a7",
+   "instruction": "Click the \"Remove\" button.",
+   "box": [
+    562.9960317460318,
+    508.53699675236976,
+    722.2222222222223,
+    577.7334253237983
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000137
+   }
+  },
+  {
+   "id": "synth-0138",
+   "image": "images/0138.png",
+   "sha256": "5a6d9463eb2a4b7e1fd4c223a0443fd04b9393127ac4c9f6ee61b0194b6264a6",
+   "instruction": "Follow the \"Contact us\" link.",
+   "box": [
+    225.44642857142858,
+    334.18158290971337,
+    348.9583333333333,
+    378.82444005257054
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000138
+   }
+  },
+  {
+   "id": "synth-0139",
+   "image": "images/0139.png",
+   "sha256": "3080047f9639d57076e060cf6b5a575a16b3a0d19936adb87498dd4447386a10",
+   "instruction": "Click the \"City\" input field.",
+   "box": [
+    366.07142857142856,
+    699.7801738557372,
+    696.4285714285714,
+    773.4408881414515
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000139
+   }
+  },
+  {
+   "id": "synth-0140",
+   "image": "images/0140.png",
+   "sha256": "6c52b9ffb0c8014bc00eb18faa03e9fac48c3db102210e3ef553d5c1816e4f4e",
+   "instruction": "Open the \"Archive\" tab.",
+   "box": [
+    168.15476190476193,
+    118.30357142857143,
+    287.2023809523809,
+    178.57142857142858
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000140
+   }
+  },
+  {
+   "id": "synth-0141",
+   "image": "images/0141.png",
+   "sha256": "aaa396a81eced49258c9903cc1aa61751ef7d8ef822b3293661c7212bfb63478",
+   "instruction": "Click the red diamond icon.",
+   "box": [
+    197.91666666666666,
+    558.8703102250047,
+    239.58333333333334,
+    621.3703102250047
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000141
+   }
+  },
+  {
+   "id": "synth-0142",
+   "image": "images/0142.png",
+   "sha256": "2a990a431ca38fb30c4e8eacf6ed07e75ace27513b33b9a1ba2f30c643cc6d7d",
+   "instruction": "Tap the red diamond icon.",
+   "box": [
+    895.8333333333334,
+    219.52674722708204,
+    937.5,
+    282.02674722708207
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000142
+   }
+  },
+  {
+   "id": "synth-0143",
+   "image": "images/0143.png",
+   "sha256": "c33ad585d2f862ddaf500b7b0eb43fd691cbaa42dd04321cbad042465f3d4cd6",
+   "instruction": "Click the \"Terms of Service\" link.",
+   "box": [
+    525.297619047619,
+    458.3375164074436,
+    709.8214285714286,
+    502.9803735503008
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000143
+   }
+  },
+  {
+   "id": "synth-0144",
+   "image": "images/0144.png",
+   "sha256": "c634cbc240bc38c165f088e0e1d85202228bea07fa770550971a0c0422bac1f5",
+   "instruction": "Click the \"Website\" input field.",
+   "box": [
+    53.57142857142857,
+    242.9849863448161,
+    386.9047619047619,
+    323.342129201959
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000144
+   }
+  },
+  {
+   "id": "synth-0145",
+   "image": "images/0145.png",
+   "sha256": "c170c71b25b3078019cc1701e8d2488adcb9d65722335d1e058ac127b48f3f27",
+   "instruction": "Focus the Website text box.",
+   "box": [
+    223.21428571428572,
+    227.25095828936867,
+    520.8333333333334,
+    307.60810114651156
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000145
+   }
+  },
+  {
+   "id": "synth-0146",
+   "image": "images/0146.png",
+   "sha256": "df353050abe4ef3e11edb1a0de8eaec48af86def973d7b0d771b1004507e292a",
+   "instruction": "Open the \"Archive\" tab.",
+   "box": [
+    328.8690476190476,
+    218.75,
+    437.5,
+    276.7857142857143
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000146
+   }
+  },
+  {
+   "id": "synth-0147",
+   "image": "images/0147.png",
+   "sha256": "d5dfdc8ef061f53e5b5980ecea778881b3b4cbe96da3d5a0c795d66b658d639e",
+   "instruction": "Tap the purple square icon.",
+   "box": [
+    735.1190476190477,
+    263.05316464754105,
+    790.1785714285714,
+    345.6424503618267
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000147
+   }
+  },
+  {
+   "id": "synth-0148",
+   "image": "images/0148.png",
+   "sha256": "f64126c1c04a42b064f942008aa5f63f401cf2bbbd63451c9703faf2cd75b6ab",
+   "instruction": "Tick the \"Remember me\" checkbox.",
+   "box": [
+    773.8095238095239,
+    242.53774696665272,
+    800.5952380952382,
+    282.71631839522416
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000148
+   }
+  },
+  {
+   "id": "synth-0149",
+   "image": "images/0149.png",
+   "sha256": "d57eeb42136cbaa9782cd585b9595ab221bf7bd7b9fbb7bb70ff1a945fd055df",
+   "instruction": "Click the \"Coupon code\" input field.",
+   "box": [
+    638.3928571428571,
+    506.2691133287063,
+    944.9404761904761,
+    586.6262561858492
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000149
+   }
+  },
+  {
+   "id": "synth-0150",
+   "image": "images/0150.png",
+   "sha256": "7e09534287897081eb185ffe6c0651409a242e71966ac9cb12f94b21b8444aa9",
+   "instruction": "Follow the \"Skip for now\" link.",
+   "box": [
+    691.9642857142857,
+    218.36938190887702,
+    848.2142857142857,
+    276.4050961945913
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000150
+   }
+  },
+  {
+   "id": "synth-0151",
+   "image": "images/0151.png",
+   "sha256": "3d12e0a7ca2ee73f09b5c7f8eb29263ac616bdb7c7bf9f3d9d8245ebc8fbe4d1",
+   "instruction": "Press the Redo button.",
+   "box": [
+    193.45238095238096,
+    660.508744461715,
+    282.73809523809524,
+    729.7051730331435
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000151
+   }
+  },
+  {
+   "id": "synth-0152",
+   "image": "images/0152.png",
+   "sha256": "003e28d4f8210d05bfdf20811160dacbca3f87990817278492aa02e0d29b286f",
+   "instruction": "Switch to the \"Billing\" tab.",
+   "box": [
+    452.3809523809524,
+    218.75,
+    563.9880952380952,
+    294.64285714285717
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000152
+   }
+  },
+  {
+   "id": "synth-0153",
+   "image": "images/0153.png",
+   "sha256": "9d6f0b2778ca17d57a15fa880e7a1db9772f0051d78ca8f23e4bf37a4a893c92",
+   "instruction": "Tick the \"Dark mode\" checkbox.",
+   "box": [
+    636.9047619047618,
+    380.5547881808319,
+    669.6428571428571,
+    429.66193103797474
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000153
+   }
+  },
+  {
+   "id": "synth-0154",
+   "image": "images/0154.png",
+   "sha256": "31138a9b3aca1126ad44363b10c624f81d7f22baab3fb12a703bcda0792f9619",
+   "instruction": "Tap the green plus icon.",
+   "box": [
+    366.81547619047615,
+    548.0732889558003,
+    421.875,
+    630.662574670086
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000154
+   }
+  },
+  {
+   "id": "synth-0155",
+   "image": "images/0155.png",
+   "sha256": "7d020563e747c384876ee1aa225b636b089160c3a704d65a3362d4ec5eaafad6",
+   "instruction": "Click the red square icon.",
+   "box": [
+    119.04761904761904,
+    265.85616110251107,
+    162.20238095238096,
+    330.58830395965396
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000155
+   }
+  },
+  {
+   "id": "synth-0156",
+   "image": "images/0156.png",
+   "sha256": "9f52454b0ee310733c8fb8c9b71ae718fe52643c10803384d2cac6a7d9abd35d",
+   "instruction": "Click the \"Website\" input field.",
+   "box": [
+    78.86904761904762,
+    304.2076568229025,
+    354.1666666666667,
+    382.3326568229025
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000156
+   }
+  },
+  {
+   "id": "synth-0157",
+   "image": "images/0157.png",
+   "sha256": "f1a307d6c7aa1114751c8e5459699cf328aee6e8832962783bfe86ae39ae8174",
+   "instruction": "Click the teal square icon.",
+   "box": [
+    117.55952380952381,
+    234.10021011414963,
+    168.15476190476193,
+    309.99306725700677
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000157
+   }
+  },
+  {
+   "id": "synth-0158",
+   "image": "images/0158.png",
+   "sha256": "cfc4313d1bef25a610181188efe2a90b94d45d5914229c2936ec753c15b83acc",
+   "instruction": "Click the \"Resend code\" link.",
+   "box": [
+    661.0863095238095,
+    295.3015830252009,
+    783.110119047619,
+    337.7122973109152
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000158
+   }
+  },
+  {
+   "id": "synth-0159",
+   "image": "images/0159.png",
+   "sha256": "296ada9882a51e8b1ae29803d652851bc2eba81bc2bbfc2f08287d4153bdc0ae",
+   "instruction": "Tap the orange square icon.",
+   "box": [
+    339.5833333333333,
+    256.2097299410189,
+    393.15476190476187,
+    336.56687279816174
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000159
+   }
+  },
+  {
+   "id": "synth-0160",
+   "image": "images/0160.png",
+   "sha256": "fceb9e93b3b845d501e45934360e3c5b60008162b9f724ebd2ca97770511c5a0",
+   "instruction": "Click the \"Job title\" input field.",
+   "box": [
+    669.6428571428571,
+    351.487257237313,
+    895.8333333333334,
+    425.1479715230273
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000160
+   }
+  },
+  {
+   "id": "synth-0161",
+   "image": "images/0161.png",
+   "sha256": "9428588e96611941ed6ff522852bb728da114a319b49ebbebba9d41cfdcd193d",
+   "instruction": "Press the Finish button.",
+   "box": [
+    244.04761904761904,
+    599.9080961520874,
+    342.26190476190476,
+    664.6402390092303
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000161
+   }
+  },
+  {
+   "id": "synth-0162",
+   "image": "images/0162.png",
+   "sha256": "3d46043fc7dc8dc4de69417a31fec0bc76424ef2971abb38d5d9802c24134e6d",
+   "instruction": "Press the Download button.",
+   "box": [
+    699.4047619047618,
+    460.04634597226465,
+    845.2380952380952,
+    518.0820602579789
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000162
+   }
+  },
+  {
+   "id": "synth-0163",
+   "image": "images/0163.png",
+   "sha256": "acac7fd114f2f513e0a9bcd92110b35e6c2214587ffae2528adf4e4ff2784e67",
+   "instruction": "Select the button labeled \"Import\".",
+   "box": [
+    626.4880952380952,
+    644.9283845174997,
+    739.5833333333334,
+    714.1248130889282
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000163
+   }
+  },
+  {
+   "id": "synth-0164",
+   "image": "images/0164.png",
+   "sha256": "51085c16a6ff93820e43da8fc5ef927a43b52649d2e7e4fc6198e1f435b0188a",
+   "instruction": "Click the \"Submit\" button.",
+   "box": [
+    350.44642857142856,
+    490.32211739462895,
+    454.61309523809524,
+    546.1256888232003
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000164
+   }
+  },
+  {
+   "id": "synth-0165",
+   "image": "images/0165.png",
+   "sha256": "e3576b3bcc4b1de5d54ed9156eab5d91b56d14ef94b8e5b0d9ea8de757698edf",
+   "instruction": "Click the checkbox next to \"Subscribe to newsletter\".",
+   "box": [
+    387.6488095238095,
+    362.6161256912615,
+    423.36309523809524,
+    416.1875542626901
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000165
+   }
+  },
+  {
+   "id": "synth-0166",
+   "image": "images/0166.png",
+   "sha256": "5b7ac00a1b325e78fdc6d0652a326005ecf044015b4cdcb405fd3b87dc9a778c",
+   "instruction": "Click the \"City\" input field.",
+   "box": [
+    729.1666666666666,
+    545.3587213368901,
+    953.8690476190477,
+    621.2515784797473
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000166
+   }
+  },
+  {
+   "id": "synth-0167",
+   "image": "images/0167.png",
+   "sha256": "fc72f4cf04ab9599fd418e7139fd7295c35630fcb9522bf58b1a9dfb632d21f1",
+   "instruction": "Click the green triangle icon.",
+   "box": [
+    59.52380952380952,
+    499.9749945087339,
+    108.63095238095238,
+    573.6357087944482
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000167
+   }
+  },
+  {
+   "id": "synth-0168",
+   "image": "images/0168.png",
+   "sha256": "01fcd064fc648f54ffa699561c002b1f25c582a908d71713c9032869a3e6260c",
+   "instruction": "Click the \"Contact us\" link.",
+   "box": [
+    768.6011904761905,
+    234.97863461231734,
+    890.625,
+    277.38934889803164
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000168
+   }
+  },
+  {
+   "id": "synth-0169",
+   "image": "images/0169.png",
+   "sha256": "4075383e1d6ef7c1c6bccef69f48a1ef0e333c36388fc3608da574d7809edee3",
+   "instruction": "Click the \"Coupon code\" input field.",
+   "box": [
+    470.23809523809524,
+    342.78674960488183,
+    696.4285714285714,
+    409.7510353191675
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000169
+   }
+  },
+  {
+   "id": "synth-0170",
+   "image": "images/0170.png",
+   "sha256": "ff26f23135f3a030a8025b365a32f78014a7030dc61876e4d95bf298b2d7b72b",
+   "instruction": "Open the \"Team\" tab.",
+   "box": [
+    205.35714285714286,
+    140.625,
+    308.0357142857143,
+    200.89285714285714
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000170
+   }
+  },
+  {
+   "id": "synth-0171",
+   "image": "images/0171.png",
+   "sha256": "36960e3edccdcbfc75fe40916f3caec81c20e99177e2e1345d978fa1a350b7a8",
+   "instruction": "Switch to the \"Reports\" tab.",
+   "box": [
+    349.7023809523809,
+    140.625,
+    480.6547619047619,
+    214.28571428571428
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000171
+   }
+  },
+  {
+   "id": "synth-0172",
+   "image": "images/0172.png",
+   "sha256": "081d7482a65202c8e63ce088b72bde9ec7535cda122abb5fd20b2529a4c19e82",
+   "instruction": "Click the yellow diamond icon.",
+   "box": [
+    604.1666666666666,
+    166.94473129020014,
+    648.8095238095239,
+    233.90901700448583
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000172
+   }
+  },
+  {
+   "id": "synth-0173",
+   "image": "images/0173.png",
+   "sha256": "ac22e094cdd8869dc5db0af99bafc053b0ed70e831078c50ed25139acf910bca",
+   "instruction": "Tap the purple cross icon.",
+   "box": [
+    369.0476190476191,
+    594.2462520455335,
+    410.7142857142857,
+    656.7462520455335
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000173
+   }
+  },
+  {
+   "id": "synth-0174",
+   "image": "images/0174.png",
+   "sha256": "83dddc0d7d084e86ae00f995b2893e75e5af053f9a8a5f5c403e1687e9c7f0a9",
+   "instruction": "Select the button labeled \"Next\".",
+   "box": [
+    660.7142857142857,
+    527.1634111545511,
+    758.9285714285714,
+    591.895554011694
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000174
+   }
+  },
+  {
+   "id": "synth-0175",
+   "image": "images/0175.png",
+   "sha256": "fd428f0bed96c80a03ba1dc66ca95e804ddb081ad0715e5f33fb0b67109942f0",
+   "instruction": "Tap the red triangle icon.",
+   "box": [
+    880.952380952381,
+    647.8425715135675,
+    928.5714285714286,
+    719.2711429421389
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000175
+   }
+  },
+  {
+   "id": "synth-0176",
+   "image": "images/0176.png",
+   "sha256": "95c11066f86c40d6ade0e85706522511f47c34b7268cefd7d836f8943aad99d8",
+   "instruction": "Press the Confirm button.",
+   "box": [
+    254.4642857142857,
+    631.5447475067665,
+    383.92857142857144,
+    691.8126046496236
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000176
+   }
+  },
+  {
+   "id": "synth-0177",
+   "image": "images/0177.png",
+   "sha256": "3953b34132bcc3299545d0bcf4c4be78409b914796a8c29bb17f6a608916bd60",
+   "instruction": "Press the Cancel button.",
+   "box": [
+    833.3333333333334,
+    334.7340642740121,
+    955.3571428571429,
+    408.3947785597264
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000177
+   }
+  },
+  {
+   "id": "synth-0178",
+   "image": "images/0178.png",
+   "sha256": "23650072dc052b92bc1e587fe3b14d3b8f986b980b4027d848c8fe99f704f39d",
+   "instruction": "Select the button labeled \"Retry\".",
+   "box": [
+    415.17857142857144,
+    259.9017814478201,
+    505.9523809523809,
+    326.8660671621059
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000178
+   }
+  },
+  {
+   "id": "synth-0179",
+   "image": "images/0179.png",
+   "sha256": "62e9b7057b8142834e30d898b5935cd481832f58028c3fbf16f8358503739379",
+   "instruction": "Tick the \"Dark mode\" checkbox.",
+   "box": [
+    672.6190476190477,
+    287.33483412967746,
+    700.8928571428571,
+    329.7455484153918
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000179
+   }
+  },
+  {
+   "id": "synth-0180",
+   "image": "images/0180.png",
+   "sha256": "1d92d99d85f940fba7d64b87cb8100b6f021c4c7c986c80e0b4d5be2c7af4a89",
+   "instruction": "Click the purple plus icon.",
+   "box": [
+    793.1547619047618,
+    345.310410993043,
+    848.2142857142857,
+    427.8996967073287
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000180
+   }
+  },
+  {
+   "id": "synth-0181",
+   "image": "images/0181.png",
+   "sha256": "9c87fca17ef6c7258657abd51585603e52a88ba28b9a083f8ec8950e6e79fb97",
+   "instruction": "Focus the City text box.",
+   "box": [
+    462.05357142857144,
+    765.9637874676007,
+    725.4464285714286,
+    839.624501753315
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000181
+   }
+  },
+  {
+   "id": "synth-0182",
+   "image": "images/0182.png",
+   "sha256": "d61ce7884ecedab140b0e857c0801037284e597e432cbd14c0d9d22787dcabe2",
+   "instruction": "Select the button labeled \"Import\".",
+   "box": [
+    428.57142857142856,
+    438.74887076996197,
+    547.6190476190477,
+    501.248870769962
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000182
+   }
+  },
+  {
+   "id": "synth-0183",
+   "image": "images/0183.png",
+   "sha256": "1755994a5401ed743338ba53128b59cf2516ec5c8f1a62b2b56184876577f517",
+   "instruction": "Tap the red circle icon.",
+   "box": [
+    223.21428571428572,
+    227.51606012754374,
+    272.32142857142856,
+    301.17677441325804
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000183
+   }
+  },
+  {
+   "id": "synth-0184",
+   "image": "images/0184.png",
+   "sha256": "8c53ff2459e26bf2815670fb2f6f164d08a8e766b50ccd7264681b224f31d7c5",
+   "instruction": "Press the Print button.",
+   "box": [
+    66.96428571428571,
+    247.49820584322077,
+    168.15476190476193,
+    307.76606298607794
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000184
+   }
+  },
+  {
+   "id": "synth-0185",
+   "image": "images/0185.png",
+   "sha256": "8baccb91fe61d6fc2af92c3aa7c53f01a112985af89358ab9cbbd394a7254a5e",
+   "instruction": "Tick the \"Subscribe to newsletter\" checkbox.",
+   "box": [
+    549.1071428571429,
+    623.6441444151909,
+    581.8452380952382,
+    672.7512872723338
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000185
+   }
+  },
+  {
+   "id": "synth-0186",
+   "image": "images/0186.png",
+   "sha256": "e2c304339d4de80e5a1eca0bd498f3717d926d7067a36364d9dcd95b4d8b7674",
+   "instruction": "Tick the \"Keep me signed in\" checkbox.",
+   "box": [
+    334.0773809523809,
+    245.85377708486007,
+    368.30357142857144,
+    297.19306279914576
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000186
+   }
+  },
+  {
+   "id": "synth-0187",
+   "image": "images/0187.png",
+   "sha256": "9ccb34ce5cd5e076cfba195ec3afdb080ddd9feae9e36931387a56b160da5dd2",
+   "instruction": "Follow the \"Resend code\" link.",
+   "box": [
+    635.7886904761905,
+    501.704839865796,
+    766.7410714285714,
+    541.8834112943674
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000187
+   }
+  },
+  {
+   "id": "synth-0188",
+   "image": "images/0188.png",
+   "sha256": "a617bc7557eba6263f0660a881d61e851f2ef8a4fb182a2a2c6b8247cf130f64",
+   "instruction": "Open the \"Archive\" tab.",
+   "box": [
+    311.01190476190476,
+    118.30357142857143,
+    438.98809523809524,
+    180.80357142857142
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000188
+   }
+  },
+  {
+   "id": "synth-0189",
+   "image": "images/0189.png",
+   "sha256": "eee07ad1f40d95208a3cc26c64032d66c1c43cf6c71f39820e611249b01ff9ef",
+   "instruction": "Open the \"Team\" tab.",
+   "box": [
+    208.33333333333334,
+    191.96428571428572,
+    303.57142857142856,
+    250.0
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000189
+   }
+  },
+  {
+   "id": "synth-0190",
+   "image": "images/0190.png",
+   "sha256": "53171f51a0eb71db40b1be1f6ea98db4113d78169364482f72c99f0c13ec7d36",
+   "instruction": "Select the button labeled \"Export\".",
+   "box": [
+    630.952380952381,
+    520.7375824451574,
+    738.0952380952382,
+    585.4697253023004
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000190
+   }
+  },
+  {
+   "id": "synth-0191",
+   "image": "images/0191.png",
+   "sha256": "f344468c452ac3d1835f0c21fc4d6f219fa5086b939244571655ae6859464325",
+   "instruction": "Click the teal diamond icon.",
+   "box": [
+    625.0,
+    401.5078862404914,
+    675.5952380952382,
+    477.4007433833486
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000191
+   }
+  },
+  {
+   "id": "synth-0192",
+   "image": "images/0192.png",
+   "sha256": "faffdf5b6ee4b3faa625f9d5ea017dda2d81ffc1bbe46272baa0e0593bb10952",
+   "instruction": "Press the Continue button.",
+   "box": [
+    46.13095238095239,
+    591.8084129739444,
+    174.10714285714286,
+    656.5405558310873
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000192
+   }
+  },
+  {
+   "id": "synth-0193",
+   "image": "images/0193.png",
+   "sha256": "125a00aab04f39e8fa210045804ebbdfd15e2440ab3df17d33bcf64d30737cbf",
+   "instruction": "Click the \"Apply\" button.",
+   "box": [
+    358.6309523809524,
+    506.0454681876025,
+    474.7023809523809,
+    581.9383253304596
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000193
+   }
+  },
+  {
+   "id": "synth-0194",
+   "image": "images/0194.png",
+   "sha256": "ee97b58d82f2fa4ae16293bfbbbfd6fdfe6b0af4cca61a75922197e427f067a3",
+   "instruction": "Click the green diamond icon.",
+   "box": [
+    433.7797619047619,
+    289.1270619993693,
+    479.9107142857143,
+    358.32349057079784
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000194
+   }
+  },
+  {
+   "id": "synth-0195",
+   "image": "images/0195.png",
+   "sha256": "230185e957815ac6a498a08bff7f64a6ac1c9b4e478a99a740591bc109a236ca",
+   "instruction": "Tick the \"Auto-save\" checkbox.",
+   "box": [
+    813.9880952380952,
+    496.7962726523364,
+    846.7261904761905,
+    545.9034155094793
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000195
+   }
+  },
+  {
+   "id": "synth-0196",
+   "image": "images/0196.png",
+   "sha256": "c28cea45a6b889437a02b6b15d0b1bf47a35fec04cfd1f84a4b09d3b9d5a7b42",
+   "instruction": "Select the button labeled \"Next\".",
+   "box": [
+    672.6190476190477,
+    353.80931652255003,
+    770.8333333333334,
+    411.84503080826437
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000196
+   }
+  },
+  {
+   "id": "synth-0197",
+   "image": "images/0197.png",
+   "sha256": "0653c9f1e7618d2bf20b60175df9227d02d3edc37c6f3b9f16fdbbd1c13a3d39",
+   "instruction": "Click the \"Save\" button.",
+   "box": [
+    364.5833333333333,
+    320.4182770552596,
+    459.82142857142856,
+    380.68613419811675
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000197
+   }
+  },
+  {
+   "id": "synth-0198",
+   "image": "images/0198.png",
+   "sha256": "3acfc25d9f998cf11b0e3c8440b119e19e1ab22bbd4854447b86e3b6c607b885",
+   "instruction": "Focus the Email text box.",
+   "box": [
+    116.81547619047619,
+    239.80691452063976,
+    360.86309523809524,
+    311.2354859492112
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000198
+   }
+  },
+  {
+   "id": "synth-0199",
+   "image": "images/0199.png",
+   "sha256": "e98381295bd3104552c286cbd42eb333cfd6b06dc758a14c50850adbe01de0af",
+   "instruction": "Tap the pink diamond icon.",
+   "box": [
+    478.4226190476191,
+    734.0380176007008,
+    521.577380952381,
+    798.7701604578436
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000199
+   }
+  },
+  {
+   "id": "synth-0200",
+   "image": "images/0200.png",
+   "sha256": "5933f6923ed4e8e634292976c1cf24b28f95d67bd2ca9cc5fdb4da1f39177db3",
+   "instruction": "Click the \"Export\" button.",
+   "box": [
+    598.8095238095239,
+    337.8729370468104,
+    707.4404761904763,
+    400.3729370468104
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000200
+   }
+  },
+  {
+   "id": "synth-0201",
+   "image": "images/0201.png",
+   "sha256": "85bb50c5bd6a03ac15cf4ca33c0fa4f12388d9b7a879ad4be14a9e45b1c643a9",
+   "instruction": "Click the \"Skip\" button.",
+   "box": [
+    349.7023809523809,
+    541.2859027667082,
+    428.57142857142856,
+    610.4823313381368
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000201
+   }
+  },
+  {
+   "id": "synth-0202",
+   "image": "images/0202.png",
+   "sha256": "e58f23929d1ce48d19af0d478425d3ef4c7c0844d8c39d76c8ea335d4341b8d1",
+   "instruction": "Follow the \"Documentation\" link.",
+   "box": [
+    255.95238095238093,
+    277.864442289559,
+    422.6190476190476,
+    322.5072994324161
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000202
+   }
+  },
+  {
+   "id": "synth-0203",
+   "image": "images/0203.png",
+   "sha256": "6ceb33fc738eed6d201cd694c8d6cc8b82db13deccab0a244b0abf3055c51107",
+   "instruction": "Click the \"Share\" button.",
+   "box": [
+    299.10714285714283,
+    477.40613437751995,
+    412.2023809523809,
+    548.8347058060914
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000203
+   }
+  },
+  {
+   "id": "synth-0204",
+   "image": "images/0204.png",
+   "sha256": "a0bdbb23511c9782c3e29002af7dcbb8f614f9a789bf1b44b75362eefc074f0e",
+   "instruction": "Click the checkbox next to \"I agree to the terms\".",
+   "box": [
+    561.0119047619048,
+    262.8908226227953,
+    593.75,
+    311.99796547993816
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000204
+   }
+  },
+  {
+   "id": "synth-0205",
+   "image": "images/0205.png",
+   "sha256": "9946f3f65346e6e16102df7cb5295fe43755a45427fa3adffe2e3c622e030cfc",
+   "instruction": "Click the \"Release notes\" link.",
+   "box": [
+    340.4017857142857,
+    310.40051130775544,
+    469.86607142857144,
+    350.5790827363269
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000205
+   }
+  },
+  {
+   "id": "synth-0206",
+   "image": "images/0206.png",
+   "sha256": "5499e2b175533cbb7bc22faed16f7f39a797fb45a2d51f273eb6add51afa4364",
+   "instruction": "Press the Export button.",
+   "box": [
+    812.5,
+    199.45485223968663,
+    937.5,
+    270.88342366825805
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000206
+   }
+  },
+  {
+   "id": "synth-0207",
+   "image": "images/0207.png",
+   "sha256": "72ec3efecf1b7158a2e3adc156f615d5cef5b10af05721baffbe074e8a6de5b3",
+   "instruction": "Tick the \"Show password\" checkbox.",
+   "box": [
+    209.22619047619045,
+    291.0642731181051,
+    236.01190476190476,
+    331.24284454667657
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000207
+   }
+  },
+  {
+   "id": "synth-0208",
+   "image": "images/0208.png",
+   "sha256": "963dc6a67cb327d4fb8a1e71a39998d83b45bf0bcf0eee4ddbf886c77125272e",
+   "instruction": "Tick the \"Dark mode\" checkbox.",
+   "box": [
+    653.2738095238095,
+    260.0966192751298,
+    687.5,
+    311.43590498941546
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000208
+   }
+  },
+  {
+   "id": "synth-0209",
+   "image": "images/0209.png",
+   "sha256": "fa139b1845bd3a4f041a9edde78cb4f89ef9be836176ccb0fcce781355df8542",
+   "instruction": "Click the \"Close\" button.",
+   "box": [
+    607.1428571428571,
+    722.7164028307794,
+    717.2619047619048,
+    787.4485456879222
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000209
+   }
+  },
+  {
+   "id": "synth-0210",
+   "image": "images/0210.png",
+   "sha256": "b751b960c09ccbdf69fb85c9ecd9067d17427feca947f30c7a01f25fdc2a8b3a",
+   "instruction": "Click the \"Privacy Policy\" link.",
+   "box": [
+    419.64285714285717,
+    350.62432123057386,
+    555.0595238095239,
+    397.49932123057386
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000210
+   }
+  },
+  {
+   "id": "synth-0211",
+   "image": "images/0211.png",
+   "sha256": "a623d2ba2220abcd6acb919d2d2bbd870026685a8796cf1ab16170e14afec5bc",
+   "instruction": "Click the teal square icon.",
+   "box": [
+    55.05952380952381,
+    270.6862006082751,
+    105.6547619047619,
+    346.57905775113215
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000211
+   }
+  },
+  {
+   "id": "synth-0212",
+   "image": "images/0212.png",
+   "sha256": "c9210b21b0fdb712bbb27dadf0c58583ad233a0a88cfaaabcf28edaf623da187",
+   "instruction": "Press the Refresh button.",
+   "box": [
+    408.48214285714283,
+    495.22634076407496,
+    529.0178571428571,
+    553.2620550497892
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000212
+   }
+  },
+  {
+   "id": "synth-0213",
+   "image": "images/0213.png",
+   "sha256": "426f62873d009fa2025b97104865739833dcb166cb09691c0e40788d05f9401e",
+   "instruction": "Follow the \"Documentation\" link.",
+   "box": [
+    68.45238095238096,
+    551.8222529487413,
+    235.11904761904762,
+    594.2329672344556
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000213
+   }
+  },
+  {
+   "id": "synth-0214",
+   "image": "images/0214.png",
+   "sha256": "7f25edc6421d96bb134b2853b9e4eb49abf3aee7db7e3437ef2e507818de696b",
+   "instruction": "Click the \"Confirm\" button.",
+   "box": [
+    486.60714285714283,
+    558.6803332526828,
+    602.6785714285714,
+    612.2517618241112
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000214
+   }
+  },
+  {
+   "id": "synth-0215",
+   "image": "images/0215.png",
+   "sha256": "d5342043fd26d8a0f564c660e02dc9389df7a0e72f10d82c337b7b8806906d97",
+   "instruction": "Press the Undo button.",
+   "box": [
+    154.76190476190476,
+    315.8709155046996,
+    236.60714285714286,
+    376.1387726475567
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000215
+   }
+  },
+  {
+   "id": "synth-0216",
+   "image": "images/0216.png",
+   "sha256": "33c80623ea46ea83d209cc0f6e7c437fa620a23358eafb246830af84f30d3f05",
+   "instruction": "Switch to the \"Billing\" tab.",
+   "box": [
+    369.0476190476191,
+    196.42857142857142,
+    471.7261904761905,
+    263.39285714285717
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000216
+   }
+  },
+  {
+   "id": "synth-0217",
+   "image": "images/0217.png",
+   "sha256": "23ff05fe86d165cfdbc999365c8440005f67149f1cddab389aa6003f3ee8eae4",
+   "instruction": "Click the orange triangle icon.",
+   "box": [
+    427.6785714285714,
+    346.15510919301363,
+    482.7380952380952,
+    428.7443949072993
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000217
+   }
+  },
+  {
+   "id": "synth-0218",
+   "image": "images/0218.png",
+   "sha256": "0c73df343d47e24264f128564e27488898c87144f9482a6074ec0cfca646f2f3",
+   "instruction": "Click the \"Skip for now\" link.",
+   "box": [
+    830.3571428571429,
+    309.90564344363287,
+    950.8928571428571,
+    356.78064344363287
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000218
+   }
+  },
+  {
+   "id": "synth-0219",
+   "image": "images/0219.png",
+   "sha256": "59bfe2866d92e047b9fa734a7d6d2827f3215a9a2b32b51845bfb8527852e717",
+   "instruction": "Follow the \"Need help?\" link.",
+   "box": [
+    837.797619047619,
+    470.1876300325205,
+    953.8690476190477,
+    519.2947728896632
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000219
+   }
+  },
+  {
+   "id": "synth-0220",
+   "image": "images/0220.png",
+   "sha256": "c409cbae75d4122a9c174a03df1ab519a5f7c543f9bf770c575bd28e2873a6c9",
+   "instruction": "Click the \"View all\" link.",
+   "box": [
+    857.1428571428571,
+    263.9020856007385,
+    950.8928571428571,
+    313.00922845788125
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000220
+   }
+  },
+  {
+   "id": "synth-0221",
+   "image": "images/0221.png",
+   "sha256": "fd6f7ff111ebc8c59ad3651bc5f492013b3502c4756f0c87329c4ea1d21c083e",
+   "instruction": "Follow the \"Change plan\" link.",
+   "box": [
+    787.9464285714286,
+    147.88442642848665,
+    915.922619047619,
+    194.75942642848665
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000221
+   }
+  },
+  {
+   "id": "synth-0222",
+   "image": "images/0222.png",
+   "sha256": "9f10c68b5751b40bf3f569c73ec31b6baa21d233d2f41db98742604c616fa422",
+   "instruction": "Focus the Phone number text box.",
+   "box": [
+    728.422619047619,
+    653.2065033504041,
+    956.1011904761905,
+    729.0993604932613
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000222
+   }
+  },
+  {
+   "id": "synth-0223",
+   "image": "images/0223.png",
+   "sha256": "011f8611181797055f1bb0544e4d97e98d0c5a4e66582307dd5fcf4e40218c6e",
+   "instruction": "Open the \"Security\" tab.",
+   "box": [
+    61.01190476190476,
+    198.66071428571428,
+    199.40476190476193,
+    267.85714285714283
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000223
+   }
+  },
+  {
+   "id": "synth-0224",
+   "image": "images/0224.png",
+   "sha256": "157104cb45ab8202d1af42e11fd632815556096d7f0144f2e046e0697ce127de",
+   "instruction": "Click the checkbox next to \"Auto-save\".",
+   "box": [
+    440.4761904761905,
+    366.48910088923384,
+    470.23809523809524,
+    411.131958032091
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000224
+   }
+  },
+  {
+   "id": "synth-0225",
+   "image": "images/0225.png",
+   "sha256": "abcc074bf9ad2fff329a31809740bb56c09a5ce559d3240cfbcc724aa3983afd",
+   "instruction": "Click the \"Phone number\" input field.",
+   "box": [
+    366.81547619047615,
+    405.4059726908655,
+    697.172619047619,
+    474.60240126229405
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000225
+   }
+  },
+  {
+   "id": "synth-0226",
+   "image": "images/0226.png",
+   "sha256": "b1a3b85caee670c0b88e14b7d9393300f6091aaf06ae9d041e45a6b70c669dfa",
+   "instruction": "Click the purple star icon.",
+   "box": [
+    420.38690476190476,
+    145.13770750431956,
+    475.44642857142856,
+    227.72699321860526
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000226
+   }
+  },
+  {
+   "id": "synth-0227",
+   "image": "images/0227.png",
+   "sha256": "3dcc8a3cc29043fc7467e8e6bb6464f7afa3468b0a1ef192de983f4c4658e96d",
+   "instruction": "Click the \"Company\" input field.",
+   "box": [
+    87.79761904761904,
+    483.16822403531694,
+    401.7857142857143,
+    556.8289383210312
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000227
+   }
+  },
+  {
+   "id": "synth-0228",
+   "image": "images/0228.png",
+   "sha256": "f67f0b3509ec5022946b1e7906dd60f473c405c89af3cc558f88d22cd718cdf7",
+   "instruction": "Switch to the \"Archive\" tab.",
+   "box": [
+    364.5833333333333,
+    198.66071428571428,
+    505.9523809523809,
+    265.625
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000228
+   }
+  },
+  {
+   "id": "synth-0229",
+   "image": "images/0229.png",
+   "sha256": "c4ecf85479dfe2286b1523ddd991868b7920b736cba161e0e36aa6babb8fad88",
+   "instruction": "Press the Share button.",
+   "box": [
+    310.26785714285717,
+    221.22749795960212,
+    408.48214285714283,
+    283.7274979596021
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000229
+   }
+  },
+  {
+   "id": "synth-0230",
+   "image": "images/0230.png",
+   "sha256": "bae244e74db3c8a780643df34e2bbf46091f209d571ae9e68044c5206103771f",
+   "instruction": "Switch to the \"Drafts\" tab.",
+   "box": [
+    65.47619047619048,
+    191.96428571428572,
+    162.20238095238096,
+    252.23214285714286
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000230
+   }
+  },
+  {
+   "id": "synth-0231",
+   "image": "images/0231.png",
+   "sha256": "1a341b46d6cf03ac35e138be278385b9864320c32f22993f923611dfc7858346",
+   "instruction": "Switch to the \"Billing\" tab.",
+   "box": [
+    483.6309523809524,
+    122.76785714285714,
+    596.7261904761905,
+    196.42857142857142
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000231
+   }
+  },
+  {
+   "id": "synth-0232",
+   "image": "images/0232.png",
+   "sha256": "2e44397768a621fe8b78a9f574c2642e6db18e66409ae6b2b75d65842aca93d3",
+   "instruction": "Press the Sign up button.",
+   "box": [
+    566.2202380952382,
+    335.0010486481698,
+    682.2916666666666,
+    410.8939057910269
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000232
+   }
+  },
+  {
+   "id": "synth-0233",
+   "image": "images/0233.png",
+   "sha256": "379fc7413cea5a14e2c82ea34d1a0d8d1e351b43b90e42a13a22025390b930d2",
+   "instruction": "Press the Upload button.",
+   "box": [
+    631.6964285714286,
+    176.4267506501746,
+    743.3035714285714,
+    238.9267506501746
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000233
+   }
+  },
+  {
+   "id": "synth-0234",
+   "image": "images/0234.png",
+   "sha256": "618ace7f3faa42de79cd00393c6b11172183d2384078faa71047caa2d8e027ce",
+   "instruction": "Switch to the \"Drafts\" tab.",
+   "box": [
+    427.0833333333333,
+    212.05357142857142,
+    525.297619047619,
+    272.32142857142856
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000234
+   }
+  },
+  {
+   "id": "synth-0235",
+   "image": "images/0235.png",
+   "sha256": "c25922d77f6f4bc6fb3a2866ae7cfc96354647ef7b083b510bdd34579d37f7ad",
+   "instruction": "Click the \"Upload\" button.",
+   "box": [
+    677.0833333333334,
+    550.6205266359506,
+    794.6428571428571,
+    635.4419552073791
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000235
+   }
+  },
+  {
+   "id": "synth-0236",
+   "image": "images/0236.png",
+   "sha256": "f8e24c20996f32d732a97f678c926213f2e4e29b6819e208e36100ba61704c53",
+   "instruction": "Follow the \"Forgot password?\" link.",
+   "box": [
+    419.64285714285717,
+    268.0614874001229,
+    622.0238095238095,
+    321.6329159715515
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000236
+   }
+  },
+  {
+   "id": "synth-0237",
+   "image": "images/0237.png",
+   "sha256": "ef6524d00d7fd0eceb24b6a4021e646176fd7b62f9afd923eb458fb5dce715a0",
+   "instruction": "Click the checkbox next to \"Dark mode\".",
+   "box": [
+    58.035714285714285,
+    355.7322973740949,
+    90.77380952380952,
+    404.83944023123775
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000237
+   }
+  },
+  {
+   "id": "synth-0238",
+   "image": "images/0238.png",
+   "sha256": "6cbc56a22ee24f7b2ef0bf963ff364dfb9a73a86bf5ff08999a4c60d2d4feffc",
+   "instruction": "Click the red diamond icon.",
+   "box": [
+    266.3690476190476,
+    527.4536905000658,
+    316.9642857142857,
+    603.346547642923
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000238
+   }
+  },
+  {
+   "id": "synth-0239",
+   "image": "images/0239.png",
+   "sha256": "1e703302661d865118ab31ccbfd951ddd2d1a1c3c6d0609d2e3bc873f4421fbe",
+   "instruction": "Click the green triangle icon.",
+   "box": [
+    69.94047619047619,
+    245.56514211435925,
+    126.48809523809523,
+    330.3865706857879
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000239
+   }
+  },
+  {
+   "id": "synth-0240",
+   "image": "images/0240.png",
+   "sha256": "252bbd2bc9e66e6df75f9eba9f3b08dca3999e846e5b3857335e806071d6c49d",
+   "instruction": "Click the \"Contact us\" link.",
+   "box": [
+    680.0595238095239,
+    133.19643701882364,
+    796.1309523809523,
+    177.83929416168078
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000240
+   }
+  },
+  {
+   "id": "synth-0241",
+   "image": "images/0241.png",
+   "sha256": "f19482c754a03aa4df68bc01fe028d465a37df8713ca6005e6cbd737ba57597a",
+   "instruction": "Click the \"Send\" button.",
+   "box": [
+    366.07142857142856,
+    506.7259562820606,
+    459.82142857142856,
+    571.4580991392035
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000241
+   }
+  },
+  {
+   "id": "synth-0242",
+   "image": "images/0242.png",
+   "sha256": "fc12f2f9b31036a8f933de443bf8c964c5cc02efdf7114e0b7dbd8786e34f3de",
+   "instruction": "Click the \"Cancel\" button.",
+   "box": [
+    168.15476190476193,
+    286.4281636711737,
+    297.6190476190476,
+    355.62459224260226
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000242
+   }
+  },
+  {
+   "id": "synth-0243",
+   "image": "images/0243.png",
+   "sha256": "460f78c56292a226ab5df98f5ef4e9600580d991070121c94b96d72dffb0fbda",
+   "instruction": "Tap the green square icon.",
+   "box": [
+    55.05952380952381,
+    223.76193081395618,
+    98.21428571428571,
+    288.49407367109904
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000243
+   }
+  },
+  {
+   "id": "synth-0244",
+   "image": "images/0244.png",
+   "sha256": "2da0ccf7b800c2ab07ba709d267e8869901dfb08897a072864bb65398464c0a8",
+   "instruction": "Tap the yellow hexagon icon.",
+   "box": [
+    638.3928571428571,
+    372.38932566066177,
+    686.0119047619048,
+    443.81789708923327
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000244
+   }
+  },
+  {
+   "id": "synth-0245",
+   "image": "images/0245.png",
+   "sha256": "ae85316eeb4a4f77f56e1a10e9350957804a9ce58269b1afae1487641d2772cb",
+   "instruction": "Press the Reset button.",
+   "box": [
+    800.5952380952382,
+    319.81380750933425,
+    919.6428571428571,
+    384.5459503664771
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000245
+   }
+  },
+  {
+   "id": "synth-0246",
+   "image": "images/0246.png",
+   "sha256": "636beb1e25fd21ab0ad373bb5fc22fdf460588a90be57f0cce474b975ad5f6be",
+   "instruction": "Click the \"Company\" input field.",
+   "box": [
+    52.083333333333336,
+    681.344527207796,
+    376.48809523809524,
+    761.7016700649389
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000246
+   }
+  },
+  {
+   "id": "synth-0247",
+   "image": "images/0247.png",
+   "sha256": "f4d016840d412951266b09d81a7f9900b4084e4195b1dff11a9f85af7529bbfd",
+   "instruction": "Click the \"Country\" input field.",
+   "box": [
+    633.9285714285714,
+    490.7548630731095,
+    950.8928571428571,
+    566.6477202159666
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000247
+   }
+  },
+  {
+   "id": "synth-0248",
+   "image": "images/0248.png",
+   "sha256": "adf3c92e0f65aedf2448f2fbb9e535bd56be9f6f6ae09771a5ca7c60d45110c3",
+   "instruction": "Select the button labeled \"Continue\".",
+   "box": [
+    220.23809523809524,
+    380.41751339582834,
+    376.48809523809524,
+    447.38179911011406
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000248
+   }
+  },
+  {
+   "id": "synth-0249",
+   "image": "images/0249.png",
+   "sha256": "ef46f5d63140ccf38bd8d662bf36dad13da9bcb3202b53d8a832a128f5d2d56f",
+   "instruction": "Press the Sign up button.",
+   "box": [
+    795.3869047619048,
+    316.0124794839563,
+    917.4107142857143,
+    391.9053366268135
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000249
+   }
+  },
+  {
+   "id": "synth-0250",
+   "image": "images/0250.png",
+   "sha256": "12e62f2fbdf6b7c3315c9698889a0d3729f2a227a0de9f0990c7bf66fc3beb94",
+   "instruction": "Tap the yellow hexagon icon.",
+   "box": [
+    241.66666666666666,
+    350.2471621828597,
+    290.7738095238095,
+    423.90787646857405
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000250
+   }
+  },
+  {
+   "id": "synth-0251",
+   "image": "images/0251.png",
+   "sha256": "56e30449e3e40b9480684afb026b555d007415330d4c3dc915391f912a9b24ba",
+   "instruction": "Click the teal hexagon icon.",
+   "box": [
+    470.23809523809524,
+    245.32480926659613,
+    513.3928571428571,
+    310.056952123739
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000251
+   }
+  },
+  {
+   "id": "synth-0252",
+   "image": "images/0252.png",
+   "sha256": "3de36abd3b901af31ad723c42ca151de5a1b2a71ca1693882a7712f67f3f459e",
+   "instruction": "Click the green plus icon.",
+   "box": [
+    145.08928571428572,
+    393.1278110088136,
+    200.14880952380955,
+    475.71709672309925
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000252
+   }
+  },
+  {
+   "id": "synth-0253",
+   "image": "images/0253.png",
+   "sha256": "2996715db7aea11c0d53499a2558b078f368117fb28d21280f15316e0501199e",
+   "instruction": "Click the red diamond icon.",
+   "box": [
+    541.6666666666666,
+    263.48001583428794,
+    583.3333333333334,
+    325.98001583428794
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000253
+   }
+  },
+  {
+   "id": "synth-0254",
+   "image": "images/0254.png",
+   "sha256": "9aa0c72fd369337e64fbe6c1933a17977e136001df3aabd1041fd91656c4dbe3",
+   "instruction": "Follow the \"Need help?\" link.",
+   "box": [
+    651.7857142857143,
+    513.408796387832,
+    794.6428571428571,
+    569.2123678164033
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000254
+   }
+  },
+  {
+   "id": "synth-0255",
+   "image": "images/0255.png",
+   "sha256": "5c9b4b196d80fdfc9f4ff920a5194a3bad1deaa7db310f059e2ef206f3d84b67",
+   "instruction": "Tap the green triangle icon.",
+   "box": [
+    74.4047619047619,
+    780.5745646689003,
+    126.48809523809523,
+    858.6995646689003
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000255
+   }
+  },
+  {
+   "id": "synth-0256",
+   "image": "images/0256.png",
+   "sha256": "5c1a35bcb9200e9a90b9d77f91f92c1c4fcc43aff1ca8be6edf5a04b4e35805e",
+   "instruction": "Tap the orange diamond icon.",
+   "box": [
+    174.85119047619045,
+    356.602279381472,
+    231.39880952380955,
+    441.4237079529006
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000256
+   }
+  },
+  {
+   "id": "synth-0257",
+   "image": "images/0257.png",
+   "sha256": "d027a796418babd576628c2d2509986c2b6f4b7f3aeddd69cf17dc5437be02de",
+   "instruction": "Press the Paste button.",
+   "box": [
+    855.6547619047618,
+    178.84623522077604,
+    934.5238095238095,
+    239.11409236363318
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000257
+   }
+  },
+  {
+   "id": "synth-0258",
+   "image": "images/0258.png",
+   "sha256": "4652e371b535b62645f6a5c63e235747d4faf6df880acd852f586027b6ce8dbb",
+   "instruction": "Click the \"Paste\" button.",
+   "box": [
+    688.9880952380952,
+    362.6414114023925,
+    797.6190476190477,
+    434.0699828309639
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000258
+   }
+  },
+  {
+   "id": "synth-0259",
+   "image": "images/0259.png",
+   "sha256": "90a9eab4eb0668e48d8763cae7b518d051d423553deddeba1b5e4fbc339c027d",
+   "instruction": "Click the \"Skip for now\" link.",
+   "box": [
+    636.9047619047618,
+    236.71289453986535,
+    758.9285714285714,
+    285.8200373970082
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000259
+   }
+  },
+  {
+   "id": "synth-0260",
+   "image": "images/0260.png",
+   "sha256": "21582fe77af36bf8409e39fb3fcf6ddab16f3707d87013a514e4cbf40be70afc",
+   "instruction": "Press the Cancel button.",
+   "box": [
+    854.1666666666666,
+    307.0468190347422,
+    955.3571428571429,
+    371.7789618918851
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000260
+   }
+  },
+  {
+   "id": "synth-0261",
+   "image": "images/0261.png",
+   "sha256": "40a5e9724c2ecf16830bc919c5bde7a6167542143feb1b7e0b26a1d011398e9f",
+   "instruction": "Select the button labeled \"Apply\".",
+   "box": [
+    673.3630952380952,
+    553.98488391497,
+    774.5535714285714,
+    625.4134553435414
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000261
+   }
+  },
+  {
+   "id": "synth-0262",
+   "image": "images/0262.png",
+   "sha256": "49d5212d47ac3a4053340b69e8e01c397c11c1cf87cc6ad78a3fdf51fb76fed0",
+   "instruction": "Tick the \"Dark mode\" checkbox.",
+   "box": [
+    156.25,
+    482.160193414,
+    190.47619047619045,
+    533.4994791282858
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000262
+   }
+  },
+  {
+   "id": "synth-0263",
+   "image": "images/0263.png",
+   "sha256": "9949cc14956cd9a594ebc81ad6995105fea14578ff6e3c591865fbc87a9ccc32",
+   "instruction": "Click the \"Share\" button.",
+   "box": [
+    171.13095238095238,
+    278.0873308693666,
+    275.2976190476191,
+    351.74804515508083
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000263
+   }
+  },
+  {
+   "id": "synth-0264",
+   "image": "images/0264.png",
+   "sha256": "9e3c8d705926b86518c4b7eabf858a97648a6f32e29be77aeffd72080a2b4cd1",
+   "instruction": "Tick the \"Auto-save\" checkbox.",
+   "box": [
+    73.66071428571429,
+    156.38717932343107,
+    103.42261904761904,
+    201.03003646628824
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000264
+   }
+  },
+  {
+   "id": "synth-0265",
+   "image": "images/0265.png",
+   "sha256": "00b40e6c8a969ac00a38621dbbbe9f349a79cdc58409da05b867725cb0db8370",
+   "instruction": "Select the button labeled \"Log in\".",
+   "box": [
+    532.7380952380952,
+    266.85241992743033,
+    619.047619047619,
+    329.35241992743033
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000265
+   }
+  },
+  {
+   "id": "synth-0266",
+   "image": "images/0266.png",
+   "sha256": "2955de817a31302970202adaa09cd476471c12d4a36d6e82f40bbd4a2b877359",
+   "instruction": "Click the green triangle icon.",
+   "box": [
+    188.98809523809524,
+    389.42856461983547,
+    244.04761904761904,
+    472.0178503341212
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000266
+   }
+  },
+  {
+   "id": "synth-0267",
+   "image": "images/0267.png",
+   "sha256": "f0082c921b8f2a8682794706c0974837897e8b29a60f708f185fbac9083606c4",
+   "instruction": "Open the \"Inbox\" tab.",
+   "box": [
+    41.666666666666664,
+    203.125,
+    141.36904761904762,
+    265.625
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000267
+   }
+  },
+  {
+   "id": "synth-0268",
+   "image": "images/0268.png",
+   "sha256": "8e48a5586926ddca6d7085b8404e4010a2245434121096e437bdeb4bbfd91ec5",
+   "instruction": "Switch to the \"Activity\" tab.",
+   "box": [
+    386.9047619047619,
+    183.03571428571428,
+    489.5833333333333,
+    241.07142857142858
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000268
+   }
+  },
+  {
+   "id": "synth-0269",
+   "image": "images/0269.png",
+   "sha256": "e554c876288985ca468d6cd77ff73918e952504d0cb9ac41a5e7f71a0a27135e",
+   "instruction": "Select the button labeled \"Confirm\".",
+   "box": [
+    240.32738095238096,
+    377.92409555563506,
+    378.7202380952381,
+    438.19195269849223
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000269
+   }
+  },
+  {
+   "id": "synth-0270",
+   "image": "images/0270.png",
+   "sha256": "30af8bf4423ffbc03e75b4c1b250be49dc5fd1b8ca599c714388e3c852d20264",
+   "instruction": "Click the \"Skip for now\" link.",
+   "box": [
+    590.7738095238095,
+    202.96162000255075,
+    732.1428571428571,
+    254.30090571683644
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000270
+   }
+  },
+  {
+   "id": "synth-0271",
+   "image": "images/0271.png",
+   "sha256": "b2ccd3ac0eab8631dc723ee3093ee9788dcb958edf6e17cece0b6a579d326a30",
+   "instruction": "Click the \"Contact us\" link.",
+   "box": [
+    748.5119047619048,
+    240.79028706637882,
+    872.0238095238095,
+    285.433144209236
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000271
+   }
+  },
+  {
+   "id": "synth-0272",
+   "image": "images/0272.png",
+   "sha256": "964624716a727da2d1bc5a069143d7fe13b31c7a325df625c060c6b2c1ed9a04",
+   "instruction": "Click the checkbox next to \"Keep me signed in\".",
+   "box": [
+    546.1309523809523,
+    366.0025357230595,
+    578.8690476190477,
+    415.10967858020234
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000272
+   }
+  },
+  {
+   "id": "synth-0273",
+   "image": "images/0273.png",
+   "sha256": "4c088d7ffcb2488ad5155ad56e5877a8d7b00773b16ce9c88b349de9f77e3129",
+   "instruction": "Select the button labeled \"Print\".",
+   "box": [
+    492.55952380952385,
+    243.5608744353945,
+    578.8690476190477,
+    306.06087443539445
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000273
+   }
+  },
+  {
+   "id": "synth-0274",
+   "image": "images/0274.png",
+   "sha256": "7307cee5928ef76910efd0a56d0e496007ad304ed81f7ef07ec7862d5ba66c42",
+   "instruction": "Tick the \"Email receipts\" checkbox.",
+   "box": [
+    449.4047619047619,
+    339.1919181677819,
+    485.1190476190476,
+    392.76334673921053
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000274
+   }
+  },
+  {
+   "id": "synth-0275",
+   "image": "images/0275.png",
+   "sha256": "521f2f1e29ca0037325e2db272690a1a13879c231bb233d55f097c4f73ceccd3",
+   "instruction": "Press the Log in button.",
+   "box": [
+    374.2559523809524,
+    213.02909276470714,
+    508.18452380952385,
+    293.38623562184995
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000275
+   }
+  },
+  {
+   "id": "synth-0276",
+   "image": "images/0276.png",
+   "sha256": "65dc57c858efa105179f10b3cc6ab4335c7003276da828a80130f2e7ede6cab6",
+   "instruction": "Switch to the \"Drafts\" tab.",
+   "box": [
+    58.035714285714285,
+    122.76785714285714,
+    177.08333333333334,
+    187.5
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000276
+   }
+  },
+  {
+   "id": "synth-0277",
+   "image": "images/0277.png",
+   "sha256": "7c3d8814ffaa4848c8d8e89b6761eac63babce82b29df9609e46ab89c9866385",
+   "instruction": "Click the checkbox next to \"Email receipts\".",
+   "box": [
+    424.10714285714283,
+    406.1189667629699,
+    450.89285714285717,
+    446.2975381915413
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000277
+   }
+  },
+  {
+   "id": "synth-0278",
+   "image": "images/0278.png",
+   "sha256": "b4b303f09e6cd5a9fde849852c5ece6053ed9332d737a93aa381733b42ca7bf7",
+   "instruction": "Follow the \"Learn more\" link.",
+   "box": [
+    614.5833333333334,
+    296.22872699407003,
+    745.5357142857143,
+    338.63944127978436
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000278
+   }
+  },
+  {
+   "id": "synth-0279",
+   "image": "images/0279.png",
+   "sha256": "300fe5de1f2b2dd47acda81274292126a785cef58f1d3742812d43f763b794f0",
+   "instruction": "Tick the \"Show password\" checkbox.",
+   "box": [
+    366.07142857142856,
+    249.702991834489,
+    394.3452380952381,
+    292.11370612020335
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000279
+   }
+  },
+  {
+   "id": "synth-0280",
+   "image": "images/0280.png",
+   "sha256": "54cee08a153dea27aaa8ce1f876c1a6feac91e7876b62cb84dfcf78b99a77e86",
+   "instruction": "Click the orange circle icon.",
+   "box": [
+    505.20833333333337,
+    767.9719053072945,
+    552.827380952381,
+    839.400476735866
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000280
+   }
+  },
+  {
+   "id": "synth-0281",
+   "image": "images/0281.png",
+   "sha256": "8b34c227cde758c66008af0a843e5e1e27263d279aba17bcdfe4b5137aaa7748",
+   "instruction": "Press the Open button.",
+   "box": [
+    74.4047619047619,
+    393.59979607840626,
+    168.15476190476193,
+    456.09979607840626
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000281
+   }
+  },
+  {
+   "id": "synth-0282",
+   "image": "images/0282.png",
+   "sha256": "b08a3e34e70dcede244018325184a58917d8c8a8f540fd1412f1f62bb64c4ab1",
+   "instruction": "Click the red star icon.",
+   "box": [
+    234.52380952380952,
+    227.503744654694,
+    283.63095238095235,
+    301.16445894040834
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000282
+   }
+  },
+  {
+   "id": "synth-0283",
+   "image": "images/0283.png",
+   "sha256": "6d3704cf893f739ea79956401eac2d89c60425939cf16d07f55fa6c8525e776e",
+   "instruction": "Click the \"Need help?\" link.",
+   "box": [
+    802.827380952381,
+    227.80593192902592,
+    915.922619047619,
+    274.6809319290259
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000283
+   }
+  },
+  {
+   "id": "synth-0284",
+   "image": "images/0284.png",
+   "sha256": "394f0c92070efba0a52b7519d664aa2f19c3f4c6992f4358192e506a414114e9",
+   "instruction": "Click the \"Redo\" button.",
+   "box": [
+    761.9047619047618,
+    341.3897122556814,
+    854.1666666666666,
+    406.1218551128242
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000284
+   }
+  },
+  {
+   "id": "synth-0285",
+   "image": "images/0285.png",
+   "sha256": "f88dec53cbda6d74a9d95d8464523186038166c1b7e09b04193a4686021a0f51",
+   "instruction": "Tap the purple circle icon.",
+   "box": [
+    433.0357142857143,
+    160.74634694946712,
+    482.14285714285717,
+    234.4070612351814
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000285
+   }
+  },
+  {
+   "id": "synth-0286",
+   "image": "images/0286.png",
+   "sha256": "1f9c371e5360dd52b36be92c762e3fc8717c13aca745e53b957faeea6176ba61",
+   "instruction": "Click the \"Save\" button.",
+   "box": [
+    337.7976190476191,
+    408.740933388526,
+    431.5476190476191,
+    473.4730762456689
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000286
+   }
+  },
+  {
+   "id": "synth-0287",
+   "image": "images/0287.png",
+   "sha256": "28bb8cb10087e835e0668103ab08077bd9353cdc7cc11fc71fe949f3fbc10937",
+   "instruction": "Open the \"Team\" tab.",
+   "box": [
+    177.08333333333334,
+    125.0,
+    288.69047619047615,
+    187.5
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000287
+   }
+  },
+  {
+   "id": "synth-0288",
+   "image": "images/0288.png",
+   "sha256": "a38c6d98f0719d83fb95d82401b9c69eaed0006028eda6782fd2821a5bbbfb27",
+   "instruction": "Switch to the \"Team\" tab.",
+   "box": [
+    193.45238095238096,
+    178.57142857142858,
+    284.2261904761905,
+    234.375
+   ],
+   "meta": {
+    "kind": "tab",
+    "seed": 10000288
+   }
+  },
+  {
+   "id": "synth-0289",
+   "image": "images/0289.png",
+   "sha256": "638d9210941c6d4c54f92f9a865363b5f78630348b74308c11257e7c4ddacf0d",
+   "instruction": "Tick the \"Subscribe to newsletter\" checkbox.",
+   "box": [
+    217.26190476190476,
+    210.54999176265227,
+    245.53571428571428,
+    252.96070604836657
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000289
+   }
+  },
+  {
+   "id": "synth-0290",
+   "image": "images/0290.png",
+   "sha256": "3614d82c4b86143845e8a306fc478e5683224f13db3878ba22885c75758cce80",
+   "instruction": "Click the \"Skip for now\" link.",
+   "box": [
+    270.8333333333333,
+    369.67005435265463,
+    397.32142857142856,
+    421.0093400669404
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000290
+   }
+  },
+  {
+   "id": "synth-0291",
+   "image": "images/0291.png",
+   "sha256": "f988729374ed9666e9834ae8d7edde4205bad5c68e27c211a2c5cdd35fdb4fbb",
+   "instruction": "Tap the red plus icon.",
+   "box": [
+    119.04761904761904,
+    369.8446664513477,
+    169.64285714285714,
+    445.73752359420484
+   ],
+   "meta": {
+    "kind": "icon",
+    "seed": 10000291
+   }
+  },
+  {
+   "id": "synth-0292",
+   "image": "images/0292.png",
+   "sha256": "96e8ad756724b0821d6be1042fef81c4f394a15d3e5b7ac42a72df1d8845619d",
+   "instruction": "Focus the Full name text box.",
+   "box": [
+    263.39285714285717,
+    480.025973025994,
+    489.5833333333333,
+    555.9188301688512
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000292
+   }
+  },
+  {
+   "id": "synth-0293",
+   "image": "images/0293.png",
+   "sha256": "efba99e525368c6aac4e799beda16bcdac41e862d88a0797523e3b812db7bd73",
+   "instruction": "Press the Retry button.",
+   "box": [
+    203.125,
+    272.7370515614541,
+    305.80357142857144,
+    346.39776584716844
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000293
+   }
+  },
+  {
+   "id": "synth-0294",
+   "image": "images/0294.png",
+   "sha256": "0aa53194a8de3fb30b24f1b98e152f28e749b483c4fac192fc5500ba77dfbc70",
+   "instruction": "Click the \"Coupon code\" input field.",
+   "box": [
+    401.0416666666667,
+    504.24101861291393,
+    701.6369047619048,
+    571.2053043271997
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000294
+   }
+  },
+  {
+   "id": "synth-0295",
+   "image": "images/0295.png",
+   "sha256": "079f81ffacd341ac3b050c6e977a3668a80cdc0a8e9f5fd69962d50e22310b5a",
+   "instruction": "Tick the \"Remember me\" checkbox.",
+   "box": [
+    65.47619047619048,
+    867.9234430692234,
+    95.23809523809523,
+    912.5663002120804
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000295
+   }
+  },
+  {
+   "id": "synth-0296",
+   "image": "images/0296.png",
+   "sha256": "fcece0768d47d461938ff68fe0e0d85a03c48dd9e995d68457d0b5cf08c22b24",
+   "instruction": "Tick the \"Remember me\" checkbox.",
+   "box": [
+    293.8988095238095,
+    227.08589427488772,
+    329.61309523809524,
+    280.65732284631633
+   ],
+   "meta": {
+    "kind": "checkbox",
+    "seed": 10000296
+   }
+  },
+  {
+   "id": "synth-0297",
+   "image": "images/0297.png",
+   "sha256": "2487c114468026b72b0d791b6b05cb13dcafc4f3c324ddbfa366aacc4469b2c9",
+   "instruction": "Focus the Zip code text box.",
+   "box": [
+    47.61904761904761,
+    564.5069632542009,
+    389.8809523809524,
+    631.4712489684867
+   ],
+   "meta": {
+    "kind": "input",
+    "seed": 10000297
+   }
+  },
+  {
+   "id": "synth-0298",
+   "image": "images/0298.png",
+   "sha256": "9254f3a6ed3a62ba28c59bda7e8b39f66b21b3457193f750efc8cad1ff0fc30b",
+   "instruction": "Press the Import button.",
+   "box": [
+    445.68452380952385,
+    446.8122555758037,
+    554.3154761904761,
+    518.2408270043751
+   ],
+   "meta": {
+    "kind": "button",
+    "seed": 10000298
+   }
+  },
+  {
+   "id": "synth-0299",
+   "image": "images/0299.png",
+   "sha256": "a1f866e4ecb5e28f8a698e0703bbcae944f0fbf2e8de07b68aff2cdc7bd640e7",
+   "instruction": "Click the \"Contact us\" link.",
+   "box": [
+    477.67857142857144,
+    175.95188263717,
+    578.8690476190477,
+    213.89831120859859
+   ],
+   "meta": {
+    "kind": "link",
+    "seed": 10000299
+   }
+  }
+ ]
+}
