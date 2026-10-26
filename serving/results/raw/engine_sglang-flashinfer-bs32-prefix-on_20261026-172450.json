@@ -1,0 +1,92 @@
+{
+ "kind": "engine_run",
+ "label": "sglang-flashinfer-bs32-prefix-on",
+ "engine": "sglang",
+ "prefix_caching": true,
+ "settings": {
+  "engine": "sglang",
+  "label": "sglang-flashinfer-bs32-prefix-on",
+  "prefix_caching": 1,
+  "concurrency": [
+   1,
+   4,
+   16,
+   32
+  ],
+  "repeats": 3,
+  "trace": "serving/traces/default",
+  "max_sessions": null,
+  "sessions_by_conc": "1:24,4:48,16:96,32:96",
+  "sets": [
+   "synth300",
+   "screenspot400"
+  ],
+  "port": 8000,
+  "gpu_util": 0.85,
+  "max_seqs": 32,
+  "max_len": 4096,
+  "startup_timeout": 900,
+  "skip_accuracy": false,
+  "accuracy_only": false,
+  "attn_backend": "flashinfer",
+  "cuda_graph_max_bs": 32,
+  "extra": ""
+ },
+ "gpu_mem_before_mib": 0,
+ "started": false,
+ "startup_s": 18.058842658996582,
+ "log_file": "sglang-flashinfer-bs32-prefix-on-20261026-172450.log",
+ "server_cmd": "~/venvs/sglang/bin/python -m sglang.launch_server --model-path ~/work/ui_click_grpo/serving/models/merged-clean --served-model-name merged-clean --dtype bfloat16 --context-length 4096 --max-running-requests 32 --mem-fraction-static 0.85 --attention-backend flashinfer --sampling-backend pytorch --mm-attention-backend sdpa --cuda-graph-max-bs 32 --mm-process-config '{\"image\":{\"max_pixels\":1003520}}' --enable-cache-report --enable-metrics --host 127.0.0.1 --port 8000",
+ "failure_tail": [
+  "                    [--enable-encoder-swa-bounded-replay]",
+  "                    [--enable-decoder-swa-bounded-replay]",
+  "                    [--enable-response-store]",
+  "                    [--disaggregation-decode-host-receive-threshold DISAGGREGATION_DECODE_HOST_RECEIVE_THRESHOLD]",
+  "                    [--qsa-indexer-dtype {auto,bfloat16,fp8_e4m3}]",
+  "                    [--disaggregation-decode-allocation-policy {early,prefill_complete}]",
+  "                    [--speculative-use-block-verification]",
+  "                    [--speculative-draft-sink-size SPECULATIVE_DRAFT_SINK_SIZE]",
+  "                    [--disable-aiter-allreduce-fusion-in-prefill]",
+  "                    [--disable-aiter-allreduce-fusion-in-decode]",
+  "                    [--dsa-triton-union {0,2,4}]",
+  "                    [--enable-dsa-fused-indexer | --no-enable-dsa-fused-indexer]",
+  "                    [--enable-watermark] [--watermark-config WATERMARK_CONFIG]",
+  "                    [--grpc-response-timeout-secs GRPC_RESPONSE_TIMEOUT_SECS]",
+  "                    [--sampling-backend {flashinfer,pytorch,intel_xpu,ascend}]",
+  "                    [--reasoning-parser {auto,apertus2509,deepseek-r1,deepseek-v3,deepseek-v4,deepseek-v41,dots,glm45,ling3,hunyuan,gpt-oss,k2_horizon,kimi,kimi_k2,kimi_k3,mimo,muse,poolside_v1,qwen3,qwen3-thinking,minimax,minimax-append-think,minimax-m3,nanbeige,step3,step3p5,mistral,nemotron_3,granite_thinking_parser,interns1,gemma4,inkling,iquest_q1,cohere_command4,gigachat35}]",
+  "                    [--tool-call-parser {auto,apertus2509,cohere_command4,deepseekv3,deepseekv31,deepseekv32,deepseekv4,deepseekv41,dots,glm,glm45,glm47,gpt-oss,k2_horizon,kimi_k2,kimi_k3,lfm2,ling3,llama3,mimo,minicpm5,mistral,muse,poolside_v1,pythonic,qwen,qwen25,qwen3_coder,spark25,step3,step3p5,minimax-m2,minimax-m3,nanbeige,trinity,interns1,hermes,hunyuan,gigachat3,gigachat35,gemma4,inkling,iquest_q1}]",
+  "                    [--kv-canary-real-data {none,partial,all}]",
+  "                    [--config CONFIG] [--disable-cuda-graph]",
+  "                    [--enable-dp-attention]",
+  "                    [--enable-flashinfer-allreduce-fusion]",
+  "                    [--servicer-impl {python,rust}]",
+  "                    [--metrics-port METRICS_PORT]",
+  "                    [--metrics-host METRICS_HOST]",
+  "sglang serve: error: ambiguous option: --cuda-graph-max-bs could match --cuda-graph-max-bs-decode, --cuda-graph-max-bs-prefill"
+ ],
+ "gpu_mem_after_stop_mib": 0,
+ "env": {
+  "date": "2026-10-26T17:25:13+01:00",
+  "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.12.15",
+  "command": "serving/scripts/run_engine_bench.py --engine sglang --label sglang-flashinfer-bs32-prefix-on --prefix-caching 1 --attn-backend flashinfer --cuda-graph-max-bs 32",
+  "gpu": {
+   "gpus": [
+    {
+     "name": "NVIDIA GeForce RTX 5050 Laptop GPU",
+     "driver": "592.82",
+     "memory_total": "8151 MiB",
+     "compute_cap": "12.0"
+    }
+   ],
+   "driver_cuda_version": "13.1"
+  },
+  "packages": {
+   "aiohttp": "3.14.5"
+  },
+  "model_dir": "~/work/ui_click_grpo/serving/models/merged-clean",
+  "model_hash": "f4945dbb7c5b459fe0cce1b78362bff134b12a4a15108e9342c8c6b3a1d0de7f",
+  "repo_commit": "6a3e4bdf548d98a9aa42d5b243dc358ee5c93390",
+  "engine_python": "~/venvs/sglang/bin/python"
+ }
+}

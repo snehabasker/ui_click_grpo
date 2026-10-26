@@ -1,0 +1,75 @@
+{
+ "kind": "engine_run",
+ "label": "sglang-flashinfer-bs32-prefix-on",
+ "engine": "sglang",
+ "prefix_caching": true,
+ "settings": {
+  "engine": "sglang",
+  "label": "sglang-flashinfer-bs32-prefix-on",
+  "prefix_caching": 1,
+  "concurrency": [
+   1,
+   4,
+   16,
+   32
+  ],
+  "repeats": 3,
+  "trace": "serving/traces/default",
+  "max_sessions": null,
+  "sessions_by_conc": "1:24,4:48,16:96,32:96",
+  "sets": [
+   "synth300",
+   "screenspot400"
+  ],
+  "port": 8000,
+  "gpu_util": 0.85,
+  "max_seqs": 32,
+  "max_len": 4096,
+  "startup_timeout": 1800,
+  "skip_accuracy": false,
+  "accuracy_only": false,
+  "attn_backend": "flashinfer",
+  "cuda_graph_max_bs": 32,
+  "extra": ""
+ },
+ "gpu_mem_before_mib": 0,
+ "started": true,
+ "startup_s": 54.033684492111206,
+ "log_file": "sglang-flashinfer-bs32-prefix-on-20261026-182925.log",
+ "kv_cache_tokens_sglang": 50728,
+ "server_cmd": "~/venvs/sglang/bin/python -m sglang.launch_server --model-path ~/work/ui_click_grpo/serving/models/merged-clean --served-model-name merged-clean --dtype bfloat16 --context-length 4096 --max-running-requests 32 --mem-fraction-static 0.85 --attention-backend flashinfer --sampling-backend pytorch --mm-attention-backend sdpa --cuda-graph-max-bs-decode 32 --mm-process-config '{\"image\":{\"max_pixels\":1003520}}' --enable-cache-report --enable-metrics --host 127.0.0.1 --port 8000",
+ "gpu_mem_loaded_mib": 6885,
+ "versions": {
+  "sglang": "0.5.22",
+  "sglang-kernel": "0.4.9",
+  "torch": "2.14.1+cu132",
+  "transformers": "5.19.0",
+  "triton": "3.8.0",
+  "flashinfer-python": "0.7.1"
+ },
+ "gpu_mem_after_stop_mib": 0,
+ "env": {
+  "date": "2026-10-26T20:03:40+01:00",
+  "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.12.15",
+  "command": "serving/scripts/run_engine_bench.py --engine sglang --label sglang-flashinfer-bs32-prefix-on --prefix-caching 1 --attn-backend flashinfer --cuda-graph-max-bs 32 --startup-timeout 1800",
+  "gpu": {
+   "gpus": [
+    {
+     "name": "NVIDIA GeForce RTX 5050 Laptop GPU",
+     "driver": "592.82",
+     "memory_total": "8151 MiB",
+     "compute_cap": "12.0"
+    }
+   ],
+   "driver_cuda_version": "13.1"
+  },
+  "packages": {
+   "aiohttp": "3.14.5"
+  },
+  "model_dir": "~/work/ui_click_grpo/serving/models/merged-clean",
+  "model_hash": "f4945dbb7c5b459fe0cce1b78362bff134b12a4a15108e9342c8c6b3a1d0de7f",
+  "repo_commit": "e3634ca91be658aca2a552e669af23eb351ba159",
+  "engine_python": "~/venvs/sglang/bin/python"
+ }
+}
