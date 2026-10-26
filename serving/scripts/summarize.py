@@ -15,6 +15,8 @@ sys.path.insert(0, str(ROOT / "serving"))
 
 from servebench.stats import median_range
 
+NL = chr(10)
+
 METRICS = [  # key, title, scale, format
     ("ttft_p50", "Time to first token, p50 (s)", 1, "{:.2f}"),
     ("ttft_p99", "Time to first token, p99 (s)", 1, "{:.2f}"),
@@ -80,6 +82,44 @@ def markdown(agg: dict) -> str:
     return "\n".join(out)
 
 
+def accuracy_table(raw: Path) -> str:
+    """Click accuracy through each live engine on the two fixed sets, next to the HF reference."""
+    rows = {}
+    for f in sorted(raw.glob("accuracy_*.json")):
+        if "explore" in f.name:
+            continue
+        d = json.loads(f.read_text())
+        rows.setdefault(d["tag"], {})[d["set"]] = d["score"]
+    ref = None
+    mv = sorted(raw.glob("merge_verify_*.json"))
+    if mv:
+        r = json.loads(mv[-1].read_text())["results"]
+        ref = {k: r[k]["merged"] for k in r}
+    out = ["| run | synthetic held-out (n=300) | ScreenSpot subset (n=400) |", "|---|---|---|"]
+    fmt = lambda x: "–" if x is None else f"{100 * x['acc']:.2f}% [{100 * x['ci'][0]:.1f}, {100 * x['ci'][1]:.1f}], valid {100 * x['valid_format']:.1f}%"
+    if ref:
+        out.append(f"| HF reference (merged checkpoint) | {fmt(ref.get('synth300'))} | {fmt(ref.get('screenspot400'))} |")
+    for tag in sorted(rows):
+        out.append(f"| {tag} | {fmt(rows[tag].get('synth300'))} | {fmt(rows[tag].get('screenspot400'))} |")
+    return NL.join(out)
+
+
+def engine_table(raw: Path) -> str:
+    rows = []
+    for f in sorted(raw.glob("engine_*.json")):
+        d = json.loads(f.read_text())
+        v = d.get("versions", {})
+        eng = d["engine"]
+        kv = d.get("kv_cache_tokens") or d.get("kv_cache_tokens_sglang")
+        import re as _re
+        m = _re.search(r"--attention-backend\s+(\w+)", d.get("server_cmd", ""))
+        backend = d.get("attention_backend") or (f"{m.group(1)} (set by flag)" if m else "–")
+        rows.append(f"| {d['label']} | {eng} {v.get(eng, '?')} | torch {v.get('torch', '?')} | {backend} | "
+                    f"{d.get('startup_s', 0):.0f} s | {kv if kv else '–'} | {d.get('gpu_mem_loaded_mib', '–')} MiB |")
+    return NL.join(["| run | engine | PyTorch | attention backend (log) | startup | KV cache (tokens) | GPU memory after load |",
+                    "|---|---|---|---|---|---|---|"] + rows)
+
+
 def write_csv(agg: dict, path: Path) -> None:
     with open(path, "w", newline="") as f:
         w = csv.writer(f)
@@ -98,6 +138,10 @@ if __name__ == "__main__":
     agg = aggregate(runs)
     out = Path(a.out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.with_suffix(".md").write_text(markdown(agg), encoding="utf-8")
+    raw = Path(a.raw)
+    body = (NL * 0 + "## Click accuracy through each engine" + NL * 2 + accuracy_table(raw) + NL * 2
+            + "## Engine settings recorded at launch" + NL * 2 + engine_table(raw) + NL * 2
+            + "## Load tests" + NL * 2 + markdown(agg))
+    out.with_suffix(".md").write_text(body, encoding="utf-8")
     write_csv(agg, out.with_suffix(".csv"))
     print(f"{len(runs)} runs -> {len(agg)} cells -> {out.with_suffix('.md')}")
