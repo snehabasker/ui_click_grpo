@@ -18,6 +18,9 @@ export NVCC_PREPEND_FLAGS="-ccbin $CUDA_HOME/bin/x86_64-conda-linux-gnu-g++"
 export CC="$CUDA_HOME/bin/x86_64-conda-linux-gnu-gcc"
 export CXX="$CUDA_HOME/bin/x86_64-conda-linux-gnu-g++"
 export CUDAHOSTCXX="$CXX"
+# FlashInfer's kernel build links with -lcuda. Under WSL2 the driver library lives in /usr/lib/wsl/lib, which the conda linker does
+# not search ("cannot find -lcuda"); LIBRARY_PATH is honoured by GCC at link time.
+export LIBRARY_PATH="/usr/lib/wsl/lib:$CUDA_HOME/lib64${LIBRARY_PATH:+:$LIBRARY_PATH}"
 PC=""
 [ "${PREFIX_CACHING:-1}" = "0" ] && PC="--disable-radix-cache"
 # Phase 1 follow-up knobs (defaults reproduce the Phase 1 runs exactly): attention backend, and the largest decode batch that gets a

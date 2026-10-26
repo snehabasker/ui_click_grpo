@@ -60,3 +60,10 @@ def test_sglang_serve_script_points_every_compiler_variable_at_gcc15():
     for var in ("CC", "CXX", "CUDAHOSTCXX"):
         assert f"export {var}=" in text
     assert "x86_64-conda-linux-gnu-g++" in text and "x86_64-conda-linux-gnu-gcc" in text
+
+
+def test_sglang_serve_script_lets_the_linker_find_libcuda_under_wsl():
+    """FlashInfer's build links with -lcuda; under WSL2 the driver library is in /usr/lib/wsl/lib, which the linker only finds via
+    LIBRARY_PATH. Its first successful compile failed at the link step without this."""
+    text = (Path(__file__).resolve().parents[1] / "scripts" / "wsl" / "serve_sglang.sh").read_text()
+    assert "export LIBRARY_PATH=" in text and "/usr/lib/wsl/lib" in text
