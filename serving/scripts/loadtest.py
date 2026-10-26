@@ -34,7 +34,8 @@ ap.add_argument("--max-sessions", type=int, default=None)
 ap.add_argument("--max-tokens", type=int, default=24)
 ap.add_argument("--engine", required=True, help="label recorded in the result, e.g. vllm / sglang / router-prefix")
 ap.add_argument("--tag", required=True)
-ap.add_argument("--flush-url", default=None, help="POST here before each repeat to empty the prefix cache")
+ap.add_argument("--flush-url", action="append", default=[],
+                help="POST here before each repeat to empty a cache (repeatable: prefix cache, multimodal cache, ...)")
 ap.add_argument("--model-dir", default=None)
 ap.add_argument("--server-cmd", default=None, help="the command that launched the server (recorded verbatim)")
 ap.add_argument("--gpu-index", type=int, default=None)
@@ -49,11 +50,14 @@ out_dir = ROOT / "serving" / "results" / "raw"
 out_dir.mkdir(parents=True, exist_ok=True)
 
 
-async def flush():
-    if a.flush_url:
-        async with aiohttp.ClientSession() as s:
-            async with s.post(a.flush_url) as r:
-                return r.status
+async def flush() -> dict:
+    """POST every flush URL; returns {url: http status}. A non-200 is recorded in the result, never hidden."""
+    out = {}
+    async with aiohttp.ClientSession() as s:
+        for u in a.flush_url:
+            async with s.post(u) as r:
+                out[u] = r.status
+    return out
 
 
 for rep in range(1, a.repeats + 1):
