@@ -120,3 +120,43 @@ Phase 1 did not record GPU temperature or clock speed, so this is a hypothesis, 
 
 **Things I did not do.** No test of whether the two engines' *outputs* differ token by token (only click accuracy); no
 profile of where the time goes (vision encoder vs prefill vs decode); no repeat of the whole experiment on a second day.
+
+## Phase 1 follow-up: what went wrong, in order
+
+Goal: test whether SGLang's low throughput in Phase 1 was my configuration (Triton attention, CUDA graphs only up to batch 8).
+It took several attempts and four distinct problems; each cause came from a log, not a guess. The rows below are grouped by problem,
+not strictly in time order (step A actually ran before the last two FlashInfer retries).
+
+| # | what I ran | what happened | cause | fix |
+|---|---|---|---|---|
+| 1 | first follow-up script | SGLang steps failed instantly; vLLM rerun ran | **The Linux clone had not updated.** `git pull` aborted because the clone held untracked copies of result files the new commits also contain, my sync script piped it through `tail` which hid the failure, and I read a truncated "Updating a..b" line as success. The runner was the old one and rejected the new arguments. | Sync script now fails loudly unless the clone ends at exactly the Windows HEAD, prints the hash, removes only byte-identical duplicates and generated tables. I also check the *content* (arguments exist), not only the hash. The vLLM rerun from that attempt used old code without the new monitor and was discarded. |
+| 2 | B and A (SGLang) | refused to start in 9-18 s | SGLang 0.5.22 renamed `--cuda-graph-max-bs`: plain `--cuda-graph-max-bs` is now ambiguous between `-decode` and `-prefill`. My earlier flag check was a substring `grep` count, which wrongly looked like the flag existed; SGLang's own earlier error message even named the new flag. | `--cuda-graph-max-bs-decode`, with a test that guards against the old spelling. |
+| 3 | B | FlashInfer JIT failed | FlashInfer calls nvcc with its own `-ccbin` (plain `c++`, my GCC 16), overriding my `NVCC_PREPEND_FLAGS`; CUDA 13.2 rejects GCC > 15 ("unsupported GNU version"). | `CC`, `CXX`, `CUDAHOSTCXX` point at the GCC 15.3 that ships with the toolkit. |
+| 4 | B | kernels compiled, then link failed | `cannot find -lcuda`: under WSL2 the driver library is in `/usr/lib/wsl/lib`, which the conda linker does not search. | `LIBRARY_PATH` includes it. |
+| 5 | B | ran | | |
+| 6 | A | ran | | |
+| 7 | C (vLLM rerun) | ran | | |
+
+Between attempts I once followed the wrong log: my "wait for ready" helper picked the newest log by name and read the previous
+attempt's failure before the new run had created its own file. `wait_new_log.sh` now waits for a log newer than itself.
+
+**The SM clock is not reported.** Under WSL2 `nvidia-smi` shows 180 MHz for the SM clock at 100% utilisation and ~40 W, i.e. the
+idle value, so the field is useless there. The monitor still records it in the raw files but no table uses it. Temperature and
+power are real readings.
+
+**The GPU's power state is a confound I did not control.** Median power per run ranged from 28 W to 55 W and peak temperature from
+69 to 92 C. In SGLang's Triton c=32 cell throughput went 1.18, 1.57, 1.64 req/s across repeats while median power went 28.4, 55.0,
+51.6 W (`scripts/gpu_state_by_run.py` prints every run in time order). I did not compute a correlation: three repeats per group
+are too few to mean anything. The FlashInfer runs sat at 50-55 W and 87-92 C throughout, so a low-power state cannot explain why they
+did not beat Phase 1.
+
+**Phase 1 did not reproduce exactly.** vLLM prefix-on at c=16: 3.07 req/s (3.06-3.09) in the rerun vs 3.52 (3.48-3.55) in Phase 1,
+and p50 time to first token 3.03 s vs 2.21 s. Phase 1 recorded no temperature or power, so I cannot say what differed (the rerun ran
+at 39.8 W and 76-79 C). Within-session repeats were within about 2%; across sessions the difference was 13%. The README's
+min-max ranges therefore understate real uncertainty.
+
+**Hypotheses I rejected or could not test.**
+* Rejected: that SGLang's low throughput came from small decode CUDA graphs (graphs up to 32 fixed inter-token latency, 51 to 14-18 ms
+  at c=16, but not throughput or time to first token) or from Triton attention (FlashInfer was no better).
+* Not tested: SGLang's vision-encoder attention backend (`sdpa` here; vLLM's log says FlashAttention for its vision encoder), its
+  scheduling policy and multimodal preprocessing. These are the next things I would try.

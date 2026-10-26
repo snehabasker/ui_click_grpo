@@ -11,7 +11,7 @@ Nothing under `serving/` changes training code or the published results in `../r
 | Phase | What | Status |
 |---|---|---|
 | 0 | Merge adapter, verify it, trace generator, load client, tests | **done** (this document) |
-| 1 | vLLM vs SGLang on the same checkpoint | **done, with caveats** (see Phase 1 results); a follow-up on SGLang's configuration is **running now** and not yet reported |
+| 1 | vLLM vs SGLang on the same checkpoint | **done, with caveats** (see Phase 1 results and the follow-up on SGLang's configuration) |
 | 2 | Prefix-aware router in Rust | not started |
 | 3 | Fused RMSNorm + INT8 quantisation Triton kernel | not started |
 | 4 | Prefill/decode disaggregation (time-boxed) | not started |
@@ -206,40 +206,122 @@ At c=32 the median end-to-end latency is 8.46 s (vLLM) vs 23.11 s (SGLang), and 
 logged lines, not all batches).
 * SGLang captured its decode CUDA graphs only for batch sizes 1, 2, 4, 8. Every logged decode batch with at most 8 running
   requests used a graph (273 of 273 with the cache on, 255 of 255 off); **none of the 45 logged batches with more than 8 running
-  requests did**, in either configuration. Its inter-token latency is 13 ms at c<=4 and 31-57 ms at c>=16, which fits that but
-  does not prove it.
+  requests did**, in either configuration. Its inter-token latency is 13 ms at c<=4 and 31-57 ms at c>=16, which fits that; the
+  follow-up below tests it (graphs up to batch 32 bring that latency to 14-19 ms).
 * The two schedulers' per-step token budgets match by default: 2,048 for vLLM on a GPU this size (read from its source, not logged
   at runtime) and a 2,048-token prefill chunk for SGLang (logged). I had suspected a mismatch and checked.
 * SGLang's KV pool reached 99% usage with the cache off and 75% with it on. With the cache on, 2,068 of its 2,717 prefill batches
   reused at least 1,000 cached tokens (0 of 4,691 with it off).
 
 **Guesses (not tested).**
-* SGLang's Triton attention may be slower than vLLM's FlashAttention 2 for ~1.8k-token prompts.
 * vLLM's inter-token spikes may come from image encoding and prefill sharing a step with decodes.
 * The SGLang regression at c=16 may be scheduling or memory pressure around cache-hit requests.
+* (Tested in the follow-up and *not* supported: that SGLang's Triton attention backend or its small CUDA-graph range explains its
+  low throughput.)
 
 ### Caveats: read these before quoting the comparison
 
-1. **The engines are not configured identically** (see `NOTES.md`): different attention kernels (vLLM's FlashAttention 2 vs
-   SGLang's Triton, which I chose as the nvcc-free option before nvcc turned out to work), different KV capacity (57,168 vs
-   50,728 tokens), different PyTorch versions, and SGLang's decode graphs stop at batch size 8. **I did not try SGLang's FlashInfer
-   attention or a larger CUDA-graph batch size, so these numbers show vLLM beating SGLang *in the configuration I ran*,
-   not that vLLM is faster in general.**
-2. One laptop GPU under a 35 W cap on one day. GPU temperature and clocks were not recorded in Phase 1, so I cannot say whether
-   thermal limits caused the wider spread in SGLang's c=16 cell (throughput 1.40-1.58).
+1. **The engines are still not configured identically** (see `NOTES.md`): different KV capacity (57,168 vs 50,728 tokens),
+   different PyTorch versions, and a different vision-encoder attention backend (vLLM's log says FlashAttention for it; SGLang was
+   launched with `--mm-attention-backend sdpa`). The follow-up tried SGLang with FlashInfer attention and CUDA graphs up to batch
+   size 32, and the gap stayed. So the claim is "vLLM beat SGLang on this workload and this GPU, including SGLang's FlashInfer
+   configuration", **not** "vLLM is faster in general", and I did not test other SGLang options (for example its vision-encoder
+   attention backend or scheduling policy).
+2. **The GPU's power state is not controlled, and it changes throughput.** One laptop GPU on one day. Phase 1 recorded no temperature
+   or power. In the follow-up, median power draw ranged from 28 W to 55 W between runs and peak temperature from 69 to 92 C; within
+   one cell (SGLang Triton, c=32) throughput rose from 1.18 to 1.57-1.64 req/s, about 35%, when power went from 28 W to 52-55 W
+   (`scripts/gpu_state_by_run.py`). A rerun of vLLM's c=16 cell gave 3.07 req/s against 3.52 in Phase 1 (13% lower). Repeats within
+   one session look tight; sessions are not equivalent. Gaps of a few tens of percent should not be over-read. (The SM clock
+   reading is useless under WSL2: it reports 180 MHz at 100% utilisation, so clocks are not reported.)
 3. Trace accuracy (about 56-59%) is below the zero-shot accuracy (63-64%), consistently across all four configurations, so it
    does not come from an engine. But the trace uses different images and far fewer requests, the intervals overlap, and I did not
    run the zero-shot prompt on the trace images. I cannot say how much of the gap is the added system prompt, few-shot turns
    and history that the policy never saw in training.
 4. The synthetic task and trace are small and templated; cache hit rates here (about 66%) depend on how much the sessions share.
 
-### Follow-ups
+### Follow-up: is the gap SGLang's configuration?
 
-1. **In progress, no results yet:** SGLang with `--attention-backend flashinfer` and CUDA graphs up to batch size 32 (and a control
-   that changes only the graph size), plus a vLLM rerun that records GPU clock, temperature and power. The tooling for this is
-   committed (`scripts/wsl/run_followup1.sh`); the results will be added here, whatever they show.
-2. Not started: repeat on a second day.
-3. Not started: run the zero-shot prompt on the trace images to separate the prompt-context effect on accuracy.
+Phase 1 ran SGLang with Triton attention and CUDA graphs only up to batch size 8, which I suspected of handicapping it. Three
+follow-up runs, same trace, same 3 repeats, prefix cache on, and the new GPU temperature/power monitor:
+
+* **B, best effort:** FlashInfer attention + decode CUDA graphs up to batch 32 (both accuracy sets, all four concurrencies).
+* **A, control:** Triton attention as in Phase 1 + graphs up to batch 32 (c=16 and 32 only), to isolate the graph effect.
+* **C, reproducibility:** vLLM prefix-on rerun at c=16.
+
+Getting B to run took four launches (flag renamed in this SGLang version; FlashInfer's JIT needs GCC 15 or older; then a missing
+`-lcuda` link path under WSL2); every cause is in `NOTES.md`. **Accuracy held:** B scores 64.00% on the synthetic set and 53.50% on
+ScreenSpot; A 64.00% on the synthetic set. Reference rows are the Phase 1 results above; the follow-up ran later the same day.
+
+**Throughput (requests/s)**
+
+| run | c=1 | c=4 | c=16 | c=32 |
+|---|---|---|---|---|
+| vllm-prefix-on (Phase 1) | 2.32 (2.31–2.35) | 3.10 (3.07–3.10) | 3.52 (3.48–3.55) | 3.59 (3.58–3.60) |
+| vllm-prefix-on-rerun (C) | not run | not run | 3.07 (3.06–3.09) | not run |
+| sglang-prefix-on (Phase 1: Triton, graphs ≤ 8) | 1.69 (1.68–1.70) | 1.75 (1.75–1.77) | 1.40 (1.40–1.58) | 1.29 (1.22–1.37) |
+| sglang-triton-bs32-prefix-on (A) | not run | not run | 1.28 (1.24–1.33) | 1.57 (1.18–1.64) |
+| sglang-flashinfer-bs32-prefix-on (B) | 1.67 (1.38–1.69) | 1.76 (1.74–1.77) | 1.15 (1.10–1.17) | 1.09 (1.06–1.13) |
+
+**Time to first token, p50 (s)**
+
+| run | c=1 | c=4 | c=16 | c=32 |
+|---|---|---|---|---|
+| vllm-prefix-on (Phase 1) | 0.27 (0.26–0.27) | 1.00 (1.00–1.00) | 2.21 (2.11–2.22) | 2.03 (2.01–2.04) |
+| vllm-prefix-on-rerun (C) | not run | not run | 3.03 (2.89–3.11) | not run |
+| sglang-prefix-on (Phase 1) | 0.38 (0.38–0.38) | 1.82 (1.82–1.83) | 8.63 (7.74–8.70) | 14.35 (14.20–15.89) |
+| sglang-triton-bs32-prefix-on (A) | not run | not run | 9.91 (9.42–10.14) | 12.03 (11.57–16.06) |
+| sglang-flashinfer-bs32-prefix-on (B) | 0.39 (0.38–0.51) | 1.80 (1.79–1.85) | 10.15 (10.07–10.85) | 18.63 (17.91–18.72) |
+
+**Inter-token latency, p50 (ms)**
+
+| run | c=1 | c=4 | c=16 | c=32 |
+|---|---|---|---|---|
+| vllm-prefix-on (Phase 1) | 13.0 (12.0–13.1) | 13.9 (13.9–13.9) | 17.6 (17.4–17.7) | 577.0 (536.5–676.8) |
+| vllm-prefix-on-rerun (C) | not run | not run | 20.6 (20.1–20.8) | not run |
+| sglang-prefix-on (Phase 1) | 12.5 (12.4–12.5) | 13.0 (12.9–13.0) | 51.4 (30.9–52.8) | 57.3 (55.8–58.0) |
+| sglang-triton-bs32-prefix-on (A) | not run | not run | 17.7 (17.6–17.9) | 18.7 (18.1–23.7) |
+| sglang-flashinfer-bs32-prefix-on (B) | 12.8 (12.2–12.8) | 13.5 (13.4–14.5) | 14.4 (14.3–14.5) | 16.6 (16.4–16.6) |
+
+**End-to-end latency, p50 (s)**
+
+| run | c=1 | c=4 | c=16 | c=32 |
+|---|---|---|---|---|
+| vllm-prefix-on (Phase 1) | 0.40 (0.38–0.40) | 1.17 (1.15–1.17) | 4.26 (4.20–4.27) | 8.46 (8.44–8.47) |
+| vllm-prefix-on-rerun (C) | not run | not run | 4.87 (4.83–4.87) | not run |
+| sglang-prefix-on (Phase 1) | 0.51 (0.51–0.52) | 1.99 (1.98–2.00) | 10.71 (9.80–10.76) | 23.11 (21.83–24.31) |
+| sglang-triton-bs32-prefix-on (A) | not run | not run | 11.62 (11.34–12.10) | 18.29 (17.77–25.82) |
+| sglang-flashinfer-bs32-prefix-on (B) | 0.52 (0.52–0.63) | 1.96 (1.96–2.02) | 12.61 (11.74–13.24) | 29.75 (23.80–29.93) |
+
+**Peak GPU temperature (°C) and median power draw (W)**, runs with the new monitor only (Phase 1 recorded neither):
+
+| run | c=1 | c=4 | c=16 | c=32 |
+|---|---|---|---|---|
+| vllm-prefix-on-rerun (C), °C / W | not run | not run | 79 (76–79) / 39.8 (39.7–39.8) | not run |
+| sglang-triton-bs32-prefix-on (A), °C / W | not run | not run | 79 (75–79) / 31.6 (30.4–34.0) | 90 (73–90) / 51.6 (28.4–55.0) |
+| sglang-flashinfer-bs32-prefix-on (B), °C / W | 90 (87–91) / 54.7 (53.0–55.6) | 91 (90–92) / 51.9 (50.3–52.3) | 90 (90–91) / 51.6 (49.4–52.2) | 87 (69–89) / 49.9 (49.9–54.0) |
+
+**What this shows**
+
+* **Graph coverage fixes SGLang's inter-token latency, not its throughput.** With graphs up to batch 32, ITL at c=16 falls from
+  51.4 ms to 17.7 ms (Triton, A) or 14.4 ms (FlashInfer, B), comparable to vLLM's 17.6 ms. But throughput did not improve and time to
+  first token did not fall. So decode was not what limited SGLang here; waiting to *start* requests (time to first token of 8-19 s
+  at c>=16, against vLLM's 2-3 s) was.
+* **FlashInfer attention did not help.** B is no faster than Phase 1's Triton run at c=1 and c=4 (1.67 and 1.76 vs 1.69 and 1.75 req/s)
+  and slower at c=16 and c=32 (1.15 and 1.09 vs 1.40 and 1.29). B ran in the GPU's high-power state throughout (50-55 W, 87-92 C), so
+  a low-power state does not explain this.
+* **vLLM kept its lead:** about 1.4x at c=1, 1.8x at c=4, and 3.1x and 3.3x at c=16 and c=32 against B (ratios of medians; the Phase 1
+  vLLM rows and the follow-up B rows come from different sessions, so these carry the session-to-session variation described in
+  the caveats, which is far smaller than the gap at c >= 16).
+* **Phase 1 did not reproduce exactly:** vLLM's c=16 cell ran 13% lower (3.07 vs 3.52 req/s) and its time to first token 37% higher
+  (3.03 vs 2.21 s) in the rerun. The ordering of the engines did not change.
+* **What I still cannot explain** is why SGLang's time to first token is so much higher under load. Not tested: its vision-encoder
+  attention backend (`sdpa` here), its scheduling policy, its multimodal preprocessing, and different KV-cache accounting.
+
+### Remaining follow-ups (not done)
+
+1. Repeat the whole comparison on a second day with the GPU power state recorded, ideally with a cooled laptop.
+2. Run the zero-shot prompt on the trace images to separate the prompt-context effect on accuracy.
+3. Try SGLang's vision-encoder attention backend and scheduling options to find where its time to first token goes.
 
 ## Rules this folder follows
 
