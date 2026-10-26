@@ -11,7 +11,7 @@ Nothing under `serving/` changes training code or the published results in `../r
 | Phase | What | Status |
 |---|---|---|
 | 0 | Merge adapter, verify it, trace generator, load client, tests | **done** (this document) |
-| 1 | vLLM vs SGLang on the same checkpoint | **done, with caveats** (see Phase 1 results; two follow-ups proposed) |
+| 1 | vLLM vs SGLang on the same checkpoint | **done, with caveats** (see Phase 1 results); a follow-up on SGLang's configuration is **running now** and not yet reported |
 | 2 | Prefix-aware router in Rust | not started |
 | 3 | Fused RMSNorm + INT8 quantisation Triton kernel | not started |
 | 4 | Prefill/decode disaggregation (time-boxed) | not started |
@@ -233,11 +233,13 @@ logged lines, not all batches).
    and history that the policy never saw in training.
 4. The synthetic task and trace are small and templated; cache hit rates here (about 66%) depend on how much the sessions share.
 
-### Proposed follow-ups (not done)
+### Follow-ups
 
-1. SGLang with `--attention-backend flashinfer` and a larger `--cuda-graph-max-bs`, to see whether the gap is configuration.
-2. Record GPU clocks and temperature and repeat on a second day.
-3. Run the zero-shot prompt on the trace images to separate the prompt-context effect on accuracy.
+1. **In progress, no results yet:** SGLang with `--attention-backend flashinfer` and CUDA graphs up to batch size 32 (and a control
+   that changes only the graph size), plus a vLLM rerun that records GPU clock, temperature and power. The tooling for this is
+   committed (`scripts/wsl/run_followup1.sh`); the results will be added here, whatever they show.
+2. Not started: repeat on a second day.
+3. Not started: run the zero-shot prompt on the trace images to separate the prompt-context effect on accuracy.
 
 ## Rules this folder follows
 
