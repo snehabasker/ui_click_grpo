@@ -118,6 +118,10 @@ def engine_table(raw: Path) -> str:
         import re as _re
         m = _re.search(r"--attention-backend\s+(\w+)", d.get("server_cmd", ""))
         backend = d.get("attention_backend") or (f"{m.group(1)} (set by flag)" if m else "–")
+        if not d.get("started"):   # a launch that never came up: say so, and do not print sizes the server never reached
+            rows.append(f"| {d['label']} | {eng} | – | {backend} | **FAILED to start** after {d.get('startup_s', 0):.0f} s "
+                        f"(cause in NOTES.md) | – | – |")
+            continue
         rows.append(f"| {d['label']} | {eng} {v.get(eng, '?')} | torch {v.get('torch', '?')} | {backend} | "
                     f"{d.get('startup_s', 0):.0f} s | {kv if kv else '–'} | {d.get('gpu_mem_loaded_mib', '–')} MiB |")
     return NL.join(["| run | engine | PyTorch | attention backend (log) | startup | KV cache (tokens) | GPU memory after load |",
