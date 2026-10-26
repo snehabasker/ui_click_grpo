@@ -1,0 +1,1584 @@
+{
+ "kind": "accuracy",
+ "tag": "vllm-prefix-on",
+ "set": "synth300",
+ "backend": "openai",
+ "model": "merged-clean",
+ "adapter": null,
+ "env": {
+  "date": "2026-10-26T12:58:14+01:00",
+  "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.12.15",
+  "command": "~/work/ui_click_grpo/serving/scripts/accuracy_check.py --backend openai --base-url http://127.0.0.1:8000 --model merged-clean --set synth300 --tag vllm-prefix-on --concurrency 4 --model-dir ~/work/ui_click_grpo/serving/models/merged-clean",
+  "gpu": {
+   "gpus": [
+    {
+     "name": "NVIDIA GeForce RTX 5050 Laptop GPU",
+     "driver": "592.82",
+     "memory_total": "8151 MiB",
+     "compute_cap": "12.0"
+    }
+   ],
+   "driver_cuda_version": "13.1"
+  },
+  "packages": {
+   "aiohttp": "3.14.5"
+  },
+  "model_dir": "~/work/ui_click_grpo/serving/models/merged-clean",
+  "model_hash": "f4945dbb7c5b459fe0cce1b78362bff134b12a4a15108e9342c8c6b3a1d0de7f",
+  "repo_commit": "c766d69000c474a342d475c00bf2ad5e14fa29ed",
+  "args": {
+   "backend": "openai",
+   "set_name": "synth300",
+   "tag": "vllm-prefix-on",
+   "model": "merged-clean",
+   "adapter": null,
+   "base_url": "http://127.0.0.1:8000",
+   "max_pixels": 1003520,
+   "bs": 8,
+   "concurrency": 4,
+   "model_dir": "~/work/ui_click_grpo/serving/models/merged-clean"
+  },
+  "duration_s": 67.74785852432251
+ },
+ "score": {
+  "n": 300,
+  "hits": 193,
+  "acc": 0.6433333333333333,
+  "ci": [
+   0.5876287210234448,
+   0.6954134957105376
+  ],
+  "valid_format": 1.0,
+  "per_item_hit": [
+   true,
+   false,
+   false,
+   true,
+   false,
+   true,
+   true,
+   false,
+   false,
+   true,
+   true,
+   false,
+   true,
+   true,
+   true,
+   false,
+   true,
+   false,
+   false,
+   false,
+   true,
+   true,
+   false,
+   true,
+   true,
+   true,
+   true,
+   false,
+   false,
+   false,
+   true,
+   true,
+   true,
+   true,
+   false,
+   true,
+   true,
+   true,
+   true,
+   true,
+   false,
+   true,
+   false,
+   false,
+   false,
+   false,
+   true,
+   false,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   false,
+   true,
+   true,
+   false,
+   true,
+   true,
+   false,
+   true,
+   true,
+   true,
+   false,
+   true,
+   true,
+   false,
+   false,
+   false,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   false,
+   false,
+   true,
+   false,
+   true,
+   true,
+   false,
+   true,
+   true,
+   true,
+   true,
+   false,
+   true,
+   true,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   false,
+   false,
+   false,
+   false,
+   true,
+   true,
+   true,
+   false,
+   true,
+   true,
+   false,
+   false,
+   false,
+   false,
+   true,
+   true,
+   true,
+   true,
+   true,
+   false,
+   true,
+   true,
+   true,
+   false,
+   false,
+   true,
+   true,
+   false,
+   true,
+   false,
+   false,
+   true,
+   true,
+   false,
+   false,
+   true,
+   true,
+   true,
+   false,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   false,
+   false,
+   true,
+   true,
+   true,
+   false,
+   false,
+   true,
+   true,
+   true,
+   true,
+   true,
+   false,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   false,
+   false,
+   true,
+   true,
+   false,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   false,
+   true,
+   true,
+   true,
+   false,
+   true,
+   false,
+   false,
+   true,
+   false,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   false,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   false,
+   true,
+   true,
+   false,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   false,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   false,
+   true,
+   true,
+   true,
+   false,
+   true,
+   false,
+   true,
+   true,
+   false,
+   true,
+   true,
+   true,
+   false,
+   true,
+   true,
+   true,
+   true,
+   true,
+   false,
+   false,
+   true,
+   true,
+   true,
+   false,
+   true,
+   true,
+   true,
+   false,
+   true,
+   true,
+   false,
+   true,
+   false,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   false,
+   false,
+   false,
+   false,
+   true,
+   true,
+   false,
+   true,
+   false,
+   false,
+   true,
+   true,
+   true,
+   true,
+   false,
+   true,
+   true,
+   true,
+   false,
+   false,
+   true,
+   true,
+   true,
+   true,
+   false,
+   true,
+   true,
+   true,
+   false
+  ],
+  "by_kind": {
+   "button": {
+    "n": 91,
+    "acc": 0.9010989010989011
+   },
+   "checkbox": {
+    "n": 43,
+    "acc": 0.06976744186046512
+   },
+   "icon": {
+    "n": 57,
+    "acc": 0.5964912280701754
+   },
+   "input": {
+    "n": 35,
+    "acc": 0.8571428571428571
+   },
+   "link": {
+    "n": 35,
+    "acc": 0.7142857142857143
+   },
+   "tab": {
+    "n": 39,
+    "acc": 0.48717948717948717
+   }
+  }
+ },
+ "predictions": [
+  {
+   "id": "synth-0000",
+   "text": "(535,574)"
+  },
+  {
+   "id": "synth-0001",
+   "text": "(107, 379)"
+  },
+  {
+   "id": "synth-0002",
+   "text": "(204, 339)"
+  },
+  {
+   "id": "synth-0003",
+   "text": "(722,219)"
+  },
+  {
+   "id": "synth-0004",
+   "text": "(679, 812)"
+  },
+  {
+   "id": "synth-0005",
+   "text": "(257,178)"
+  },
+  {
+   "id": "synth-0006",
+   "text": "(636, 426)"
+  },
+  {
+   "id": "synth-0007",
+   "text": "(187, 168)"
+  },
+  {
+   "id": "synth-0008",
+   "text": "(559, 556)"
+  },
+  {
+   "id": "synth-0009",
+   "text": "(452, 270)"
+  },
+  {
+   "id": "synth-0010",
+   "text": "(342,534)"
+  },
+  {
+   "id": "synth-0011",
+   "text": "(564, 269)"
+  },
+  {
+   "id": "synth-0012",
+   "text": "(199,369)"
+  },
+  {
+   "id": "synth-0013",
+   "text": "(352,452)"
+  },
+  {
+   "id": "synth-0014",
+   "text": "(141,431)"
+  },
+  {
+   "id": "synth-0015",
+   "text": "(228, 214)"
+  },
+  {
+   "id": "synth-0016",
+   "text": "(911,432)"
+  },
+  {
+   "id": "synth-0017",
+   "text": "(475, 371)"
+  },
+  {
+   "id": "synth-0018",
+   "text": "(715, 679)"
+  },
+  {
+   "id": "synth-0019",
+   "text": "(585, 189)"
+  },
+  {
+   "id": "synth-0020",
+   "text": "(214,247)"
+  },
+  {
+   "id": "synth-0021",
+   "text": "(296,590)"
+  },
+  {
+   "id": "synth-0022",
+   "text": "(636, 271)"
+  },
+  {
+   "id": "synth-0023",
+   "text": "(814, 415)"
+  },
+  {
+   "id": "synth-0024",
+   "text": "(189,270)"
+  },
+  {
+   "id": "synth-0025",
+   "text": "(205,189)"
+  },
+  {
+   "id": "synth-0026",
+   "text": "(369,322)"
+  },
+  {
+   "id": "synth-0027",
+   "text": "(392, 395)"
+  },
+  {
+   "id": "synth-0028",
+   "text": "(111, 534)"
+  },
+  {
+   "id": "synth-0029",
+   "text": "(665, 281)"
+  },
+  {
+   "id": "synth-0030",
+   "text": "(619,572)"
+  },
+  {
+   "id": "synth-0031",
+   "text": "(649, 773)"
+  },
+  {
+   "id": "synth-0032",
+   "text": "(111, 365)"
+  },
+  {
+   "id": "synth-0033",
+   "text": "(319,642)"
+  },
+  {
+   "id": "synth-0034",
+   "text": "(459, 168)"
+  },
+  {
+   "id": "synth-0035",
+   "text": "(250,432)"
+  },
+  {
+   "id": "synth-0036",
+   "text": "(626, 269)"
+  },
+  {
+   "id": "synth-0037",
+   "text": "(127, 309)"
+  },
+  {
+   "id": "synth-0038",
+   "text": "(422,332)"
+  },
+  {
+   "id": "synth-0039",
+   "text": "(352, 591)"
+  },
+  {
+   "id": "synth-0040",
+   "text": "(915, 475)"
+  },
+  {
+   "id": "synth-0041",
+   "text": "(189,503)"
+  },
+  {
+   "id": "synth-0042",
+   "text": "(199, 622)"
+  },
+  {
+   "id": "synth-0043",
+   "text": "(714, 452)"
+  },
+  {
+   "id": "synth-0044",
+   "text": "(502, 362)"
+  },
+  {
+   "id": "synth-0045",
+   "text": "(515, 277)"
+  },
+  {
+   "id": "synth-0046",
+   "text": "(372, 257)"
+  },
+  {
+   "id": "synth-0047",
+   "text": "(499,514)"
+  },
+  {
+   "id": "synth-0048",
+   "text": "(362, 302)"
+  },
+  {
+   "id": "synth-0049",
+   "text": "(286,534)"
+  },
+  {
+   "id": "synth-0050",
+   "text": "(499, 351)"
+  },
+  {
+   "id": "synth-0051",
+   "text": "(665, 492)"
+  },
+  {
+   "id": "synth-0052",
+   "text": "(599, 482)"
+  },
+  {
+   "id": "synth-0053",
+   "text": "(269,422)"
+  },
+  {
+   "id": "synth-0054",
+   "text": "(710, 302)"
+  },
+  {
+   "id": "synth-0055",
+   "text": "(699, 626)"
+  },
+  {
+   "id": "synth-0056",
+   "text": "(649,322)"
+  },
+  {
+   "id": "synth-0057",
+   "text": "(169,395)"
+  },
+  {
+   "id": "synth-0058",
+   "text": "(499,764)"
+  },
+  {
+   "id": "synth-0059",
+   "text": "(659, 411)"
+  },
+  {
+   "id": "synth-0060",
+   "text": "(665,395)"
+  },
+  {
+   "id": "synth-0061",
+   "text": "(802, 538)"
+  },
+  {
+   "id": "synth-0062",
+   "text": "(812, 702)"
+  },
+  {
+   "id": "synth-0063",
+   "text": "(199, 594)"
+  },
+  {
+   "id": "synth-0064",
+   "text": "(296,439)"
+  },
+  {
+   "id": "synth-0065",
+   "text": "(507, 306)"
+  },
+  {
+   "id": "synth-0066",
+   "text": "(107, 179)"
+  },
+  {
+   "id": "synth-0067",
+   "text": "(609,456)"
+  },
+  {
+   "id": "synth-0068",
+   "text": "(915,675)"
+  },
+  {
+   "id": "synth-0069",
+   "text": "(189, 515)"
+  },
+  {
+   "id": "synth-0070",
+   "text": "(344,223)"
+  },
+  {
+   "id": "synth-0071",
+   "text": "(902, 223)"
+  },
+  {
+   "id": "synth-0072",
+   "text": "(109,609)"
+  },
+  {
+   "id": "synth-0073",
+   "text": "(499, 324)"
+  },
+  {
+   "id": "synth-0074",
+   "text": "(127, 247)"
+  },
+  {
+   "id": "synth-0075",
+   "text": "(242,247)"
+  },
+  {
+   "id": "synth-0076",
+   "text": "(95, 269)"
+  },
+  {
+   "id": "synth-0077",
+   "text": "(164, 224)"
+  },
+  {
+   "id": "synth-0078",
+   "text": "(842,526)"
+  },
+  {
+   "id": "synth-0079",
+   "text": "(386,342)"
+  },
+  {
+   "id": "synth-0080",
+   "text": "(299, 324)"
+  },
+  {
+   "id": "synth-0081",
+   "text": "(649,426)"
+  },
+  {
+   "id": "synth-0082",
+   "text": "(465, 564)"
+  },
+  {
+   "id": "synth-0083",
+   "text": "(156, 223)"
+  },
+  {
+   "id": "synth-0084",
+   "text": "(214,402)"
+  },
+  {
+   "id": "synth-0085",
+   "text": "(519, 270)"
+  },
+  {
+   "id": "synth-0086",
+   "text": "(874, 278)"
+  },
+  {
+   "id": "synth-0087",
+   "text": "(130,281)"
+  },
+  {
+   "id": "synth-0088",
+   "text": "(786,342)"
+  },
+  {
+   "id": "synth-0089",
+   "text": "(906, 828)"
+  },
+  {
+   "id": "synth-0090",
+   "text": "(391,586)"
+  },
+  {
+   "id": "synth-0091",
+   "text": "(199, 168)"
+  },
+  {
+   "id": "synth-0092",
+   "text": "(910,619)"
+  },
+  {
+   "id": "synth-0093",
+   "text": "(834, 247)"
+  },
+  {
+   "id": "synth-0094",
+   "text": "(259,292)"
+  },
+  {
+   "id": "synth-0095",
+   "text": "(468,311)"
+  },
+  {
+   "id": "synth-0096",
+   "text": "(790,369)"
+  },
+  {
+   "id": "synth-0097",
+   "text": "(344, 179)"
+  },
+  {
+   "id": "synth-0098",
+   "text": "(259,654)"
+  },
+  {
+   "id": "synth-0099",
+   "text": "(156, 219)"
+  },
+  {
+   "id": "synth-0100",
+   "text": "(208,186)"
+  },
+  {
+   "id": "synth-0101",
+   "text": "(564, 642)"
+  },
+  {
+   "id": "synth-0102",
+   "text": "(111, 217)"
+  },
+  {
+   "id": "synth-0103",
+   "text": "(409,631)"
+  },
+  {
+   "id": "synth-0104",
+   "text": "(824,324)"
+  },
+  {
+   "id": "synth-0105",
+   "text": "(622, 414)"
+  },
+  {
+   "id": "synth-0106",
+   "text": "(665, 332)"
+  },
+  {
+   "id": "synth-0107",
+   "text": "(109,526)"
+  },
+  {
+   "id": "synth-0108",
+   "text": "(111, 564)"
+  },
+  {
+   "id": "synth-0109",
+   "text": "(499, 564)"
+  },
+  {
+   "id": "synth-0110",
+   "text": "(125, 415)"
+  },
+  {
+   "id": "synth-0111",
+   "text": "(646,342)"
+  },
+  {
+   "id": "synth-0112",
+   "text": "(214,389)"
+  },
+  {
+   "id": "synth-0113",
+   "text": "(402, 631)"
+  },
+  {
+   "id": "synth-0114",
+   "text": "(564,329)"
+  },
+  {
+   "id": "synth-0115",
+   "text": "(822, 524)"
+  },
+  {
+   "id": "synth-0116",
+   "text": "(886,351)"
+  },
+  {
+   "id": "synth-0117",
+   "text": "(626,426)"
+  },
+  {
+   "id": "synth-0118",
+   "text": "(710, 281)"
+  },
+  {
+   "id": "synth-0119",
+   "text": "(814,702)"
+  },
+  {
+   "id": "synth-0120",
+   "text": "(689,444)"
+  },
+  {
+   "id": "synth-0121",
+   "text": "(702, 432)"
+  },
+  {
+   "id": "synth-0122",
+   "text": "(339, 398)"
+  },
+  {
+   "id": "synth-0123",
+   "text": "(499,375)"
+  },
+  {
+   "id": "synth-0124",
+   "text": "(574, 332)"
+  },
+  {
+   "id": "synth-0125",
+   "text": "(499, 257)"
+  },
+  {
+   "id": "synth-0126",
+   "text": "(469, 332)"
+  },
+  {
+   "id": "synth-0127",
+   "text": "(790, 270)"
+  },
+  {
+   "id": "synth-0128",
+   "text": "(912,369)"
+  },
+  {
+   "id": "synth-0129",
+   "text": "(522, 802)"
+  },
+  {
+   "id": "synth-0130",
+   "text": "(242, 365)"
+  },
+  {
+   "id": "synth-0131",
+   "text": "(454, 414)"
+  },
+  {
+   "id": "synth-0132",
+   "text": "(107, 223)"
+  },
+  {
+   "id": "synth-0133",
+   "text": "(499,414)"
+  },
+  {
+   "id": "synth-0134",
+   "text": "(372,680)"
+  },
+  {
+   "id": "synth-0135",
+   "text": "(612,584)"
+  },
+  {
+   "id": "synth-0136",
+   "text": "(339, 456)"
+  },
+  {
+   "id": "synth-0137",
+   "text": "(646, 534)"
+  },
+  {
+   "id": "synth-0138",
+   "text": "(272, 369)"
+  },
+  {
+   "id": "synth-0139",
+   "text": "(414,712)"
+  },
+  {
+   "id": "synth-0140",
+   "text": "(156, 189)"
+  },
+  {
+   "id": "synth-0141",
+   "text": "(209, 609)"
+  },
+  {
+   "id": "synth-0142",
+   "text": "(912, 270)"
+  },
+  {
+   "id": "synth-0143",
+   "text": "(683,482)"
+  },
+  {
+   "id": "synth-0144",
+   "text": "(90,306)"
+  },
+  {
+   "id": "synth-0145",
+   "text": "(229,250)"
+  },
+  {
+   "id": "synth-0146",
+   "text": "(417, 257)"
+  },
+  {
+   "id": "synth-0147",
+   "text": "(804, 332)"
+  },
+  {
+   "id": "synth-0148",
+   "text": "(874, 281)"
+  },
+  {
+   "id": "synth-0149",
+   "text": "(665,546)"
+  },
+  {
+   "id": "synth-0150",
+   "text": "(814, 269)"
+  },
+  {
+   "id": "synth-0151",
+   "text": "(259,689)"
+  },
+  {
+   "id": "synth-0152",
+   "text": "(575,250)"
+  },
+  {
+   "id": "synth-0153",
+   "text": "(719, 414)"
+  },
+  {
+   "id": "synth-0154",
+   "text": "(411, 574)"
+  },
+  {
+   "id": "synth-0155",
+   "text": "(121, 311)"
+  },
+  {
+   "id": "synth-0156",
+   "text": "(100,342)"
+  },
+  {
+   "id": "synth-0157",
+   "text": "(125, 302)"
+  },
+  {
+   "id": "synth-0158",
+   "text": "(755,324)"
+  },
+  {
+   "id": "synth-0159",
+   "text": "(398, 332)"
+  },
+  {
+   "id": "synth-0160",
+   "text": "(702,414)"
+  },
+  {
+   "id": "synth-0161",
+   "text": "(311,622)"
+  },
+  {
+   "id": "synth-0162",
+   "text": "(719,514)"
+  },
+  {
+   "id": "synth-0163",
+   "text": "(712,659)"
+  },
+  {
+   "id": "synth-0164",
+   "text": "(422,544)"
+  },
+  {
+   "id": "synth-0165",
+   "text": "(402, 382)"
+  },
+  {
+   "id": "synth-0166",
+   "text": "(689,582)"
+  },
+  {
+   "id": "synth-0167",
+   "text": "(109, 515)"
+  },
+  {
+   "id": "synth-0168",
+   "text": "(834, 268)"
+  },
+  {
+   "id": "synth-0169",
+   "text": "(670,369)"
+  },
+  {
+   "id": "synth-0170",
+   "text": "(199, 257)"
+  },
+  {
+   "id": "synth-0171",
+   "text": "(429, 189)"
+  },
+  {
+   "id": "synth-0172",
+   "text": "(609, 229)"
+  },
+  {
+   "id": "synth-0173",
+   "text": "(391,612)"
+  },
+  {
+   "id": "synth-0174",
+   "text": "(699, 564)"
+  },
+  {
+   "id": "synth-0175",
+   "text": "(906, 685)"
+  },
+  {
+   "id": "synth-0176",
+   "text": "(311,656)"
+  },
+  {
+   "id": "synth-0177",
+   "text": "(922,379)"
+  },
+  {
+   "id": "synth-0178",
+   "text": "(422, 311)"
+  },
+  {
+   "id": "synth-0179",
+   "text": "(712, 322)"
+  },
+  {
+   "id": "synth-0180",
+   "text": "(842, 387)"
+  },
+  {
+   "id": "synth-0181",
+   "text": "(511,773)"
+  },
+  {
+   "id": "synth-0182",
+   "text": "(499,460)"
+  },
+  {
+   "id": "synth-0183",
+   "text": "(183, 281)"
+  },
+  {
+   "id": "synth-0184",
+   "text": "(121,290)"
+  },
+  {
+   "id": "synth-0185",
+   "text": "(612, 622)"
+  },
+  {
+   "id": "synth-0186",
+   "text": "(399, 306)"
+  },
+  {
+   "id": "synth-0187",
+   "text": "(699,538)"
+  },
+  {
+   "id": "synth-0188",
+   "text": "(127, 178)"
+  },
+  {
+   "id": "synth-0189",
+   "text": "(185, 239)"
+  },
+  {
+   "id": "synth-0190",
+   "text": "(706, 582)"
+  },
+  {
+   "id": "synth-0191",
+   "text": "(575, 469)"
+  },
+  {
+   "id": "synth-0192",
+   "text": "(131,612)"
+  },
+  {
+   "id": "synth-0193",
+   "text": "(489,564)"
+  },
+  {
+   "id": "synth-0194",
+   "text": "(468, 342)"
+  },
+  {
+   "id": "synth-0195",
+   "text": "(715, 546)"
+  },
+  {
+   "id": "synth-0196",
+   "text": "(689, 414)"
+  },
+  {
+   "id": "synth-0197",
+   "text": "(429,369)"
+  },
+  {
+   "id": "synth-0198",
+   "text": "(154,306)"
+  },
+  {
+   "id": "synth-0199",
+   "text": "(499,773)"
+  },
+  {
+   "id": "synth-0200",
+   "text": "(626,382)"
+  },
+  {
+   "id": "synth-0201",
+   "text": "(382, 586)"
+  },
+  {
+   "id": "synth-0202",
+   "text": "(269,311)"
+  },
+  {
+   "id": "synth-0203",
+   "text": "(386, 534)"
+  },
+  {
+   "id": "synth-0204",
+   "text": "(612, 311)"
+  },
+  {
+   "id": "synth-0205",
+   "text": "(389,342)"
+  },
+  {
+   "id": "synth-0206",
+   "text": "(918, 247)"
+  },
+  {
+   "id": "synth-0207",
+   "text": "(250, 311)"
+  },
+  {
+   "id": "synth-0208",
+   "text": "(679, 311)"
+  },
+  {
+   "id": "synth-0209",
+   "text": "(699, 746)"
+  },
+  {
+   "id": "synth-0210",
+   "text": "(524,387)"
+  },
+  {
+   "id": "synth-0211",
+   "text": "(85,311)"
+  },
+  {
+   "id": "synth-0212",
+   "text": "(449,526)"
+  },
+  {
+   "id": "synth-0213",
+   "text": "(199,586)"
+  },
+  {
+   "id": "synth-0214",
+   "text": "(489, 594)"
+  },
+  {
+   "id": "synth-0215",
+   "text": "(183,342)"
+  },
+  {
+   "id": "synth-0216",
+   "text": "(429,223)"
+  },
+  {
+   "id": "synth-0217",
+   "text": "(441, 402)"
+  },
+  {
+   "id": "synth-0218",
+   "text": "(928,342)"
+  },
+  {
+   "id": "synth-0219",
+   "text": "(876, 485)"
+  },
+  {
+   "id": "synth-0220",
+   "text": "(939,311)"
+  },
+  {
+   "id": "synth-0221",
+   "text": "(834, 195)"
+  },
+  {
+   "id": "synth-0222",
+   "text": "(719,655)"
+  },
+  {
+   "id": "synth-0223",
+   "text": "(127, 257)"
+  },
+  {
+   "id": "synth-0224",
+   "text": "(539,414)"
+  },
+  {
+   "id": "synth-0225",
+   "text": "(414,432)"
+  },
+  {
+   "id": "synth-0226",
+   "text": "(499, 219)"
+  },
+  {
+   "id": "synth-0227",
+   "text": "(238,492)"
+  },
+  {
+   "id": "synth-0228",
+   "text": "(465,342)"
+  },
+  {
+   "id": "synth-0229",
+   "text": "(386, 257)"
+  },
+  {
+   "id": "synth-0230",
+   "text": "(127, 257)"
+  },
+  {
+   "id": "synth-0231",
+   "text": "(619, 178)"
+  },
+  {
+   "id": "synth-0232",
+   "text": "(622, 369)"
+  },
+  {
+   "id": "synth-0233",
+   "text": "(706, 219)"
+  },
+  {
+   "id": "synth-0234",
+   "text": "(499, 268)"
+  },
+  {
+   "id": "synth-0235",
+   "text": "(665, 600)"
+  },
+  {
+   "id": "synth-0236",
+   "text": "(439,306)"
+  },
+  {
+   "id": "synth-0237",
+   "text": "(146,372)"
+  },
+  {
+   "id": "synth-0238",
+   "text": "(293, 570)"
+  },
+  {
+   "id": "synth-0239",
+   "text": "(109, 322)"
+  },
+  {
+   "id": "synth-0240",
+   "text": "(747, 229)"
+  },
+  {
+   "id": "synth-0241",
+   "text": "(411,544)"
+  },
+  {
+   "id": "synth-0242",
+   "text": "(219,339)"
+  },
+  {
+   "id": "synth-0243",
+   "text": "(97, 281)"
+  },
+  {
+   "id": "synth-0244",
+   "text": "(619, 396)"
+  },
+  {
+   "id": "synth-0245",
+   "text": "(876,351)"
+  },
+  {
+   "id": "synth-0246",
+   "text": "(199,689)"
+  },
+  {
+   "id": "synth-0247",
+   "text": "(689,534)"
+  },
+  {
+   "id": "synth-0248",
+   "text": "(286,426)"
+  },
+  {
+   "id": "synth-0249",
+   "text": "(876, 351)"
+  },
+  {
+   "id": "synth-0250",
+   "text": "(299, 398)"
+  },
+  {
+   "id": "synth-0251",
+   "text": "(509, 322)"
+  },
+  {
+   "id": "synth-0252",
+   "text": "(156,439)"
+  },
+  {
+   "id": "synth-0253",
+   "text": "(545, 322)"
+  },
+  {
+   "id": "synth-0254",
+   "text": "(755, 564)"
+  },
+  {
+   "id": "synth-0255",
+   "text": "(115, 773)"
+  },
+  {
+   "id": "synth-0256",
+   "text": "(199,414)"
+  },
+  {
+   "id": "synth-0257",
+   "text": "(912, 239)"
+  },
+  {
+   "id": "synth-0258",
+   "text": "(699, 426)"
+  },
+  {
+   "id": "synth-0259",
+   "text": "(774, 281)"
+  },
+  {
+   "id": "synth-0260",
+   "text": "(928,351)"
+  },
+  {
+   "id": "synth-0261",
+   "text": "(733, 600)"
+  },
+  {
+   "id": "synth-0262",
+   "text": "(296, 511)"
+  },
+  {
+   "id": "synth-0263",
+   "text": "(183,311)"
+  },
+  {
+   "id": "synth-0264",
+   "text": "(127, 295)"
+  },
+  {
+   "id": "synth-0265",
+   "text": "(589, 311)"
+  },
+  {
+   "id": "synth-0266",
+   "text": "(228,432)"
+  },
+  {
+   "id": "synth-0267",
+   "text": "(127,250)"
+  },
+  {
+   "id": "synth-0268",
+   "text": "(474, 224)"
+  },
+  {
+   "id": "synth-0269",
+   "text": "(299,426)"
+  },
+  {
+   "id": "synth-0270",
+   "text": "(689, 239)"
+  },
+  {
+   "id": "synth-0271",
+   "text": "(755, 306)"
+  },
+  {
+   "id": "synth-0272",
+   "text": "(519, 402)"
+  },
+  {
+   "id": "synth-0273",
+   "text": "(582,281)"
+  },
+  {
+   "id": "synth-0274",
+   "text": "(599, 369)"
+  },
+  {
+   "id": "synth-0275",
+   "text": "(411, 281)"
+  },
+  {
+   "id": "synth-0276",
+   "text": "(107, 179)"
+  },
+  {
+   "id": "synth-0277",
+   "text": "(509,426)"
+  },
+  {
+   "id": "synth-0278",
+   "text": "(699, 332)"
+  },
+  {
+   "id": "synth-0279",
+   "text": "(392, 311)"
+  },
+  {
+   "id": "synth-0280",
+   "text": "(599, 773)"
+  },
+  {
+   "id": "synth-0281",
+   "text": "(131,414)"
+  },
+  {
+   "id": "synth-0282",
+   "text": "(259, 298)"
+  },
+  {
+   "id": "synth-0283",
+   "text": "(886, 271)"
+  },
+  {
+   "id": "synth-0284",
+   "text": "(836,387)"
+  },
+  {
+   "id": "synth-0285",
+   "text": "(522,211)"
+  },
+  {
+   "id": "synth-0286",
+   "text": "(398,465)"
+  },
+  {
+   "id": "synth-0287",
+   "text": "(224, 179)"
+  },
+  {
+   "id": "synth-0288",
+   "text": "(243, 223)"
+  },
+  {
+   "id": "synth-0289",
+   "text": "(228, 281)"
+  },
+  {
+   "id": "synth-0290",
+   "text": "(231,395)"
+  },
+  {
+   "id": "synth-0291",
+   "text": "(169, 436)"
+  },
+  {
+   "id": "synth-0292",
+   "text": "(306,514)"
+  },
+  {
+   "id": "synth-0293",
+   "text": "(258,324)"
+  },
+  {
+   "id": "synth-0294",
+   "text": "(489,555)"
+  },
+  {
+   "id": "synth-0295",
+   "text": "(119, 899)"
+  },
+  {
+   "id": "synth-0296",
+   "text": "(306, 277)"
+  },
+  {
+   "id": "synth-0297",
+   "text": "(296,599)"
+  },
+  {
+   "id": "synth-0298",
+   "text": "(524, 503)"
+  },
+  {
+   "id": "synth-0299",
+   "text": "(564,219)"
+  }
+ ]
+}

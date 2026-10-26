@@ -1,0 +1,73 @@
+{
+ "kind": "server_facts",
+ "date": "2026-10-26T16:40:50",
+ "note": "extracted from engine server logs of the Phase 1 runs; logs themselves are not committed",
+ "sglang-prefix-on": {
+  "log": "sglang-prefix-on-20261026-132730.log",
+  "decode_cuda_graph_batch_sizes": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "kv_pool_tokens": 50728,
+  "chunked_prefill_size": 2048,
+  "max_prefill_tokens": 16384,
+  "max_token_usage": 0.75,
+  "decode_batches_logged": {
+   "running_le_8": {
+    "n": 273,
+    "cuda_graph_true": 273
+   },
+   "running_gt_8": {
+    "n": 45,
+    "cuda_graph_true": 0
+   }
+  },
+  "prefill_batches": {
+   "total": 2717,
+   "with_ge_1000_cached_tokens": 2068
+  }
+ },
+ "sglang-prefix-off": {
+  "log": "sglang-prefix-off-20261026-153428.log",
+  "decode_cuda_graph_batch_sizes": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "kv_pool_tokens": 50728,
+  "chunked_prefill_size": 2048,
+  "max_prefill_tokens": 16384,
+  "max_token_usage": 0.99,
+  "decode_batches_logged": {
+   "running_le_8": {
+    "n": 255,
+    "cuda_graph_true": 255
+   },
+   "running_gt_8": {
+    "n": 45,
+    "cuda_graph_true": 0
+   }
+  },
+  "prefill_batches": {
+   "total": 4691,
+   "with_ge_1000_cached_tokens": 0
+  }
+ },
+ "vllm-prefix-on": {
+  "log": "vllm-prefix-on-20261026-125601.log",
+  "kv_cache_tokens": 57168,
+  "attention_backend": "FLASH_ATTN",
+  "preemption_lines": 0,
+  "cuda_graph_capture_s": 2
+ },
+ "vllm-prefix-off": {
+  "log": "vllm-prefix-off-20261026-143543.log",
+  "kv_cache_tokens": 57168,
+  "attention_backend": "FLASH_ATTN",
+  "preemption_lines": 0,
+  "cuda_graph_capture_s": 3
+ }
+}
