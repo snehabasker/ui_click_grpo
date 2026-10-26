@@ -27,6 +27,24 @@ RL-trained model. Caveat: the 24-token output cap truncated many of its chatty a
 the parseable ones it was right 16% of the time (clean RL model: 54%). So re-prompting alone does not recover the gain, but this
 control was handicapped by the cap and a better prompt could close some of the gap.
 
+## Extension: serving the trained policy (`serving/`)
+
+The `serving/` folder serves the merged LoRA policy and measures what each serving technique buys, with raw logs and a click-accuracy
+check after every change. Tables, setup, dead ends and caveats are in [serving/README.md](serving/README.md); nothing there changes the
+training code or the results above.
+
+* **The merged checkpoint was verified** against the adapter model under pass criteria fixed in advance: 63.33% vs 63.33% (synthetic,
+  n = 300) and 53.25% vs 53.75% (ScreenSpot subset, n = 400).
+* **vLLM vs SGLang** on one RTX 5050 laptop GPU (8 GB, Blackwell) under WSL2: 69 load-test runs, 3 repeats per cell, 0 request errors,
+  and click accuracy within 1 point of the reference in all six engine configurations.
+* **Prefix caching** roughly doubled vLLM's throughput (1.95-2.41x across concurrency levels); for SGLang it helped only at low concurrency.
+* **vLLM reached about 2.5-3x SGLang's throughput at 16 concurrent clients** (3.52 vs 1.40 req/s in the same session; 3.52 vs 1.15 against
+  SGLang's FlashInfer follow-up, a later session). SGLang with FlashInfer attention and larger CUDA graphs did not close the gap.
+  Caveats: the engines are not identically configured, it is one GPU, a rerun of one vLLM cell came out 13% lower than the first
+  measurement, and the GPU's power state was not controlled, so this is not a general claim about the engines.
+* **Planned, not started:** a prefix-aware request router in Rust, a fused RMSNorm + INT8 Triton kernel, prefill/decode
+  disaggregation, and TensorRT-LLM.
+
 ## Setup
 
 * **Task.** Given a screenshot and an instruction ("Click the *Save* button.") answer `(x, y)` in 0-1000 normalised image
@@ -191,4 +209,5 @@ uiclick/synth.py      UI generator + planted cues + held-out styles      uiclick
 uiclick/grpo.py       GRPO trainer (shared-prompt KV cache)              uiclick/evaluate.py   scoring, probes, baselines
 scripts/              train / eval / eval_screenspot / analyze_failures / check_convention / report
 results/              eval jsons, figures, results.md, failures.md       NOTES.md              dead ends and fixes
+serving/              extension: merged checkpoint, traces, load client, vLLM vs SGLang benchmark (see serving/README.md)
 ```
