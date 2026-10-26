@@ -70,7 +70,7 @@ for rep in range(1, a.repeats + 1):
                      "meta": json.loads((trace_dir / "trace_meta.json").read_text())},
            "env": envinfo.capture(a.model_dir, {"args": vars(a)}), **res}
     name = f"{'MOCK_' if a.mock else ''}loadtest_{a.tag}_c{a.concurrency}_r{rep}_{time.strftime('%Y%m%d-%H%M%S')}.json"
-    (out_dir / name).write_text(json.dumps(rec, indent=1))
+    (out_dir / name).write_text(envinfo.dumps_scrubbed(rec, indent=1))
     s = res["summary"]
     print(f"[{a.tag} c={a.concurrency} r{rep}] ok={s['ok']}/{s['requests']} ttft p50={s['ttft']['p50']} e2e p50={s['e2e']['p50']} "
           f"req/s={s['req_per_s']:.2f} acc={s.get('trace_click_accuracy', {}).get('acc')} -> {name}")

@@ -1,0 +1,26 @@
+#!/bin/bash
+# Serve the merged checkpoint with SGLang (OpenAI-compatible API on 127.0.0.1).
+#   env: PORT (8000)  PREFIX_CACHING (1|0)  GPU_UTIL (0.85)  MAX_SEQS (32)  MAX_LEN (4096)  EXTRA (additional flags)
+# Matched with serve_vllm.sh: model, dtype, context length, max concurrent sequences, image pixel budget, greedy requests,
+# prefix cache on/off (RadixAttention vs automatic prefix caching), cached-token reporting.
+# NOT identical, and recorded as such: attention/sampling kernels (each engine's nvcc-free choice), memory-fraction semantics
+# (SGLang's covers weights + KV pool; vLLM's the whole budget incl. CUDA-graph memory), so the resulting KV capacity differs.
+M="${MODEL_DIR:-$HOME/work/ui_click_grpo/serving/models/merged-clean}"
+command -v gcc >/dev/null || export PATH="$HOME/toolchain/bin:$PATH"
+export CC="${CC:-gcc}"
+# SGLang's deep_gemm asserts a CUDA home exists at import on sm_120, and its JIT paths need nvcc: use the user-space toolkit from
+# 06_install_cuda_toolkit.sh (13.2, the CUDA the SGLang torch wheel was built with) and its bundled host compiler.
+export CUDA_HOME="$HOME/cuda132"
+export PATH="$CUDA_HOME/bin:$PATH"
+export NVCC_PREPEND_FLAGS="-ccbin $CUDA_HOME/bin/x86_64-conda-linux-gnu-g++"
+PC=""
+[ "${PREFIX_CACHING:-1}" = "0" ] && PC="--disable-radix-cache"
+set -x
+exec "$HOME/venvs/sglang/bin/python" -m sglang.launch_server \
+  --model-path "$M" --served-model-name merged-clean --dtype bfloat16 \
+  --context-length "${MAX_LEN:-4096}" --max-running-requests "${MAX_SEQS:-32}" \
+  --mem-fraction-static "${GPU_UTIL:-0.85}" \
+  --attention-backend triton --sampling-backend pytorch --mm-attention-backend sdpa \
+  --mm-process-config '{"image":{"max_pixels":1003520}}' \
+  --enable-cache-report --enable-metrics $PC \
+  --host 127.0.0.1 --port "${PORT:-8000}" ${EXTRA:-}

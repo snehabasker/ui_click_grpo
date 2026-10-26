@@ -78,6 +78,20 @@ def repo_commit(repo: str | Path | None = None) -> str | None:
     return _run(cmd) or None
 
 
+def scrub(text: str) -> str:
+    """Replace the user's home directory with ~ so raw results do not embed a local username or path."""
+    home = str(Path.home())
+    # three spellings of the same path: native, forward slashes, and JSON-escaped backslashes (C:\\Users\\...)
+    for variant in (home.replace("\\", "\\\\"), home, home.replace("\\", "/")):
+        text = text.replace(variant, "~")
+    return text
+
+
+def dumps_scrubbed(obj, **kw) -> str:
+    import json
+    return scrub(json.dumps(obj, **kw))
+
+
 def capture(model_dir: str | Path | None = None, extra: dict | None = None) -> dict:
     """GPU, driver, CUDA, package versions, model hash, command line, date. ``extra`` carries seed, concurrency, etc."""
     return {

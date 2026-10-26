@@ -38,7 +38,11 @@ ap.add_argument("--prefix-caching", type=int, choices=[0, 1], default=1)
 ap.add_argument("--concurrency", type=int, nargs="+", default=[1, 4, 16, 32])
 ap.add_argument("--repeats", type=int, default=3)
 ap.add_argument("--trace", default="serving/traces/default")
-ap.add_argument("--max-sessions", type=int, default=None)
+ap.add_argument("--max-sessions", type=int, default=None, help="cap for every concurrency (overridden per level by --sessions-by-conc)")
+ap.add_argument("--sessions-by-conc", default="1:24,4:48,16:96,32:96",
+                help="sessions replayed at each concurrency, as a prefix of the SAME trace for every engine (low concurrency is "
+                     "slow: 560 serial requests per repeat would take hours)")
+ap.add_argument("--sets", nargs="+", default=["synth300", "screenspot400"], choices=["synth300", "screenspot400"])
 ap.add_argument("--port", type=int, default=8000)
 ap.add_argument("--gpu-util", type=float, default=0.85)
 ap.add_argument("--max-seqs", type=int, default=32)
@@ -141,7 +145,7 @@ try:
             flush_urls = [u for u in flush_urls if "mm_cache" in u]
         common = [PY, "-u"]
         if not a.skip_accuracy:
-            for s in ("synth300", "screenspot400"):
+            for s in a.sets:
                 subprocess.run(common + [str(ROOT / "serving/scripts/accuracy_check.py"), "--backend", "openai", "--base-url", base,
                                          "--model", "merged-clean", "--set", s, "--tag", a.label, "--concurrency", "4",
                                          "--model-dir", str(MODEL_DIR)], check=False)
@@ -153,8 +157,10 @@ try:
                                 "--server-cmd", result.get("server_cmd", "")]
                 for u in flush_urls:
                     cmd += ["--flush-url", u]
-                if a.max_sessions:
-                    cmd += ["--max-sessions", str(a.max_sessions)]
+                n_sess = dict(kv.split(":") for kv in a.sessions_by_conc.split(",")).get(str(c))
+                n_sess = int(n_sess) if n_sess else a.max_sessions
+                if n_sess:
+                    cmd += ["--max-sessions", str(n_sess)]
                 subprocess.run(cmd, check=False)
 finally:
     if proc.poll() is None:
@@ -170,5 +176,5 @@ finally:
     result["env"] = envinfo.capture(MODEL_DIR, {"engine_python": str(ENGINE_PY[a.engine])})
     RAW.mkdir(parents=True, exist_ok=True)
     out = RAW / f"engine_{a.label}_{ts}.json"
-    out.write_text(json.dumps(result, indent=1))
+    out.write_text(envinfo.dumps_scrubbed(result, indent=1))
     print(f"[{a.label}] wrote {out.name}; gpu after stop: {result['gpu_mem_after_stop_mib']} MiB", flush=True)

@@ -49,5 +49,5 @@ rec = {"kind": "accuracy", "tag": a.tag, "set": a.set_name, "backend": a.backend
        "env": envinfo.capture(model_dir, {"args": vars(a), "duration_s": time.time() - t0}), "score": sc,
        "predictions": [{"id": it.id, "text": t} for it, t in zip(items, texts)]}
 out = ROOT / "serving" / "results" / "raw" / f"accuracy_{a.tag}_{a.set_name}_{time.strftime('%Y%m%d-%H%M%S')}.json"
-out.write_text(json.dumps(rec, indent=1))
+out.write_text(envinfo.dumps_scrubbed(rec, indent=1))
 print(f"{a.tag} {a.set_name}: acc={sc['acc']:.4f} ci=({sc['ci'][0]:.3f},{sc['ci'][1]:.3f}) valid={sc['valid_format']:.3f} -> {out.name}")

@@ -61,3 +61,13 @@ def test_capture_has_required_fields(tmp_path):
         assert k in env
     assert env["seed"] == 3
     json.dumps(env)                                              # must be serialisable
+
+
+def test_scrub_removes_the_home_directory_in_every_spelling():
+    from pathlib import Path
+    home = str(Path.home())
+    obj = {"native": home + "/work/model", "fwd": home.replace("\\", "/") + "/work", "nested": [{"p": home}], "keep": "relative/path"}
+    out = envinfo.dumps_scrubbed(obj)
+    assert home not in out and home.replace("\\", "\\\\") not in out and home.replace("\\", "/") not in out
+    assert "~/work/model" in out and "relative/path" in out
+    json.loads(out)                                       # still valid JSON
