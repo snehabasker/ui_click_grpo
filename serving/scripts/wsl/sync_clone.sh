@@ -21,6 +21,8 @@ while IFS= read -r f; do
   fi
 done < <(git -C "$DST" ls-files --others --exclude-standard -- serving/results/raw)
 echo "removed $removed duplicate raw result files from the clone"
+# Generated tables (summarize.py output) are derived and rebuilt on demand; an untracked copy in the clone must not block the pull.
+git -C "$DST" ls-files --others --exclude-standard -- serving/results/tables | while IFS= read -r f; do rm -f "$DST/$f"; done
 
 if ! git -C "$DST" pull --ff-only "$WIN" main; then
   echo "SYNC_FAILED: git pull did not complete"; exit 1
