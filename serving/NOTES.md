@@ -66,3 +66,57 @@ succeeded (48/48 requests, environment record complete) and the file was deleted
 * WSL2 is **not installed** on this machine (checked: `wsl --status`). Linux phases wait for the user to install it.
 * Rust and Docker are not installed. Rust will be installed inside WSL2.
 * GPU: RTX 5050 Laptop, 8 GB, compute capability 12.0, driver 592.82, CUDA 13.1 (driver-reported).
+
+## Phase 1: getting two engines to run on a Blackwell laptop GPU
+
+Neither engine started out of the box. Each failure had one specific cause, found by reading the server log (not guessing),
+and each fix was applied once and verified by the next launch. Order matters: the bottleneck moved down the stack.
+
+**Environment (WSL2).** Ubuntu came with Python 3.14 only, no pip/venv, no compiler, and `sudo` needs a password I cannot type.
+Everything below was done without `sudo`: `uv` (user-level) for Python 3.12 venvs, `micromamba` for compilers. The minimal image
+has no `bzip2` binary, so micromamba's archive was unpacked with Python's `tarfile`. WSL gets half the host RAM (11.7 GB), which
+was enough for one engine. The Ubuntu disk was moved to another partition of the same SSD with `wsl --manage Ubuntu --move`
+(a manual cut-and-paste of `ext4.vhdx` would break WSL's registry record of where it lives).
+
+**vLLM 0.32.0 (needed three launches).**
+1. `RuntimeError: Failed to find C compiler` inside Triton's driver setup (it compiles a small C helper on first use). Fix: a
+   conda-forge GCC in `~/toolchain`, selected via `CC`. The weights had already loaded (4.26 GiB), so GPU support was not the issue.
+2. `Could not find nvcc` from FlashInfer's top-k/top-p sampler JIT. The attention backend (FlashAttention 2) was fine. Fix:
+   `VLLM_USE_FLASHINFER_SAMPLER=0`. All benchmark requests are greedy, so this cannot change any output.
+3. Ready after 210 s (compile + 13 CUDA graphs); later starts reuse the compile cache (60-90 s).
+
+**SGLang 0.5.22 (needed three launches).**
+1. Failed in 21 s, before loading anything: on sm_120 it imports `deep_gemm`, whose `find_cuda_home()` asserts a CUDA toolkit
+   exists. Fix: CUDA 13.2 (nvcc, headers) from conda-forge in `~/cuda132`, matching the CUDA of its torch wheel. A test kernel
+   compiled for sm_120 and ran on the GPU. nvcc needed its bundled host compiler (GCC 15.3) via `NVCC_PREPEND_FLAGS=-ccbin`;
+   the GCC 16 in the other prefix was not used for nvcc.
+2. A JIT kernel compiled but failed to link: `cannot find -lcudart`. The conda layout keeps libraries in `lib/`, SGLang links
+   against `lib64/`. Fix: a `lib64 -> lib` symlink inside that private prefix. The failed build killed the server during CUDA-graph
+   capture, which looked like a crash but was this one link error.
+3. Ready after 80 s.
+The CUDA toolkit is only put on PATH by `serve_sglang.sh`, so the already-validated vLLM launch is untouched.
+
+**Settings that are NOT identical between the engines (read before comparing them).**
+* Attention kernels: vLLM uses FlashAttention 2 (its own choice); SGLang uses Triton attention, which I set explicitly as the
+  nvcc-free option *before* I knew nvcc would work. I never tested SGLang's FlashInfer or FA3/FA4 backends, so SGLang's numbers
+  are for the Triton backend, not necessarily its best configuration on this GPU.
+* Sampler: PyTorch's on both (vLLM's is a deviation from its default, recorded in the server command).
+* KV-cache capacity differs because the memory-fraction semantics differ: 57,168 tokens (vLLM) vs 50,728 (SGLang).
+* Different PyTorch versions (2.13.0 vs 2.14.1), as each engine pins its own.
+* Scheduler token budget: this one *matches* by default. I first suspected vLLM's per-step budget was larger than SGLang's
+  2,048-token prefill chunk, and checked: in this vLLM version's source, a GPU under 70 GB gets `max_num_batched_tokens = 2048`
+  for the OpenAI server. (Derived from the source, not logged at runtime.) So that hypothesis was wrong.
+* SGLang captured decode CUDA graphs only up to batch size 8 (`bs=[1, 2, 4, 8]` in its startup log); decode batches of 16
+  requests report `cuda graph: False`. I did not try a larger `--cuda-graph-max-bs`.
+
+**Exploratory runs (not reported as results).** Before the formal runs I launched each engine once and ran the accuracy checks and
+a short load test to find problems. Those files are tagged `explore` and are excluded from every table by `summarize.py`.
+One useful cross-check came out of them: the cached-token fraction from the per-request `usage` field and the one computed from
+the engine's own `/metrics` counters were identical (0.6322 vs 55,344 hits / 87,545 queries) on the first vLLM run.
+
+**Run-to-run variation I could not explain.** SGLang with the prefix cache on at concurrency 16 has a visibly wider spread than
+the other cells (throughput 1.40-1.58 req/s, ITL p50 30.9-52.8 ms). A laptop GPU under a 35 W cap may be thermally limited, but
+Phase 1 did not record GPU temperature or clock speed, so this is a hypothesis, not a finding. Later phases record both.
+
+**Things I did not do.** No test of whether the two engines' *outputs* differ token by token (only click accuracy); no
+profile of where the time goes (vision encoder vs prefill vs decode); no repeat of the whole experiment on a second day.

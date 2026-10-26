@@ -11,14 +11,14 @@ Nothing under `serving/` changes training code or the published results in `../r
 | Phase | What | Status |
 |---|---|---|
 | 0 | Merge adapter, verify it, trace generator, load client, tests | **done** (this document) |
-| 1 | vLLM vs SGLang on the same checkpoint | not started (needs WSL2) |
+| 1 | vLLM vs SGLang on the same checkpoint | **done, with caveats** (see Phase 1 results; two follow-ups proposed) |
 | 2 | Prefix-aware router in Rust | not started |
 | 3 | Fused RMSNorm + INT8 quantisation Triton kernel | not started |
 | 4 | Prefill/decode disaggregation (time-boxed) | not started |
 | 5 | TensorRT-LLM (time-boxed) | not started |
 
 Hardware: one RTX 5050 Laptop GPU (8 GB, compute capability 12.0, driver 592.82, CUDA 13.1 as reported by the driver),
-Windows 11, 23.6 GB RAM. WSL2 is not installed yet; Linux-only phases wait for it.
+Windows 11, 23.6 GB RAM. Engines run inside WSL2 Ubuntu (WSL 3.0.3, kernel 6.18, 11.7 GB of RAM visible to Linux).
 
 ## Phase 0 results
 
@@ -94,9 +94,150 @@ So inter-token numbers from this client can be trusted in the 10-40 ms range whe
 fall. (On this Windows machine `asyncio.sleep(3 ms)` actually sleeps 15.95 ms in that run, which is why the mock server cannot
 validate small intervals.) Raw: `results/raw/client_timing_20261026-004655.json`. How this was found is in `NOTES.md`.
 
-21 tests (`pytest serving/tests`) cover statistics, manifests and tamper detection, environment capture, trace determinism and
+25 tests (`pytest serving/tests`) cover statistics, manifests and tamper detection, environment capture, trace determinism and
 prefix sharing, message construction, and the client against a mock server. **The mock server only tests plumbing: no number
 from it is ever reported** (its output files are prefixed `MOCK_`).
+
+## Phase 1 results: vLLM vs SGLang
+
+Both engines serve the same merged checkpoint (`merged-clean`) on the same GPU, each with prefix caching **on and off** (four
+configurations). Each configuration: launch, click-accuracy check through the live server, then the trace replayed at client
+concurrency 1, 4, 16, 32 with **3 repeats** per cell. Before every repeat the prefix cache and the multimodal (image) cache are
+reset, and a short warm-up with unique prefixes is discarded. All 48 load-test runs finished with **0 request errors**. Every
+number below comes from the raw files under `results/raw/` via `scripts/summarize.py`; the full tables (p99 latencies, GPU
+memory) are in `results/tables/phase1.md`.
+
+Low concurrency replays a **prefix of the same trace** (identical for both engines), because serial requests are slow:
+c=1 uses the first 24 sessions (129 requests), c=4 the first 48 (263), c=16 and c=32 all 96 (560).
+Cells show the median over 3 repeats, with min-max in brackets.
+
+### Accuracy through the live engines (rule 3)
+
+| run | synthetic held-out (n=300) | ScreenSpot subset (n=400) |
+|---|---|---|
+| HF reference (merged checkpoint) | 63.33% [57.7, 68.6], valid 100.0% | 53.75% [48.9, 58.6], valid 98.2% |
+| vllm-prefix-on | 64.33% [58.8, 69.5], valid 100.0% | 53.00% [48.1, 57.8], valid 97.5% |
+| vllm-prefix-off | 63.67% [58.1, 68.9], valid 100.0% | not run |
+| sglang-prefix-on | 64.00% [58.4, 69.2], valid 100.0% | 53.75% [48.9, 58.6], valid 98.5% |
+| sglang-prefix-off | 63.67% [58.1, 68.9], valid 100.0% | not run |
+
+**No configuration changed click accuracy:** every run is within 1.0 point of the HF reference on the synthetic set and within
+0.8 on ScreenSpot. (The cache-off runs were checked on the synthetic set only; ScreenSpot takes ~10 minutes each.)
+
+### Engine settings recorded at launch
+
+| run | engine | PyTorch | attention backend | startup | KV cache (tokens) | GPU memory after load |
+|---|---|---|---|---|---|---|
+| vllm-prefix-on | vllm 0.32.0 | 2.13.0+cu132 | FLASH_ATTN | 60 s | 57,168 | 6438 MiB |
+| vllm-prefix-off | vllm 0.32.0 | 2.13.0+cu132 | FLASH_ATTN | 90 s | 57,168 | 6438 MiB |
+| sglang-prefix-on | sglang 0.5.22 | 2.14.1+cu132 | triton (set by flag) | 39 s | 50,728 | 6359 MiB |
+| sglang-prefix-off | sglang 0.5.22 | 2.14.1+cu132 | triton (set by flag) | 66 s | 50,728 | 6359 MiB |
+
+### Load tests
+
+**Time to first token, p50 (s)**
+
+| run | c=1 | c=4 | c=16 | c=32 |
+|---|---|---|---|---|
+| vllm-prefix-on | 0.27 (0.26–0.27) | 1.00 (1.00–1.00) | 2.21 (2.11–2.22) | 2.03 (2.01–2.04) |
+| vllm-prefix-off | 0.71 (0.68–0.74) | 1.50 (1.45–1.93) | 3.21 (3.18–3.21) | 13.88 (13.49–13.90) |
+| sglang-prefix-on | 0.38 (0.38–0.38) | 1.82 (1.82–1.83) | 8.63 (7.74–8.70) | 14.35 (14.20–15.89) |
+| sglang-prefix-off | 0.62 (0.61–0.63) | 2.00 (1.95–2.00) | 5.57 (5.44–5.69) | 13.86 (13.10–13.93) |
+
+**End-to-end latency, p50 (s)**
+
+| run | c=1 | c=4 | c=16 | c=32 |
+|---|---|---|---|---|
+| vllm-prefix-on | 0.40 (0.38–0.40) | 1.17 (1.15–1.17) | 4.26 (4.20–4.27) | 8.46 (8.44–8.47) |
+| vllm-prefix-off | 0.85 (0.82–0.89) | 2.31 (2.24–3.06) | 10.65 (10.65–10.66) | 21.37 (20.79–21.44) |
+| sglang-prefix-on | 0.51 (0.51–0.52) | 1.99 (1.98–2.00) | 10.71 (9.80–10.76) | 23.11 (21.83–24.31) |
+| sglang-prefix-off | 0.75 (0.75–0.77) | 2.45 (2.39–2.45) | 9.46 (9.41–9.60) | 21.15 (20.41–21.25) |
+
+**Throughput (requests/s)**
+
+| run | c=1 | c=4 | c=16 | c=32 |
+|---|---|---|---|---|
+| vllm-prefix-on | 2.32 (2.31–2.35) | 3.10 (3.07–3.10) | 3.52 (3.48–3.55) | 3.59 (3.58–3.60) |
+| vllm-prefix-off | 1.07 (1.04–1.14) | 1.58 (1.27–1.68) | 1.49 (1.49–1.50) | 1.49 (1.48–1.53) |
+| sglang-prefix-on | 1.69 (1.68–1.70) | 1.75 (1.75–1.77) | 1.40 (1.40–1.58) | 1.29 (1.22–1.37) |
+| sglang-prefix-off | 1.24 (1.22–1.26) | 1.50 (1.50–1.54) | 1.60 (1.56–1.60) | 1.28 (1.28–1.35) |
+
+**Inter-token latency, p50 (ms)**
+
+| run | c=1 | c=4 | c=16 | c=32 |
+|---|---|---|---|---|
+| vllm-prefix-on | 13.0 (12.0–13.1) | 13.9 (13.9–13.9) | 17.6 (17.4–17.7) | 577.0 (536.5–676.8) |
+| vllm-prefix-off | 14.9 (14.5–15.1) | 14.1 (13.9–15.8) | 768.0 (749.8–778.2) | 782.5 (757.2–786.5) |
+| sglang-prefix-on | 12.5 (12.4–12.5) | 13.0 (12.9–13.0) | 51.4 (30.9–52.8) | 57.3 (55.8–58.0) |
+| sglang-prefix-off | 13.6 (13.3–14.0) | 14.5 (14.3–14.7) | 32.4 (32.3–33.0) | 33.3 (32.6–34.0) |
+
+**Prompt tokens served from the prefix cache** (engine-reported `usage`): 66-67% for both engines with the cache on, 0% with it
+off, at every concurrency. **Click accuracy on the trace requests** (system prompt + few-shot + history): 55.9-58.9% in every
+cell for all four configurations (about 560 requests per cell at c=16/32, 129 at c=1).
+
+### What prefix caching bought (ratio of the medians above, cache on ÷ cache off)
+
+| throughput | c=1 | c=4 | c=16 | c=32 |
+|---|---|---|---|---|
+| vLLM | 2.16x | 1.95x | 2.35x | 2.41x |
+| SGLang | 1.36x | 1.16x | 0.88x | 1.01x |
+
+### vLLM vs SGLang, cache on (ratio of the medians, vLLM ÷ SGLang)
+
+| throughput | c=1 | c=4 | c=16 | c=32 |
+|---|---|---|---|---|
+| ratio | 1.38x | 1.77x | 2.51x | 2.78x |
+
+At c=32 the median end-to-end latency is 8.46 s (vLLM) vs 23.11 s (SGLang), and p99 18.29 s vs 46.87 s.
+
+### Why: what is measured, what the logs show, and what is only a guess
+
+**Measured.**
+* Both caches work and hit about equally by volume (66-67% of prompt tokens). So the engines differ in *what they do with* a hit,
+  not in whether they get one. (SGLang's own log agrees; see below. The shared prefix is about 1,250 tokens, from
+  `traces/default/token_stats.json`.)
+* For vLLM the cache is worth a lot at every concurrency: with it off, each request recomputes the whole prompt, which is
+  1,666 tokens on a first turn.
+* For SGLang the cache helps at c=1 and c=4 and does nothing or hurts at c=16 (throughput 1.60 -> 1.40, TTFT 5.57 -> 8.63 s).
+* vLLM's time to first token stays low at c=32 with the cache on (2.03 s) but its inter-token latency rises to 577 ms: it favours
+  starting new requests over continuing running ones. With the cache off it shows this already at c=16 (768 ms).
+
+**From the server logs** (extracted into `results/raw/server_facts_phase1.json`; SGLang logs every 40th batch, so these count
+logged lines, not all batches).
+* SGLang captured its decode CUDA graphs only for batch sizes 1, 2, 4, 8. Every logged decode batch with at most 8 running
+  requests used a graph (273 of 273 with the cache on, 255 of 255 off); **none of the 45 logged batches with more than 8 running
+  requests did**, in either configuration. Its inter-token latency is 13 ms at c<=4 and 31-57 ms at c>=16, which fits that but
+  does not prove it.
+* The two schedulers' per-step token budgets match by default: 2,048 for vLLM on a GPU this size (read from its source, not logged
+  at runtime) and a 2,048-token prefill chunk for SGLang (logged). I had suspected a mismatch and checked.
+* SGLang's KV pool reached 99% usage with the cache off and 75% with it on. With the cache on, 2,068 of its 2,717 prefill batches
+  reused at least 1,000 cached tokens (0 of 4,691 with it off).
+
+**Guesses (not tested).**
+* SGLang's Triton attention may be slower than vLLM's FlashAttention 2 for ~1.8k-token prompts.
+* vLLM's inter-token spikes may come from image encoding and prefill sharing a step with decodes.
+* The SGLang regression at c=16 may be scheduling or memory pressure around cache-hit requests.
+
+### Caveats: read these before quoting the comparison
+
+1. **The engines are not configured identically** (see `NOTES.md`): different attention kernels (vLLM's FlashAttention 2 vs
+   SGLang's Triton, which I chose as the nvcc-free option before nvcc turned out to work), different KV capacity (57,168 vs
+   50,728 tokens), different PyTorch versions, and SGLang's decode graphs stop at batch size 8. **I did not try SGLang's FlashInfer
+   attention or a larger CUDA-graph batch size, so these numbers show vLLM beating SGLang *in the configuration I ran*,
+   not that vLLM is faster in general.**
+2. One laptop GPU under a 35 W cap on one day. GPU temperature and clocks were not recorded in Phase 1, so I cannot say whether
+   thermal limits caused the wider spread in SGLang's c=16 cell (throughput 1.40-1.58).
+3. Trace accuracy (about 56-59%) is below the zero-shot accuracy (63-64%), consistently across all four configurations, so it
+   does not come from an engine. But the trace uses different images and far fewer requests, the intervals overlap, and I did not
+   run the zero-shot prompt on the trace images. I cannot say how much of the gap is the added system prompt, few-shot turns
+   and history that the policy never saw in training.
+4. The synthetic task and trace are small and templated; cache hit rates here (about 66%) depend on how much the sessions share.
+
+### Proposed follow-ups (not done)
+
+1. SGLang with `--attention-backend flashinfer` and a larger `--cuda-graph-max-bs`, to see whether the gap is configuration.
+2. Record GPU clocks and temperature and repeat on a second day.
+3. Run the zero-shot prompt on the trace images to separate the prompt-context effect on accuracy.
 
 ## Rules this folder follows
 
@@ -129,15 +270,17 @@ The adapter weights and the merged checkpoint are not in the repo; the commands 
 * The merge check is one deterministic greedy run per model per set; it measures merge rounding, not run-to-run variance.
 * Base model revision hash was not recorded (offline HF cache lookup failed); the merged checkpoint is identified by its own
   hash.
-* Nothing has been benchmarked on an engine yet.
+* Phase 1 compares the engines in one configuration each; see its caveats before drawing a general conclusion.
 
 ## Layout
 
 ```
 servebench/        envinfo (run metadata), data (manifests), prompts, traces, client, accuracy, stats, mock_server
-scripts/           export_sets, merge_adapter, verify_merge, merge_diff, gen_traces, accuracy_check, loadtest
-tests/             21 tests
+scripts/           export_sets, merge_adapter, verify_merge, merge_diff, gen_traces, accuracy_check, loadtest,
+                   run_engine_bench, summarize, validate_client_timing;  wsl/  = Linux-side setup and engine launch scripts
+tests/             25 tests
 traces/default/    trace.jsonl, warmup.jsonl, trace_meta.json, token_stats.json  (images regenerated, git-ignored)
-results/raw/       raw JSON for every number above
+results/raw/       raw JSON for every number above (64 files)
+results/tables/    phase1.md / .csv generated by scripts/summarize.py
 NOTES.md           dead ends and fixes
 ```
