@@ -1,0 +1,2 @@
+# shell scripts run under Linux (WSL2): always LF, whatever core.autocrlf says
+*.sh text eol=lf
