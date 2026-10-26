@@ -86,3 +86,24 @@ def test_prefix_hit_rate_edge_cases():
 def test_summarize_handles_empty():
     s = summarize([], 1.0)
     assert s["requests"] == 0 and s["ttft"]["p50"] is None
+
+
+def test_gpu_line_parsing_and_na_fields():
+    from servebench.client import parse_gpu_line
+    ok = parse_gpu_line("7366, 100, 78, 1800, 31.5")
+    assert ok == {"mem": 7366.0, "util": 100.0, "temp": 78.0, "sm_mhz": 1800.0, "power_w": 31.5}
+    na = parse_gpu_line("7366, 100, 78, 1800, [N/A]")
+    assert na["power_w"] is None and na["temp"] == 78.0
+    assert parse_gpu_line("garbage") is None
+    assert parse_gpu_line("[N/A], 1, 2, 3, 4") is None          # memory is required
+
+
+def test_gpu_summary_uses_busy_samples_for_the_clock():
+    from servebench.client import GpuMonitor
+    m = GpuMonitor()
+    m.samples = [{"t": 0, "mem": 7000, "util": 100, "temp": 70, "sm_mhz": 1500, "power_w": 30},
+                 {"t": 1, "mem": 7000, "util": 100, "temp": 76, "sm_mhz": 1300, "power_w": 34},
+                 {"t": 2, "mem": 7000, "util": 0, "temp": 60, "sm_mhz": 180, "power_w": 8}]   # idle sample must not drag the busy clock
+    s = m.summary()
+    assert s["sm_clock_mhz_busy_median"] == 1400 and s["sm_clock_mhz_busy_min"] == 1300 and s["busy_samples"] == 2
+    assert s["temp_c_max"] == 76 and s["mem_used_mib_max"] == 7000 and s["power_w_max"] == 34

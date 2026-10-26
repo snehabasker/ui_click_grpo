@@ -28,6 +28,9 @@ METRICS = [  # key, title, scale, format
     ("trace_acc", "Click accuracy on the trace requests", 100, "{:.1f}%"),
     ("error_rate", "Request error rate", 100, "{:.1f}%"),
     ("gpu_mem_max_mib", "Peak GPU memory (MiB)", 1, "{:.0f}"),
+    ("gpu_temp_max_c", "Peak GPU temperature (C), runs with the extended monitor", 1, "{:.0f}"),
+    ("gpu_clock_busy_mhz", "Median SM clock while busy (MHz), runs with the extended monitor", 1, "{:.0f}"),
+    ("gpu_power_w", "Median GPU power draw (W), runs with the extended monitor", 1, "{:.1f}"),
 ]
 
 
@@ -39,6 +42,9 @@ def extract(run: dict) -> dict:
         "cached_frac": s.get("cached_token_fraction"),
         "trace_acc": (s.get("trace_click_accuracy") or {}).get("acc"), "error_rate": s["error_rate"],
         "gpu_mem_max_mib": (run.get("gpu") or {}).get("mem_used_mib_max"),
+        "gpu_temp_max_c": (run.get("gpu") or {}).get("temp_c_max"),
+        "gpu_clock_busy_mhz": (run.get("gpu") or {}).get("sm_clock_mhz_busy_median"),
+        "gpu_power_w": (run.get("gpu") or {}).get("power_w_median"),
     }
 
 

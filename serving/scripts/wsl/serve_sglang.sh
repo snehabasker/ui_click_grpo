@@ -15,12 +15,17 @@ export PATH="$CUDA_HOME/bin:$PATH"
 export NVCC_PREPEND_FLAGS="-ccbin $CUDA_HOME/bin/x86_64-conda-linux-gnu-g++"
 PC=""
 [ "${PREFIX_CACHING:-1}" = "0" ] && PC="--disable-radix-cache"
+# Phase 1 follow-up knobs (defaults reproduce the Phase 1 runs exactly): attention backend, and the largest decode batch that gets a
+# CUDA graph (unset = SGLang's own choice, which on this 8 GB GPU came out as 8).
+ATTN="${ATTN_BACKEND:-triton}"
+CG=""
+[ -n "${CUDA_GRAPH_MAX_BS:-}" ] && CG="--cuda-graph-max-bs $CUDA_GRAPH_MAX_BS"
 set -x
 exec "$HOME/venvs/sglang/bin/python" -m sglang.launch_server \
   --model-path "$M" --served-model-name merged-clean --dtype bfloat16 \
   --context-length "${MAX_LEN:-4096}" --max-running-requests "${MAX_SEQS:-32}" \
   --mem-fraction-static "${GPU_UTIL:-0.85}" \
-  --attention-backend triton --sampling-backend pytorch --mm-attention-backend sdpa \
+  --attention-backend "$ATTN" --sampling-backend pytorch --mm-attention-backend sdpa $CG \
   --mm-process-config '{"image":{"max_pixels":1003520}}' \
   --enable-cache-report --enable-metrics $PC \
   --host 127.0.0.1 --port "${PORT:-8000}" ${EXTRA:-}

@@ -50,6 +50,8 @@ ap.add_argument("--max-len", type=int, default=4096)
 ap.add_argument("--startup-timeout", type=int, default=900)
 ap.add_argument("--skip-accuracy", action="store_true")
 ap.add_argument("--accuracy-only", action="store_true")
+ap.add_argument("--attn-backend", default=None, help="sglang only: attention backend (default: the serve script's triton)")
+ap.add_argument("--cuda-graph-max-bs", type=int, default=None, help="sglang only: largest decode batch with a CUDA graph")
 ap.add_argument("--extra", default="", help="extra flags appended to the engine command (recorded)")
 a = ap.parse_args()
 
@@ -108,6 +110,10 @@ def parse_log(text: str) -> dict:
 
 env = dict(os.environ, PORT=str(a.port), PREFIX_CACHING=str(a.prefix_caching), GPU_UTIL=str(a.gpu_util),
            MAX_SEQS=str(a.max_seqs), MAX_LEN=str(a.max_len), EXTRA=a.extra)
+if a.attn_backend:
+    env["ATTN_BACKEND"] = a.attn_backend
+if a.cuda_graph_max_bs:
+    env["CUDA_GRAPH_MAX_BS"] = str(a.cuda_graph_max_bs)
 serve = ROOT / "serving" / "scripts" / "wsl" / f"serve_{a.engine}.sh"
 print(f"[{a.label}] starting {a.engine}; log: {log_path}", flush=True)
 mem_before = gpu_mem_mib()

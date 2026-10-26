@@ -16,8 +16,10 @@ a = ap.parse_args()
 logs = Path(a.logs)
 
 
-def newest(prefix: str) -> Path | None:
-    xs = sorted(logs.glob(f"{prefix}-*.log"), key=lambda p: p.stat().st_mtime)
+def newest(label: str) -> Path | None:
+    # exact label + timestamp, so "vllm-prefix-on" never picks up the log of "vllm-prefix-on-rerun"
+    pat = re.compile(rf"^{re.escape(label)}-\d{{8}}-\d{{6}}\.log$")
+    xs = sorted((p for p in logs.glob("*.log") if pat.match(p.name)), key=lambda p: p.stat().st_mtime)
     return xs[-1] if xs else None
 
 
@@ -56,11 +58,11 @@ def vllm_facts(path: Path) -> dict:
 
 facts = {"kind": "server_facts", "date": time.strftime("%Y-%m-%dT%H:%M:%S"),
          "note": "extracted from engine server logs of the Phase 1 runs; logs themselves are not committed"}
-for label in ("sglang-prefix-on", "sglang-prefix-off"):
+LABELS = ["sglang-prefix-on", "sglang-prefix-off", "vllm-prefix-on", "vllm-prefix-off",
+          "sglang-flashinfer-bs32-prefix-on", "sglang-triton-bs32-prefix-on", "vllm-prefix-on-rerun"]
+for label in LABELS:
     p = newest(label)
-    facts[label] = sglang_facts(p) if p else None
-for label in ("vllm-prefix-on", "vllm-prefix-off"):
-    p = newest(label)
-    facts[label] = vllm_facts(p) if p else None
+    if p:
+        facts[label] = sglang_facts(p) if label.startswith("sglang") else vllm_facts(p)
 Path(a.out).write_text(json.dumps(facts, indent=1))
 print(json.dumps({k: v for k, v in facts.items() if k not in ("note",)}, indent=1)[:2500])

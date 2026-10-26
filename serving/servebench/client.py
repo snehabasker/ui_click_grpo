@@ -31,23 +31,45 @@ except Exception:  # pragma: no cover
     parse_click = in_box = None
 
 
+GPU_FIELDS = "memory.used,utilization.gpu,temperature.gpu,clocks.sm,power.draw"
+
+
+def parse_gpu_line(line: str) -> dict | None:
+    """One `nvidia-smi --query-gpu=GPU_FIELDS --format=csv,noheader,nounits` line -> numbers. '[N/A]' fields become None."""
+    parts = [p.strip() for p in line.split(",")]
+    if len(parts) != 5:
+        return None
+
+    def num(x):
+        try:
+            return float(x)
+        except ValueError:
+            return None
+
+    mem, util, temp, sm, power = (num(p) for p in parts)
+    if mem is None:
+        return None
+    return {"mem": mem, "util": util, "temp": temp, "sm_mhz": sm, "power_w": power}
+
+
 class GpuMonitor:
-    """Samples nvidia-smi memory/utilisation in a background thread."""
+    """Samples nvidia-smi memory, utilisation, temperature, SM clock and power in a background thread. Clock and temperature
+    are what tells you whether a laptop GPU was throttling during a run."""
 
     def __init__(self, interval: float = 0.5, gpu_index: int | None = None):
         self.interval, self.gpu_index, self.samples, self._stop = interval, gpu_index, [], threading.Event()
         self._t = threading.Thread(target=self._loop, daemon=True)
 
     def _loop(self):
-        cmd = ["nvidia-smi", "--query-gpu=memory.used,utilization.gpu", "--format=csv,noheader,nounits"]
+        cmd = ["nvidia-smi", f"--query-gpu={GPU_FIELDS}", "--format=csv,noheader,nounits"]
         if self.gpu_index is not None:
             cmd += ["-i", str(self.gpu_index)]
         while not self._stop.is_set():
             try:
                 out = subprocess.run(cmd, capture_output=True, text=True, timeout=5).stdout.strip().splitlines()
-                if out:
-                    mem, util = (float(x) for x in out[0].split(","))
-                    self.samples.append((time.time(), mem, util))
+                rec = parse_gpu_line(out[0]) if out else None
+                if rec:
+                    self.samples.append({"t": time.time(), **rec})
             except Exception:
                 pass
             self._stop.wait(self.interval)
@@ -63,10 +85,19 @@ class GpuMonitor:
     def summary(self) -> dict:
         if not self.samples:
             return {"available": False}
-        mem = [s[1] for s in self.samples]
-        util = [s[2] for s in self.samples]
-        return {"available": True, "n": len(mem), "mem_used_mib_max": max(mem), "mem_used_mib_median": statistics.median(mem),
-                "gpu_util_pct_median": statistics.median(util), "gpu_util_pct_max": max(util)}
+        col = lambda k: [s[k] for s in self.samples if s.get(k) is not None]
+        mem, util, temp, sm, power = col("mem"), col("util"), col("temp"), col("sm_mhz"), col("power_w")
+        out = {"available": True, "n": len(mem), "mem_used_mib_max": max(mem), "mem_used_mib_median": statistics.median(mem),
+               "gpu_util_pct_median": statistics.median(util) if util else None, "gpu_util_pct_max": max(util) if util else None}
+        if temp:
+            out.update(temp_c_max=max(temp), temp_c_median=statistics.median(temp))
+        if sm:  # while busy: samples with the GPU idle (util < 50%) would drag the clock down, so report the busy ones
+            busy = [s["sm_mhz"] for s in self.samples if s.get("sm_mhz") is not None and (s.get("util") or 0) >= 50]
+            out.update(sm_clock_mhz_max=max(sm), sm_clock_mhz_busy_median=statistics.median(busy) if busy else None,
+                       sm_clock_mhz_busy_min=min(busy) if busy else None, busy_samples=len(busy))
+        if power:
+            out.update(power_w_median=statistics.median(power), power_w_max=max(power))
+        return out
 
 
 _METRIC_RE = re.compile(r"^([a-zA-Z_:][a-zA-Z0-9_:]*)(\{[^}]*\})?\s+([-+0-9.eE]+|NaN|\+Inf|-Inf)\s*$")
