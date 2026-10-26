@@ -42,3 +42,12 @@ def test_units_and_single_repeat_format(tmp_path):
     assert "15.0" in md            # itl 0.015 s shown in ms
     assert "60%" in md and "65.0%" in md
     assert "(0.50–" not in md      # a single repeat has no range
+
+
+def test_sglang_serve_script_uses_the_unambiguous_graph_flag():
+    """SGLang 0.5.22 refuses to start with plain --cuda-graph-max-bs (ambiguous between -decode and -prefill): the first
+    follow-up attempt failed for exactly this reason."""
+    import re
+    text = (Path(__file__).resolve().parents[1] / "scripts" / "wsl" / "serve_sglang.sh").read_text()
+    assert "--cuda-graph-max-bs-decode" in text
+    assert not re.search(r"--cuda-graph-max-bs(?![-\w])", text.replace("# SGLang 0.5.22 renamed this flag: plain --cuda-graph-max-bs is now", ""))

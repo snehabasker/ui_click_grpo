@@ -19,7 +19,8 @@ PC=""
 # CUDA graph (unset = SGLang's own choice, which on this 8 GB GPU came out as 8).
 ATTN="${ATTN_BACKEND:-triton}"
 CG=""
-[ -n "${CUDA_GRAPH_MAX_BS:-}" ] && CG="--cuda-graph-max-bs $CUDA_GRAPH_MAX_BS"
+# SGLang 0.5.22 renamed this flag: plain --cuda-graph-max-bs is now ambiguous (-decode / -prefill) and the server refuses to start.
+[ -n "${CUDA_GRAPH_MAX_BS:-}" ] && CG="--cuda-graph-max-bs-decode $CUDA_GRAPH_MAX_BS"
 set -x
 exec "$HOME/venvs/sglang/bin/python" -m sglang.launch_server \
   --model-path "$M" --served-model-name merged-clean --dtype bfloat16 \

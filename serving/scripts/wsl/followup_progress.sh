@@ -1,6 +1,6 @@
 #!/bin/bash
 # Progress of the follow-up run + what else is using the GPU/CPU right now (read-only).
-LOG="$HOME/work/logs/followup1.log"
+LOG="$HOME/work/logs/followup1b.log"
 RAW="$HOME/work/ui_click_grpo/serving/results/raw"
 date
 echo "--- runner log (last 12 lines):"
