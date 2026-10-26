@@ -51,3 +51,12 @@ def test_sglang_serve_script_uses_the_unambiguous_graph_flag():
     text = (Path(__file__).resolve().parents[1] / "scripts" / "wsl" / "serve_sglang.sh").read_text()
     assert "--cuda-graph-max-bs-decode" in text
     assert not re.search(r"--cuda-graph-max-bs(?![-\w])", text.replace("# SGLang 0.5.22 renamed this flag: plain --cuda-graph-max-bs is now", ""))
+
+
+def test_sglang_serve_script_points_every_compiler_variable_at_gcc15():
+    """FlashInfer's JIT overrides nvcc's -ccbin with $CXX; CUDA 13.2 rejects GCC > 15, so CC, CXX and CUDAHOSTCXX must all name the
+    GCC 15 that ships with the toolkit."""
+    text = (Path(__file__).resolve().parents[1] / "scripts" / "wsl" / "serve_sglang.sh").read_text()
+    for var in ("CC", "CXX", "CUDAHOSTCXX"):
+        assert f"export {var}=" in text
+    assert "x86_64-conda-linux-gnu-g++" in text and "x86_64-conda-linux-gnu-gcc" in text

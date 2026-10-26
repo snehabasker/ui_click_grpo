@@ -13,6 +13,11 @@ export CC="${CC:-gcc}"
 export CUDA_HOME="$HOME/cuda132"
 export PATH="$CUDA_HOME/bin:$PATH"
 export NVCC_PREPEND_FLAGS="-ccbin $CUDA_HOME/bin/x86_64-conda-linux-gnu-g++"
+# FlashInfer's JIT calls nvcc with its own -ccbin (plain `c++`, which here is GCC 16) and CUDA 13.2 rejects GCC > 15
+# ("unsupported GNU version"), overriding the flag above. Point every compiler variable at the GCC 15.3 that ships with the toolkit.
+export CC="$CUDA_HOME/bin/x86_64-conda-linux-gnu-gcc"
+export CXX="$CUDA_HOME/bin/x86_64-conda-linux-gnu-g++"
+export CUDAHOSTCXX="$CXX"
 PC=""
 [ "${PREFIX_CACHING:-1}" = "0" ] && PC="--disable-radix-cache"
 # Phase 1 follow-up knobs (defaults reproduce the Phase 1 runs exactly): attention backend, and the largest decode batch that gets a
