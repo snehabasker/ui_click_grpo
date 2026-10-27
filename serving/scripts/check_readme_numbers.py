@@ -9,7 +9,8 @@ ROOT = Path(__file__).resolve().parents[2]
 readme = (ROOT / "serving" / "README.md").read_text(encoding="utf-8")
 table = (ROOT / "serving" / "results" / "tables" / "phase1.md").read_text(encoding="utf-8")
 section = readme.split("## Phase 1 results", 1)[1].split("## Phase 2 results", 1)[0]
-section2 = readme.split("## Phase 2 results", 1)[1].split("## Rules this folder follows", 1)[0]
+section2 = readme.split("## Phase 2 results", 1)[1].split("## Phase 3 results", 1)[0]
+section3 = readme.split("## Phase 3 results", 1)[1].split("## Rules this folder follows", 1)[0]
 
 cells = set(re.findall(r"\d+(?:\.\d+)?%? \(\d+(?:\.\d+)?%?–\d+(?:\.\d+)?%?\)", section))
 missing = sorted(c for c in cells if c not in table)
@@ -92,4 +93,67 @@ claim = (f"served {fmt('prefix', (4,))} requests at c=4, {fmt('prefix', (16,))} 
 ok = claim in " ".join(section2.split())
 bad3 += not ok
 print(f"per-replica request counts ({bench.name}): expected '{claim}' -> {'OK' if ok else 'NOT FOUND / MISMATCH'}")
-sys.exit(1 if (bad or bad2 or bad3) else 0)
+
+# ---- Phase 3: table rows are verbatim from phase3.md; prose ranges are recomputed from the raw benchmark and accuracy files -----------
+table3 = (ROOT / "serving" / "results" / "tables" / "phase3.md").read_text(encoding="utf-8")
+rows3 = [l.strip() for l in section3.splitlines() if l.startswith("| ") and any(ch.isdigit() for ch in l) and not set(l) <= set("|- ")]
+missing3 = [r for r in rows3 if r not in table3]
+print(f"{len(rows3)} table rows in the README Phase 3 section; not verbatim in phase3.md: {len(missing3)}")
+for r in missing3:
+    print("  MISSING:", r[:120])
+bad4 = len(missing3)
+
+kb = json.loads(sorted((ROOT / "serving" / "results" / "raw").glob("kernel_bench_*.json"))[-1].read_text())
+runs = [r for r in kb["runs"] if "impl" in r]
+cellmed = {}
+for key, name in (("ms", "ms"), ("ms_cudagraph", "graph")):
+    for r in runs:
+        cellmed.setdefault((r["dtype"], r["hidden"], r["rows"], r["impl"], name), []).append(r[key])
+import statistics
+cellmed = {k: statistics.median(v) for k, v in cellmed.items()}
+cells = sorted({k[:3] for k in cellmed})
+claims = []
+for name, label in (("ms", "do_bench"), ("graph", "graph")):
+    ve = [cellmed[c + ("torch_eager", name)] / cellmed[c + ("triton_fused", name)] for c in cells]
+    vc = {c: cellmed[c + ("torch_compile", name)] / cellmed[c + ("triton_fused", name)] for c in cells}
+    if name == "ms":
+        tied = [c for c, v in vc.items() if v < 1.05]
+        rest = [v for c, v in vc.items() if v >= 1.05]
+        big = [v for c, v in vc.items() if c[2] >= 1024]
+        claims += [f"{min(ve):.1f}x to {max(ve):.1f}x faster than eager", f"{min(vc.values()):.2f}x to {max(vc.values()):.2f}x",
+                   f"tied ({min(vc[c] for c in tied):.2f}x-{max(vc[c] for c in tied):.2f}x) in {len(tied)} of the {len(cells)} cells",
+                   f"{min(rest):.2f}x to {max(rest):.2f}x faster, and {min(big):.2f}x to {max(big):.2f}x at 1024 rows"]
+    else:
+        claims += [f"{min(ve):.1f}x to {max(ve):.1f}x against eager and {min(vc.values()):.2f}x to {max(vc.values()):.2f}x"]
+# roofline: best repeat of the fused kernel in the cells that move >= 64 MiB
+ceil_rows = [r["ceilings"] for r in kb["runs"] if "ceilings" in r]
+best_copy = max(c["copy_256MiB_GBps"] for c in ceil_rows)
+best_read = max(c["read_only_256MiB_GBps"] for c in ceil_rows)
+big = {}
+for r in runs:
+    if r["impl"] == "triton_fused" and r["min_bytes"] >= 64 * 2**20:
+        big.setdefault((r["dtype"], r["hidden"], r["rows"]), []).append(r["gbps"])
+best = [max(v) for v in big.values()]
+meds = [statistics.median(v) for v in big.values()]
+claims += [f"{round(min(best))}-{round(max(best))} GB/s", f"{round(100 * min(best) / 384)}-{round(100 * max(best) / 384)}% of the reported spec peak",
+           f"({round(100 * min(best) / best_copy)}-{round(100 * max(best) / best_copy)}%)", f"{round(100 * min(best) / best_read)}-{round(100 * max(best) / best_read)}% of the best read-only",
+           f"The medians are lower ({round(min(meds))}-{round(max(meds))} GB/s)"]
+ka = json.loads(sorted((ROOT / "serving" / "results" / "raw").glob("kernel_accuracy_*.json"))[-1].read_text())
+mv = json.loads(sorted((ROOT / "serving" / "results" / "raw").glob("merge_verify_*.json"))[-1].read_text())
+R = ka["results"]
+idk = [100 * R[x]["kernel_vs_baseline"]["identical_output_text"] for x in R]
+idr = [100 * R[x]["kernel_vs_reference_identical_output_text"] for x in R]
+dis = [R[x]["kernel_vs_baseline"]["only_baseline_correct"] + R[x]["kernel_vs_baseline"]["only_kernel_correct"] for x in R]
+gap = [100 * abs(R[x]["kernel"]["acc"] - R[x]["reference"]["acc"]) for x in R]
+mid = [100 * mv["results"][x]["identical_output_text"] for x in mv["results"]]
+ae = ka["activation_error"]
+claims += [f"only {round(min(idk))}-{round(max(idk))}% of the kernel's outputs", f"only {round(min(idr))}-{round(max(idr))}% of their outputs are identical",
+           f"with {dis[0]} and {dis[1]} discordant items", f"{gap[0]:.1f} points on both sets" if round(gap[0], 1) == round(gap[1], 1) else "GAP-DIFFERS",
+           f"{mid[0]:.1f}% and {mid[1]:.1f}% identical for adapter vs merged", f"relative L2 error {ae['relative_l2_error_mean']:.3f} on average",
+           f"{ae['relative_l2_error_max']:.3f} at worst"]
+text3 = " ".join(section3.split())
+for c in claims:
+    ok = c in text3
+    bad4 += not ok
+    print(f"Phase 3 prose: expected '{c}' -> {'OK' if ok else 'NOT FOUND / MISMATCH'}")
+sys.exit(1 if (bad or bad2 or bad3 or bad4) else 0)

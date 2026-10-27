@@ -53,3 +53,33 @@ def test_csv_rows_cover_every_metric(tmp_path):
     rows = list(S.csv_rows(tmp_path))
     assert {r[5] for r in rows} == {"ms", "ms_cudagraph", "gbps", "gbps_cudagraph"}
     assert {r[4] for r in rows} == set(S.IMPLS) and all(r[9] == 3 for r in rows)
+
+
+def test_roofline_table_only_has_large_cells_and_compares_the_best_repeat_with_the_best_ceiling(tmp_path):
+    d = fake_bench()
+    for r in d["runs"]:
+        if "impl" in r:
+            r["min_bytes"] = 100 * 2**20 if r["rows"] == 1024 else r["min_bytes"]
+    (tmp_path / "kernel_bench_x_20261027-000000.json").write_text(json.dumps(d))
+    md = S.tables(tmp_path)
+    best = max(4700000 / (ms * 1e-3) / 1e9 for ms in (0.010, 0.012, 0.011))     # the fastest repeat
+    sec = md.split("Roofline at the cells")[1].split("**fp16")[0]
+    assert "| fp16 | 1536 | 1024 | 100 |" in sec
+    assert f"{100 * best / 302:.0f}%" in sec                                      # best copy ceiling is 302
+
+
+def test_accuracy_section_reports_delta_pass_and_noise_reference(tmp_path):
+    def cond(acc):
+        return {"acc": acc, "ci": [acc - 0.05, acc + 0.05], "valid_format": 1.0}
+    d = {"what": "fake quantisation", "criteria": {"max_abs_delta_acc": 0.02, "sign_test_alpha": 0.05},
+         "env": {"packages": {"torch": "2.13", "transformers": "5.19"}, "repo_commit": "abcdef123"},
+         "results": {"synth300": {"n": 300, "baseline": cond(0.64), "kernel": cond(0.6467), "reference": cond(0.63),
+                                  "kernel_vs_baseline": {"delta_acc": 0.0067, "only_baseline_correct": 5, "only_kernel_correct": 7,
+                                                         "sign_test_p": 0.7744, "identical_output_text": 0.4267, "pass": True},
+                                  "kernel_vs_reference_identical_output_text": 0.4333}},
+         "activation_error": {"items": 16, "n_norms": 57, "relative_l2_error_mean": 0.0262, "relative_l2_error_max": 0.0547,
+                              "worst_norm": "layers.27.post_attention_layernorm", "max_abs_error_any_norm": 1.0}}
+    (tmp_path / "kernel_accuracy_20261027-000000.json").write_text(json.dumps(d))
+    md = S.accuracy_section(tmp_path)
+    assert "| synth300 | 300 | 64.00% (59.00%–69.00%) | 64.67% (59.67%–69.67%) | 63.00% | +0.7 pts | 5 / 7 | 0.774 | 42.67% | 43.33% | PASS |" in md
+    assert "relative L2 error mean 0.0262" in md

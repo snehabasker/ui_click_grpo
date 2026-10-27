@@ -87,6 +87,24 @@ def speed_table(d: dict, g: dict, dtype: str, key: str, gbps_key: str, with_ceil
     return out
 
 
+def roofline_table(d: dict, g: dict, min_mib: float = 64.0) -> list[str]:
+    """Cells that move at least ``min_mib`` MiB (2x the L2 or more), so DRAM, not cache, is the limit. The GPU on this laptop sits in
+    different power/thermal states from repeat to repeat, so each row gives the median over repeats AND the best repeat, and the
+    best repeat is compared with the best ceiling that was measured, not with a median ceiling taken across different states."""
+    c = ceilings(d)
+    best_copy, best_read = c[CEILING]["max"], c["read_only_256MiB_GBps"]["max"]
+    head = ["dtype", "hidden", "rows", "MiB moved", "fused GB/s, median (min–max)", "best repeat GB/s", "best vs reported spec peak",
+            "best vs best measured copy", "best vs best measured read-only"]
+    out = ["| " + " | ".join(head) + " |", "|" + "---|" * len(head)]
+    for (dt, h, m, impl), runs in sorted(g.items()):
+        if impl != "triton_fused" or runs[0]["min_bytes"] / 2**20 < min_mib:
+            continue
+        gb = stat(runs, "gbps")
+        out.append(f"| {dt} | {h} | {m} | {runs[0]['min_bytes'] / 2**20:.0f} | {fmt(gb, '{:.0f}')} | {gb['max']:.0f} | "
+                   f"{100 * gb['max'] / SPEC_GBPS_REPORTED:.0f}% | {100 * gb['max'] / best_copy:.0f}% | {100 * gb['max'] / best_read:.0f}% |")
+    return out
+
+
 def tables(raw: Path) -> str:
     out = []
     for d in load(raw):
@@ -108,6 +126,9 @@ def tables(raw: Path) -> str:
         if peak:
             out.append(f"| memory clock x bus width x 2, as the driver reports them | {peak:.0f} |")
         out.append("")
+        out += [f"**Roofline at the cells large enough to be DRAM-bound (do_bench, fused kernel)**; best measured ceilings: "
+                f"copy {c[CEILING]['max']:.0f} GB/s, read-only {c['read_only_256MiB_GBps']['max']:.0f} GB/s", ""]
+        out += roofline_table(d, g) + [""]
         for dtype in sorted({k[0] for k in g}):
             out += [f"**{dtype}, `do_bench` (L2 flushed before each launch, includes launch cost)**", ""]
             out += speed_table(d, g, dtype, "ms", "gbps", True) + [""]
@@ -133,6 +154,32 @@ def tables(raw: Path) -> str:
     return NL.join(out)
 
 
+def accuracy_section(raw: Path) -> str:
+    """Rule-3 table from kernel_accuracy_*.json: fake-quantised RMSNorm outputs vs the model's own RMSNorm, per fixed set."""
+    out = []
+    for f in sorted(raw.glob("kernel_accuracy_*.json")):
+        d = json.loads(f.read_text())
+        e = d["env"]
+        out += [f"### `{f.name}`", "", f"{d['what']}. torch {e['packages'].get('torch')}, transformers {e['packages'].get('transformers')}, "
+                f"commit `{(e.get('repo_commit') or '?')[:7]}`. Pass rule fixed in advance: |delta| <= {100 * d['criteria']['max_abs_delta_acc']:.1f} "
+                f"points and sign-test p > {d['criteria']['sign_test_alpha']}.", "",
+                "| set | n | baseline acc (95% CI) | kernel acc (95% CI) | fp32-reference quantiser acc | delta (kernel - baseline) | "
+                "only baseline right / only kernel right | sign-test p | identical text, kernel vs baseline | identical text, kernel vs reference | verdict |",
+                "|---|---|---|---|---|---|---|---|---|---|---|"]
+        for name, r in d["results"].items():
+            pct = lambda x: f"{100 * x:.2f}%"
+            ci = lambda m: f"{pct(m['acc'])} ({pct(m['ci'][0])}–{pct(m['ci'][1])})"
+            v = r["kernel_vs_baseline"]
+            out.append(f"| {name} | {r['n']} | {ci(r['baseline'])} | {ci(r['kernel'])} | {pct(r['reference']['acc'])} | "
+                       f"{100 * v['delta_acc']:+.1f} pts | {v['only_baseline_correct']} / {v['only_kernel_correct']} | {v['sign_test_p']:.3f} | "
+                       f"{pct(v['identical_output_text'])} | {pct(r['kernel_vs_reference_identical_output_text'])} | {'PASS' if v['pass'] else 'FAIL'} |")
+        a = d["activation_error"]
+        out += ["", f"Activation error of the kernel's dequantised output against the model's own RMSNorm output, on real inputs "
+                f"({a['items']} synthetic items, all {a['n_norms']} norms): relative L2 error mean {a['relative_l2_error_mean']:.4f}, "
+                f"max {a['relative_l2_error_max']:.4f} (`{a['worst_norm']}`); largest absolute error in any norm output {a['max_abs_error_any_norm']:.2f}.", ""]
+    return NL.join(out)
+
+
 def csv_rows(raw: Path):
     for d in load(raw):
         for (dt, h, m, impl), runs in sorted(group(d).items()):
@@ -150,7 +197,9 @@ if __name__ == "__main__":
     a = ap.parse_args()
     raw, out = Path(a.raw), Path(a.out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.with_suffix(".md").write_text(tables(raw), encoding="utf-8")
+    acc = accuracy_section(raw)
+    out.with_suffix(".md").write_text(tables(raw) + (NL + NL + "## Accuracy with INT8-quantised RMSNorm outputs" + NL + NL + acc if acc else ""),
+                                      encoding="utf-8")
     with open(out.with_suffix(".csv"), "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["file", "dtype", "hidden", "rows", "impl", "metric", "median", "min", "max", "n"])
