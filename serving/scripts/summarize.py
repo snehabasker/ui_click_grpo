@@ -88,12 +88,20 @@ def markdown(agg: dict) -> str:
 
 def accuracy_table(raw: Path) -> str:
     """Click accuracy through each live engine on the two fixed sets, next to the HF reference."""
-    rows = {}
+    per = {}   # tag -> set -> scores in time order
     for f in sorted(raw.glob("accuracy_*.json")):
         if "explore" in f.name:
             continue
         d = json.loads(f.read_text())
-        rows.setdefault(d["tag"], {})[d["set"]] = d["score"]
+        per.setdefault(d["tag"], {}).setdefault(d["set"], []).append(d["score"])
+    # A tag measured more than once (e.g. before and after a router change) gets one row per run, oldest first. Runs are aligned
+    # from the latest backwards, so a set that was only re-measured in the latest run lines up with that run's other results.
+    rows = {}
+    for tag, sets in per.items():
+        n = max(len(v) for v in sets.values())
+        for i in range(n):
+            rows[tag if n == 1 else f"{tag} (run {i + 1} of {n})"] = {
+                s: v[i - (n - len(v))] for s, v in sets.items() if i - (n - len(v)) >= 0}
     ref = None
     mv = sorted(raw.glob("merge_verify_*.json"))
     if mv:

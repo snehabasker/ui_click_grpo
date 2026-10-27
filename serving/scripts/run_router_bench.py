@@ -33,7 +33,7 @@ SERVE = ROOT / "serving" / "scripts" / "wsl" / "serve_vllm.sh"
 PY = sys.executable
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--mode", choices=["bench", "failure"], required=True)
+ap.add_argument("--mode", choices=["bench", "failure", "accuracy"], required=True)
 ap.add_argument("--concurrency", type=int, nargs="+", default=[4, 16, 32])
 ap.add_argument("--repeats", type=int, default=3)
 ap.add_argument("--policies", nargs="+", default=["prefix", "round-robin"])
@@ -253,6 +253,28 @@ def main_bench():
             p.stop()
 
 
+def main_accuracy():
+    """Click accuracy on both fixed sets through each router policy (the rule: re-run after every serving change)."""
+    procs = []
+    try:
+        for i in range(2):
+            procs.append(start_replica(i, "accuracy"))
+            print(f"replica {i} ready after {wait_ready(PORTS[i], procs[i]):.0f}s", flush=True)
+        time.sleep(5)
+        for policy in a.policies:
+            router = start_router(policy)
+            try:
+                for s in ("synth300", "screenspot400"):
+                    subprocess.run([PY, "-u", str(ROOT / "serving/scripts/accuracy_check.py"), "--backend", "openai", "--base-url",
+                                    f"http://127.0.0.1:{a.router_port}", "--model", "merged-clean", "--set", s, "--tag", f"router-{policy}",
+                                    "--concurrency", "4", "--model-dir", str(MODEL_DIR)])
+            finally:
+                router.stop()
+    finally:
+        for p in procs:
+            p.stop()
+
+
 def main_failure():
     procs = [None, None]
     timeline, events = [], {}
@@ -348,4 +370,4 @@ def main_failure():
 
 if not ROUTER_BIN.exists():
     sys.exit(f"build the router first: {ROUTER_BIN} is missing")
-(main_bench if a.mode == "bench" else main_failure)()
+{"bench": main_bench, "failure": main_failure, "accuracy": main_accuracy}[a.mode]()
