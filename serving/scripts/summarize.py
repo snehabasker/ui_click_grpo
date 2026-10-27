@@ -49,7 +49,7 @@ def extract(run: dict) -> dict:
 def load_runs(raw: Path) -> list[dict]:
     runs = []
     for f in sorted(raw.glob("loadtest_*.json")):
-        if f.name.startswith("MOCK_") or "explore" in f.name:
+        if f.name.startswith("MOCK_") or "explore" in f.name or f.name.startswith("loadtest_router"):  # router runs: summarize_router.py
             continue
         d = json.loads(f.read_text())
         if d.get("mock"):

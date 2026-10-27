@@ -214,6 +214,36 @@ async fn proxy_handler(State(app): State<Arc<App>>, req: Request) -> Response {
                     attempt += 1;
                     continue;
                 }
+                // Nothing has reached the client yet, so wait for the first body chunk before committing to this replica: one that
+                // dies after sending headers but before any data (a kill mid-prefill) can still be retried elsewhere.
+                let resp_headers = resp.headers().clone();
+                let mut up = Box::pin(resp.bytes_stream());
+                let mut first: Option<Bytes> = None;
+                let mut ended = false;
+                if !status.is_server_error() {
+                    let peek = match tokio::time::timeout(idle, up.next()).await {
+                        Ok(Some(Ok(chunk))) => {
+                            first = Some(chunk);
+                            Ok(())
+                        }
+                        Ok(None) => {
+                            ended = true;
+                            Ok(())
+                        }
+                        Ok(Some(Err(e))) => Err(format!("replica {} dropped before its first byte: {}", backend.base, e)),
+                        Err(_) => Err(format!("replica {} sent no data within {} ms", backend.base, app.cfg.idle_timeout_ms)),
+                    };
+                    if let Err(msg) = peek {
+                        guard.fail();
+                        last_error = msg;
+                        tried.push(idx);
+                        if attempt < app.cfg.max_retries {
+                            tokio::time::sleep(backoff(attempt, app.cfg.backoff_base_ms, app.cfg.backoff_max_ms)).await;
+                        }
+                        attempt += 1;
+                        continue;
+                    }
+                }
                 app.metrics.ttfb.observe(started.elapsed());
                 if status.is_server_error() {
                     guard.fail(); // out of retries: pass the error through, but it still counts against the replica
@@ -221,15 +251,20 @@ async fn proxy_handler(State(app): State<Arc<App>>, req: Request) -> Response {
                     backend.breaker.on_success(); // it answered: close a half-open breaker without waiting for the stream to end
                 }
                 let mut builder = Response::builder().status(status).header("x-router-backend", idx.to_string());
-                for (k, v) in resp.headers().iter() {
+                for (k, v) in resp_headers.iter() {
                     if !hop_by_hop(k) {
                         builder = builder.header(k, v);
                     }
                 }
                 let stream = async_stream::stream! {
                     let mut guard = guard;
-                    let mut up = Box::pin(resp.bytes_stream());
-                    loop {
+                    if let Some(chunk) = first {
+                        yield Ok::<Bytes, std::io::Error>(chunk);
+                    }
+                    if ended {
+                        guard.complete();
+                    }
+                    while !ended {
                         match tokio::time::timeout(idle, up.next()).await {
                             Ok(Some(Ok(chunk))) => yield Ok::<Bytes, std::io::Error>(chunk),
                             Ok(Some(Err(e))) => {

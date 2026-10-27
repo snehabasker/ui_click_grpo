@@ -9,7 +9,6 @@ use axum::routing::{get, post};
 use axum::Router;
 use bytes::Bytes;
 use prefix_router::{build_app, health, App, Config, PolicyKind};
-use std::convert::Infallible;
 use std::net::SocketAddr;
 use std::sync::atomic::{AtomicBool, AtomicU64, Ordering::SeqCst};
 use std::sync::Arc;
@@ -17,8 +16,12 @@ use std::time::{Duration, Instant};
 use tokio::net::TcpListener;
 use tokio::task::JoinHandle;
 
+const CUT_BEFORE_FIRST_BYTE: u64 = 1;
+const CUT_AFTER_FIRST_CHUNK: u64 = 2;
+
 struct MockState {
     name: String,
+    cut: AtomicU64,
     fail: AtomicBool,
     healthy: AtomicBool,
     hits: AtomicU64,
@@ -54,12 +57,24 @@ async fn mock_chat(State(s): State<Arc<MockState>>, _body: Bytes) -> Response {
         tokio::time::sleep(Duration::from_millis(d)).await; // delays the response HEADERS, like a hung replica
     }
     let name = s.name.clone();
+    let cut = s.cut.load(SeqCst);
     let stream = async_stream::stream! {
-        for i in 0..5 {
-            tokio::time::sleep(Duration::from_millis(5)).await;
-            yield Ok::<Bytes, Infallible>(Bytes::from(format!("data: {{\"backend\":\"{name}\",\"i\":{i}}}\n\n")));
+        if cut == CUT_BEFORE_FIRST_BYTE {
+            // headers go out, then the connection dies before any data: a replica killed mid-prefill
+            yield Err::<Bytes, std::io::Error>(std::io::Error::other("mock replica died before its first byte"));
+        } else {
+            for i in 0..5 {
+                tokio::time::sleep(Duration::from_millis(5)).await;
+                yield Ok::<Bytes, std::io::Error>(Bytes::from(format!("data: {{\"backend\":\"{name}\",\"i\":{i}}}\n\n")));
+                if cut == CUT_AFTER_FIRST_CHUNK {
+                    yield Err(std::io::Error::other("mock replica died mid-stream"));
+                    break;
+                }
+            }
+            if cut != CUT_AFTER_FIRST_CHUNK {
+                yield Ok(Bytes::from("data: [DONE]\n\n"));
+            }
         }
-        yield Ok(Bytes::from("data: [DONE]\n\n"));
     };
     Response::builder().header("content-type", "text/event-stream").header("x-mock", s.name.as_str()).body(Body::from_stream(stream)).unwrap()
 }
@@ -67,6 +82,7 @@ async fn mock_chat(State(s): State<Arc<MockState>>, _body: Bytes) -> Response {
 async fn start_mock(name: &str, bind: Option<SocketAddr>) -> Mock {
     let state = Arc::new(MockState {
         name: name.to_string(),
+        cut: AtomicU64::new(0),
         fail: AtomicBool::new(false),
         healthy: AtomicBool::new(true),
         hits: AtomicU64::new(0),
@@ -247,6 +263,37 @@ async fn before_the_health_check_notices_a_dead_replica_requests_are_retried_and
 }
 
 #[tokio::test]
+async fn a_replica_that_dies_before_its_first_byte_is_retried_without_the_client_noticing() {
+    let (a, b) = (start_mock("a", None).await, start_mock("b", None).await);
+    let rig = start_router(&[&a, &b], PolicyKind::RoundRobin).await;
+    a.state.cut.store(CUT_BEFORE_FIRST_BYTE, SeqCst);
+    for i in 0..6 {
+        let r = chat(&rig, "s", &format!("{i}")).await;
+        assert_eq!(r.status, StatusCode::OK);
+        assert!(r.body.contains("\"backend\":\"b\"") && r.body.contains("[DONE]"), "request {i} must be answered completely by b: {}", r.body);
+    }
+    let m = metrics(&rig).await;
+    assert!(metric(&m, "router_retries_total") >= 1.0, "{m}");
+    assert!(metric(&m, &format!("router_backend_errors_total{{backend=\"{}\"}}", a.url())) >= 1.0, "{m}");
+    assert!(a.state.hits.load(SeqCst) >= 1, "replica a must actually have been tried");
+}
+
+#[tokio::test]
+async fn a_replica_that_dies_after_the_first_chunk_is_not_retried() {
+    // once data has reached the client the answer cannot be replayed from the start, so the failure is reported, not hidden
+    let a = start_mock("a", None).await;
+    let rig = start_router(&[&a], PolicyKind::Prefix).await;
+    a.state.cut.store(CUT_AFTER_FIRST_CHUNK, SeqCst);
+    let r = chat(&rig, "s", "u").await;
+    assert!(!r.body.contains("[DONE]"), "a truncated answer must not look complete: {}", r.body);
+    let m = metrics(&rig).await;
+    assert_eq!(metric(&m, "router_retries_total"), 0.0, "{m}");
+    assert_eq!(a.state.hits.load(SeqCst), 1);
+    wait_until("the failed stream is counted against the replica", 2, || a.state.hits.load(SeqCst) == 1).await;
+    assert_eq!(metric(&metrics(&rig).await, &format!("router_backend_errors_total{{backend=\"{}\"}}", a.url())), 1.0);
+}
+
+#[tokio::test]
 async fn a_restarted_replica_receives_its_keys_again() {
     let (a, b) = (start_mock("a", None).await, start_mock("b", None).await);
     let addr_a = a.addr;
@@ -282,10 +329,15 @@ async fn server_errors_are_retried_and_the_breaker_opens_then_recovers() {
     assert!(metric(&m, "router_retries_total") >= 3.0);
     assert_eq!(metric(&m, &format!("router_backend_breaker_state{{backend=\"{}\"}}", a.url())), 2.0, "breaker for a must be open:\n{m}");
     let a_hits_while_open = a.state.hits.load(SeqCst);
+    let t_open = Instant::now();
     for i in 0..6 {
         assert_eq!(chat(&rig, "s", &format!("x{i}")).await.status, StatusCode::OK);
     }
-    assert!(a.state.hits.load(SeqCst) <= a_hits_while_open + 1, "an open breaker must stop traffic (at most one probe)");
+    // An open breaker admits one probe per cooldown (250 ms in the test config), so the bound grows with the time the loop took.
+    // Without the breaker round-robin would send 3 of these 6 requests to a, plus none of the retries counted here.
+    let probes = a.state.hits.load(SeqCst) - a_hits_while_open;
+    let bound = 1 + t_open.elapsed().as_millis() as u64 / 250;
+    assert!(probes <= bound, "an open breaker must stop traffic: {probes} requests reached a in {:?}, bound {bound}", t_open.elapsed());
 
     a.state.fail.store(false, SeqCst); // the replica recovers
     // Only a real request can probe an open breaker (the health check passes the whole time, so it proves nothing), so keep sending.

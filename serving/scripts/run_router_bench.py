@@ -52,6 +52,8 @@ ap.add_argument("--kill-after", type=float, default=60.0, help="failure mode: se
 ap.add_argument("--restart-after", type=float, default=30.0, help="failure mode: seconds after the kill before the restart is launched")
 ap.add_argument("--failure-concurrency", type=int, default=4)
 ap.add_argument("--skip-accuracy", action="store_true")
+ap.add_argument("--interleave", action="store_true",
+                help="alternate the policy order on every repeat (A B, B A, A B) instead of running one policy to completion first")
 a = ap.parse_args()
 
 PORTS = [8001, 8002]
@@ -202,21 +204,48 @@ def main_bench():
         info = common_record("router_bench", procs, {"policies": a.policies, "gpu_mem_two_replicas_mib": gpu_mem()})
         sessions = dict(kv.split(":") for kv in a.sessions_by_conc.split(","))
         snapshots = []
-        for policy in a.policies:
-            tag = f"router-{policy}"
+
+        def accuracy(policy: str):
+            subprocess.run([PY, "-u", str(ROOT / "serving/scripts/accuracy_check.py"), "--backend", "openai", "--base-url",
+                            f"http://127.0.0.1:{a.router_port}", "--model", "merged-clean", "--set", "synth300", "--tag",
+                            f"router-{policy}", "--concurrency", "4", "--model-dir", str(MODEL_DIR)])
+
+        def one_run(policy: str, c: int, rep: int, position: int):
+            """One cold-cache load run through `policy`; the router is restarted per run so its counters start from zero."""
             router = start_router(policy)
             try:
-                if not a.skip_accuracy:
-                    subprocess.run([PY, "-u", str(ROOT / "serving/scripts/accuracy_check.py"), "--backend", "openai", "--base-url",
-                                    f"http://127.0.0.1:{a.router_port}", "--model", "merged-clean", "--set", "synth300", "--tag", tag,
-                                    "--concurrency", "4", "--model-dir", str(MODEL_DIR)])
-                for c in a.concurrency:
-                    for rep in range(a.repeats):
-                        before = router_metrics()
-                        run_loadtest(tag, c, 1, int(sessions[str(c)]) if str(c) in sessions else None)
-                        snapshots.append({"policy": policy, "concurrency": c, "repeat": rep + 1, "before": before, "after": router_metrics()})
+                before = router_metrics()
+                run_loadtest(f"router-{policy}", c, 1, int(sessions[str(c)]) if str(c) in sessions else None)
+                snapshots.append({"policy": policy, "concurrency": c, "repeat": rep + 1, "position_in_pair": position,
+                                  "before": before, "after": router_metrics()})
             finally:
                 router.stop()
+
+        if a.interleave:
+            # Run order is a confound on this GPU (power/thermal state drifts), so alternate which policy goes first on every repeat.
+            if not a.skip_accuracy:
+                for policy in a.policies:
+                    router = start_router(policy)
+                    try:
+                        accuracy(policy)
+                    finally:
+                        router.stop()
+            for c in a.concurrency:
+                for rep in range(a.repeats):
+                    order = a.policies if rep % 2 == 0 else a.policies[::-1]
+                    for pos, policy in enumerate(order):
+                        one_run(policy, c, rep, pos)
+        else:
+            for policy in a.policies:
+                if not a.skip_accuracy:
+                    router = start_router(policy)
+                    try:
+                        accuracy(policy)
+                    finally:
+                        router.stop()
+                for c in a.concurrency:
+                    for rep in range(a.repeats):
+                        one_run(policy, c, rep, 0)
         info["router_metric_snapshots"] = snapshots
         write("router_bench", info)
     finally:
