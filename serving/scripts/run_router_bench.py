@@ -39,7 +39,12 @@ ap.add_argument("--repeats", type=int, default=3)
 ap.add_argument("--policies", nargs="+", default=["prefix", "round-robin"])
 ap.add_argument("--trace", default="serving/traces/default")
 ap.add_argument("--sessions-by-conc", default="4:48,16:96,32:96")
-ap.add_argument("--gpu-util", type=float, default=0.46, help="per replica, as a fraction of the whole GPU")
+ap.add_argument("--gpu-util", type=float, default=0.40,
+                help="per replica, as a fraction of the whole GPU; only used for vLLM's startup free-memory check because --kv-cache-gib "
+                     "bypasses the profiling formula")
+ap.add_argument("--kv-cache-gib", type=float, default=0.40,
+                help="KV cache bytes reserved per replica. Without it the second replica's profiled budget came out negative "
+                     "(-2.24 GiB, see serving/NOTES.md)")
 ap.add_argument("--max-seqs", type=int, default=8)
 ap.add_argument("--max-len", type=int, default=3072)
 ap.add_argument("--router-port", type=int, default=9000)
@@ -95,7 +100,7 @@ class Proc:
 
 def start_replica(i: int, tag: str) -> Proc:
     env = dict(os.environ, PORT=str(PORTS[i]), GPU_UTIL=str(a.gpu_util), MAX_SEQS=str(a.max_seqs), MAX_LEN=str(a.max_len),
-               EXTRA="--quantization fp8")
+               EXTRA=f"--quantization fp8 --kv-cache-memory {int(a.kv_cache_gib * 2**30)}")
     return Proc(f"replica{i}", ["bash", str(SERVE)], env, LOGS / f"router-{tag}-replica{i}-{ts}.log")
 
 
@@ -177,7 +182,7 @@ def common_record(kind: str, procs, extra: dict) -> dict:
     return {"kind": kind, "env": envinfo.capture(MODEL_DIR, {"args": vars(a)}), "router_binary_sha256": sha,
             "router_version": subprocess.run([str(ROUTER_BIN), "--version"], capture_output=True, text=True).stdout.strip(),
             "replicas": replica_facts(procs), "replica_settings": {"quantization": "fp8", "gpu_util_each": a.gpu_util,
-                                                                  "max_seqs": a.max_seqs, "max_len": a.max_len},
+                                                                  "kv_cache_gib_each": a.kv_cache_gib, "max_seqs": a.max_seqs, "max_len": a.max_len},
             "gpu_mem_loaded_mib": gpu_mem(), **extra}
 
 
