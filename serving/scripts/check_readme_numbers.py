@@ -8,7 +8,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 readme = (ROOT / "serving" / "README.md").read_text(encoding="utf-8")
 table = (ROOT / "serving" / "results" / "tables" / "phase1.md").read_text(encoding="utf-8")
-section = readme.split("## Phase 1 results", 1)[1].split("## Rules this folder follows", 1)[0]
+section = readme.split("## Phase 1 results", 1)[1].split("## Phase 2 results", 1)[0]
+section2 = readme.split("## Phase 2 results", 1)[1].split("## Rules this folder follows", 1)[0]
 
 cells = set(re.findall(r"\d+(?:\.\d+)?%? \(\d+(?:\.\d+)?%?–\d+(?:\.\d+)?%?\)", section))
 missing = sorted(c for c in cells if c not in table)
@@ -65,4 +66,30 @@ for label, text in ((f"{100 * thr:.0f}% lower", "rerun throughput"), (f"{100 * t
     ok = label in section
     bad2 += not ok
     print(f"{text}: expected '{label}' in README -> {'OK' if ok else 'MISSING'}")
-sys.exit(1 if (bad or bad2) else 0)
+
+# ---- Phase 2: cells must exist in phase2.md; per-replica request counts are recomputed from the raw bench record ---------------
+import json
+
+table2 = (ROOT / "serving" / "results" / "tables" / "phase2.md").read_text(encoding="utf-8")
+cells2 = set(re.findall(r"\d+(?:\.\d+)?%? \(\d+(?:\.\d+)?%?–\d+(?:\.\d+)?%?\)", section2))
+missing2 = sorted(c for c in cells2 if c not in table2)
+print(f"{len(cells2)} 'median (min-max)' cells in the README Phase 2 section; missing from phase2.md: {len(missing2)}")
+for m in missing2:
+    print("  MISSING:", m)
+bad3 = len(missing2)
+
+bench = [f for f in sorted((ROOT / "serving" / "results" / "raw").glob("router_bench_*.json"))
+         if json.loads(f.read_text())["env"]["args"].get("interleave")][-1]
+tot = {}
+for s in json.loads(bench.read_text())["router_metric_snapshots"]:
+    ok = [s["after"][k] - s["before"].get(k, 0) for k in s["after"] if k.startswith("router_backend_ok_total")]
+    t = tot.setdefault((s["policy"], s["concurrency"]), [0, 0])
+    t[0] += ok[0]
+    t[1] += ok[1]
+fmt = lambda p, cs: ", ".join(f"{int(tot[(p, c)][0])} / {int(tot[(p, c)][1])}" for c in cs)
+claim = (f"served {fmt('prefix', (4,))} requests at c=4, {fmt('prefix', (16,))} at c=16 and {fmt('prefix', (32,))} at c=32 "
+         f"(round-robin: {fmt('round-robin', (4,))}, {fmt('round-robin', (16,))}, {fmt('round-robin', (32,))})")
+ok = claim in " ".join(section2.split())
+bad3 += not ok
+print(f"per-replica request counts ({bench.name}): expected '{claim}' -> {'OK' if ok else 'NOT FOUND / MISMATCH'}")
+sys.exit(1 if (bad or bad2 or bad3) else 0)

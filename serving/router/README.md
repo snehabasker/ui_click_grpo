@@ -30,9 +30,9 @@ target/release/prefix-router --listen 127.0.0.1:9000 --backend http://127.0.0.1:
 
 | situation | behaviour |
 |---|---|
-| connect error, timeout waiting for headers (`--header-timeout-ms`), or a 5xx **before the response starts** | retry on a *different* replica, up to `--max-retries` (default 2), with exponential backoff (50 ms doubling, capped 1 s) and +-25% jitter |
-| replica fails after streaming has begun | cannot be replayed: the client sees a broken stream, and the failure counts against the replica. Never silently retried. |
-| replica silent for `--idle-timeout-ms` mid-stream | stream is cut and counted as a failure |
+| connect error, timeout waiting for headers (`--header-timeout-ms`), a 5xx, or the connection dying / going silent (`--idle-timeout-ms`) **before the first body byte** | retry on a *different* replica, up to `--max-retries` (default 2), with exponential backoff (50 ms doubling, capped 1 s) and +-25% jitter. The router holds the response until the first chunk arrives, so nothing has reached the client yet. |
+| replica fails after the first chunk was sent to the client | cannot be replayed: the client sees a broken stream, and the failure counts against the replica. Never silently retried. |
+| replica silent for `--idle-timeout-ms` after the first chunk | stream is cut and counted as a failure |
 | replica fails `--unhealthy-after` consecutive health checks (`GET /health` every 500 ms) | marked unhealthy and skipped; back after `--healthy-after` successes |
 | 5 consecutive failed requests (`--breaker-threshold`) | circuit breaker opens for `--breaker-cooldown-ms` (3 s), then lets exactly **one** probe request through; success closes it, failure reopens it |
 | no eligible replica | `503` with a JSON error body |
@@ -46,16 +46,17 @@ cooldown (the probe), and the tests assert that bound.
 
 `GET /metrics` (Prometheus text): requests, routing decisions (`affinity`, `spill`, `least_loaded`, `round_robin`), retries, requests rejected
 for lack of a replica, per-replica in-flight / healthy / breaker state / ok / errors / aborted / retried-to / went-down / came-up, and
-histograms of time to the replica's response headers and of total request time. `GET /router/health` returns JSON per replica (503 if none is
+histograms of time to the replica's first response byte and of total request time. `GET /router/health` returns JSON per replica (503 if none is
 healthy). Responses carry `x-router-backend: <index>`. Everything else (including a replica's own `/health`) is proxied.
 
 ## Tests
 
 `cargo test`: **27 unit tests** (hash ring balance and stability, breaker state machine with injected time, selection policy including a
-hot-key bound, prefix extraction, backoff, metrics rendering) and **13 integration tests** against mock replicas that stream SSE and can fail,
-hang, be killed and be restarted on the same port: affinity, header override, round-robin evenness, streaming fidelity and order, failover
-with zero client errors, retry before the health checker notices, the breaker's full open/probe/close cycle, a hung replica, all replicas
-down, bounded-load spill under concurrency, and metrics.
+hot-key bound, prefix extraction, backoff, metrics rendering) and **15 integration tests** against mock replicas that stream SSE and can fail,
+hang, die before or after their first chunk, be killed and be restarted on the same port: affinity, header override, round-robin
+evenness, streaming fidelity and order, failover with zero client errors, retry before the health checker notices, retry of a replica
+that dies before its first byte (and no retry after it), the breaker's full open/probe/close cycle, a hung replica, all replicas down,
+bounded-load spill under concurrency, and metrics.
 
 ## Limits (read before relying on it)
 
@@ -66,8 +67,9 @@ down, bounded-load spill under concurrency, and metrics.
   boundaries). A cache-aware router that mirrors each engine's radix tree is a different and larger design.
 * **Bounded load caps the maximum, not the minimum.** A very hot key fills replicas in ring order, so the last replica on that key's ring may
   get little. Load is counted in requests, not tokens: a 4k-token prompt weighs the same as a 400-token one.
-* **Retries only happen before streaming starts**, and replaying a request assumes it is safe to run twice (true for the greedy, read-only
-  requests used here).
+* **Retries only happen before the first body byte reaches the client**, and replaying a request assumes it is safe to run twice (true for
+  the greedy, read-only requests used here). A replica that dies after the first chunk still breaks that one response. Holding the response
+  until the first chunk arrives also means the router's time-to-headers metric now includes the replica's time to first byte.
 * The whole request body is buffered in memory (limit `--max-body-mb`, default 64) because the router reads the messages and may retry.
 * One router instance: no high availability, static replica list, no service discovery, no TLS or authentication (plain HTTP to localhost).
 * Tested with mock replicas and, in `../README.md`, with vLLM replicas on one GPU. Not tested at scale or across machines.

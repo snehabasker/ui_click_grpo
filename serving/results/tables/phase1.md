@@ -3,6 +3,13 @@
 | run | synthetic held-out (n=300) | ScreenSpot subset (n=400) |
 |---|---|---|
 | HF reference (merged checkpoint) | 63.33% [57.7, 68.6], valid 100.0% | 53.75% [48.9, 58.6], valid 98.2% |
+| fp8-replica | 64.33% [58.8, 69.5], valid 100.0% | 49.75% [44.9, 54.6], valid 98.0% |
+| router-prefix (run 1 of 3) | 64.67% [59.1, 69.9], valid 100.0% | – |
+| router-prefix (run 2 of 3) | 63.67% [58.1, 68.9], valid 100.0% | – |
+| router-prefix (run 3 of 3) | 64.67% [59.1, 69.9], valid 100.0% | 49.25% [44.4, 54.1], valid 98.0% |
+| router-round-robin (run 1 of 3) | 65.00% [59.4, 70.2], valid 100.0% | – |
+| router-round-robin (run 2 of 3) | 63.67% [58.1, 68.9], valid 100.0% | – |
+| router-round-robin (run 3 of 3) | 65.33% [59.8, 70.5], valid 100.0% | 49.50% [44.6, 54.4], valid 97.8% |
 | sglang-flashinfer-bs32-prefix-on | 64.00% [58.4, 69.2], valid 100.0% | 53.50% [48.6, 58.3], valid 98.8% |
 | sglang-prefix-off | 63.67% [58.1, 68.9], valid 100.0% | – |
 | sglang-prefix-on | 64.00% [58.4, 69.2], valid 100.0% | 53.75% [48.9, 58.6], valid 98.5% |
