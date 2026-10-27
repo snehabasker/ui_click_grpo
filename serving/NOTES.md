@@ -219,3 +219,38 @@ router results therefore describe the FP8 policy, which is a slightly worse clic
   `*.sh` to LF and the runs use the Linux clone's copy.
 * `collect_results.sh` did not copy `router_bench_*.json` / `router_failure_*.json`, so the first summary came out empty; fixed.
 * Two background "wait for the bench to finish" loops matched their own command line with `pgrep -f` and never exited; killed by PID.
+
+## Phase 3: the Triton kernel
+
+### What went wrong, in order
+
+* **Windows Python has no Triton**, so the kernel, its tests and the benchmark run in WSL, in the vLLM venv (torch 2.13 + Triton 3.7.1,
+  both work on the 5050, compute capability 12.0). Other venvs also have Triton (`flowgen`, `sgym`: 3.6.0; `sglang`: 3.8.0); only 3.7.1 was used.
+* **That venv has no pip** (it was made by `uv`), so `pytest` went in with `uv pip install --python ... pytest`. Nothing else was changed in it.
+* **First benchmark attempt died with "Failed to find C compiler"** (Triton and inductor build small C launchers). The kernel tests had passed
+  only because the launcher was already cached. The serve scripts already put `~/toolchain/bin` on PATH when there is no system gcc; the kernel
+  scripts did not. Fixed, committed, then the benchmark was re-run from the committed code. The log directory I used (`~/logs`) did not exist
+  either (`~/work/logs` is the real one), so the first attempt's log was lost; nothing from it is in the results.
+* **The first smoke run showed cache effects.** `do_bench_cudagraph` reached 490 GB/s on a 5 MB operation, above the 384 GB/s peak, because
+  it does not flush L2 and the tensors fit in the 32 MiB cache. Kept as a labelled column, but the roofline uses only cells of at least 64 MiB.
+* **My first GPU-state sampler was useless**: it read `nvidia-smi` between repeats, when the GPU was idle (180 MHz). Replaced by a 1 Hz sampler
+  during each repeat. Under WSL the SM clock still reads 180 MHz in every sample at 67 W, so the clock column is reported as unusable and not cited.
+* **The GPU throttled during the benchmark** (power cap, then thermal slowdown at 83-89 C), so repeats are bimodal and the measured copy ceiling moved
+  from 262 to 321 GB/s. I did not re-run with a per-cell ceiling measurement; instead the roofline table compares each cell's best repeat with the
+  best measured ceiling, and the README says why. The ratios between implementations are measured back to back within a cell and are not affected.
+* **The tests passed on the first run**, which made me want proof they could fail. I broke the kernel on purpose (126 instead of 127 in the
+  scale) and confirmed a test failed, then restored the file.
+* **README prose I had to correct before publishing**: I first wrote that the kernel and `torch.compile` are about equal "at 1 or 16 rows"; at
+  hidden size 8192 with 1 row the kernel is 1.36-1.46x faster, so only 5 cells are tied. I also wrote that eager launches "about ten kernels"
+  without having counted them; removed. The checker now guards the ratio ranges.
+* **The accuracy check needed its own loader**: `uiclick.model.load_model` imports `peft` even without an adapter, and the vLLM venv has none, so
+  `kernel_accuracy.py` loads the merged checkpoint with `Qwen2VLForConditionalGeneration` directly (same dtype, attention and device).
+* **Text identity is a poor metric here.** Only 40-43% of outputs were identical between the baseline and the kernel, which looked alarming until the
+  adapter-vs-merged check from Phase 0 (same function up to rounding) showed only 54.5-56.3%, and the kernel vs the fp32 reference quantiser (nearly
+  the same function) showed 38.5-43.3%. Differences of a point or two in accuracy are within what bf16 noise alone produces on these sets.
+
+### Not established
+
+* Why `do_bench` and `do_bench_cudagraph` disagree by about 20% at the largest cells.
+* Why the fused kernel beats `torch.compile` by 1.4-2.6x at 1024+ rows (inductor's kernels were not inspected).
+* Whether a tuned launch configuration (`num_warps`, several rows per program) would change the small-cell results.

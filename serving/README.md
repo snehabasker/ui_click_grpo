@@ -13,7 +13,7 @@ Nothing under `serving/` changes training code or the published results in `../r
 | 0 | Merge adapter, verify it, trace generator, load client, tests | **done** (this document) |
 | 1 | vLLM vs SGLang on the same checkpoint | **done, with caveats** (see Phase 1 results and the follow-up on SGLang's configuration) |
 | 2 | Prefix-aware router in Rust | **done, with a mixed result** (see Phase 2 results: the routing works, the latency benefit is not clear) |
-| 3 | Fused RMSNorm + INT8 quantisation Triton kernel | not started |
+| 3 | Fused RMSNorm + INT8 quantisation Triton kernel | **done, as a standalone operator** (see Phase 3 results: not integrated into an engine, no end-to-end claim) |
 | 4 | Prefill/decode disaggregation (time-boxed) | not started |
 | 5 | TensorRT-LLM (time-boxed) | not started |
 
@@ -429,6 +429,156 @@ of routing. The FP8 cost itself is in the limitations below.
 * The first two comparison runs and the first failure test used an earlier router build (binary hash recorded in each file); the final
   failure test and interleaved comparison used the build in this commit's tree.
 
+## Phase 3 results: a fused RMSNorm + INT8 quantisation kernel in Triton
+
+`servekernels/rmsnorm_int8.py` is one Triton kernel that does RMSNorm and per-row symmetric INT8 quantisation in a single pass,
+registered as the PyTorch custom op `serving::rmsnorm_int8` (`torch.library.custom_op` + `register_fake`, checked with
+`torch.library.opcheck`). For each row `y = x * rsqrt(mean(x^2) + eps) * weight` is computed in fp32, `scale = max|y| / 127`, and the
+output is the int8 codes `rint(y / scale)` plus one fp32 scale per row. Unfused, RMSNorm writes `y` back to memory and the quantiser
+reads it twice more; fused, the kernel reads `x` once and writes only int8 plus the scales. The Qwen2-VL-2B language model has 57 RMSNorms
+(hidden size 1536, eps 1e-6): two per layer for 28 layers plus the final norm.
+
+**What this phase is and is not.** The kernel is a standalone operator. It is **not wired into vLLM or SGLang**, and nothing in this
+repo has an INT8 GEMM behind it, so there is **no end-to-end speed-up claim**. Two things are measured: how fast the operator runs
+against PyTorch eager and `torch.compile`, and, for rule 4, what quantising every RMSNorm output to per-row INT8 does to click accuracy.
+
+### Correctness
+
+`tests/test_rmsnorm_int8.py` (48 tests; they need a CUDA GPU and Triton and are skipped elsewhere; run with `scripts/wsl/run_kernel_tests.sh`)
+compares the kernel with an fp32 PyTorch reference for fp16, bf16 and fp32 over odd shapes (hidden sizes 1, 2, 33, 1000, 1536, 2049,
+4096 and the 16384 maximum; 1 to 1025 rows), leading batch dimensions, strided and non-contiguous inputs, zero rows, constant rows,
+fp16-overflow inputs (the squares overflow fp16; the kernel works in fp32), subnormals, a single huge outlier, a NaN in one row (it must
+not leak into other rows), empty input, and invalid inputs; plus `torch.library.opcheck` and a `torch.compile(fullgraph=True)` run.
+The scales must match to a relative 1e-5 and codes may differ by at most 1 (when fp32 summation order flips a rounding at a .5
+boundary) on at most 0.1% of the codes. To check that the tests can fail, I broke the kernel on purpose (quantising with 126 instead of
+127) and the suite failed. In the benchmark's own 36 cells the largest code difference from the reference was 1, on at most 7 in a
+million codes, and the largest relative scale error was 3.4e-7.
+
+### Speed: `triton.testing.do_bench` across sizes
+
+Setup: raw file `results/raw/kernel_bench_rmsnorm-int8_20261027-143020.json` (RTX 5050 Laptop, driver 592.82, torch 2.13.0+cu132,
+Triton 3.7.1, commit `14ce6e3`, 5 repeats of the whole grid, 36 cells: hidden 1536 / 4096 / 8192 x 1 / 16 / 128 / 1024 / 4096 / 16384 rows
+x fp16 / bf16). Rows 1-16 are a decode batch; 1024-16384 a prefill chunk (one screenshot is about 1.8k tokens). Three implementations are
+timed back to back in each cell, in alternating order: the fused kernel, **PyTorch eager** (`reference()`: the same maths as separate ops
+in fp32, so a same-math baseline, not HF's own bf16 module), and **`torch.compile`** of that reference (inductor). GB/s is *effective*: the
+minimum bytes the operation must move (read `x` and the weight, write the codes and the scales) over the time, the same numerator for every
+implementation. The table below is the model's real shape (hidden 1536, bf16, the model's dtype); the full grid for both dtypes, the
+CUDA-graph timings and the per-repeat GPU state are in `results/tables/phase3.md`.
+
+`do_bench` flushes the L2 cache before each launch and includes the Python/dispatcher launch cost. Median (min-max) over 5 repeats:
+
+| hidden | rows | fused (ms) | eager (ms) | compile (ms) | fused vs eager | fused vs compile | fused (GB/s) | % of copy |
+|---|---|---|---|---|---|---|---|---|
+| 1536 | 1 | 0.0065 (0.0057–0.0078) | 0.1785 (0.1606–0.3049) | 0.0058 (0.0057–0.0059) | 27.6x | 0.90x | 1 (1–1) | 0% |
+| 1536 | 16 | 0.0058 (0.0057–0.0059) | 0.1646 (0.1519–0.2255) | 0.0078 (0.0078–0.0079) | 28.6x | 1.36x | 13 (13–13) | 4% |
+| 1536 | 128 | 0.0078 (0.0057–0.0099) | 0.1984 (0.1629–0.2259) | 0.0099 (0.0099–0.0100) | 25.4x | 1.27x | 76 (60–104) | 24% |
+| 1536 | 1024 | 0.0199 (0.0122–0.0200) | 0.2803 (0.2541–0.3235) | 0.0404 (0.0404–0.0405) | 14.1x | 2.03x | 237 (236–387) | 74% |
+| 1536 | 4096 | 0.0650 (0.0524–0.0650) | 1.2054 (1.2026–1.4361) | 0.1612 (0.1593–0.2003) | 18.5x | 2.48x | 291 (290–360) | 91% |
+| 1536 | 16384 | 0.2924 (0.2373–0.2925) | 6.1817 (6.0305–7.2324) | 0.6078 (0.5896–0.6600) | 21.1x | 2.08x | 258 (258–318) | 81% |
+
+Across all 36 `do_bench` cells the fused kernel is **11.8x to 38.0x faster than eager** (ratio of medians) and **0.90x to 2.56x
+against `torch.compile`**: tied (0.90x-1.01x) in 5 of the 36 cells, all with 1 or 16 rows and hidden size 1536 or 4096, where a launch
+costs more than the work; in the other 31 cells the kernel is 1.18x to 2.56x faster, and 1.43x to 2.56x at 1024 rows or more. With CUDA graphs (launch cost removed; `do_bench_cudagraph`) the ratios are 9.6x to 50.8x against eager and 1.41x to 4.48x
+against `torch.compile`; those tables are in `results/tables/phase3.md`.
+
+### Roofline: how close to the memory-bandwidth limit
+
+The operation is memory-bound (about 3 bytes moved per element for a handful of arithmetic operations), so the relevant ceiling is DRAM
+bandwidth. The reference lines (measured on this GPU, except the two spec-based ones):
+
+| ceiling | GB/s |
+|---|---|
+| measured copy 256MiB | 320 (262–321) |
+| measured copy 64MiB | 262 (261–317) |
+| measured read only 256MiB | 323 (323–344) |
+| measured read only 64MiB | 239 (236–288) |
+| reported spec peak (secondary source) | 384 |
+| memory clock x bus width x 2, as the driver reports them | 384 |
+
+The reported spec peak (384 GB/s: 128-bit GDDR7 at 24 Gbps) is a secondary-source figure for the laptop RTX 5050
+([Wccftech](https://wccftech.com/nvidia-officially-launches-laptop-geforce-rtx-5050-gpu/amp/); another outlet printed 348, which looks like
+a typo); the driver's own memory clock x bus width x 2 transfers per clock gives the same 384, but the factor of 2 is my assumption. The
+measured ceilings (a device-to-device copy and a `sum()` that only reads, on a 256 MiB tensor) are what this GPU actually delivers in this setup.
+
+Only cells that move at least 64 MiB are DRAM-bound (the L2 cache is 32 MiB). For those, the table compares the **best repeat** with the
+best measured ceiling, because the GPU sat in different power and thermal states from repeat to repeat (next section) and a median across
+states would compare unlike things:
+
+| dtype | hidden | rows | MiB moved | fused GB/s, median (min–max) | best repeat GB/s | best vs reported spec peak | best vs best measured copy | best vs best measured read-only |
+|---|---|---|---|---|---|---|---|---|
+| bf16 | 1536 | 16384 | 72 | 258 (258–318) | 318 | 83% | 99% | 92% |
+| bf16 | 4096 | 16384 | 192 | 265 (265–325) | 325 | 85% | 101% | 94% |
+| bf16 | 8192 | 4096 | 96 | 316 (261–318) | 318 | 83% | 99% | 92% |
+| bf16 | 8192 | 16384 | 384 | 269 (269–326) | 326 | 85% | 102% | 95% |
+| fp16 | 1536 | 16384 | 72 | 314 (258–316) | 316 | 82% | 98% | 92% |
+| fp16 | 4096 | 16384 | 192 | 322 (266–325) | 325 | 85% | 101% | 94% |
+| fp16 | 8192 | 4096 | 96 | 261 (261–318) | 318 | 83% | 99% | 92% |
+| fp16 | 8192 | 16384 | 384 | 269 (268–326) | 326 | 85% | 102% | 95% |
+
+So at best the kernel reaches 316-326 GB/s: **82-85% of the reported spec peak, about the same as the best measured copy (98-102%), and
+92-95% of the best read-only ceiling**. Over 100% against the copy line is not a contradiction: a copy moves equal read and write traffic,
+this kernel moves two bytes in for each byte out. The medians are lower (258-322 GB/s) because of the throttling. Smaller cells are not at
+the roofline: at 1-16 rows the time is a floor of about 0.006 ms that `torch.compile` hits too (launch cost and timer resolution), and one
+program per row means a single row uses one of the GPU's 20 SMs. I did not tune `num_warps` or try several rows per program; the launch
+configuration is a fixed heuristic.
+
+**Why it beats eager** is plain from how the baseline is written: it is a chain of separate PyTorch ops that write fp32 intermediates to memory
+(at 1 row eager takes about 0.17-0.22 ms against 0.006 ms fused, which is that chain's launch overhead); I did not count the kernels it launches.
+**Why it beats `torch.compile`** by 1.4x-2.6x at 1024+ rows I have not established: I did not inspect inductor's generated kernels. A
+plausible but untested explanation is that inductor does the two row reductions (sum of squares, abs-max) in separate loops or kernels.
+
+### Measurement caveats
+
+* **The GPU was power-capped and throttled.** Median power was 66-67 W, temperature reached 83-89 C, and NVML reported throttle reasons 0x4
+  (software power cap) and, from repeat 2, 0x20 (software thermal slowdown). The same copy benchmark gave 262-264 GB/s in repeats 1-2 and
+  320-321 GB/s in repeats 3-5. Timings are bimodal across repeats, which is why many cells have a median close to the max. The ratios between
+  implementations are robust to this (measured back to back inside a cell); the "% of ceiling" numbers are not, hence the best-repeat table.
+  `nvidia-smi` reports the SM clock as 180 MHz in every sample under WSL, which cannot be right at 67 W, so I do not use it.
+* **Timer resolution.** `do_bench` times below about 0.02 ms come in steps of about 0.002 ms (0.0057, 0.0078, 0.0099 ms ...), so the small
+  cells' ratios are coarse. The CUDA-graph timings resolve them better.
+* **CUDA-graph numbers are not DRAM numbers for small tensors.** `do_bench_cudagraph` does not flush L2, so an operation moving 19-25 MB stays
+  cache-resident and reaches about 560-670 GB/s, above the 384 GB/s peak. They are L2-warm GPU time, not a roofline.
+* **`do_bench` and `do_bench_cudagraph` disagree by about 20% at the largest cells** (1.50 ms vs 1.22 ms for 8192 x 16384 fp16). I do not
+  know why (the cache flush leaving dirty lines to write back is a guess).
+* One GPU, one machine, one driver; no run on another GPU.
+
+### Accuracy with INT8-quantised RMSNorm outputs (rule 4)
+
+Because the kernel is not in an engine, there is no served model whose clicks it could change. To still follow the rule,
+`scripts/kernel_accuracy.py` replaces the output of all 57 RMSNorms in the merged model by `dequantise(quantise(RMSNorm(x)))` ("fake
+quantisation": activations only, weights stay bf16, no INT8 GEMM) and runs the same greedy HF decoding on both fixed sets. Three conditions
+run in one process so only the norm differs: the model's own RMSNorm (baseline), the Triton kernel, and the fp32 PyTorch reference quantiser
+(which the kernel should match). The pass rule was fixed before the run: |delta| <= 2.0 points and an exact sign test on the paired
+discordant items with p > 0.05.
+
+| set | n | baseline acc (95% CI) | kernel acc (95% CI) | fp32-reference quantiser acc | delta (kernel - baseline) | only baseline right / only kernel right | sign-test p | identical text, kernel vs baseline | identical text, kernel vs reference | verdict |
+|---|---|---|---|---|---|---|---|---|---|---|
+| synth300 | 300 | 64.00% (58.42%–69.22%) | 64.67% (59.10%–69.86%) | 63.00% | +0.7 pts | 5 / 7 | 0.774 | 42.67% | 43.33% | PASS |
+| screenspot400 | 400 | 53.50% (48.60%–58.33%) | 52.00% (47.11%–56.85%) | 53.75% | -1.5 pts | 11 / 5 | 0.210 | 40.00% | 38.50% | PASS |
+
+Both sets pass, but read that for what it supports. The sets cannot resolve a change of a few points: the 95% intervals are about 10
+points wide, and with 12 and 16 discordant items the sign test has little power. **"No change was detected" is the claim; "no change" is
+not.** Two more things are visible. First, the output text moved a lot: only 40-43% of the kernel's outputs are character-identical to
+the baseline's (coordinates shift by a few units, e.g. `(535,574)` becomes `(535,572)`), against 56.3% and 54.5% identical for adapter vs merged
+in the Phase 0 check, where the two models are the same function up to rounding. Second, the kernel and the fp32 reference quantiser
+should be nearly the same function (codes differ in at most 7 in a million positions), yet their accuracies differ by 1.7 points on both
+sets (64.67% vs 63.00% and 52.00% vs 53.75%) and only 38-43% of their outputs are identical. In bf16, a tiny change in one norm propagates
+through 28 layers and changes greedy decodes, so differences of that size are **the noise floor of this evaluation**, not an effect of the
+kernel. The activation error on real inputs is moderate: relative L2 error 0.026 on average over the 57 norms and 0.055 at worst (the last
+layer's post-attention norm), measured on 16 synthetic items. The baseline here (53.50% on ScreenSpot) differs from the Phase 0 merged
+model's 53.75% because this run used transformers 5.19.0 in the vLLM venv on Linux, the Phase 0 check transformers 5.20.2 on Windows.
+
+### Limitations of Phase 3
+
+* Not integrated into any engine: no end-to-end latency or throughput claim, and INT8 would only pay off with INT8 GEMMs behind it, which this repo does not have.
+* The accuracy check is fake quantisation of the norm outputs only; it says nothing about quantising weights or other activations, and per-row scales are
+  one design choice among several.
+* One whole row per program: hidden sizes above 16384 are rejected, there is no backward (the quantiser is not differentiable), no bias or fused residual add,
+  and no tuning of the launch configuration.
+* The benchmark's baselines are same-math fp32 eager and `torch.compile` of it; a hand-written bf16 module or another fused library kernel was not tried.
+* Results come from a throttled laptop GPU and are bimodal across repeats; the explanation for the `do_bench`/CUDA-graph gap and for the margin over `torch.compile` is not established.
+* Triton 3.7.1 and torch 2.13 in the vLLM venv; the `sgym` venv (Triton 3.6) was not tested.
+
 ## Rules this folder follows
 
 1. Every number in a table comes from a raw JSON under `results/raw/`.
@@ -436,6 +586,18 @@ of routing. The FP8 cost itself is in the limitations below.
 3. Benchmarks use >= 3 repeats and report median and min-max (a standard deviation over 3 points would mislead).
 4. After every serving change, click accuracy is re-run on the synthetic set and the ScreenSpot subset.
 5. If a tool will not run on this hardware, the failure is documented in `NOTES.md` and the phase is marked attempted.
+
+## Reproduce Phase 3
+
+In the Linux clone, with the vLLM venv (torch + Triton on the GPU; `pytest` installed into it with `uv pip install`):
+
+```bash
+serving/scripts/wsl/run_kernel_tests.sh                       # 48 GPU tests, incl. torch.library.opcheck
+serving/scripts/wsl/run_kernel_bench.sh --reps 5 --tag rmsnorm-int8
+serving/scripts/wsl/run_kernel_accuracy.sh                    # fake-quantised RMSNorm outputs on both fixed sets
+python serving/scripts/summarize_kernel.py                    # results/tables/phase3.md and .csv
+python serving/scripts/check_readme_numbers.py
+```
 
 ## Reproduce Phase 0
 
@@ -467,12 +629,14 @@ The adapter weights and the merged checkpoint are not in the repo; the commands 
 ```
 servebench/        envinfo (run metadata), data (manifests), prompts, traces, client, accuracy, stats, mock_server
 scripts/           export_sets, merge_adapter, verify_merge, merge_diff, gen_traces, accuracy_check, loadtest,
-                   run_engine_bench, summarize, validate_client_timing, run_router_bench, summarize_router;
+                   run_engine_bench, summarize, validate_client_timing, run_router_bench, summarize_router, bench_kernel, kernel_accuracy,
+                   summarize_kernel;
                    wsl/  = Linux-side setup and engine launch scripts
 router/            Phase 2: the Rust prefix-aware router (src/, tests/, README.md)
-tests/             37 Python tests (the router's 42 Rust tests are under router/)
+servekernels/      Phase 3: the fused RMSNorm + INT8 Triton kernel (torch.library custom op)
+tests/             43 Python tests that run anywhere plus 48 kernel tests that need a CUDA GPU and Triton (the router's 42 Rust tests are under router/)
 traces/default/    trace.jsonl, warmup.jsonl, trace_meta.json, token_stats.json  (images regenerated, git-ignored)
-results/raw/       raw JSON for every number above (167 files)
-results/tables/    phase1.md / .csv (scripts/summarize.py) and phase2.md (scripts/summarize_router.py)
+results/raw/       raw JSON for every number above (169 files)
+results/tables/    phase1.md / .csv (scripts/summarize.py) and phase2.md (scripts/summarize_router.py) and phase3.md / .csv (scripts/summarize_kernel.py)
 NOTES.md           dead ends and fixes
 ```

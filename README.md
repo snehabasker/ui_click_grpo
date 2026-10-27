@@ -49,7 +49,14 @@ training code or the results above.
   alternates policy order. Killing a replica under load lost 1 of 560 requests; the router noticed in 0.9 s and was routing to the
   restarted replica 1.2 s after it was ready. The FP8 replicas cost 3.25 points on ScreenSpot against bf16 (p=0.041); the router itself
   did not change clicks.
-* **Planned, not started:** a fused RMSNorm + INT8 Triton kernel, prefill/decode disaggregation, and TensorRT-LLM.
+* **A fused RMSNorm + INT8 quantisation kernel in Triton**, registered as a `torch.library` custom op (48 GPU tests including `opcheck`).
+  It is a standalone operator, not integrated into an engine, so there is no end-to-end claim. Against same-math PyTorch eager it is
+  11.8-38.0x faster across 36 size/dtype cells, and 0.90-2.56x against `torch.compile` (tied at the smallest cells). In the DRAM-bound
+  cells its best repeat reaches 316-326 GB/s, 82-85% of the reported 384 GB/s peak and about the measured copy bandwidth; medians are
+  lower because the laptop GPU was power-capped and thermally throttled. Quantising every RMSNorm output of the merged model to INT8
+  changed click accuracy by +0.7 points (synthetic) and -1.5 points (ScreenSpot), within this evaluation's noise: no change detected,
+  which small sets cannot rule out.
+* **Planned, not started:** prefill/decode disaggregation and TensorRT-LLM.
 
 ## Setup
 
