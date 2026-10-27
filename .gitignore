@@ -17,3 +17,6 @@ serving/models/
 serving/data/*/images/
 serving/traces/*/images/
 serving/results/raw/_*.log
+
+# Rust build output (kept on the Linux disk in practice)
+serving/router/target/
