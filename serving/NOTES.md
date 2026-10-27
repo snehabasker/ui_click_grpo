@@ -160,3 +160,62 @@ min-max ranges therefore understate real uncertainty.
   at c=16, but not throughput or time to first token) or from Triton attention (FlashInfer was no better).
 * Not tested: SGLang's vision-encoder attention backend (`sdpa` here; vLLM's log says FlashAttention for its vision encoder), its
   scheduling policy and multimodal preprocessing. These are the next things I would try.
+
+## Phase 2: the Rust router
+
+### Two replicas on one 8 GB GPU: the second one computed a negative KV budget
+The first attempt launched two FP8 replicas one after the other, each with `--gpu-memory-utilization 0.46`. Replica 0 logged
+`Available KV cache memory: 0.68 GiB`; replica 1 logged `-2.24 GiB` and exited with `No available memory for the cache blocks`.
+In vLLM 0.32.0 (`v1/worker/gpu_worker.py`, `utils/mem_utils.py`) the budget is `util x total memory` minus a "non-KV" figure, and that
+figure is the drop in *device-wide* free memory while the replica starts up. For replica 1 the figure came out near 5.9 GiB
+(3.66 requested + 2.24), more than the 2.38 GiB of weights plus activations the replica can account for. I did not find out what else
+the measurement counted; I suspect the first replica's memory, but I did not verify that, so it is only a guess.
+Fix: `--kv-cache-memory` (bytes), which makes vLLM skip that profiling step. Both replicas now get an explicit 0.40 GiB, which is
+14,976 tokens each. Every router number in the README is for that configuration; the cache is small, and 8 concurrent sequences of
+the trace's mean prompt length (about 1.8k tokens) come to roughly the whole cache. That bears on how much prefix caching can help
+here and is untested.
+
+### The first router comparison measured the run order, not the policy
+Prefix-aware ran first and round-robin second; round-robin looked faster (c=16 time to first token 1.59 s vs 2.29 s). Median GPU
+power was ~30 W for the prefix half and ~65 W for the round-robin half. I reran with the order reversed, and the prefix policy
+(now second) had the higher throughput at every concurrency and the lower time to first token at c=4 (0.27 s vs 0.34 s), though not at
+c=16 or c=32. Round-robin's own time to first token at c=4
+went 0.64 s, 0.34 s, 0.42 s across the three sessions with identical settings. So the GPU's state moved latency by up to 2x, more
+than any policy effect I could see. Why the first half ran at ~30 W I do not know. The final comparison alternates which policy
+goes first on every repeat (`--interleave`); the first two runs stay in `results/raw/` and in `results/tables/phase2.md`, labelled
+by run order, because deleting the inconvenient one would hide the confound.
+
+### I first wrote "load stayed balanced" from the wrong counter
+I read per-replica totals (280 / 303) from the router's cumulative counter after the first run, which included the 300 accuracy
+requests and one load run. Recomputed per cell from the interleaved record, prefix-aware routing is uneven (replica 0 got 40% of
+requests at c=32: 699 vs 1041), while round-robin is 50/50. The README states the recomputed figures.
+
+### Four of my test expectations were wrong, not the router
+* the lower bound on how many requests a hot prefix spills, and the breaker's failure bound: an open breaker admits one probe per cooldown, so the number of failed
+  attempts grows with elapsed time. I had bounded it by a constant. This happened twice (a second time in
+  `server_errors_are_retried_and_the_breaker_opens_then_recovers`, found when the first-byte change made the loop slower than the
+  250 ms cooldown).
+* the retry test raced the health checker, which marked the dead replica down before the request reached it; split into a test with
+  health checks effectively off.
+In each case the router behaved as designed and the assertion encoded a timing assumption.
+
+### The first kill-a-replica test hid two problems
+Run 1 (earlier build): 557/560 requests succeeded; the 3 failures were in flight on the killed replica. Two had received no token yet
+but the response headers had gone out, so the router had already committed to that replica and could not retry. Also the load
+finished (118 s) before the restarted replica was ready (146 s), so rejoining under traffic was never exercised
+(`first_request_served_by_restarted_replica_at: null`). Fixes: the router now waits for the first body chunk before committing
+(tests for both sides of that line), and the final run kills earlier (25 s) and restarts after 2 s so traffic outlasts the restart.
+A replica that dies after the first chunk is still not retried, on purpose: the client already holds part of the answer.
+Also noted: an open breaker closes only when a real request probes the replica; the health check recovering does not close it.
+With no traffic it stays open.
+
+### FP8 replicas cost accuracy
+Two bf16 copies do not fit in 8 GB, so the replicas are FP8 (`--quantization fp8`, 2.38 GiB of weights each). Paired against the bf16
+vLLM run: ScreenSpot 53.00% -> 49.75% (24 clicks lost, 11 gained, sign test p=0.041); synthetic 64.33% -> 64.33% (10 and 10). The
+router results therefore describe the FP8 policy, which is a slightly worse clicker on ScreenSpot than the one in Phase 1.
+
+### Smaller things
+* The `.sh` files edited on Windows had CRLF endings, which broke `set -x` in a replica launch (`set -x\r`). `.gitattributes` pins
+  `*.sh` to LF and the runs use the Linux clone's copy.
+* `collect_results.sh` did not copy `router_bench_*.json` / `router_failure_*.json`, so the first summary came out empty; fixed.
+* Two background "wait for the bench to finish" loops matched their own command line with `pgrep -f` and never exited; killed by PID.

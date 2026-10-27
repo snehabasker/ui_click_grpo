@@ -42,8 +42,14 @@ training code or the results above.
   SGLang's FlashInfer follow-up, a later session). SGLang with FlashInfer attention and larger CUDA graphs did not close the gap.
   Caveats: the engines are not identically configured, it is one GPU, a rerun of one vLLM cell came out 13% lower than the first
   measurement, and the GPU's power state was not controlled, so this is not a general claim about the engines.
-* **Planned, not started:** a prefix-aware request router in Rust, a fused RMSNorm + INT8 Triton kernel, prefill/decode
-  disaggregation, and TensorRT-LLM.
+* **A prefix-aware request router in Rust** (consistent hashing with bounded load, health checks, retries, circuit breaker, Prometheus
+  metrics; 42 tests) in front of two FP8 vLLM replicas on the same GPU. It routes as designed and raised the share of prompt tokens
+  served from the prefix cache (65% vs 51% at 16 clients) and throughput (5.01 vs 3.77 req/s at 16 clients), but median time to first
+  token was not better, and at 32 clients it was worse. Run order moved latency by up to 2x in the first comparison, so the final one
+  alternates policy order. Killing a replica under load lost 1 of 560 requests; the router noticed in 0.9 s and was routing to the
+  restarted replica 1.2 s after it was ready. The FP8 replicas cost 3.25 points on ScreenSpot against bf16 (p=0.041); the router itself
+  did not change clicks.
+* **Planned, not started:** a fused RMSNorm + INT8 Triton kernel, prefill/decode disaggregation, and TensorRT-LLM.
 
 ## Setup
 
