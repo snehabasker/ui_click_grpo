@@ -169,7 +169,7 @@ def main_bench():
                                  "proxy_failures": st["failures"] if st else None})
                 rounds.append({"round": rnd, "order": order, "setup": kind, "facts": s.facts, "runs": runs})
         write("disagg_bench_partial", record({"kind": "disagg_bench_partial", "rounds": rounds}), LOGS)   # progress only, not a result
-    write("disagg_bench", record({"kind": "disagg_bench", "rounds": rounds}))
+    write("disagg_bench" if a.tag_prefix == "disagg" else f"{a.tag_prefix}_bench", record({"kind": "disagg_bench", "rounds": rounds}))
 
 
 def main_accuracy():
@@ -177,7 +177,7 @@ def main_accuracy():
     for kind in ("split", "colocated"):
         with Setup(kind) as s:
             res[kind] = {"tag": f"{a.tag_prefix}-{kind}", "files": accuracy(s, f"{a.tag_prefix}-{kind}"), "proxy": s.proxy_stats()}
-    write("disagg_accuracy", record({"kind": "disagg_accuracy", "results": res}))
+    write("disagg_accuracy" if a.tag_prefix == "disagg" else f"{a.tag_prefix}_accuracy", record({"kind": "disagg_accuracy", "results": res}))
 
 
 {"smoke": main_smoke, "bench": main_bench, "accuracy": main_accuracy}[a.mode]()

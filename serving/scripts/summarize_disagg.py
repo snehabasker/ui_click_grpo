@@ -51,7 +51,8 @@ def tables(raw: Path) -> str:
         s = b["settings"]
         orders = {r["round"]: " then ".join(r["order"]) for r in b["rounds"]}
         concs = sorted({c for _, c in runs})
-        out += [f"### `{f.name}`", "",
+        pe = b.get("env", {}).get("args", {}).get("producer_extra") or "none (vLLM defaults, chunked prefill on)"
+        out += [f"### `{f.name}`", "", f"Prefill-instance extra flags: `{pe}`.", "",
                 f"One GPU. Setups: **colocated** = one vLLM instance, FP8 weights, {s['kv_gib_colocated']} GiB KV cache; **split** = a prefill "
                 f"instance and a decode instance (FP8, {s['kv_gib_split_each']} GiB KV each) connected by `{s['connector']}`, behind the "
                 f"prefill/decode proxy. max_num_seqs {s['max_seqs']}, max_model_len {s['max_len']}. Median (min–max) over "
