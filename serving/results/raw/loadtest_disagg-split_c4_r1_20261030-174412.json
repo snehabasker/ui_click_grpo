@@ -1,0 +1,5523 @@
+{
+ "kind": "loadtest",
+ "mock": false,
+ "engine": "disagg-split",
+ "tag": "disagg-split",
+ "repeat": 1,
+ "concurrency": 4,
+ "seed": 0,
+ "flush_status": {
+  "http://127.0.0.1:9100/reset_prefix_cache": 200,
+  "http://127.0.0.1:9100/reset_mm_cache": 200
+ },
+ "server_cmd": "vllm fp8, split",
+ "trace": {
+  "dir": "serving/traces/default",
+  "n_sessions": 48,
+  "meta": {
+   "config": {
+    "name": "default",
+    "n_sessions": 96,
+    "min_turns": 3,
+    "max_turns": 8,
+    "shared_fraction": 0.75,
+    "n_shared_groups": 4,
+    "n_fewshot": 2,
+    "history": "text",
+    "warmup_sessions": 4,
+    "seed": 0
+   },
+   "n_sessions": 96,
+   "n_requests": 560,
+   "n_shared_sessions": 72,
+   "sessions_per_prefix": {
+    "shared-0": 33,
+    "shared-1": 18,
+    "shared-2": 12,
+    "shared-3": 9
+   },
+   "turns_per_session": {
+    "min": 3,
+    "max": 8
+   },
+   "n_images": 644,
+   "fonts": [
+    "arial.ttf",
+    "segoeui.ttf",
+    "calibri.ttf",
+    "verdana.ttf",
+    "tahoma.ttf"
+   ],
+   "trace_sha256": "b43edd719846b1b21ccf4ca69d11bfa1d7fc5ba3acde318b6ff61db6f26b6798"
+  }
+ },
+ "env": {
+  "date": "2026-10-30T17:44:11+01:00",
+  "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.12.15",
+  "command": "~/work/ui_click_grpo/serving/scripts/loadtest.py --base-url http://127.0.0.1:9100 --model merged-clean --trace serving/traces/default --concurrency 4 --repeats 1 --engine disagg-split --tag disagg-split --model-dir ~/work/ui_click_grpo/serving/models/merged-clean --gpu-index 0 --max-sessions 48 --server-cmd vllm fp8, split --flush-url http://127.0.0.1:9100/reset_prefix_cache --flush-url http://127.0.0.1:9100/reset_mm_cache",
+  "gpu": {
+   "gpus": [
+    {
+     "name": "NVIDIA GeForce RTX 5050 Laptop GPU",
+     "driver": "592.82",
+     "memory_total": "8151 MiB",
+     "compute_cap": "12.0"
+    }
+   ],
+   "driver_cuda_version": "13.1"
+  },
+  "packages": {
+   "aiohttp": "3.14.5"
+  },
+  "model_dir": "~/work/ui_click_grpo/serving/models/merged-clean",
+  "model_hash": "f4945dbb7c5b459fe0cce1b78362bff134b12a4a15108e9342c8c6b3a1d0de7f",
+  "repo_commit": "9e868effde34bb746e90848a0716e5ca7372b03e",
+  "args": {
+   "base_url": "http://127.0.0.1:9100",
+   "model": "merged-clean",
+   "trace": "serving/traces/default",
+   "concurrency": 4,
+   "repeats": 1,
+   "max_sessions": 48,
+   "max_tokens": 24,
+   "engine": "disagg-split",
+   "tag": "disagg-split",
+   "flush_url": [
+    "http://127.0.0.1:9100/reset_prefix_cache",
+    "http://127.0.0.1:9100/reset_mm_cache"
+   ],
+   "model_dir": "~/work/ui_click_grpo/serving/models/merged-clean",
+   "server_cmd": "vllm fp8, split",
+   "gpu_index": 0,
+   "seed": 0,
+   "mock": false
+  }
+ },
+ "records": [
+  {
+   "status": 200,
+   "error": null,
+   "ttft": 1.6260241750001114,
+   "itl": [
+    0.023397923999709747,
+    0.024379836000207433,
+    0.05465992900008132,
+    0.010703511999963666,
+    0.09427731200003109,
+    0.013122987999850011,
+    0.0257545360000222,
+    0.02529915200011601
+   ],
+   "e2e": 1.92318536699986,
+   "text": "(198, 624)",
+   "usage": {
+    "prompt_tokens": 1666,
+    "total_tokens": 1677,
+    "completion_tokens": 11,
+    "prompt_tokens_details": {
+     "cached_tokens": 1664,
+     "created_cache_tokens": 0,
+     "multimodal_tokens": {
+      "image": 1152
+     }
+    }
+   },
+   "session": "s0000",
+   "turn": 0,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 0.011338856000293163,
+   "box": [
+    41.666666666666664,
+    573.8590283104118,
+    291.6666666666667,
+    647.5197425961261
+   ]
+  },
+  {
+   "status": 200,
+   "error": null,
+   "ttft": 1.845179915999779,
+   "itl": [
+    0.025689176000014413,
+    0.025439322000238462,
+    0.07319691199973022,
+    2.456399988659541e-05,
+    0.0035592580002230534,
+    0.024961007999991125,
+    0.02710105799997109,
+    0.02247557600003347,
+    0.027567589999762276
+   ],
+   "e2e": 2.0996671660000175,
+   "text": "(594, 382)",
+   "usage": {
+    "prompt_tokens": 1666,
+    "total_tokens": 1677,
+    "completion_tokens": 11,
+    "prompt_tokens_details": {
+     "cached_tokens": 1664,
+     "created_cache_tokens": 0,
+     "multimodal_tokens": {
+      "image": 1152
+     }
+    }
+   },
+   "session": "s0001",
+   "turn": 0,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 0.01284342300004937,
+   "box": [
+    526.7857142857143,
+    330.1768100470677,
+    635.4166666666666,
+    401.60538147563915
+   ]
+  },
+  {
+   "status": 200,
+   "error": null,
+   "ttft": null,
+   "itl": [],
+   "e2e": 2.4454813209999884,
+   "text": "",
+   "usage": null,
+   "session": "s0002",
+   "turn": 0,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 0.01414742999986629,
+   "box": [
+    754.4642857142857,
+    304.3141738220155,
+    864.5833333333334,
+    377.9748881077297
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0003",
+   "turn": 0,
+   "prefix_id": "shared-3",
+   "shared": true,
+   "t_start": 0.01572840900007577,
+   "box": [
+    226.1904761904762,
+    379.3689947181204,
+    330.35714285714283,
+    417.315423289549
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0000",
+   "turn": 1,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 1.9813663630002338,
+   "box": [
+    572.172619047619,
+    235.7112956045445,
+    628.7202380952382,
+    320.53272417597304
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0001",
+   "turn": 1,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 2.1605888459998823,
+   "box": [
+    354.1666666666667,
+    252.79536894580662,
+    433.0357142857143,
+    319.75965466009234
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0002",
+   "turn": 1,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 2.4604118659999585,
+   "box": [
+    684.5238095238095,
+    542.0667651936,
+    785.7142857142857,
+    613.4953366221715
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0003",
+   "turn": 1,
+   "prefix_id": "shared-3",
+   "shared": true,
+   "t_start": 3.158119514000191,
+   "box": [
+    203.86904761904762,
+    200.89285714285714,
+    363.0952380952381,
+    263.39285714285717
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0000",
+   "turn": 2,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 3.462618534000285,
+   "box": [
+    194.9404761904762,
+    653.553163360499,
+    230.65476190476193,
+    707.1245919319275
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0001",
+   "turn": 2,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 3.464227535000191,
+   "box": [
+    194.9404761904762,
+    388.3218337643295,
+    513.3928571428571,
+    468.6789766214723
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0002",
+   "turn": 2,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 3.77163309100024,
+   "box": [
+    772.3214285714286,
+    310.6412520850072,
+    808.0357142857143,
+    364.2126806564358
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0003",
+   "turn": 2,
+   "prefix_id": "shared-3",
+   "shared": true,
+   "t_start": 4.367731205999917,
+   "box": [
+    824.4047619047618,
+    424.33961078302804,
+    927.0833333333334,
+    486.83961078302804
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0000",
+   "turn": 3,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 4.657471130999966,
+   "box": [
+    668.1547619047618,
+    675.2031487780886,
+    712.797619047619,
+    742.1674344923745
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0004",
+   "turn": 0,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 4.659301257000152,
+   "box": [
+    145.83333333333334,
+    255.5817465964193,
+    446.42857142857144,
+    335.9388894535621
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0002",
+   "turn": 3,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 4.944900340999993,
+   "box": [
+    622.0238095238095,
+    589.5774083751221,
+    678.5714285714286,
+    674.3988369465505
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0003",
+   "turn": 3,
+   "prefix_id": "shared-3",
+   "shared": true,
+   "t_start": 5.911869624000246,
+   "box": [
+    495.5357142857143,
+    532.6715035551001,
+    540.1785714285714,
+    599.6357892693858
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0005",
+   "turn": 0,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 6.19351470599986,
+   "box": [
+    517.8571428571429,
+    306.49862228351515,
+    644.3452380952382,
+    353.37362228351515
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0004",
+   "turn": 1,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 6.503756792999866,
+   "box": [
+    66.96428571428571,
+    778.8858938850005,
+    99.70238095238096,
+    827.9930367421434
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0002",
+   "turn": 4,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 6.507433359000061,
+   "box": [
+    648.0654761904761,
+    320.752921489962,
+    750.7440476190477,
+    387.71720720424776
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0003",
+   "turn": 4,
+   "prefix_id": "shared-3",
+   "shared": true,
+   "t_start": 6.915411151000171,
+   "box": [
+    352.67857142857144,
+    259.19329184410634,
+    404.76190476190476,
+    337.3182918441064
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0005",
+   "turn": 1,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 7.531385225000122,
+   "box": [
+    895.8333333333334,
+    247.525310675652,
+    943.452380952381,
+    318.95388210422345
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0004",
+   "turn": 2,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 7.819596056000137,
+   "box": [
+    41.666666666666664,
+    634.6276435242293,
+    200.89285714285714,
+    681.5026435242293
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0002",
+   "turn": 5,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 7.8219043160002,
+   "box": [
+    46.13095238095239,
+    207.58928571428572,
+    142.85714285714286,
+    265.625
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0003",
+   "turn": 5,
+   "prefix_id": "shared-3",
+   "shared": true,
+   "t_start": 8.069156282000222,
+   "box": [
+    361.60714285714283,
+    697.5338367345533,
+    614.5833333333334,
+    771.1945510202677
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0005",
+   "turn": 2,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 8.573963704000107,
+   "box": [
+    452.3809523809524,
+    297.1611449952999,
+    572.9166666666666,
+    344.0361449952999
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0002",
+   "turn": 6,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 8.881025429000147,
+   "box": [
+    196.42857142857142,
+    187.5,
+    281.25,
+    247.76785714285714
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0004",
+   "turn": 3,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 8.878571303000172,
+   "box": [
+    662.202380952381,
+    633.3624671396007,
+    693.452380952381,
+    680.2374671396007
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0003",
+   "turn": 6,
+   "prefix_id": "shared-3",
+   "shared": true,
+   "t_start": 9.09922497000025,
+   "box": [
+    744.047619047619,
+    571.1147362395444,
+    796.1309523809523,
+    649.2397362395444
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0005",
+   "turn": 3,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 9.700753695999992,
+   "box": [
+    316.9642857142857,
+    213.79486625356753,
+    422.6190476190476,
+    289.6877233964247
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0002",
+   "turn": 7,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 9.958665461000237,
+   "box": [
+    174.10714285714286,
+    380.2725880982264,
+    312.5,
+    427.1475880982264
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0004",
+   "turn": 4,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 9.963388742999996,
+   "box": [
+    187.5,
+    205.35714285714286,
+    296.1309523809524,
+    270.0892857142857
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0006",
+   "turn": 0,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 10.305233429000054,
+   "box": [
+    514.8809523809523,
+    183.55081841301083,
+    665.1785714285714,
+    225.96153269872514
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0005",
+   "turn": 4,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 10.844038987000204,
+   "box": [
+    247.02380952380955,
+    245.62186375179854,
+    479.1666666666667,
+    314.8182923232271
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0007",
+   "turn": 0,
+   "prefix_id": "unique-7",
+   "shared": false,
+   "t_start": 11.155214178000278,
+   "box": [
+    842.2619047619048,
+    336.7453268137311,
+    944.9404761904761,
+    401.4774696708739
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0004",
+   "turn": 5,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 11.157250112999918,
+   "box": [
+    870.5357142857143,
+    262.6042198682045,
+    918.1547619047618,
+    334.03279129677594
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0006",
+   "turn": 1,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 11.448048093000125,
+   "box": [
+    236.60714285714286,
+    339.0500251893608,
+    354.1666666666667,
+    406.01431090364656
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0005",
+   "turn": 5,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 12.28146871600029,
+   "box": [
+    107.14285714285714,
+    397.8477578597103,
+    244.04761904761904,
+    458.1156150025675
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0007",
+   "turn": 1,
+   "prefix_id": "unique-7",
+   "shared": false,
+   "t_start": 12.700620054999945,
+   "box": [
+    614.5833333333334,
+    667.2347530267165,
+    712.797619047619,
+    723.038324455288
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0004",
+   "turn": 6,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 12.950506412999857,
+   "box": [
+    74.4047619047619,
+    139.30374184806095,
+    108.63095238095238,
+    190.6430275623467
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0006",
+   "turn": 2,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 12.954413005999868,
+   "box": [
+    430.80357142857144,
+    219.89691669327453,
+    526.0416666666666,
+    289.09334526470315
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0005",
+   "turn": 6,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 13.297778823000044,
+   "box": [
+    462.7976190476191,
+    184.94792801929864,
+    602.6785714285714,
+    251.91221373358437
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0007",
+   "turn": 2,
+   "prefix_id": "unique-7",
+   "shared": false,
+   "t_start": 13.758490820000134,
+   "box": [
+    62.5,
+    320.91517965974526,
+    93.75,
+    367.79017965974526
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0004",
+   "turn": 7,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 14.088553376000164,
+   "box": [
+    845.9821428571429,
+    361.7169862961251,
+    898.0654761904761,
+    439.8419862961251
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0006",
+   "turn": 3,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 14.091003164000085,
+   "box": [
+    494.0476190476191,
+    576.1390993442852,
+    596.7261904761905,
+    634.1748136299994
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0008",
+   "turn": 0,
+   "prefix_id": "unique-8",
+   "shared": false,
+   "t_start": 14.348823752000044,
+   "box": [
+    433.0357142857143,
+    462.64917874763137,
+    467.26190476190476,
+    513.9884644619171
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0007",
+   "turn": 3,
+   "prefix_id": "unique-7",
+   "shared": false,
+   "t_start": 14.891612807000001,
+   "box": [
+    849.702380952381,
+    280.07298772370643,
+    946.4285714285714,
+    351.5015591522778
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0009",
+   "turn": 0,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 15.56464073899997,
+   "box": [
+    382.44047619047615,
+    122.76785714285714,
+    470.23809523809524,
+    178.57142857142858
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0010",
+   "turn": 0,
+   "prefix_id": "shared-3",
+   "shared": true,
+   "t_start": 15.567675378999866,
+   "box": [
+    46.13095238095239,
+    613.835817715012,
+    360.1190476190476,
+    694.192960572155
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0008",
+   "turn": 1,
+   "prefix_id": "unique-8",
+   "shared": false,
+   "t_start": 15.86799374400016,
+   "box": [
+    248.51190476190476,
+    397.10766181693964,
+    348.2142857142857,
+    466.30409038836825
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0007",
+   "turn": 4,
+   "prefix_id": "unique-7",
+   "shared": false,
+   "t_start": 16.878102835999925,
+   "box": [
+    190.47619047619045,
+    323.40110836293144,
+    293.1547619047619,
+    394.8296797915028
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0009",
+   "turn": 1,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 17.161001798000143,
+   "box": [
+    473.2142857142857,
+    332.8757894320863,
+    590.7738095238095,
+    375.28650371780066
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0010",
+   "turn": 1,
+   "prefix_id": "shared-3",
+   "shared": true,
+   "t_start": 17.429418011000053,
+   "box": [
+    678.5714285714286,
+    295.74750034884806,
+    944.9404761904761,
+    369.40821463456234
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0008",
+   "turn": 2,
+   "prefix_id": "unique-8",
+   "shared": false,
+   "t_start": 17.431106222999915,
+   "box": [
+    278.2738095238095,
+    191.96428571428572,
+    377.9761904761905,
+    256.69642857142856
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0007",
+   "turn": 5,
+   "prefix_id": "unique-7",
+   "shared": false,
+   "t_start": 17.676619502999984,
+   "box": [
+    599.702380952381,
+    410.64152817036364,
+    705.3571428571429,
+    484.3022424560779
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0009",
+   "turn": 2,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 18.201680156000293,
+   "box": [
+    738.8392857142857,
+    266.4471676043689,
+    850.4464285714286,
+    331.1793104615117
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0010",
+   "turn": 2,
+   "prefix_id": "shared-3",
+   "shared": true,
+   "t_start": 18.534718382999927,
+   "box": [
+    389.38492063492066,
+    323.62232056793727,
+    673.6111111111112,
+    390.586606282223
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0008",
+   "turn": 3,
+   "prefix_id": "unique-8",
+   "shared": false,
+   "t_start": 18.537826029999906,
+   "box": [
+    635.4166666666666,
+    263.85902011374446,
+    739.5833333333334,
+    321.89473439945874
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0007",
+   "turn": 6,
+   "prefix_id": "unique-7",
+   "shared": false,
+   "t_start": 18.780762611000227,
+   "box": [
+    175.59523809523807,
+    229.91071428571428,
+    303.57142857142856,
+    296.875
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0009",
+   "turn": 3,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 19.335750635000295,
+   "box": [
+    667.4107142857143,
+    334.404117596191,
+    710.5654761904761,
+    399.1362604533338
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0010",
+   "turn": 3,
+   "prefix_id": "shared-3",
+   "shared": true,
+   "t_start": 19.66105881400017,
+   "box": [
+    604.1666666666667,
+    353.6512112378459,
+    944.9404761904761,
+    429.5440683807031
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0008",
+   "turn": 4,
+   "prefix_id": "unique-8",
+   "shared": false,
+   "t_start": 19.663084487000106,
+   "box": [
+    680.0595238095239,
+    270.5847642179608,
+    787.202380952381,
+    337.5490499322465
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0011",
+   "turn": 0,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 19.93081988499989,
+   "box": [
+    132.4404761904762,
+    229.75970284170504,
+    233.63095238095238,
+    294.49184569884795
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0009",
+   "turn": 4,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 20.444967975000054,
+   "box": [
+    290.17857142857144,
+    459.114817913191,
+    389.8809523809524,
+    526.0791036274768
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0010",
+   "turn": 4,
+   "prefix_id": "shared-3",
+   "shared": true,
+   "t_start": 21.040669548000096,
+   "box": [
+    66.96428571428571,
+    376.2914966371828,
+    184.52380952380955,
+    418.70221092289705
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0008",
+   "turn": 5,
+   "prefix_id": "unique-8",
+   "shared": false,
+   "t_start": 21.042773792999924,
+   "box": [
+    811.0119047619048,
+    552.6705476318135,
+    842.2619047619048,
+    599.5455476318135
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0011",
+   "turn": 1,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 21.325767639999867,
+   "box": [
+    583.3333333333334,
+    763.369803384595,
+    635.4166666666666,
+    841.494803384595
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0009",
+   "turn": 5,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 21.90445603099988,
+   "box": [
+    62.5,
+    602.7385904718366,
+    181.54761904761904,
+    665.2385904718366
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0012",
+   "turn": 0,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 22.210588151000138,
+   "box": [
+    425.5952380952381,
+    643.9402205221127,
+    452.3809523809524,
+    684.1187919506841
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0013",
+   "turn": 0,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 22.212722904000202,
+   "box": [
+    354.1666666666667,
+    316.00801520301394,
+    660.7142857142857,
+    387.4365866315853
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0011",
+   "turn": 2,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 22.51108223400024,
+   "box": [
+    569.9404761904761,
+    319.5065512252359,
+    622.0238095238095,
+    397.6315512252359
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0009",
+   "turn": 6,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 23.09782729000017,
+   "box": [
+    724.702380952381,
+    470.14612281294484,
+    848.2142857142857,
+    525.9496942415162
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0012",
+   "turn": 1,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 23.367910893000044,
+   "box": [
+    43.154761904761905,
+    146.56444029052037,
+    77.38095238095238,
+    197.90372600480606
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0013",
+   "turn": 1,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 23.37045938500023,
+   "box": [
+    181.54761904761904,
+    262.4926674224679,
+    263.39285714285717,
+    316.06409599389644
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0011",
+   "turn": 3,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 23.671183165000002,
+   "box": [
+    66.96428571428571,
+    727.4213877750528,
+    375.0,
+    798.8499592036244
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0009",
+   "turn": 7,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 24.175262426000245,
+   "box": [
+    276.7857142857143,
+    160.21090881363517,
+    409.2261904761905,
+    211.55019452792087
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0012",
+   "turn": 2,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 24.45684798299999,
+   "box": [
+    210.41666666666666,
+    379.96814110911254,
+    472.32142857142856,
+    451.3967125376839
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0013",
+   "turn": 2,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 24.458768638000038,
+   "box": [
+    212.79761904761904,
+    184.2453446211673,
+    345.23809523809524,
+    231.1203446211673
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0011",
+   "turn": 4,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 24.69838100900006,
+   "box": [
+    619.047619047619,
+    508.04340536842693,
+    671.1309523809523,
+    586.168405368427
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0014",
+   "turn": 0,
+   "prefix_id": "unique-14",
+   "shared": false,
+   "t_start": 25.202523396000288,
+   "box": [
+    52.083333333333336,
+    604.9783281776363,
+    83.33333333333333,
+    651.8533281776363
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0012",
+   "turn": 3,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 25.457782663000216,
+   "box": [
+    300.5952380952381,
+    138.39285714285714,
+    398.80952380952385,
+    198.66071428571428
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0013",
+   "turn": 3,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 25.45983287199988,
+   "box": [
+    415.17857142857144,
+    116.07142857142857,
+    508.9285714285714,
+    174.10714285714286
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0011",
+   "turn": 5,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 26.08551198100031,
+   "box": [
+    188.24404761904762,
+    621.9590651939312,
+    222.47023809523807,
+    673.2983509082169
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0014",
+   "turn": 1,
+   "prefix_id": "unique-14",
+   "shared": false,
+   "t_start": 26.67268766999996,
+   "box": [
+    474.7023809523809,
+    455.91039149942475,
+    586.3095238095239,
+    522.8746772137105
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0012",
+   "turn": 4,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 27.004423014000167,
+   "box": [
+    233.63095238095238,
+    522.8521841337931,
+    331.8452380952381,
+    576.4236127052216
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0015",
+   "turn": 0,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 27.00656681600003,
+   "box": [
+    311.01190476190476,
+    208.75644944185728,
+    436.01190476190476,
+    275.720735156143
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0011",
+   "turn": 6,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 27.29865246999998,
+   "box": [
+    440.4761904761905,
+    109.375,
+    577.3809523809523,
+    174.10714285714286
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0014",
+   "turn": 2,
+   "prefix_id": "unique-14",
+   "shared": false,
+   "t_start": 28.184945792000235,
+   "box": [
+    41.666666666666664,
+    372.12836781874137,
+    178.57142857142858,
+    441.32479639017
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0012",
+   "turn": 5,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 28.484001098000135,
+   "box": [
+    374.2559523809524,
+    126.34897778289228,
+    676.3392857142857,
+    206.70612064003515
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0015",
+   "turn": 1,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 28.780896457999916,
+   "box": [
+    702.3809523809523,
+    331.90907702488533,
+    938.9880952380952,
+    412.2662198820282
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0016",
+   "turn": 0,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 28.78306423799995,
+   "box": [
+    702.3809523809523,
+    381.3420827596293,
+    735.1190476190477,
+    430.4492256167722
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0017",
+   "turn": 0,
+   "prefix_id": "unique-17",
+   "shared": false,
+   "t_start": 29.075721305000116,
+   "box": [
+    41.666666666666664,
+    437.6230384303274,
+    77.38095238095238,
+    491.194467001756
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0012",
+   "turn": 6,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 29.65183306400013,
+   "box": [
+    833.3333333333334,
+    552.8756112737314,
+    930.0595238095239,
+    617.6077541308741
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0015",
+   "turn": 2,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 30.26712906900002,
+   "box": [
+    247.02380952380955,
+    142.47282596945908,
+    325.89285714285717,
+    202.74068311231622
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0016",
+   "turn": 1,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 30.272079101000145,
+   "box": [
+    321.42857142857144,
+    191.96428571428572,
+    441.9642857142857,
+    256.69642857142856
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0017",
+   "turn": 1,
+   "prefix_id": "unique-17",
+   "shared": false,
+   "t_start": 30.602066817999912,
+   "box": [
+    40.17857142857143,
+    291.3751776682249,
+    86.30952380952381,
+    360.5716062396535
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0018",
+   "turn": 0,
+   "prefix_id": "unique-18",
+   "shared": false,
+   "t_start": 31.200089158000083,
+   "box": [
+    907.7380952380952,
+    353.78762581938446,
+    956.8452380952382,
+    427.44834010509874
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0019",
+   "turn": 0,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 31.603857193000295,
+   "box": [
+    752.9761904761905,
+    518.7958443981902,
+    788.6904761904761,
+    572.3672729696186
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0016",
+   "turn": 2,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 31.60713610599987,
+   "box": [
+    55.05952380952381,
+    780.2821027649783,
+    84.82142857142857,
+    824.9249599078353
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0017",
+   "turn": 2,
+   "prefix_id": "unique-17",
+   "shared": false,
+   "t_start": 32.38009223800009,
+   "box": [
+    544.6428571428571,
+    342.02318049516725,
+    638.3928571428571,
+    402.29103763802436
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0018",
+   "turn": 1,
+   "prefix_id": "unique-18",
+   "shared": false,
+   "t_start": 32.83226017300012,
+   "box": [
+    866.0714285714286,
+    569.5155792557117,
+    952.3809523809523,
+    640.9441506842832
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0016",
+   "turn": 3,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 33.191366604999985,
+   "box": [
+    157.73809523809524,
+    241.25314596537814,
+    214.28571428571428,
+    326.0745745368067
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0019",
+   "turn": 1,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 33.18803517100014,
+   "box": [
+    181.54761904761904,
+    543.3650450474613,
+    278.2738095238095,
+    614.7936164760328
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0017",
+   "turn": 3,
+   "prefix_id": "unique-17",
+   "shared": false,
+   "t_start": 33.393660207000266,
+   "box": [
+    566.9642857142857,
+    827.132900437394,
+    683.0357142857143,
+    896.3293290088227
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0018",
+   "turn": 2,
+   "prefix_id": "unique-18",
+   "shared": false,
+   "t_start": 33.92871276699998,
+   "box": [
+    750.0,
+    337.1470991490697,
+    782.7380952380952,
+    386.2542420062125
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0019",
+   "turn": 2,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 34.234462425999936,
+   "box": [
+    506.2500000000001,
+    270.27845297909084,
+    600.0000000000001,
+    337.24273869337657
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0016",
+   "turn": 4,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 34.23258474300019,
+   "box": [
+    41.666666666666664,
+    538.8788874722054,
+    272.32142857142856,
+    612.5396017579196
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0017",
+   "turn": 4,
+   "prefix_id": "unique-17",
+   "shared": false,
+   "t_start": 34.601073326000005,
+   "box": [
+    909.2261904761905,
+    454.5295957413875,
+    961.3095238095239,
+    532.6545957413875
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0020",
+   "turn": 0,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 35.13064145299995,
+   "box": [
+    502.9761904761905,
+    648.6181684036856,
+    626.4880952380952,
+    717.8145969751142
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0019",
+   "turn": 3,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 35.4269088760002,
+   "box": [
+    522.3214285714286,
+    531.672341415524,
+    556.547619047619,
+    583.0116271298097
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0021",
+   "turn": 0,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 35.43285058499987,
+   "box": [
+    598.2142857142857,
+    437.02304234844826,
+    703.8690476190477,
+    499.52304234844826
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0022",
+   "turn": 0,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 35.735967454000274,
+   "box": [
+    180.0595238095238,
+    302.1232494879852,
+    276.7857142857143,
+    369.08753520227094
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0020",
+   "turn": 1,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 36.28051058500023,
+   "box": [
+    577.3809523809523,
+    487.44285932182135,
+    808.0357142857143,
+    561.1035736075356
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0023",
+   "turn": 0,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 36.57133845899989,
+   "box": [
+    897.3214285714286,
+    647.684520038842,
+    938.9880952380952,
+    710.184520038842
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0021",
+   "turn": 1,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 36.573752239999976,
+   "box": [
+    812.5,
+    252.9487619190535,
+    925.5952380952382,
+    322.1451904904821
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0022",
+   "turn": 1,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 36.8439475109999,
+   "box": [
+    824.4047619047618,
+    571.5423460279721,
+    938.9880952380952,
+    645.2030603136864
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0020",
+   "turn": 2,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 37.40257570699987,
+   "box": [
+    587.797619047619,
+    481.35467149294885,
+    681.547619047619,
+    543.8546714929489
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0023",
+   "turn": 1,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 37.72253408000006,
+   "box": [
+    352.67857142857144,
+    282.55705814124445,
+    453.8690476190476,
+    338.3606295698159
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0021",
+   "turn": 2,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 37.725189366999984,
+   "box": [
+    594.4940476190477,
+    211.2239351333181,
+    735.8630952380952,
+    264.79536370474665
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0022",
+   "turn": 2,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 37.97913097399987,
+   "box": [
+    536.0119047619048,
+    275.6882136388764,
+    662.5000000000001,
+    327.02749935316217
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0020",
+   "turn": 3,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 38.48223551199999,
+   "box": [
+    595.9821428571429,
+    640.5320069804169,
+    768.6011904761905,
+    698.5677212661312
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0023",
+   "turn": 2,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 38.734005526000146,
+   "box": [
+    264.8809523809524,
+    261.2577612040424,
+    352.67857142857144,
+    328.22204691832815
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0021",
+   "turn": 3,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 38.73596595900017,
+   "box": [
+    285.7142857142857,
+    194.19642857142858,
+    388.39285714285717,
+    254.4642857142857
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0022",
+   "turn": 3,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 38.947181334000106,
+   "box": [
+    348.2142857142857,
+    154.4003832279402,
+    379.4642857142857,
+    201.2753832279402
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0024",
+   "turn": 0,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 39.475915515,
+   "box": [
+    659.2261904761905,
+    479.5144938701473,
+    691.9642857142857,
+    528.6216367272901
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0025",
+   "turn": 0,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 39.754626241000096,
+   "box": [
+    544.6428571428571,
+    434.0147369544597,
+    587.797619047619,
+    498.7468798116025
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0021",
+   "turn": 4,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 39.75917764799988,
+   "box": [
+    798.8591269841269,
+    336.0224550670847,
+    846.4781746031746,
+    407.45102649565615
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0022",
+   "turn": 4,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 39.99958064500015,
+   "box": [
+    566.9642857142857,
+    310.09520272897095,
+    616.0714285714286,
+    383.7559170146853
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0024",
+   "turn": 1,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 40.47498197799996,
+   "box": [
+    417.4107142857143,
+    252.76232491073264,
+    450.1488095238095,
+    301.8694677678755
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0025",
+   "turn": 1,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 40.74541546599994,
+   "box": [
+    492.55952380952385,
+    283.47549689158666,
+    811.0119047619048,
+    350.4397826058724
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0021",
+   "turn": 5,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 40.74794421700017,
+   "box": [
+    72.91666666666667,
+    663.9630202791479,
+    383.92857142857144,
+    744.3201631362907
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0022",
+   "turn": 5,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 40.94990744200004,
+   "box": [
+    822.9166666666666,
+    556.8672002132831,
+    941.9642857142857,
+    597.0457716418547
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0024",
+   "turn": 2,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 41.43726312600029,
+   "box": [
+    169.64285714285714,
+    169.64285714285714,
+    263.39285714285717,
+    227.67857142857142
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0025",
+   "turn": 2,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 41.68452650800009,
+   "box": [
+    501.48809523809524,
+    351.1507876327777,
+    529.7619047619048,
+    393.561501918492
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0021",
+   "turn": 6,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 41.687063909000244,
+   "box": [
+    267.11309523809524,
+    595.6011051624794,
+    293.8988095238095,
+    635.7796765910508
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0022",
+   "turn": 6,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 42.13075986600006,
+   "box": [
+    56.54761904761905,
+    517.7805344868776,
+    110.11904761904762,
+    598.1376773440205
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0024",
+   "turn": 3,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 43.222213953999926,
+   "box": [
+    207.7380952380952,
+    394.39596916450245,
+    291.07142857142856,
+    450.1995405930739
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0025",
+   "turn": 3,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 43.56789524099986,
+   "box": [
+    41.666666666666664,
+    148.42559412342263,
+    93.75,
+    226.55059412342263
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0026",
+   "turn": 0,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 43.57021566699996,
+   "box": [
+    470.23809523809524,
+    526.1026709279631,
+    519.3452380952382,
+    599.7633852136775
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0027",
+   "turn": 0,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 43.85010426200006,
+   "box": [
+    316.9642857142857,
+    223.21428571428572,
+    444.94047619047615,
+    290.17857142857144
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0024",
+   "turn": 4,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 44.338067572,
+   "box": [
+    677.0833333333334,
+    662.6087647519914,
+    784.2261904761905,
+    734.0373361805629
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0025",
+   "turn": 4,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 44.54477463000012,
+   "box": [
+    71.42857142857143,
+    600.4194599022309,
+    258.92857142857144,
+    645.0623170450881
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0026",
+   "turn": 1,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 44.54750210600014,
+   "box": [
+    65.47619047619048,
+    460.54822256610896,
+    113.0952380952381,
+    531.9767939946803
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0027",
+   "turn": 1,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 44.79692391000026,
+   "box": [
+    166.66666666666666,
+    104.91071428571429,
+    263.39285714285717,
+    165.17857142857142
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0024",
+   "turn": 5,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 45.31495833500003,
+   "box": [
+    456.8452380952381,
+    440.8046606213751,
+    565.4761904761905,
+    503.30466062137515
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0025",
+   "turn": 5,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 45.5842640310002,
+   "box": [
+    843.75,
+    554.780909624979,
+    897.3214285714286,
+    635.1380524821219
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0026",
+   "turn": 2,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 45.58596170100009,
+   "box": [
+    616.8154761904761,
+    244.3362937671681,
+    734.375,
+    304.6041509100252
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0027",
+   "turn": 2,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 45.872226626000156,
+   "box": [
+    433.0357142857143,
+    136.16071428571428,
+    538.6904761904761,
+    196.42857142857142
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0024",
+   "turn": 6,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 46.45712162200016,
+   "box": [
+    172.61904761904762,
+    234.375,
+    264.8809523809524,
+    296.875
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0025",
+   "turn": 6,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 46.76348074799989,
+   "box": [
+    46.13095238095239,
+    599.3707446775887,
+    224.70238095238096,
+    652.9421732490174
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0028",
+   "turn": 0,
+   "prefix_id": "unique-28",
+   "shared": false,
+   "t_start": 46.766257788000075,
+   "box": [
+    197.91666666666666,
+    214.7903085776965,
+    500.0,
+    292.91530857769646
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0029",
+   "turn": 0,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 47.08544604300005,
+   "box": [
+    49.107142857142854,
+    198.66071428571428,
+    145.83333333333334,
+    256.69642857142856
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0024",
+   "turn": 7,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 47.97571237500006,
+   "box": [
+    92.26190476190477,
+    476.7169377832575,
+    388.39285714285717,
+    552.6097949261147
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0030",
+   "turn": 0,
+   "prefix_id": "unique-30",
+   "shared": false,
+   "t_start": 48.32394917600004,
+   "box": [
+    569.9404761904761,
+    495.3897658958706,
+    696.4285714285714,
+    562.3540516101563
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0028",
+   "turn": 1,
+   "prefix_id": "unique-28",
+   "shared": false,
+   "t_start": 48.61559962499996,
+   "box": [
+    767.1130952380952,
+    462.6112242449878,
+    869.7916666666666,
+    529.5755099592735
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0029",
+   "turn": 1,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 48.61782438,
+   "box": [
+    531.25,
+    133.56573674445636,
+    636.9047619047618,
+    202.7621653158849
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0031",
+   "turn": 0,
+   "prefix_id": "unique-31",
+   "shared": false,
+   "t_start": 49.27668461200028,
+   "box": [
+    95.98214285714286,
+    228.10907760444618,
+    350.44642857142856,
+    306.2340776044462
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0030",
+   "turn": 1,
+   "prefix_id": "unique-30",
+   "shared": false,
+   "t_start": 49.78762371199991,
+   "box": [
+    293.1547619047619,
+    194.19642857142858,
+    418.1547619047619,
+    256.69642857142856
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0028",
+   "turn": 2,
+   "prefix_id": "unique-28",
+   "shared": false,
+   "t_start": 50.43576487200016,
+   "box": [
+    398.80952380952385,
+    429.6465957701702,
+    535.7142857142857,
+    469.82516719874167
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0029",
+   "turn": 2,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 50.439376905000245,
+   "box": [
+    62.5,
+    241.95254192379917,
+    151.78571428571428,
+    304.4525419237992
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0031",
+   "turn": 1,
+   "prefix_id": "unique-31",
+   "shared": false,
+   "t_start": 50.80349754500003,
+   "box": [
+    71.42857142857143,
+    351.9077295460344,
+    337.7976190476191,
+    425.5684438317487
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0030",
+   "turn": 2,
+   "prefix_id": "unique-30",
+   "shared": false,
+   "t_start": 51.6636709280001,
+   "box": [
+    175.59523809523807,
+    212.29677645521366,
+    230.65476190476193,
+    294.8860621694994
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0028",
+   "turn": 3,
+   "prefix_id": "unique-28",
+   "shared": false,
+   "t_start": 52.0466295440001,
+   "box": [
+    487.3511904761905,
+    265.60308644034933,
+    761.1607142857143,
+    337.0316578689208
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0029",
+   "turn": 3,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 52.04849979100027,
+   "box": [
+    438.98809523809524,
+    233.88717797645103,
+    708.3333333333334,
+    305.3157494050224
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0031",
+   "turn": 2,
+   "prefix_id": "unique-31",
+   "shared": false,
+   "t_start": 52.4033772910002,
+   "box": [
+    49.107142857142854,
+    247.78860321719318,
+    180.0595238095238,
+    292.4314603600503
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0030",
+   "turn": 3,
+   "prefix_id": "unique-30",
+   "shared": false,
+   "t_start": 53.10241655500022,
+   "box": [
+    302.0833333333333,
+    140.625,
+    447.9166666666667,
+    200.89285714285714
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0032",
+   "turn": 0,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 53.3939157990003,
+   "box": [
+    880.952380952381,
+    363.6834595292841,
+    928.5714285714286,
+    435.11203095785555
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0028",
+   "turn": 4,
+   "prefix_id": "unique-28",
+   "shared": false,
+   "t_start": 53.39205217300014,
+   "box": [
+    528.2738095238095,
+    701.3267483249474,
+    671.1309523809523,
+    779.4517483249474
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0031",
+   "turn": 3,
+   "prefix_id": "unique-31",
+   "shared": false,
+   "t_start": 53.70818555200003,
+   "box": [
+    400.2976190476191,
+    261.400907859765,
+    431.5476190476191,
+    308.2759078597651
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0030",
+   "turn": 4,
+   "prefix_id": "unique-30",
+   "shared": false,
+   "t_start": 54.58288891100028,
+   "box": [
+    346.7261904761905,
+    127.23214285714285,
+    488.0952380952381,
+    194.19642857142858
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0032",
+   "turn": 1,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 54.90055198200025,
+   "box": [
+    672.6190476190477,
+    548.1782300733611,
+    785.7142857142857,
+    595.0532300733611
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0028",
+   "turn": 5,
+   "prefix_id": "unique-28",
+   "shared": false,
+   "t_start": 55.185266268000305,
+   "box": [
+    351.19047619047615,
+    723.1156161203754,
+    482.14285714285717,
+    765.5263304060898
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0031",
+   "turn": 4,
+   "prefix_id": "unique-31",
+   "shared": false,
+   "t_start": 55.1885885480001,
+   "box": [
+    53.57142857142857,
+    129.46428571428572,
+    156.25,
+    196.42857142857142
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0030",
+   "turn": 5,
+   "prefix_id": "unique-30",
+   "shared": false,
+   "t_start": 55.553423344000294,
+   "box": [
+    525.297619047619,
+    472.47039413699105,
+    830.3571428571429,
+    548.3632512798482
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0032",
+   "turn": 2,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 56.15381721299991,
+   "box": [
+    390.625,
+    366.3519206620944,
+    552.827380952381,
+    413.2269206620944
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0028",
+   "turn": 6,
+   "prefix_id": "unique-28",
+   "shared": false,
+   "t_start": 56.49020519900023,
+   "box": [
+    83.33333333333333,
+    338.71617448309496,
+    306.5476190476191,
+    405.6804601973806
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0031",
+   "turn": 5,
+   "prefix_id": "unique-31",
+   "shared": false,
+   "t_start": 56.492337314999986,
+   "box": [
+    50.595238095238095,
+    361.3596662153074,
+    177.08333333333334,
+    412.6989519295931
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0033",
+   "turn": 0,
+   "prefix_id": "unique-33",
+   "shared": false,
+   "t_start": 56.762965841000096,
+   "box": [
+    46.13095238095239,
+    321.61530706498064,
+    354.1666666666667,
+    397.5081642078378
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0032",
+   "turn": 3,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 57.464367565999964,
+   "box": [
+    284.2261904761905,
+    220.98214285714286,
+    397.32142857142856,
+    281.25
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0034",
+   "turn": 0,
+   "prefix_id": "unique-34",
+   "shared": false,
+   "t_start": 58.18856256300023,
+   "box": [
+    373.51190476190476,
+    310.567875878942,
+    532.7380952380952,
+    357.442875878942
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0031",
+   "turn": 6,
+   "prefix_id": "unique-31",
+   "shared": false,
+   "t_start": 58.193040811000174,
+   "box": [
+    458.3333333333333,
+    284.7173082140638,
+    513.3928571428571,
+    367.30659392834946
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0033",
+   "turn": 1,
+   "prefix_id": "unique-33",
+   "shared": false,
+   "t_start": 58.50202358100023,
+   "box": [
+    377.9761904761905,
+    209.15078176348618,
+    485.1190476190476,
+    271.6507817634862
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0032",
+   "turn": 4,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 59.39725522300023,
+   "box": [
+    282.73809523809524,
+    200.89285714285714,
+    376.48809523809524,
+    258.92857142857144
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0034",
+   "turn": 1,
+   "prefix_id": "unique-34",
+   "shared": false,
+   "t_start": 59.73639501200023,
+   "box": [
+    828.8690476190477,
+    387.51878373901405,
+    934.5238095238095,
+    443.32235516758544
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0031",
+   "turn": 7,
+   "prefix_id": "unique-31",
+   "shared": false,
+   "t_start": 60.00702568399993,
+   "box": [
+    244.04761904761904,
+    205.35714285714286,
+    342.26190476190476,
+    267.85714285714283
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0033",
+   "turn": 2,
+   "prefix_id": "unique-33",
+   "shared": false,
+   "t_start": 60.00906788900011,
+   "box": [
+    833.3333333333334,
+    282.7900036152352,
+    949.4047619047618,
+    349.754289329521
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0032",
+   "turn": 5,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 60.28654930199991,
+   "box": [
+    208.33333333333334,
+    588.019313212745,
+    345.23809523809524,
+    637.1264560698879
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0034",
+   "turn": 2,
+   "prefix_id": "unique-34",
+   "shared": false,
+   "t_start": 60.882614687000114,
+   "box": [
+    84.82142857142857,
+    367.7036146633657,
+    157.73809523809524,
+    407.88218609193717
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0035",
+   "turn": 0,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 61.134278543000164,
+   "box": [
+    136.90476190476193,
+    140.625,
+    257.44047619047615,
+    198.66071428571428
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0033",
+   "turn": 3,
+   "prefix_id": "unique-33",
+   "shared": false,
+   "t_start": 61.13720278100027,
+   "box": [
+    711.3095238095239,
+    369.8895625254928,
+    811.0119047619048,
+    423.46099109692136
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0032",
+   "turn": 6,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 61.38801354399993,
+   "box": [
+    709.077380952381,
+    454.10465479577323,
+    816.2202380952382,
+    521.068940510059
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0034",
+   "turn": 3,
+   "prefix_id": "unique-34",
+   "shared": false,
+   "t_start": 62.317671162999886,
+   "box": [
+    818.452380952381,
+    279.0176321419016,
+    958.3333333333334,
+    328.1247749990444
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0035",
+   "turn": 1,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 62.62737578399992,
+   "box": [
+    285.7142857142857,
+    216.51785714285714,
+    401.7857142857143,
+    283.48214285714283
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0033",
+   "turn": 4,
+   "prefix_id": "unique-33",
+   "shared": false,
+   "t_start": 62.929161656999895,
+   "box": [
+    275.2976190476191,
+    178.57142857142858,
+    403.2738095238095,
+    247.76785714285714
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0032",
+   "turn": 7,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 62.93092489299988,
+   "box": [
+    733.6309523809523,
+    338.68878854921456,
+    788.6904761904761,
+    421.2780742635003
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0034",
+   "turn": 4,
+   "prefix_id": "unique-34",
+   "shared": false,
+   "t_start": 63.205071177000264,
+   "box": [
+    65.47619047619048,
+    294.2127765005119,
+    107.14285714285714,
+    356.7127765005119
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0035",
+   "turn": 2,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 63.793893113000195,
+   "box": [
+    62.5,
+    193.7212180619194,
+    184.52380952380955,
+    271.8462180619194
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0036",
+   "turn": 0,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 64.12437746200021,
+   "box": [
+    63.988095238095234,
+    140.625,
+    197.91666666666666,
+    214.28571428571428
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0033",
+   "turn": 5,
+   "prefix_id": "unique-33",
+   "shared": false,
+   "t_start": 64.1204012789999,
+   "box": [
+    46.13095238095239,
+    634.1920052175229,
+    221.72619047619045,
+    678.83486236038
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0034",
+   "turn": 5,
+   "prefix_id": "unique-34",
+   "shared": false,
+   "t_start": 64.444827799,
+   "box": [
+    426.3392857142857,
+    487.0842219066339,
+    579.6130952380952,
+    538.4235076209196
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0035",
+   "turn": 3,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 65.09623964499997,
+   "box": [
+    755.952380952381,
+    469.89755115554107,
+    809.5238095238095,
+    550.2546940126839
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0036",
+   "turn": 1,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 65.37264325000024,
+   "box": [
+    104.16666666666667,
+    488.0953400556445,
+    241.07142857142858,
+    541.6667686270731
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0033",
+   "turn": 6,
+   "prefix_id": "unique-33",
+   "shared": false,
+   "t_start": 65.37434877800024,
+   "box": [
+    316.9642857142857,
+    127.23214285714285,
+    422.6190476190476,
+    196.42857142857142
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0034",
+   "turn": 6,
+   "prefix_id": "unique-34",
+   "shared": false,
+   "t_start": 65.61936994799999,
+   "box": [
+    130.05952380952382,
+    258.5799631754337,
+    228.27380952380955,
+    323.31210603257654
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0035",
+   "turn": 4,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 66.23077457199997,
+   "box": [
+    220.23809523809524,
+    383.52678572033886,
+    306.5476190476191,
+    448.25892857748175
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0036",
+   "turn": 2,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 66.64423898799987,
+   "box": [
+    61.75595238095239,
+    723.4970599868683,
+    94.49404761904762,
+    772.6042028440112
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0037",
+   "turn": 0,
+   "prefix_id": "unique-37",
+   "shared": false,
+   "t_start": 66.64778926600002,
+   "box": [
+    791.6666666666666,
+    271.4664168611063,
+    941.9642857142857,
+    316.1092740039635
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0038",
+   "turn": 0,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 66.93444825400002,
+   "box": [
+    49.107142857142854,
+    289.53891138561534,
+    202.38095238095238,
+    345.3424828141868
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0039",
+   "turn": 0,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 67.92514776300004,
+   "box": [
+    647.3214285714286,
+    568.0656135962087,
+    928.5714285714286,
+    648.4227564533516
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0040",
+   "turn": 0,
+   "prefix_id": "unique-40",
+   "shared": false,
+   "t_start": 68.23136574699993,
+   "box": [
+    334.82142857142856,
+    475.1564379040844,
+    383.92857142857144,
+    548.8171521897988
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0037",
+   "turn": 1,
+   "prefix_id": "unique-37",
+   "shared": false,
+   "t_start": 68.81762433299991,
+   "box": [
+    752.9761904761905,
+    590.9344866098,
+    827.3809523809523,
+    631.1130580383715
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0038",
+   "turn": 1,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 68.81998150400022,
+   "box": [
+    261.9047619047619,
+    205.35714285714286,
+    375.0,
+    272.32142857142856
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0039",
+   "turn": 1,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 69.48723298999994,
+   "box": [
+    622.6190476190476,
+    464.5395963026338,
+    667.2619047619048,
+    531.5038820169195
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0040",
+   "turn": 1,
+   "prefix_id": "unique-40",
+   "shared": false,
+   "t_start": 70.05798570200022,
+   "box": [
+    175.59523809523807,
+    138.39285714285714,
+    290.17857142857144,
+    205.35714285714286
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0037",
+   "turn": 2,
+   "prefix_id": "unique-37",
+   "shared": false,
+   "t_start": 70.32317400500006,
+   "box": [
+    182.44047619047618,
+    430.2547100985645,
+    441.36904761904765,
+    499.45113866999304
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0038",
+   "turn": 2,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 70.32650901500028,
+   "box": [
+    916.6666666666666,
+    609.0932406346273,
+    961.3095238095239,
+    676.0575263489129
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0039",
+   "turn": 2,
+   "prefix_id": "shared-1",
+   "shared": true,
+   "t_start": 70.63248093700031,
+   "box": [
+    55.05952380952381,
+    523.8122265956881,
+    172.61904761904762,
+    593.0086551671167
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0040",
+   "turn": 2,
+   "prefix_id": "unique-40",
+   "shared": false,
+   "t_start": 71.14258232800012,
+   "box": [
+    497.0238095238095,
+    208.97435215323787,
+    587.797619047619,
+    282.63506643895215
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0037",
+   "turn": 3,
+   "prefix_id": "unique-37",
+   "shared": false,
+   "t_start": 71.39974338899992,
+   "box": [
+    178.57142857142858,
+    191.96428571428572,
+    300.5952380952381,
+    250.0
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0041",
+   "turn": 0,
+   "prefix_id": "shared-3",
+   "shared": true,
+   "t_start": 71.4015207790003,
+   "box": [
+    153.27380952380955,
+    127.23214285714285,
+    284.2261904761905,
+    196.42857142857142
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0042",
+   "turn": 0,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 71.65720649200011,
+   "box": [
+    467.26190476190476,
+    808.3042521859743,
+    508.9285714285714,
+    870.8042521859743
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0040",
+   "turn": 3,
+   "prefix_id": "unique-40",
+   "shared": false,
+   "t_start": 72.52581293899993,
+   "box": [
+    72.91666666666667,
+    362.8071977457172,
+    186.01190476190476,
+    427.53934060286
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0037",
+   "turn": 4,
+   "prefix_id": "unique-37",
+   "shared": false,
+   "t_start": 72.80040202100008,
+   "box": [
+    130.95238095238096,
+    417.9356722686576,
+    238.09523809523807,
+    491.59638655437186
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0041",
+   "turn": 1,
+   "prefix_id": "shared-3",
+   "shared": true,
+   "t_start": 73.0759310530002,
+   "box": [
+    617.5595238095239,
+    202.6278319192853,
+    872.0238095238095,
+    276.2885462049996
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0042",
+   "turn": 1,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 73.078157165,
+   "box": [
+    40.17857142857143,
+    116.07142857142857,
+    136.90476190476193,
+    176.33928571428572
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0040",
+   "turn": 4,
+   "prefix_id": "unique-40",
+   "shared": false,
+   "t_start": 73.34203377099993,
+   "box": [
+    626.4880952380952,
+    293.622452809002,
+    904.7619047619048,
+    369.51530995185914
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0043",
+   "turn": 0,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 73.85392799500005,
+   "box": [
+    769.3452380952382,
+    275.3706661049066,
+    952.3809523809523,
+    322.2456661049066
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0041",
+   "turn": 2,
+   "prefix_id": "shared-3",
+   "shared": true,
+   "t_start": 74.14788456199994,
+   "box": [
+    585.5654761904761,
+    208.12708746076768,
+    634.672619047619,
+    281.787801746482
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0042",
+   "turn": 2,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 74.15009320199988,
+   "box": [
+    284.72222222222223,
+    283.93179338284216,
+    333.8293650793651,
+    357.59250766855644
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0040",
+   "turn": 5,
+   "prefix_id": "unique-40",
+   "shared": false,
+   "t_start": 74.39559123300023,
+   "box": [
+    882.4404761904761,
+    583.5476844149233,
+    933.0357142857143,
+    659.4405415577805
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0043",
+   "turn": 1,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 74.93948446700006,
+   "box": [
+    58.035714285714285,
+    102.67857142857143,
+    177.08333333333334,
+    169.64285714285714
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0041",
+   "turn": 3,
+   "prefix_id": "shared-3",
+   "shared": true,
+   "t_start": 75.21292515300001,
+   "box": [
+    675.5952380952382,
+    523.8698601127525,
+    726.1904761904761,
+    599.7627172556097
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0042",
+   "turn": 3,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 75.21490458700009,
+   "box": [
+    41.666666666666664,
+    325.61345436348404,
+    218.75,
+    372.48845436348404
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0040",
+   "turn": 6,
+   "prefix_id": "unique-40",
+   "shared": false,
+   "t_start": 75.47904135699991,
+   "box": [
+    549.1071428571429,
+    217.22956832890785,
+    601.1904761904761,
+    295.3545683289079
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0043",
+   "turn": 2,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 76.03297168400013,
+   "box": [
+    672.6190476190477,
+    432.32632390193874,
+    924.1071428571429,
+    499.29060961622446
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0044",
+   "turn": 0,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 76.34541143900015,
+   "box": [
+    354.9107142857143,
+    239.76407081925458,
+    499.2559523809524,
+    291.10335653354025
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0042",
+   "turn": 4,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 76.34733840399986,
+   "box": [
+    781.25,
+    812.6028888232943,
+    815.4761904761905,
+    863.94217453758
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0040",
+   "turn": 7,
+   "prefix_id": "unique-40",
+   "shared": false,
+   "t_start": 76.62277400499988,
+   "box": [
+    834.8214285714286,
+    273.1772713917707,
+    885.4166666666666,
+    349.0701285346279
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0043",
+   "turn": 3,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 77.14129430000003,
+   "box": [
+    300.5952380952381,
+    303.112289681112,
+    555.0595238095239,
+    370.0765753953977
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0044",
+   "turn": 1,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 77.43083689700006,
+   "box": [
+    40.17857142857143,
+    271.63228644948344,
+    75.89285714285714,
+    325.203715020912
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0042",
+   "turn": 5,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 77.43240459300023,
+   "box": [
+    336.30952380952385,
+    102.67857142857143,
+    452.3809523809524,
+    160.71428571428572
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0045",
+   "turn": 0,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 77.67896539999992,
+   "box": [
+    312.5,
+    317.6074170131354,
+    593.75,
+    395.7324170131354
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0043",
+   "turn": 4,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 78.27564213400001,
+   "box": [
+    516.8650793650794,
+    221.93028927990463,
+    667.1626984126984,
+    277.7338607084761
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0044",
+   "turn": 2,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 78.5336597280002,
+   "box": [
+    472.4702380952381,
+    633.083998816018,
+    527.5297619047618,
+    715.6732845303038
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0042",
+   "turn": 6,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 78.53584509700022,
+   "box": [
+    523.0654761904761,
+    517.4523712488324,
+    612.3511904761905,
+    582.1845141059753
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0045",
+   "turn": 1,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 78.80624691899993,
+   "box": [
+    49.107142857142854,
+    539.3666962399533,
+    81.8452380952381,
+    588.4738390970962
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0043",
+   "turn": 5,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 79.3159605599999,
+   "box": [
+    452.3809523809524,
+    679.883172523752,
+    599.702380952381,
+    724.5260296666092
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0044",
+   "turn": 3,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 79.58290470300017,
+   "box": [
+    87.79761904761904,
+    220.91149468017807,
+    116.07142857142857,
+    263.32220896589234
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0042",
+   "turn": 7,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 79.58601725900007,
+   "box": [
+    401.7857142857143,
+    540.8910828039211,
+    683.0357142857143,
+    610.0875113753498
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0045",
+   "turn": 2,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 79.89326939800003,
+   "box": [
+    563.9880952380952,
+    307.1331492556384,
+    659.2261904761905,
+    365.1688635413527
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0043",
+   "turn": 6,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 80.47259140200003,
+   "box": [
+    611.6071428571429,
+    226.09450423972132,
+    659.2261904761905,
+    297.5230756682928
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0044",
+   "turn": 4,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 80.80833410500009,
+   "box": [
+    44.642857142857146,
+    185.26785714285714,
+    129.46428571428572,
+    238.83928571428572
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0046",
+   "turn": 0,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 80.81098621499996,
+   "box": [
+    180.0595238095238,
+    194.19642857142858,
+    321.42857142857144,
+    256.69642857142856
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0047",
+   "turn": 0,
+   "prefix_id": "unique-47",
+   "shared": false,
+   "t_start": 81.14196612200021,
+   "box": [
+    383.18452380952385,
+    696.6861087905404,
+    475.44642857142856,
+    754.7218230762546
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0044",
+   "turn": 5,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 82.45928903699996,
+   "box": [
+    857.8869047619048,
+    268.41093145525156,
+    904.0178571428571,
+    337.60736002668017
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0046",
+   "turn": 1,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 82.60548967700015,
+   "box": [
+    135.41666666666666,
+    491.27280822326725,
+    181.54761904761904,
+    560.4692367946958
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0047",
+   "turn": 1,
+   "prefix_id": "unique-47",
+   "shared": false,
+   "t_start": 82.93344708899986,
+   "box": [
+    248.51190476190476,
+    198.66071428571428,
+    354.1666666666667,
+    263.39285714285717
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0044",
+   "turn": 6,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 83.20821443400018,
+   "box": [
+    430.05952380952385,
+    395.8496020431296,
+    558.0357142857143,
+    469.51031632884394
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0046",
+   "turn": 2,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 83.49161761000005,
+   "box": [
+    342.26190476190476,
+    341.4267258648837,
+    415.17857142857144,
+    397.2302972934551
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0047",
+   "turn": 2,
+   "prefix_id": "unique-47",
+   "shared": false,
+   "t_start": 83.77216621400021,
+   "box": [
+    837.0535714285714,
+    251.78334075136672,
+    878.7202380952382,
+    314.2833407513667
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0044",
+   "turn": 7,
+   "prefix_id": "shared-0",
+   "shared": true,
+   "t_start": 84.04744822400016,
+   "box": [
+    609.5238095238096,
+    201.318283873275,
+    734.5238095238096,
+    268.2825695875607
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0046",
+   "turn": 3,
+   "prefix_id": "shared-2",
+   "shared": true,
+   "t_start": 84.33245491800017,
+   "box": [
+    89.28571428571429,
+    340.12597307713105,
+    252.97619047619045,
+    387.00097307713105
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0047",
+   "turn": 3,
+   "prefix_id": "unique-47",
+   "shared": false,
+   "t_start": 84.6108043019999,
+   "box": [
+    681.547619047619,
+    564.7153504722902,
+    776.7857142857143,
+    638.3760647580044
+   ]
+  },
+  {
+   "status": 500,
+   "error": "500 Internal Server Error\n\nServer got itself in trouble",
+   "ttft": null,
+   "itl": [],
+   "e2e": null,
+   "text": "",
+   "usage": null,
+   "session": "s0047",
+   "turn": 4,
+   "prefix_id": "unique-47",
+   "shared": false,
+   "t_start": 85.1421279870001,
+   "box": [
+    287.2023809523809,
+    625.616884456124,
+    337.7976190476191,
+    701.509741598981
+   ]
+  }
+ ],
+ "wall_s": 85.45639463499992,
+ "gpu": {
+  "available": true,
+  "n": 145,
+  "mem_used_mib_max": 7083.0,
+  "mem_used_mib_median": 3766.0,
+  "gpu_util_pct_median": 69.0,
+  "gpu_util_pct_max": 100.0,
+  "temp_c_max": 57.0,
+  "temp_c_median": 54.0,
+  "sm_clock_mhz_max": 225.0,
+  "sm_clock_mhz_busy_median": 225.0,
+  "sm_clock_mhz_busy_min": 225.0,
+  "busy_samples": 131,
+  "power_w_median": 25.61,
+  "power_w_max": 38.49
+ },
+ "metrics_before": {
+  "vllm:num_requests_running{engine=\"0\",model_name=\"merged-clean\"}": 0.0,
+  "vllm:num_requests_waiting{engine=\"0\",model_name=\"merged-clean\"}": 0.0,
+  "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"merged-clean\",reason=\"capacity\"}": 0.0,
+  "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"merged-clean\",reason=\"deferred\"}": 0.0,
+  "vllm:num_requests_kv_fetch_by_stage{engine=\"0\",model_name=\"merged-clean\",stage=\"waiting_to_start\"}": 0.0,
+  "vllm:num_requests_kv_fetch_by_stage{engine=\"0\",model_name=\"merged-clean\",stage=\"in_progress\"}": 0.0,
+  "vllm:num_requests_kv_fetch_by_stage{engine=\"0\",model_name=\"merged-clean\",stage=\"completed_waiting\"}": 0.0,
+  "vllm:kv_cache_usage_perc{engine=\"0\",model_name=\"merged-clean\"}": 0.0,
+  "vllm:prefix_cache_queries_total{engine=\"0\",model_name=\"merged-clean\"}": 238352.0,
+  "vllm:prefix_cache_queries_created{engine=\"0\",model_name=\"merged-clean\"}": 1793378482.0226479,
+  "vllm:prefix_cache_hits_total{engine=\"0\",model_name=\"merged-clean\"}": 144816.0,
+  "vllm:prefix_cache_hits_created{engine=\"0\",model_name=\"merged-clean\"}": 1793378482.022666,
+  "vllm:external_prefix_cache_queries_total{engine=\"0\",model_name=\"merged-clean\"}": 93536.0,
+  "vllm:external_prefix_cache_queries_created{engine=\"0\",model_name=\"merged-clean\"}": 1793378482.022683,
+  "vllm:external_prefix_cache_hits_total{engine=\"0\",model_name=\"merged-clean\"}": 88352.0,
+  "vllm:external_prefix_cache_hits_created{engine=\"0\",model_name=\"merged-clean\"}": 1793378482.022699,
+  "vllm:mm_cache_queries_total{engine=\"0\",model_name=\"merged-clean\"}": 393.0,
+  "vllm:mm_cache_queries_created{engine=\"0\",model_name=\"merged-clean\"}": 1793378482.0227149,
+  "vllm:mm_cache_hits_total{engine=\"0\",model_name=\"merged-clean\"}": 232.0,
+  "vllm:mm_cache_hits_created{engine=\"0\",model_name=\"merged-clean\"}": 1793378482.0227287,
+  "vllm:prompt_tokens_cached_total{engine=\"0\",model_name=\"merged-clean\"}": 233168.0,
+  "vllm:prompt_tokens_cached_created{engine=\"0\",model_name=\"merged-clean\"}": 1793378482.022809,
+  "vllm:prompt_tokens_cached_by_source_total{engine=\"0\",model_name=\"merged-clean\",source=\"device\"}": 144816.0,
+  "vllm:prompt_tokens_cached_by_source_total{engine=\"0\",model_name=\"merged-clean\",source=\"host\"}": 0.0,
+  "vllm:prompt_tokens_cached_by_source_total{engine=\"0\",model_name=\"merged-clean\",source=\"p2p\"}": 0.0,
+  "vllm:prompt_tokens_cached_by_source_total{engine=\"0\",model_name=\"merged-clean\",source=\"disk\"}": 0.0,
+  "vllm:prompt_tokens_cached_by_source_total{engine=\"0\",model_name=\"merged-clean\",source=\"external_unspecified\"}": 88352.0,
+  "vllm:prompt_tokens_cached_by_source_created{engine=\"0\",model_name=\"merged-clean\",source=\"device\"}": 1793378482.0228384,
+  "vllm:prompt_tokens_cached_by_source_created{engine=\"0\",model_name=\"merged-clean\",source=\"host\"}": 1793378482.0228474,
+  "vllm:prompt_tokens_cached_by_source_created{engine=\"0\",model_name=\"merged-clean\",source=\"p2p\"}": 1793378482.022854,
+  "vllm:prompt_tokens_cached_by_source_created{engine=\"0\",model_name=\"merged-clean\",source=\"disk\"}": 1793378482.0228615,
+  "vllm:prompt_tokens_cached_by_source_created{engine=\"0\",model_name=\"merged-clean\",source=\"external_unspecified\"}": 1793378482.0228684,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"0.3\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"0.5\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"0.8\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"1.0\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"1.5\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"2.0\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"2.5\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"5.0\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"10.0\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"15.0\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"20.0\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"30.0\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"40.0\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"50.0\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"60.0\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"120.0\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"240.0\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"480.0\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"960.0\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"1920.0\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"7680.0\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_bucket{engine=\"0\",le=\"+Inf\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_count{engine=\"0\",model_name=\"merged-clean\"}": 131.0,
+  "vllm:request_queue_time_seconds_sum{engine=\"0\",model_name=\"merged-clean\"}": 0.0037913100009063783,
+  "vllm:request_queue_time_seconds_created{engine=\"0\",model_name=\"merged-clean\"}": 1793378482.0236979,
+  "vllm:cache_config_info{_block_size_resolved=\"True\",block_size=\"16\",cache_dtype=\"auto\",cache_hit_alignment_tokens=\"None\",effective_attention_block_size=\"16\",enable_mamba_shared_prefix_checkpoint=\"False\",enable_prefix_caching=\"True\",engine=\"0\",gpu_memory_utilization=\"0.4\",hash_block_size=\"None\",is_attention_free=\"False\",kv_cache_dtype_skip_layers=\"[]\",kv_cache_layout=\"None\",kv_cache_max_concurrency=\"4.875\",kv_cache_memory_bytes=\"429496729\",kv_cache_size_tokens=\"14976\",kv_offloading_backend=\"native\",kv_offloading_size=\"None\",kv_sharing_fast_prefill=\"False\",mamba_block_size=\"None\",mamba_cache_dtype=\"auto\",mamba_cache_mode=\"none\",mamba_page_size_padded=\"None\",mamba_ssm_cache_dtype=\"auto\",num_cpu_blocks=\"None\",num_gpu_blocks=\"936\",num_gpu_blocks_override=\"None\",prefix_cache_retention_interval=\"0\",prefix_caching_hash_algo=\"sha256\",prefix_match_unit=\"None\",replayssm_buffer_len=\"16\",skip_page_size_padded=\"None\",sliding_window=\"None\",swa_bounded_replay=\"True\",use_kda_recoverssm=\"False\",use_replayssm=\"False\",user_specified_block_size=\"False\"}": 1.0
+ },
+ "metrics_after": null,
+ "engine_prefix_hit_rate": null,
+ "summary": {
+  "requests": 263,
+  "ok": 2,
+  "errors": 261,
+  "error_rate": 0.9923954372623575,
+  "wall_s": 85.45639463499992,
+  "req_per_s": 0.02340374887733528,
+  "ttft": {
+   "p50": 1.7356020454999452,
+   "p90": 1.8232643418998122,
+   "p99": 1.8429883585897824,
+   "mean": 1.7356020454999452,
+   "n": 2
+  },
+  "e2e": {
+   "p50": 2.0114262664999387,
+   "p90": 2.082018986100002,
+   "p99": 2.097902348010016,
+   "mean": 2.0114262664999387,
+   "n": 2
+  },
+  "itl": {
+   "p50": 0.02529915200011601,
+   "p90": 0.06207472219994088,
+   "p99": 0.09090444799998294,
+   "mean": 0.029506450176460718,
+   "n": 17
+  },
+  "completion_tokens_per_s": 0.25744123765068805,
+  "completion_tokens_mean": 11.0,
+  "prompt_tokens_per_s": 38.990645629640575,
+  "prompt_tokens_mean": 1666.0,
+  "cached_token_fraction": 0.9987995198079231,
+  "trace_click_accuracy": {
+   "hits": 2,
+   "n": 2,
+   "acc": 1.0,
+   "ci": [
+    0.34237195288961925,
+    1.0
+   ],
+   "valid_format": 1.0
+  }
+ }
+}
