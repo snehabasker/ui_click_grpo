@@ -67,30 +67,50 @@ def sha256(path: Path) -> str:
     return h.hexdigest()
 
 
+def _write(path: Path, text: str) -> None:
+    """Write a file in the view directory. A stale symlink (left by an earlier run) must be removed first: writing through it would
+    overwrite the SOURCE checkpoint's file, which is exactly what an earlier version of this script did."""
+    if path.is_symlink() or path.exists():
+        path.unlink()
+    path.write_text(text)
+
+
+REWRITTEN = ("config.json", "tokenizer_config.json", "processor_config.json", "preprocessor_config.json")
+
+
+def build_view(src: Path, dst: Path, max_pixels: int) -> bool:
+    src = src.resolve()
+    dst.mkdir(parents=True, exist_ok=True)
+    cfg = json.loads((src / "config.json").read_text())
+    flat = flatten(cfg)
+    check_same_shape(cfg, flat)
+    tok = tokenizer_config(json.loads((src / "tokenizer_config.json").read_text()))
+    pre = preprocessor_config(json.loads((src / "processor_config.json").read_text()), max_pixels)
+    for name in REWRITTEN:                                  # drop any stale link BEFORE anything is written
+        q = dst / name
+        if q.is_symlink():
+            q.unlink()
+    for f in src.iterdir():
+        if f.name in REWRITTEN or f.is_dir():
+            continue
+        link = dst / f.name
+        if link.is_symlink() or link.exists():
+            link.unlink()
+        os.symlink(f, link)
+    _write(dst / "config.json", json.dumps(flat, indent=1))
+    _write(dst / "tokenizer_config.json", json.dumps(tok, indent=1))
+    _write(dst / "preprocessor_config.json", json.dumps(pre, indent=1))
+    _write(dst / "processor_config.json", json.dumps({"processor_class": "Qwen2VLProcessor"}))
+    _write(dst / "VIEW_OF", f"{src}" + chr(10) + "config.json, tokenizer_config.json, preprocessor_config.json, processor_config.json rewritten for transformers 4.x; all other files are symlinks" + chr(10))
+    return sha256(dst / "model.safetensors") == sha256(src / "model.safetensors")
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--src", required=True)
     ap.add_argument("--dst", required=True)
     ap.add_argument("--max-pixels", type=int, default=1280 * 28 * 28, help="the image pixel budget used by every other engine in this repo (1003520)")
     a = ap.parse_args()
-    src, dst = Path(a.src).resolve(), Path(a.dst).expanduser()
-    dst.mkdir(parents=True, exist_ok=True)
-    cfg = json.loads((src / "config.json").read_text())
-    flat = flatten(cfg)
-    check_same_shape(cfg, flat)
-    for f in src.iterdir():
-        if f.name in ("config.json", "tokenizer_config.json", "processor_config.json") or f.is_dir():
-            continue
-        link = dst / f.name
-        if link.is_symlink() or link.exists():
-            link.unlink()
-        os.symlink(f, link)
-    (dst / "config.json").write_text(json.dumps(flat, indent=1))
-    (dst / "tokenizer_config.json").write_text(json.dumps(tokenizer_config(json.loads((src / "tokenizer_config.json").read_text())), indent=1))
-    pc = json.loads((src / "processor_config.json").read_text())
-    (dst / "preprocessor_config.json").write_text(json.dumps(preprocessor_config(pc, a.max_pixels), indent=1))
-    (dst / "processor_config.json").write_text(json.dumps({"processor_class": "Qwen2VLProcessor"}))
-    (dst / "VIEW_OF").write_text(f"{src}\nconfig.json, tokenizer_config.json, preprocessor_config.json, processor_config.json rewritten for transformers 4.x; all other files are symlinks\n")
-    same = sha256(dst / "model.safetensors") == sha256(src / "model.safetensors")
-    print(f"wrote {dst}; model.safetensors identical to the source: {same}")
+    same = build_view(Path(a.src), Path(a.dst).expanduser(), a.max_pixels)
+    print(f"wrote {a.dst}; model.safetensors identical to the source: {same}")
     sys.exit(0 if same else 1)

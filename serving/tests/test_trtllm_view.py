@@ -1,3 +1,4 @@
+import json
 import sys
 from pathlib import Path
 
@@ -49,3 +50,51 @@ def test_preprocessor_config_sets_the_pixel_budget_and_keeps_the_normalisation()
     assert out["max_pixels"] == 1003520 and out["size"] == {"shortest_edge": 3136, "longest_edge": 1003520} and out["min_pixels"] == 3136
     assert out["image_mean"] == [0.1] and out["patch_size"] == 14 and out["merge_size"] == 2
     assert pc["image_processor"]["size"]["longest_edge"] == 12845056      # the source dict is not modified
+
+
+def _need_symlinks(tmp_path: Path):
+    try:
+        (tmp_path / "probe").symlink_to(tmp_path)
+    except OSError:
+        pytest.skip("this OS account cannot create symlinks (the view script runs in WSL, where these tests run)")
+    (tmp_path / "probe").unlink()
+
+
+def _fake_checkpoint(d: Path):
+    d.mkdir(parents=True)
+    (d / "config.json").write_text(json.dumps(NESTED))
+    (d / "tokenizer_config.json").write_text(json.dumps({"extra_special_tokens": ["<|im_start|>"], "eos_token": "<|im_end|>"}))
+    (d / "processor_config.json").write_text(json.dumps({"image_processor": {"patch_size": 14, "size": {"longest_edge": 12845056, "shortest_edge": 3136}}}))
+    (d / "tokenizer.json").write_text("{}")
+    (d / "model.safetensors").write_bytes(b"weights")
+
+
+def _digest(d: Path):
+    import hashlib
+    return {f.name: hashlib.sha256(f.read_bytes()).hexdigest() for f in sorted(d.iterdir())}
+
+
+def test_build_view_never_modifies_the_source_even_when_the_view_holds_stale_symlinks(tmp_path):
+    _need_symlinks(tmp_path)
+    src, dst = tmp_path / "src", tmp_path / "view"
+    _fake_checkpoint(src)
+    before = _digest(src)
+    # the state an earlier version of the script left behind: symlinks to the source for the files that are later rewritten
+    dst.mkdir()
+    for name in ("tokenizer_config.json", "processor_config.json", "config.json"):
+        (dst / name).symlink_to(src / name)
+    assert V.build_view(src, dst, 1003520) is True
+    assert _digest(src) == before                                              # the source checkpoint is byte-for-byte unchanged
+    assert not (dst / "tokenizer_config.json").is_symlink() and not (dst / "processor_config.json").is_symlink()
+    assert json.loads((dst / "tokenizer_config.json").read_text())["extra_special_tokens"] == {}
+    assert json.loads((dst / "preprocessor_config.json").read_text())["max_pixels"] == 1003520
+    assert (dst / "model.safetensors").is_symlink()                            # weights are a link, not a copy
+
+
+def test_build_view_can_run_twice(tmp_path):
+    _need_symlinks(tmp_path)
+    src, dst = tmp_path / "src", tmp_path / "view"
+    _fake_checkpoint(src)
+    before = _digest(src)
+    assert V.build_view(src, dst, 1003520) and V.build_view(src, dst, 1003520)
+    assert _digest(src) == before
