@@ -1,0 +1,428 @@
+{
+ "kind": "estimate",
+ "label": "ANALYTICAL ESTIMATE, NOT A MEASUREMENT",
+ "env": {
+  "date": "2026-10-30T17:06:52+01:00",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "python": "3.11.6",
+  "command": "serving/scripts/kv_transfer_estimate.py",
+  "gpu": {
+   "gpus": [
+    {
+     "name": "NVIDIA GeForce RTX 5050 Laptop GPU",
+     "driver": "592.82",
+     "memory_total": "8151 MiB",
+     "compute_cap": "12.0"
+    }
+   ],
+   "driver_cuda_version": "13.1"
+  },
+  "packages": {
+   "torch": "2.13.0+cpu",
+   "transformers": "5.14.1",
+   "peft": "0.21.2",
+   "aiohttp": "3.14.5"
+  },
+  "model_dir": "~\\ui-click-rl\\serving\\models\\merged-clean",
+  "model_hash": "f4945dbb7c5b459fe0cce1b78362bff134b12a4a15108e9342c8c6b3a1d0de7f",
+  "repo_commit": "3220baa71eb70a3d9d3f4a7cdd5e044b948fa4d9",
+  "args": {
+   "model_dir": "~\\ui-click-rl\\serving\\models\\merged-clean",
+   "stats": "~\\ui-click-rl\\serving\\traces\\default\\token_stats.json",
+   "phase1_csv": "~\\ui-click-rl\\serving\\results\\tables\\phase1.csv"
+  }
+ },
+ "model": {
+  "layers": 28,
+  "kv_heads": 2,
+  "head_dim": 128
+ },
+ "bytes_per_token": {
+  "bf16": 28672,
+  "fp8": 14336
+ },
+ "prompt_tokens": {
+  "shared prefix (system + 2 few-shot screenshots)": 1254,
+  "first turn of a session": 1666,
+  "last measured turn": 1861
+ },
+ "links_gbps": {
+  "PCIe 3.0 x16": 15.753846153846153,
+  "PCIe 4.0 x16": 31.507692307692306,
+  "PCIe 5.0 x16": 63.01538461538461,
+  "10 GbE": 1.25,
+  "25 GbE": 3.125,
+  "100 GbE": 12.5
+ },
+ "link_notes": {
+  "PCIe 3.0 x16": "8 GT/s x 16 lanes x 128b/130b encoding, per direction (a Kaggle T4 pair sits on PCIe 3.0)",
+  "PCIe 4.0 x16": "16 GT/s x 16 lanes x 128b/130b encoding, per direction",
+  "PCIe 5.0 x16": "32 GT/s x 16 lanes x 128b/130b encoding, per direction",
+  "10 GbE": "10 Gbit/s Ethernet line rate",
+  "25 GbE": "25 Gbit/s Ethernet line rate",
+  "100 GbE": "100 Gbit/s Ethernet line rate"
+ },
+ "measured_reference_ttft_ms": 711.1988609995024,
+ "rows": [
+  {
+   "prompt": "shared prefix (system + 2 few-shot screenshots)",
+   "tokens": 1254,
+   "kv_dtype": "bf16",
+   "kv_bytes": 35954688,
+   "kv_mib": 34.2890625,
+   "link": "PCIe 3.0 x16",
+   "ms_at_line_rate": 2.28228,
+   "fraction_of_reference_ttft": 0.003209060257482045
+  },
+  {
+   "prompt": "shared prefix (system + 2 few-shot screenshots)",
+   "tokens": 1254,
+   "kv_dtype": "bf16",
+   "kv_bytes": 35954688,
+   "kv_mib": 34.2890625,
+   "link": "PCIe 4.0 x16",
+   "ms_at_line_rate": 1.14114,
+   "fraction_of_reference_ttft": 0.0016045301287410225
+  },
+  {
+   "prompt": "shared prefix (system + 2 few-shot screenshots)",
+   "tokens": 1254,
+   "kv_dtype": "bf16",
+   "kv_bytes": 35954688,
+   "kv_mib": 34.2890625,
+   "link": "PCIe 5.0 x16",
+   "ms_at_line_rate": 0.57057,
+   "fraction_of_reference_ttft": 0.0008022650643705112
+  },
+  {
+   "prompt": "shared prefix (system + 2 few-shot screenshots)",
+   "tokens": 1254,
+   "kv_dtype": "bf16",
+   "kv_bytes": 35954688,
+   "kv_mib": 34.2890625,
+   "link": "10 GbE",
+   "ms_at_line_rate": 28.7637504,
+   "fraction_of_reference_ttft": 0.04044403327583525
+  },
+  {
+   "prompt": "shared prefix (system + 2 few-shot screenshots)",
+   "tokens": 1254,
+   "kv_dtype": "bf16",
+   "kv_bytes": 35954688,
+   "kv_mib": 34.2890625,
+   "link": "25 GbE",
+   "ms_at_line_rate": 11.505500159999999,
+   "fraction_of_reference_ttft": 0.016177613310334096
+  },
+  {
+   "prompt": "shared prefix (system + 2 few-shot screenshots)",
+   "tokens": 1254,
+   "kv_dtype": "bf16",
+   "kv_bytes": 35954688,
+   "kv_mib": 34.2890625,
+   "link": "100 GbE",
+   "ms_at_line_rate": 2.8763750399999997,
+   "fraction_of_reference_ttft": 0.004044403327583524
+  },
+  {
+   "prompt": "shared prefix (system + 2 few-shot screenshots)",
+   "tokens": 1254,
+   "kv_dtype": "fp8",
+   "kv_bytes": 17977344,
+   "kv_mib": 17.14453125,
+   "link": "PCIe 3.0 x16",
+   "ms_at_line_rate": 1.14114,
+   "fraction_of_reference_ttft": 0.0016045301287410225
+  },
+  {
+   "prompt": "shared prefix (system + 2 few-shot screenshots)",
+   "tokens": 1254,
+   "kv_dtype": "fp8",
+   "kv_bytes": 17977344,
+   "kv_mib": 17.14453125,
+   "link": "PCIe 4.0 x16",
+   "ms_at_line_rate": 0.57057,
+   "fraction_of_reference_ttft": 0.0008022650643705112
+  },
+  {
+   "prompt": "shared prefix (system + 2 few-shot screenshots)",
+   "tokens": 1254,
+   "kv_dtype": "fp8",
+   "kv_bytes": 17977344,
+   "kv_mib": 17.14453125,
+   "link": "PCIe 5.0 x16",
+   "ms_at_line_rate": 0.285285,
+   "fraction_of_reference_ttft": 0.0004011325321852556
+  },
+  {
+   "prompt": "shared prefix (system + 2 few-shot screenshots)",
+   "tokens": 1254,
+   "kv_dtype": "fp8",
+   "kv_bytes": 17977344,
+   "kv_mib": 17.14453125,
+   "link": "10 GbE",
+   "ms_at_line_rate": 14.3818752,
+   "fraction_of_reference_ttft": 0.020222016637917624
+  },
+  {
+   "prompt": "shared prefix (system + 2 few-shot screenshots)",
+   "tokens": 1254,
+   "kv_dtype": "fp8",
+   "kv_bytes": 17977344,
+   "kv_mib": 17.14453125,
+   "link": "25 GbE",
+   "ms_at_line_rate": 5.752750079999999,
+   "fraction_of_reference_ttft": 0.008088806655167048
+  },
+  {
+   "prompt": "shared prefix (system + 2 few-shot screenshots)",
+   "tokens": 1254,
+   "kv_dtype": "fp8",
+   "kv_bytes": 17977344,
+   "kv_mib": 17.14453125,
+   "link": "100 GbE",
+   "ms_at_line_rate": 1.4381875199999998,
+   "fraction_of_reference_ttft": 0.002022201663791762
+  },
+  {
+   "prompt": "first turn of a session",
+   "tokens": 1666,
+   "kv_dtype": "bf16",
+   "kv_bytes": 47767552,
+   "kv_mib": 45.5546875,
+   "link": "PCIe 3.0 x16",
+   "ms_at_line_rate": 3.03212,
+   "fraction_of_reference_ttft": 0.004263392654677103
+  },
+  {
+   "prompt": "first turn of a session",
+   "tokens": 1666,
+   "kv_dtype": "bf16",
+   "kv_bytes": 47767552,
+   "kv_mib": 45.5546875,
+   "link": "PCIe 4.0 x16",
+   "ms_at_line_rate": 1.51606,
+   "fraction_of_reference_ttft": 0.0021316963273385514
+  },
+  {
+   "prompt": "first turn of a session",
+   "tokens": 1666,
+   "kv_dtype": "bf16",
+   "kv_bytes": 47767552,
+   "kv_mib": 45.5546875,
+   "link": "PCIe 5.0 x16",
+   "ms_at_line_rate": 0.75803,
+   "fraction_of_reference_ttft": 0.0010658481636692757
+  },
+  {
+   "prompt": "first turn of a session",
+   "tokens": 1666,
+   "kv_dtype": "bf16",
+   "kv_bytes": 47767552,
+   "kv_mib": 45.5546875,
+   "link": "10 GbE",
+   "ms_at_line_rate": 38.2140416,
+   "fraction_of_reference_ttft": 0.05373186558017665
+  },
+  {
+   "prompt": "first turn of a session",
+   "tokens": 1666,
+   "kv_dtype": "bf16",
+   "kv_bytes": 47767552,
+   "kv_mib": 45.5546875,
+   "link": "25 GbE",
+   "ms_at_line_rate": 15.285616639999999,
+   "fraction_of_reference_ttft": 0.021492746232070658
+  },
+  {
+   "prompt": "first turn of a session",
+   "tokens": 1666,
+   "kv_dtype": "bf16",
+   "kv_bytes": 47767552,
+   "kv_mib": 45.5546875,
+   "link": "100 GbE",
+   "ms_at_line_rate": 3.8214041599999997,
+   "fraction_of_reference_ttft": 0.0053731865580176645
+  },
+  {
+   "prompt": "first turn of a session",
+   "tokens": 1666,
+   "kv_dtype": "fp8",
+   "kv_bytes": 23883776,
+   "kv_mib": 22.77734375,
+   "link": "PCIe 3.0 x16",
+   "ms_at_line_rate": 1.51606,
+   "fraction_of_reference_ttft": 0.0021316963273385514
+  },
+  {
+   "prompt": "first turn of a session",
+   "tokens": 1666,
+   "kv_dtype": "fp8",
+   "kv_bytes": 23883776,
+   "kv_mib": 22.77734375,
+   "link": "PCIe 4.0 x16",
+   "ms_at_line_rate": 0.75803,
+   "fraction_of_reference_ttft": 0.0010658481636692757
+  },
+  {
+   "prompt": "first turn of a session",
+   "tokens": 1666,
+   "kv_dtype": "fp8",
+   "kv_bytes": 23883776,
+   "kv_mib": 22.77734375,
+   "link": "PCIe 5.0 x16",
+   "ms_at_line_rate": 0.379015,
+   "fraction_of_reference_ttft": 0.0005329240818346379
+  },
+  {
+   "prompt": "first turn of a session",
+   "tokens": 1666,
+   "kv_dtype": "fp8",
+   "kv_bytes": 23883776,
+   "kv_mib": 22.77734375,
+   "link": "10 GbE",
+   "ms_at_line_rate": 19.1070208,
+   "fraction_of_reference_ttft": 0.026865932790088327
+  },
+  {
+   "prompt": "first turn of a session",
+   "tokens": 1666,
+   "kv_dtype": "fp8",
+   "kv_bytes": 23883776,
+   "kv_mib": 22.77734375,
+   "link": "25 GbE",
+   "ms_at_line_rate": 7.642808319999999,
+   "fraction_of_reference_ttft": 0.010746373116035329
+  },
+  {
+   "prompt": "first turn of a session",
+   "tokens": 1666,
+   "kv_dtype": "fp8",
+   "kv_bytes": 23883776,
+   "kv_mib": 22.77734375,
+   "link": "100 GbE",
+   "ms_at_line_rate": 1.9107020799999999,
+   "fraction_of_reference_ttft": 0.0026865932790088322
+  },
+  {
+   "prompt": "last measured turn",
+   "tokens": 1861,
+   "kv_dtype": "bf16",
+   "kv_bytes": 53358592,
+   "kv_mib": 50.88671875,
+   "link": "PCIe 3.0 x16",
+   "ms_at_line_rate": 3.38702,
+   "fraction_of_reference_ttft": 0.00476240920189321
+  },
+  {
+   "prompt": "last measured turn",
+   "tokens": 1861,
+   "kv_dtype": "bf16",
+   "kv_bytes": 53358592,
+   "kv_mib": 50.88671875,
+   "link": "PCIe 4.0 x16",
+   "ms_at_line_rate": 1.69351,
+   "fraction_of_reference_ttft": 0.002381204600946605
+  },
+  {
+   "prompt": "last measured turn",
+   "tokens": 1861,
+   "kv_dtype": "bf16",
+   "kv_bytes": 53358592,
+   "kv_mib": 50.88671875,
+   "link": "PCIe 5.0 x16",
+   "ms_at_line_rate": 0.846755,
+   "fraction_of_reference_ttft": 0.0011906023004733025
+  },
+  {
+   "prompt": "last measured turn",
+   "tokens": 1861,
+   "kv_dtype": "bf16",
+   "kv_bytes": 53358592,
+   "kv_mib": 50.88671875,
+   "link": "10 GbE",
+   "ms_at_line_rate": 42.6868736,
+   "fraction_of_reference_ttft": 0.0600210095106295
+  },
+  {
+   "prompt": "last measured turn",
+   "tokens": 1861,
+   "kv_dtype": "bf16",
+   "kv_bytes": 53358592,
+   "kv_mib": 50.88671875,
+   "link": "25 GbE",
+   "ms_at_line_rate": 17.074749439999998,
+   "fraction_of_reference_ttft": 0.024008403804251798
+  },
+  {
+   "prompt": "last measured turn",
+   "tokens": 1861,
+   "kv_dtype": "bf16",
+   "kv_bytes": 53358592,
+   "kv_mib": 50.88671875,
+   "link": "100 GbE",
+   "ms_at_line_rate": 4.2686873599999995,
+   "fraction_of_reference_ttft": 0.0060021009510629495
+  },
+  {
+   "prompt": "last measured turn",
+   "tokens": 1861,
+   "kv_dtype": "fp8",
+   "kv_bytes": 26679296,
+   "kv_mib": 25.443359375,
+   "link": "PCIe 3.0 x16",
+   "ms_at_line_rate": 1.69351,
+   "fraction_of_reference_ttft": 0.002381204600946605
+  },
+  {
+   "prompt": "last measured turn",
+   "tokens": 1861,
+   "kv_dtype": "fp8",
+   "kv_bytes": 26679296,
+   "kv_mib": 25.443359375,
+   "link": "PCIe 4.0 x16",
+   "ms_at_line_rate": 0.846755,
+   "fraction_of_reference_ttft": 0.0011906023004733025
+  },
+  {
+   "prompt": "last measured turn",
+   "tokens": 1861,
+   "kv_dtype": "fp8",
+   "kv_bytes": 26679296,
+   "kv_mib": 25.443359375,
+   "link": "PCIe 5.0 x16",
+   "ms_at_line_rate": 0.4233775,
+   "fraction_of_reference_ttft": 0.0005953011502366513
+  },
+  {
+   "prompt": "last measured turn",
+   "tokens": 1861,
+   "kv_dtype": "fp8",
+   "kv_bytes": 26679296,
+   "kv_mib": 25.443359375,
+   "link": "10 GbE",
+   "ms_at_line_rate": 21.3434368,
+   "fraction_of_reference_ttft": 0.03001050475531475
+  },
+  {
+   "prompt": "last measured turn",
+   "tokens": 1861,
+   "kv_dtype": "fp8",
+   "kv_bytes": 26679296,
+   "kv_mib": 25.443359375,
+   "link": "25 GbE",
+   "ms_at_line_rate": 8.537374719999999,
+   "fraction_of_reference_ttft": 0.012004201902125899
+  },
+  {
+   "prompt": "last measured turn",
+   "tokens": 1861,
+   "kv_dtype": "fp8",
+   "kv_bytes": 26679296,
+   "kv_mib": 25.443359375,
+   "link": "100 GbE",
+   "ms_at_line_rate": 2.1343436799999997,
+   "fraction_of_reference_ttft": 0.0030010504755314748
+  }
+ ]
+}
