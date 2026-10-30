@@ -254,3 +254,74 @@ router results therefore describe the FP8 policy, which is a slightly worse clic
 * Why `do_bench` and `do_bench_cudagraph` disagree by about 20% at the largest cells.
 * Why the fused kernel beats `torch.compile` by 1.4-2.6x at 1024+ rows (inductor's kernels were not inspected).
 * Whether a tuned launch configuration (`num_warps`, several rows per program) would change the small-cell results.
+
+## Phase 4: disaggregation (one GPU)
+
+### What went wrong, in order
+
+* **The first split run died under concurrency.** The decode instance's engine crashed with `shape mismatch: value tensor of shape [1248, 2, 256] cannot
+  be broadcast to indexing result of shape [1664, 2, 256]` in vLLM's `ExampleConnector.inject_kv_into_layer`; every in-flight request then failed. At 1
+  client everything worked (91 of 91). I kept that run as a result: it is what the default configuration does.
+* **My first diagnosis was incomplete.** Reading `build_connector_meta` showed the connector stores a request's KV at the first step it is scheduled, with the
+  blocks allocated then, so a prompt scheduled in pieces is stored truncated. Chunked prefill was the obvious cause, and switching it off on the prefill
+  instance fixed 4 clients (263 of 263 in a diagnostic run). I first wrote that up as "chunked prefill", then 16 clients still failed with the *same* error. The gap
+  (1,664 - 1,248 = 416 tokens) is about one screenshot, so something else also splits a prompt across steps (I suspect the multimodal encoder's per-step budget;
+  not confirmed). A 16,384-token step budget stopped the errors at 16 clients, which is what the README reports, as an inference.
+* **The 16,384-token configuration is very slow** (median time to first token 29.6 s, 0.61 requests/s at 16 clients, against about 1.5 s and 6.4 for colocated, in a
+  different session) and drifts slower across rounds (21.5, 29.6, 30.3 s). I did not measure where the time goes. 1 to 2 of 560 requests still failed in two
+  rounds; not investigated.
+* **Log files are overwritten per setup** (`disagg-<role>-<timestamp>.log` reuses the run's timestamp), so after a multi-round run only the last split instance's
+  log survives; the diagnosis used the logs of the run that had just finished.
+* **A diagnostic run wrote its result under the real name** (`disagg_bench_...`), because the tag prefix option did not exist yet. I renamed it
+  `explore_disagg_bench_20261030-181519.json` before committing so the summariser does not treat it as a result.
+* **The proxy counts the warm-up requests** in its prefill-step timings (the load client sends its discarded warm-up through it), so the "prefill step" column covers them too.
+
+### Not established
+
+* Why the 16,384-token configuration is so slow, and why 1 to 2 requests per 560 still fail in it.
+* Whether the multimodal encoder budget is what splits the prompts at 16 clients.
+* Anything about a real two-GPU deployment, or about connectors other than `ExampleConnector`.
+
+## Phase 5: TensorRT-LLM
+
+TensorRT-LLM 1.2.1 (PyTorch backend) runs on this GPU (RTX 5050 Laptop, compute capability 12.0) under WSL2 without sudo, after a series of fixes. Every
+one was a missing library, a version skew or a missing header; none was the GPU being unsupported. In order:
+
+1. `import tensorrt_llm` failed with `cannot load MPI library`: no `libmpi` without apt. Fix: OpenMPI from conda-forge into `~/mpi` (`09_trtllm_mpi.sh`).
+2. `libcublasLt.so.13` not found: the default PyPI `torch==2.9.1` is built for CUDA 12.8, TensorRT-LLM 1.2.1 links CUDA 13. uv treated `torch==2.9.1` as already
+   satisfied by the `+cu128` build, so the first reinstall did nothing; the explicit `torch==2.9.1+cu130` from the PyTorch index was needed (`10_trtllm_torch_cu130.sh`).
+3. `libnvrtc.so.13`: the CUDA 13 runtime libraries had to be on `LD_LIBRARY_PATH` (`trtllm_env.sh`). Then `libnuma.so.1` (conda-forge `libnuma` into `~/mpi`).
+4. torchvision was still the CUDA 12.8 build: "PyTorch and torchvision were compiled with different CUDA major versions" (`11_trtllm_torchvision.sh`).
+5. `pyarrow` 26 needs NumPy 2 while TensorRT-LLM pins NumPy 1.26: older `pyarrow<21` (`12_trtllm_pyarrow.sh`). Then `deep_gemm` asserts `CUDA_HOME` is set (the user-space toolkit in `~/cuda132`).
+6. **The merged checkpoint could not be read by TensorRT-LLM's transformers (4.57.3)**: it was written by transformers 5.x. `config.json` is nested (`text_config`), so
+   `architectures` came back `None` and the server died with `'NoneType' object is not subscriptable`; then `tokenizer_config.json` had `extra_special_tokens` as a
+   list where 4.57 wants a mapping; then the image-processor settings are in a different file. `make_trtllm_view.py` builds a directory whose weights are a
+   symlink to the same `model.safetensors` (same sha256) and whose small config files are rewritten for 4.x, with the image pixel budget set to the 1,003,520 used elsewhere.
+7. MPI worker spawn failed (`OPAL ERROR ... dpm.c`): OpenMPI 5 needs its `prte` daemon on `PATH`.
+8. The Qwen2-VL vision tower hard-codes `attn_implementation='flash_attention_2'` in `modeling_qwen2vl.py` (comment: "to avoid OOM issue") and `flash_attn` is not installable
+   here. **A local patch to the installed package** switches that line to `sdpa` (`13_trtllm_sdpa_patch.sh`; original kept as `.orig`; the diff is recorded in the result).
+   After that, FlashInfer JIT-compiles a normalisation kernel for `sm_120a`: nvcc 13.2 rejects the user-space gcc 16 (use gcc 14 from conda-forge, `14_trtllm_gcc14.sh`), `cublasLt.h`
+   comes from the cu13 pip package via `CPATH`, and the link step needs a `libcuda.so` name (a symlink to WSL's `/usr/lib/wsl/lib/libcuda.so.1`, `15_trtllm_libcuda_link.sh`).
+
+### A mistake of mine that touched the checkpoint
+
+The first version of `make_trtllm_view.py` symlinked `tokenizer_config.json` and `processor_config.json` into the view directory. The second version rewrote those two files
+in the view directory, which wrote *through the stale symlinks* and overwrote the real files in the Linux clone's `serving/models/merged-clean/`
+(`tokenizer_config.json`: the token list became `{}`; `processor_config.json`: reduced to the class name). The weights, `config.json`, `tokenizer.json` and the chat template
+were not changed (checked by hash). I found it because the next run failed with `KeyError: 'image_processor'`, restored both files from the untouched Windows copy,
+verified every file of the checkpoint (including the 4.4 GB weights) is byte-identical to the Windows copy and to `MODEL_HASH`, made the script remove any link or file before
+writing, and added a regression test that reproduces the situation (it needs symlinks, so it runs in WSL: `wsl/run_view_tests.sh`). The overwrite happened after the Phase 3 and
+Phase 4 runs had finished, so no reported number used the altered files.
+
+### Other things that went wrong
+
+* The agent trace (three images per request) fails inside the Hugging Face Qwen2-VL processor under TensorRT-LLM: `IndexError: index 3 is out of bounds for dimension 0 with size 3`
+  (4 image placeholders, 3 images). I did not find why. The comparison therefore uses a new one-image-per-request trace (`traces/single`), not the Phase 1 workload.
+* The first run of the benchmark driver died in round 2 with `Address already in use`: the TensorRT-LLM server killed at the end of round 1 still held port 8003. The driver now waits for the
+  port to be free. The round-1 files of that crashed invocation are not results (no benchmark record lists them); they are kept in the clone as `loadtest_explore-crashed-*`.
+
+### Not established
+
+* Why TensorRT-LLM scores higher on ScreenSpot than vLLM (see the README): preprocessing differences are one candidate.
+* Whether TensorRT-LLM would be faster with its default flash-attention vision tower, with CUDA graphs tuned, or with its TensorRT (engine-building) backend, which was not tried.
+* Why the multi-image prompts fail.
