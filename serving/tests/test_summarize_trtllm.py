@@ -22,13 +22,15 @@ def make(tmp):
             rounds.append({"round": rnd, "engine": eng, "order": order, "runs": [{"concurrency": 1, "loadtest_files": [name]}]})
     (tmp / "trtllm_bench_20261030-000000.json").write_text(json.dumps(
         {"settings": {"trace": "serving/traces/single", "prefix_caching": "off on both engines", "max_seqs": 32, "max_len": 4096, "trtllm_backend": "pytorch"},
-         "trtllm_env": {"tensorrt_llm": "1.2.1", "torch": "2.9.1+cu130", "transformers": "4.57.3"}, "env": {"packages": {"vllm": "0.32.0"}},
+         "trtllm_env": {"tensorrt_llm": "1.2.1", "torch": "2.9.1+cu130", "transformers": "4.57.3"}, "env": {"packages": {}},
          "trtllm_local_patch_diff": "< flash_attention_2\n> sdpa", "rounds": rounds}))
 
 
 def test_latency_cells_are_median_min_max_over_rounds_and_the_patch_is_shown(tmp_path):
     make(tmp_path)
+    (tmp_path / "engine_vllm-x_20261026-000000.json").write_text(json.dumps({"versions": {"vllm": "0.32.0"}}))
     md = S.tables(tmp_path)
+    assert "vLLM 0.32.0" in md
     assert "0.21 (0.20–0.22)" in md and "0.41 (0.40–0.42)" in md
     assert "round 2: trtllm then vllm" in md and "> sdpa" in md and "TensorRT-LLM 1.2.1" in md
 

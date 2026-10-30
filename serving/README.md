@@ -15,7 +15,7 @@ Nothing under `serving/` changes training code or the published results in `../r
 | 2 | Prefix-aware router in Rust | **done, with a mixed result** (see Phase 2 results: the routing works, the latency benefit is not clear) |
 | 3 | Fused RMSNorm + INT8 quantisation Triton kernel | **done, as a standalone operator** (see Phase 3 results: not integrated into an engine, no end-to-end claim) |
 | 4 | Prefill/decode disaggregation (time-boxed) | **attempted on one GPU, with an analytical estimate**: works at 1 and 4 clients, fails at 16 with default settings (see Phase 4 results); not a two-GPU result |
-| 5 | TensorRT-LLM (time-boxed) | not started |
+| 5 | TensorRT-LLM (time-boxed) | **runs, with a local patch**: slower than vLLM on a one-image workload; multi-image agent prompts fail; the ScreenSpot accuracy difference is unexplained (see Phase 5 results) |
 
 Hardware: one RTX 5050 Laptop GPU (8 GB, compute capability 12.0, driver 592.82, CUDA 13.1 as reported by the driver),
 Windows 11, 23.6 GB RAM. Engines run inside WSL2 Ubuntu (WSL 3.0.3, kernel 6.18, 11.7 GB of RAM visible to Linux).
@@ -689,6 +689,77 @@ No change was detected: 1 and 1 discordant items on the synthetic set, 5 and 4 o
 * FP8 weights and a small KV cache (0.4 GiB per instance), as in Phase 2; one trace; at most 16 clients; 3 rounds.
 * The comparison of the 16-client split run with the colocated run crosses two sessions.
 
+## Phase 5 results: TensorRT-LLM (it runs here; slower than vLLM in this setup)
+
+**Outcome.** TensorRT-LLM 1.2.1 serves the merged Qwen2-VL checkpoint on this RTX 5050 Laptop GPU (compute capability 12.0) under WSL2 without sudo, using its **PyTorch backend**
+(`trtllm-serve --backend pytorch`). Getting there took a long chain of environment fixes and **one local patch to the installed package**, all listed in `NOTES.md`; none of them was the GPU
+being unsupported. The TensorRT engine-building backend was not tried. On a one-image-per-request workload, vLLM was faster than TensorRT-LLM at every concurrency level I measured.
+
+### What was run
+
+* **Same weights.** TensorRT-LLM reads a *view* of the merged checkpoint (`scripts/make_trtllm_view.py`): `model.safetensors` is a symlink to the same file (checked to be byte-identical), and the small
+  config files are rewritten into the transformers 4.x form that TensorRT-LLM's transformers (4.57.3) can read. The image pixel budget is set to the same 1,003,520 used elsewhere.
+* **One local patch.** TensorRT-LLM's Qwen2-VL code hard-codes `attn_implementation = 'flash_attention_2'` for the vision tower (its comment: to avoid an out-of-memory problem) and `flash_attn` is
+  not installable here, so that line was changed to `sdpa` in the installed package (the exact diff is in `results/tables/phase5.md` and in the raw file). So this is **TensorRT-LLM with a patched
+  vision tower**, not the stock configuration; I did not test whether the stock one would behave differently.
+* **A different workload from Phases 1 to 4.** The agent trace puts three images in one request, and under TensorRT-LLM those prompts fail inside the Hugging Face processor
+  (`index 3 is out of bounds for dimension 0 with size 3`: four image placeholders, three images); I did not find out why. The comparison below uses a new trace, `traces/single`, with **one
+  image per request, 120 requests, no few-shot images and no shared prefix**, with prefix caching off on both engines (vLLM `--no-enable-prefix-caching`, TensorRT-LLM block reuse off), so there
+  is nothing for caching to do. It is not the workload the router and caching phases measured.
+* bf16 on both engines, max 32 sequences, max length 4096, 3 rounds, the order of the two engines alternating each round (vLLM first in rounds 1 and 3). Time until the server answered
+  `/v1/models`: 52 to 62 s for vLLM and 104 to 108 s for TensorRT-LLM (measured after earlier runs had warmed the FlashInfer kernel cache it uses at startup).
+
+### Latency and throughput
+
+Median (min-max) over 3 rounds:
+
+| engine | TTFT p50 (s) | TTFT p99 (s) | e2e p50 (s) | req/s | prompt tokens from cache | errors | peak temp (C) | median power (W) |
+|---|---|---|---|---|---|---|---|---|
+| vllm | 0.23 (0.23–0.23) | 0.24 (0.24–0.25) | 0.36 (0.36–0.36) | 2.77 (2.77–2.78) | 0% (0%–0%) | 0.0% (0.0%–0.0%) | 71 (70–71) | 69 (69–70) |
+| trtllm | 0.42 (0.40–0.43) | 0.48 (0.48–0.58) | 0.53 (0.51–0.55) | 1.88 (1.80–1.91) | 0% (0%–0%) | 0.0% (0.0%–0.0%) | 71 (69–71) | 59 (57–60) |
+| vllm | 0.88 (0.87–0.88) | 0.92 (0.91–0.92) | 1.04 (1.03–1.04) | 3.86 (3.86–3.87) | 0% (0%–0%) | 0.0% (0.0%–0.0%) | 75 (75–75) | 69 (69–69) |
+| trtllm | 1.28 (1.26–1.29) | 1.54 (1.42–1.56) | 1.48 (1.47–1.50) | 2.70 (2.66–2.70) | 0% (0%–0%) | 0.0% (0.0%–0.0%) | 73 (72–73) | 63 (63–63) |
+| vllm | 1.79 (1.75–1.80) | 3.58 (3.57–3.65) | 3.72 (3.72–3.73) | 4.28 (4.27–4.29) | 0% (0%–0%) | 0.0% (0.0%–0.0%) | 75 (75–75) | 70 (70–70) |
+| trtllm | 4.68 (4.67–4.76) | 5.56 (5.56–5.59) | 5.49 (5.48–5.55) | 2.89 (2.87–2.90) | 0% (0%–0%) | 0.0% (0.0%–0.0%) | 73 (72–73) | 63 (62–63) |
+
+* TensorRT-LLM's median time to first token is **1.8x, 1.5x and 2.6x** vLLM's at 1, 4 and 16 clients, its median end-to-end latency about 1.4x to 1.5x, and its throughput about **0.7x** (1.88 against 2.77 requests/s at 1 client, 2.89 against 4.28 at 16).
+* Median time to first token and throughput vary by only a few percent across the 3 rounds (the p99 column varies more), unlike the earlier router and kernel measurements, and no request failed.
+* The GPU drew less power under TensorRT-LLM (57 to 63 W median against 69 to 70 W), which suggests it was not saturating the GPU. **I did not profile why it is slower**: the patched vision tower,
+  the `sdpa` attention, CUDA-graph and scheduler settings I left at their defaults, or the PyTorch backend itself could each be responsible. This is a result for this configuration on this GPU, not a
+  statement about TensorRT-LLM in general.
+
+### Click accuracy through TensorRT-LLM (rule 4)
+
+Paired against the Phase 1 vLLM bf16 run on the same fixed sets (single-image zero-shot requests, so the multi-image failure does not matter here):
+
+| set | n | vLLM bf16 (Phase 1) | TensorRT-LLM | delta (TensorRT-LLM - vLLM) | only vLLM right / only TensorRT-LLM right | sign-test p |
+|---|---|---|---|---|---|---|
+| synth300 | 300 | 64.33% | 62.67% | -1.67 pts | 11 / 6 | 0.3323 |
+| screenspot400 | 400 | 53.00% | 57.75% | +4.75 pts | 12 / 31 | 0.0054 |
+
+* On the synthetic set no difference was detected (-1.67 points, p=0.33).
+* **On ScreenSpot TensorRT-LLM scored 4.75 points higher** (31 items only it got right, 12 only vLLM did; p=0.0054). I do not read that as an engine advantage, and I cannot explain it. The obvious suspect, a different
+  image resolution, is ruled out as far as token counts go: asking each server for the prompt token count of the same 20 requests per set and comparing with what the Hugging Face processor produces at the same pixel budget:
+
+| engine | set | items | prompt tokens equal to the Hugging Face reference | smallest difference | largest difference |
+|---|---|---|---|---|---|
+| trtllm | screenspot400 | 20 | 0 | +1 | +1 |
+| trtllm | synth300 | 20 | 0 | +1 | +1 |
+| vllm | screenspot400 | 20 | 20 | +0 | +0 |
+| vllm | synth300 | 20 | 20 | +0 | +0 |
+
+  vLLM matches the reference exactly. TensorRT-LLM reports exactly one extra token on every request regardless of image size, so the image token counts are the same and the extra token is on
+  the text side (I did not find out what it is). Different resampling or normalisation of the pixels, the patched `sdpa` vision tower, the extra text token and plain numerical differences are all
+  untested candidates. Until it is explained, treat the ScreenSpot number as "TensorRT-LLM with this configuration clicked differently from vLLM", not as better.
+
+### Limitations of Phase 5
+
+* PyTorch backend only, with a local patch; the TensorRT engine-building flow, quantisation, CUDA-graph and scheduler tuning were not tried.
+* The workload is single-image requests without caching; TensorRT-LLM could not run the multi-image agent prompts of the other phases (cause not found).
+* One GPU, one machine, one version of each package; the environment was assembled without sudo from conda-forge and pip pieces and the compiler for TensorRT-LLM's JIT kernels is gcc 14 from conda-forge.
+* The accuracy comparison is against the Phase 1 vLLM run, made in a different session with the same fixed sets and greedy decoding.
+* Why TensorRT-LLM is slower here, and why it scores higher on ScreenSpot, are both unexplained.
+
 ## Rules this folder follows
 
 1. Every number in a table comes from a raw JSON under `results/raw/`.
@@ -696,6 +767,22 @@ No change was detected: 1 and 1 discordant items on the synthetic set, 5 and 4 o
 3. Benchmarks use >= 3 repeats and report median and min-max (a standard deviation over 3 points would mislead).
 4. After every serving change, click accuracy is re-run on the synthetic set and the ScreenSpot subset.
 5. If a tool will not run on this hardware, the failure is documented in `NOTES.md` and the phase is marked attempted.
+
+## Reproduce Phases 4 and 5
+
+```bash
+python serving/scripts/kv_transfer_estimate.py                 # Phase 4 analytical estimate (labelled as an estimate)
+serving/scripts/wsl/run_disagg_final.sh                        # split vs colocated, prefill flags: --no-enable-chunked-prefill --max-num-batched-tokens=4096
+serving/scripts/wsl/run_disagg_bigbudget.sh                    # split at 16 clients with a 16384-token prefill budget
+serving/scripts/wsl/run_disagg_accuracy.sh                     # accuracy through the split path and one colocated instance
+python serving/scripts/summarize_disagg.py                     # results/tables/phase4.md
+# Phase 5 (TensorRT-LLM needs the no-sudo environment pieces 08 to 15 in scripts/wsl/, see NOTES.md)
+MODE=accuracy serving/scripts/wsl/run_trtllm_final.sh          # click accuracy through TensorRT-LLM
+MODE=bench    serving/scripts/wsl/run_trtllm_final.sh          # TensorRT-LLM vs vLLM, 3 alternating rounds, traces/single
+MODE=tokens   serving/scripts/wsl/run_trtllm_final.sh          # prompt-token check against the Hugging Face reference
+python serving/scripts/summarize_trtllm.py                     # results/tables/phase5.md
+python serving/scripts/check_readme_numbers.py                 # every number above against the tables and raw files
+```
 
 ## Reproduce Phase 3
 
@@ -737,16 +824,18 @@ The adapter weights and the merged checkpoint are not in the repo; the commands 
 ## Layout
 
 ```
-servebench/        envinfo (run metadata), data (manifests), prompts, traces, client, accuracy, stats, mock_server
+servebench/        envinfo (run metadata), data (manifests), prompts, traces, client, accuracy, stats, mock_server, disagg_proxy, procs
 scripts/           export_sets, merge_adapter, verify_merge, merge_diff, gen_traces, accuracy_check, loadtest,
                    run_engine_bench, summarize, validate_client_timing, run_router_bench, summarize_router, bench_kernel, kernel_accuracy,
-                   summarize_kernel;
+                   summarize_kernel, kv_transfer_estimate, run_disagg_bench, summarize_disagg, run_trtllm_bench, make_trtllm_view,
+                   check_prompt_tokens, summarize_trtllm;
                    wsl/  = Linux-side setup and engine launch scripts
 router/            Phase 2: the Rust prefix-aware router (src/, tests/, README.md)
 servekernels/      Phase 3: the fused RMSNorm + INT8 Triton kernel (torch.library custom op)
-tests/             43 Python tests that run anywhere plus 48 kernel tests that need a CUDA GPU and Triton (the router's 42 Rust tests are under router/)
+tests/             67 Python tests run on Windows (3 more are skipped there: the 48 GPU kernel tests as one module, which need CUDA and Triton, and 2 symlink tests; both groups run in WSL); the router's 42 Rust tests are under router/
 traces/default/    trace.jsonl, warmup.jsonl, trace_meta.json, token_stats.json  (images regenerated, git-ignored)
-results/raw/       raw JSON for every number above (169 files)
-results/tables/    phase1.md / .csv (scripts/summarize.py) and phase2.md (scripts/summarize_router.py) and phase3.md / .csv (scripts/summarize_kernel.py)
+traces/single/     the one-image-per-request trace of Phase 5 (images git-ignored)
+results/raw/       raw JSON for every number above (245 files)
+results/tables/    phase1.md / .csv (scripts/summarize.py) and phase2.md (scripts/summarize_router.py) and phase3.md / .csv (scripts/summarize_kernel.py), phase4.md and phase4_estimate.md (summarize_disagg.py, kv_transfer_estimate.py), phase5.md (summarize_trtllm.py)
 NOTES.md           dead ends and fixes
 ```

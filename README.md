@@ -56,7 +56,14 @@ training code or the results above.
   lower because the laptop GPU was power-capped and thermally throttled. Quantising every RMSNorm output of the merged model to INT8
   changed click accuracy by +0.7 points (synthetic) and -1.5 points (ScreenSpot), within this evaluation's noise: no change detected,
   which small sets cannot rule out.
-* **Planned, not started:** prefill/decode disaggregation and TensorRT-LLM.
+* **Prefill/decode disaggregation (a one-GPU attempt).** An analytical estimate of the KV transfer (labelled as an estimate) plus a measured run in which a prefill and a decode instance
+  of vLLM share the one GPU and pass the KV cache through files with vLLM's example connector. With default settings it worked at 1 client and failed at 4 and 16 (the decode engine crashed on a
+  truncated KV file; the cause is diagnosed in `serving/README.md`); with a workaround on the prefill instance it works at 1 and 4 clients but is slower than one instance (0.95 s against 0.54 s
+  median time to first token at 4 clients), and at 16 clients only a 16,384-token step budget stopped the errors, at a very high latency cost. Click accuracy through the split path matched one instance.
+  This is not a two-GPU result.
+* **TensorRT-LLM.** It runs on this GPU under WSL2 without sudo (PyTorch backend, after a long chain of environment fixes and one documented local patch to its vision tower). On a one-image-per-request
+  trace it was slower than vLLM at every concurrency level (median time to first token 1.8x, 1.5x and 2.6x vLLM's at 1, 4 and 16 clients; throughput about 0.7x). It scored 4.75 points higher on ScreenSpot,
+  which I could not explain (the image token counts match the reference), so I do not claim it as an advantage. Its multi-image agent prompts fail; the cause was not found.
 
 ## Setup
 

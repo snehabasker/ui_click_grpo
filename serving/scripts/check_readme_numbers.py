@@ -188,4 +188,36 @@ kv = 2 * 28 * 2 * 128 * 2
 ok = "28,672 bytes" in text4 and kv == 28672 and f"{round(49.5 * 2**20 / kv):,}" == "1,810" and "about 1,810 tokens" in text4
 bad5 += not ok
 print(f"Phase 4 arithmetic (28,672 bytes per token; 49.5 MiB / 28,672 = 1,810 tokens) -> {'OK' if ok else 'MISMATCH'}")
-sys.exit(1 if (bad or bad2 or bad3 or bad4 or bad5) else 0)
+
+# ---- Phase 5: rows verbatim from phase5.md; ratios, start-up times and power recomputed from the raw benchmark -----------------------
+section5 = readme.split("## Phase 5 results", 1)[1].split("## Rules this folder follows", 1)[0]
+table5 = (ROOT / "serving" / "results" / "tables" / "phase5.md").read_text(encoding="utf-8")
+rows5 = [l.strip() for l in section5.splitlines() if l.startswith("| ") and any(ch.isdigit() for ch in l) and not set(l) <= set("|- ")]
+missing5 = [r for r in rows5 if r not in table5]
+print(f"{len(rows5)} table rows in the README Phase 5 section; not verbatim in phase5.md: {len(missing5)}")
+for r in missing5:
+    print("  MISSING:", r[:120])
+bad6 = len(missing5)
+tb = json.loads(sorted((ROOT / "serving" / "results" / "raw").glob("trtllm_bench_2*.json"))[-1].read_text())
+agg = {}
+for rnd in tb["rounds"]:
+    for run in rnd["runs"]:
+        d = json.loads((ROOT / "serving" / "results" / "raw" / [x for x in run["loadtest_files"] if x.startswith("loadtest_")][0]).read_text())
+        agg.setdefault((rnd["engine"], run["concurrency"]), []).append((d["summary"]["ttft"]["p50"], d["summary"]["e2e"]["p50"], d["summary"]["req_per_s"], d["gpu"]["power_w_median"]))
+m = lambda e, c, i: statistics.median(x[i] for x in agg[(e, c)])
+ttft = [m("trtllm", c, 0) / m("vllm", c, 0) for c in (1, 4, 16)]
+e2e = [m("trtllm", c, 1) / m("vllm", c, 1) for c in (1, 4, 16)]
+thr = [m("trtllm", c, 2) / m("vllm", c, 2) for c in (1, 4, 16)]
+st = {e: [r["server"]["startup_s"] for r in tb["rounds"] if r["engine"] == e] for e in ("vllm", "trtllm")}
+pw = {e: [x[3] for c in (1, 4, 16) for x in agg[(e, c)]] for e in ("vllm", "trtllm")}
+text5 = " ".join(section5.split())
+claims5 = [f"**{ttft[0]:.1f}x, {ttft[1]:.1f}x and {ttft[2]:.1f}x** vLLM's at 1, 4 and 16 clients",
+           f"end-to-end latency about {min(e2e):.1f}x to {max(e2e):.1f}x", f"about **{statistics.mean(thr):.1f}x** ({m('trtllm', 1, 2):.2f} against {m('vllm', 1, 2):.2f} requests/s at 1 client, {m('trtllm', 16, 2):.2f} against {m('vllm', 16, 2):.2f} at 16)",
+           f"{round(min(st['vllm']))} to {round(max(st['vllm']))} s for vLLM and {round(min(st['trtllm']))} to {round(max(st['trtllm']))} s for TensorRT-LLM",
+           f"({round(min(pw['trtllm']))} to {round(max(pw['trtllm']))} W median against {round(min(pw['vllm']))} to {round(max(pw['vllm']))} W)",
+           "On the synthetic set no difference was detected (-1.67 points, p=0.33)", "TensorRT-LLM scored 4.75 points higher** (31 items only it got right, 12 only vLLM did; p=0.0054)"]
+for c_ in claims5:
+    ok = c_ in text5
+    bad6 += not ok
+    print(f"Phase 5 prose: expected '{c_[:90]}' -> {'OK' if ok else 'NOT FOUND / MISMATCH'}")
+sys.exit(1 if (bad or bad2 or bad3 or bad4 or bad5 or bad6) else 0)

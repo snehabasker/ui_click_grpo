@@ -32,6 +32,15 @@ def load_runs(raw: Path, bench: dict) -> dict:
     return out
 
 
+def vllm_version(raw: Path) -> str:
+    """The driver's own environment has no vLLM; the engine records written at launch in Phase 1 carry the vLLM version that serve_vllm.sh runs."""
+    for f in sorted(raw.glob("engine_vllm*.json")):
+        v = json.loads(f.read_text()).get("versions", {}).get("vllm")
+        if v:
+            return f"{v} (from the Phase 1 engine record)"
+    return "?"
+
+
 def tables(raw: Path) -> str:
     out = []
     for f in sorted(raw.glob("trtllm_bench_2*.json")):
@@ -42,7 +51,7 @@ def tables(raw: Path) -> str:
         out += [f"### `{f.name}`", "",
                 f"One GPU, bf16, {s['trace']} (one image per request, 120 requests, no shared prefix), prefix caching/reuse {s['prefix_caching']}, max_num_seqs "
                 f"{s['max_seqs']}, max_model_len {s['max_len']}. TensorRT-LLM {v.get('tensorrt_llm')} ({s['trtllm_backend']} backend) with torch {v.get('torch')}, "
-                f"transformers {v.get('transformers')}; vLLM {b['env']['packages'].get('vllm', '?')}. Median (min–max) over "
+                f"transformers {v.get('transformers')}; vLLM {vllm_version(raw)}. Median (min–max) over "
                 f"{len({r['round'] for r in b['rounds']})} rounds; engine order per round: " + "; ".join(f"round {k + 1}: {x}" for k, x in sorted(orders.items())) + ".", ""]
         diff = b.get("trtllm_local_patch_diff") or "(none)"
         out += ["TensorRT-LLM local patch to the installed package (vision-tower attention):", "", "```", diff, "```", ""]
