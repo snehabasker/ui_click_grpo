@@ -1,0 +1,251 @@
+{
+ "kind": "prompt_tokens_check",
+ "tag": "trtllm",
+ "set": "synth300",
+ "max_pixels": 1003520,
+ "env": {
+  "date": "2026-10-30T21:48:22+01:00",
+  "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.12.15",
+  "command": "~/work/ui_click_grpo/serving/scripts/check_prompt_tokens.py --base-url http://127.0.0.1:8003 --model merged-clean-trt --set synth300 --n 20 --tag trtllm",
+  "gpu": {
+   "gpus": [
+    {
+     "name": "NVIDIA GeForce RTX 5050 Laptop GPU",
+     "driver": "592.82",
+     "memory_total": "8151 MiB",
+     "compute_cap": "12.0"
+    }
+   ],
+   "driver_cuda_version": "13.1"
+  },
+  "packages": {
+   "torch": "2.13.0+cu132",
+   "transformers": "5.19.0",
+   "vllm": "0.32.0",
+   "triton": "3.7.1",
+   "flashinfer-python": "0.7.0.post1",
+   "aiohttp": "3.14.5"
+  },
+  "model_dir": "~/work/ui_click_grpo/serving/models/merged-clean",
+  "model_hash": "f4945dbb7c5b459fe0cce1b78362bff134b12a4a15108e9342c8c6b3a1d0de7f",
+  "repo_commit": "ace1550f69cbdfed0ad1c866910c5dab8e1b4a21",
+  "args": {
+   "base_url": "http://127.0.0.1:8003",
+   "model": "merged-clean-trt",
+   "set_name": "synth300",
+   "n": 20,
+   "tag": "trtllm",
+   "processor_dir": "~/work/ui_click_grpo/serving/models/merged-clean",
+   "max_pixels": 1003520
+  }
+ },
+ "summary": {
+  "n": 20,
+  "equal": 0,
+  "min_diff": 1,
+  "max_diff": 1
+ },
+ "rows": [
+  {
+   "id": "synth-0000",
+   "image_size": [
+    672,
+    448
+   ],
+   "served_prompt_tokens": 451,
+   "reference_prompt_tokens": 450,
+   "diff": 1
+  },
+  {
+   "id": "synth-0001",
+   "image_size": [
+    672,
+    448
+   ],
+   "served_prompt_tokens": 451,
+   "reference_prompt_tokens": 450,
+   "diff": 1
+  },
+  {
+   "id": "synth-0002",
+   "image_size": [
+    672,
+    448
+   ],
+   "served_prompt_tokens": 453,
+   "reference_prompt_tokens": 452,
+   "diff": 1
+  },
+  {
+   "id": "synth-0003",
+   "image_size": [
+    672,
+    448
+   ],
+   "served_prompt_tokens": 451,
+   "reference_prompt_tokens": 450,
+   "diff": 1
+  },
+  {
+   "id": "synth-0004",
+   "image_size": [
+    672,
+    448
+   ],
+   "served_prompt_tokens": 451,
+   "reference_prompt_tokens": 450,
+   "diff": 1
+  },
+  {
+   "id": "synth-0005",
+   "image_size": [
+    672,
+    448
+   ],
+   "served_prompt_tokens": 451,
+   "reference_prompt_tokens": 450,
+   "diff": 1
+  },
+  {
+   "id": "synth-0006",
+   "image_size": [
+    672,
+    448
+   ],
+   "served_prompt_tokens": 449,
+   "reference_prompt_tokens": 448,
+   "diff": 1
+  },
+  {
+   "id": "synth-0007",
+   "image_size": [
+    672,
+    448
+   ],
+   "served_prompt_tokens": 451,
+   "reference_prompt_tokens": 450,
+   "diff": 1
+  },
+  {
+   "id": "synth-0008",
+   "image_size": [
+    672,
+    448
+   ],
+   "served_prompt_tokens": 453,
+   "reference_prompt_tokens": 452,
+   "diff": 1
+  },
+  {
+   "id": "synth-0009",
+   "image_size": [
+    672,
+    448
+   ],
+   "served_prompt_tokens": 449,
+   "reference_prompt_tokens": 448,
+   "diff": 1
+  },
+  {
+   "id": "synth-0010",
+   "image_size": [
+    672,
+    448
+   ],
+   "served_prompt_tokens": 451,
+   "reference_prompt_tokens": 450,
+   "diff": 1
+  },
+  {
+   "id": "synth-0011",
+   "image_size": [
+    672,
+    448
+   ],
+   "served_prompt_tokens": 451,
+   "reference_prompt_tokens": 450,
+   "diff": 1
+  },
+  {
+   "id": "synth-0012",
+   "image_size": [
+    672,
+    448
+   ],
+   "served_prompt_tokens": 449,
+   "reference_prompt_tokens": 448,
+   "diff": 1
+  },
+  {
+   "id": "synth-0013",
+   "image_size": [
+    672,
+    448
+   ],
+   "served_prompt_tokens": 451,
+   "reference_prompt_tokens": 450,
+   "diff": 1
+  },
+  {
+   "id": "synth-0014",
+   "image_size": [
+    672,
+    448
+   ],
+   "served_prompt_tokens": 450,
+   "reference_prompt_tokens": 449,
+   "diff": 1
+  },
+  {
+   "id": "synth-0015",
+   "image_size": [
+    672,
+    448
+   ],
+   "served_prompt_tokens": 452,
+   "reference_prompt_tokens": 451,
+   "diff": 1
+  },
+  {
+   "id": "synth-0016",
+   "image_size": [
+    672,
+    448
+   ],
+   "served_prompt_tokens": 449,
+   "reference_prompt_tokens": 448,
+   "diff": 1
+  },
+  {
+   "id": "synth-0017",
+   "image_size": [
+    672,
+    448
+   ],
+   "served_prompt_tokens": 451,
+   "reference_prompt_tokens": 450,
+   "diff": 1
+  },
+  {
+   "id": "synth-0018",
+   "image_size": [
+    672,
+    448
+   ],
+   "served_prompt_tokens": 452,
+   "reference_prompt_tokens": 451,
+   "diff": 1
+  },
+  {
+   "id": "synth-0019",
+   "image_size": [
+    672,
+    448
+   ],
+   "served_prompt_tokens": 451,
+   "reference_prompt_tokens": 450,
+   "diff": 1
+  }
+ ]
+}

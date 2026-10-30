@@ -1,0 +1,66 @@
+{
+ "kind": "trtllm_accuracy",
+ "env": {
+  "date": "2026-10-30T21:08:36+01:00",
+  "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.12.15",
+  "command": "serving/scripts/run_trtllm_bench.py --mode accuracy",
+  "gpu": {
+   "gpus": [
+    {
+     "name": "NVIDIA GeForce RTX 5050 Laptop GPU",
+     "driver": "592.82",
+     "memory_total": "8151 MiB",
+     "compute_cap": "12.0"
+    }
+   ],
+   "driver_cuda_version": "13.1"
+  },
+  "packages": {
+   "aiohttp": "3.14.5"
+  },
+  "model_dir": "~/work/ui_click_grpo/serving/models/merged-clean",
+  "model_hash": "f4945dbb7c5b459fe0cce1b78362bff134b12a4a15108e9342c8c6b3a1d0de7f",
+  "repo_commit": "90c16d5424b2949bba26886870468f011051ac8a",
+  "args": {
+   "mode": "accuracy",
+   "concurrency": [
+    1,
+    4,
+    16
+   ],
+   "rounds": 3,
+   "trace": "serving/traces/single",
+   "max_seqs": 32,
+   "max_len": 4096,
+   "ready_timeout": 900.0,
+   "tag_prefix": "trtllm-single"
+  }
+ },
+ "trtllm_env": {
+  "tensorrt_llm": "1.2.1",
+  "torch": "2.9.1+cu130",
+  "transformers": "4.57.3",
+  "flashinfer-python": "0.6.4"
+ },
+ "trtllm_local_patch_diff": "388c388\n<             self.config._attn_implementation = 'flash_attention_2'\n---\n>             self.config._attn_implementation = 'sdpa'",
+ "settings": {
+  "dtype": "bf16",
+  "max_seqs": 32,
+  "max_len": 4096,
+  "prefix_caching": "off on both engines",
+  "trace": "serving/traces/single",
+  "trtllm_backend": "pytorch",
+  "trtllm_model_dir": "view of merged-clean (same weights, 4.x-format configs)"
+ },
+ "files": [
+  "accuracy_trtllm_synth300_20261030-210114.json",
+  "accuracy_trtllm_screenspot400_20261030-210829.json"
+ ],
+ "server": {
+  "startup_s": 104.09216809272766,
+  "gpu_mem_loaded_mib": 6233,
+  "log": "trtllm-single-trtllm-20261030-205739.log",
+  "model_name": "merged-clean-trt"
+ }
+}

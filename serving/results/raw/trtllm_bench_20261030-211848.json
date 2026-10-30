@@ -1,0 +1,262 @@
+{
+ "kind": "trtllm_bench",
+ "env": {
+  "date": "2026-10-30T21:44:53+01:00",
+  "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.12.15",
+  "command": "serving/scripts/run_trtllm_bench.py --mode bench",
+  "gpu": {
+   "gpus": [
+    {
+     "name": "NVIDIA GeForce RTX 5050 Laptop GPU",
+     "driver": "592.82",
+     "memory_total": "8151 MiB",
+     "compute_cap": "12.0"
+    }
+   ],
+   "driver_cuda_version": "13.1"
+  },
+  "packages": {
+   "aiohttp": "3.14.5"
+  },
+  "model_dir": "~/work/ui_click_grpo/serving/models/merged-clean",
+  "model_hash": "f4945dbb7c5b459fe0cce1b78362bff134b12a4a15108e9342c8c6b3a1d0de7f",
+  "repo_commit": "d6cf9e3771d3285d042e78c2eb043b4802ee4af2",
+  "args": {
+   "mode": "bench",
+   "concurrency": [
+    1,
+    4,
+    16
+   ],
+   "rounds": 3,
+   "trace": "serving/traces/single",
+   "max_seqs": 32,
+   "max_len": 4096,
+   "ready_timeout": 900.0,
+   "tag_prefix": "trtllm-single"
+  }
+ },
+ "trtllm_env": {
+  "tensorrt_llm": "1.2.1",
+  "torch": "2.9.1+cu130",
+  "transformers": "4.57.3",
+  "flashinfer-python": "0.6.4"
+ },
+ "trtllm_local_patch_diff": "388c388\n<             self.config._attn_implementation = 'flash_attention_2'\n---\n>             self.config._attn_implementation = 'sdpa'",
+ "settings": {
+  "dtype": "bf16",
+  "max_seqs": 32,
+  "max_len": 4096,
+  "prefix_caching": "off on both engines",
+  "trace": "serving/traces/single",
+  "trtllm_backend": "pytorch",
+  "trtllm_model_dir": "view of merged-clean (same weights, 4.x-format configs)"
+ },
+ "rounds": [
+  {
+   "round": 0,
+   "engine": "vllm",
+   "order": [
+    "vllm",
+    "trtllm"
+   ],
+   "server": {
+    "startup_s": 62.03102231025696,
+    "gpu_mem_loaded_mib": 6438,
+    "log": "trtllm-single-vllm-20261030-211848-1793391528.log",
+    "model_name": "merged-clean"
+   },
+   "runs": [
+    {
+     "concurrency": 1,
+     "loadtest_files": [
+      "loadtest_trtllm-single-vllm_c1_r1_20261030-212035.json"
+     ]
+    },
+    {
+     "concurrency": 4,
+     "loadtest_files": [
+      "loadtest_trtllm-single-vllm_c4_r1_20261030-212108.json"
+     ]
+    },
+    {
+     "concurrency": 16,
+     "loadtest_files": [
+      "loadtest_trtllm-single-vllm_c16_r1_20261030-212138.json"
+     ]
+    }
+   ]
+  },
+  {
+   "round": 0,
+   "engine": "trtllm",
+   "order": [
+    "vllm",
+    "trtllm"
+   ],
+   "server": {
+    "startup_s": 104.0826723575592,
+    "gpu_mem_loaded_mib": 6233,
+    "log": "trtllm-single-trtllm-20261030-211848-1793391705.log",
+    "model_name": "merged-clean-trt"
+   },
+   "runs": [
+    {
+     "concurrency": 1,
+     "loadtest_files": [
+      "loadtest_trtllm-single-trtllm_c1_r1_20261030-212503.json"
+     ]
+    },
+    {
+     "concurrency": 4,
+     "loadtest_files": [
+      "loadtest_trtllm-single-trtllm_c4_r1_20261030-212607.json"
+     ]
+    },
+    {
+     "concurrency": 16,
+     "loadtest_files": [
+      "loadtest_trtllm-single-trtllm_c16_r1_20261030-212707.json"
+     ]
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "engine": "trtllm",
+   "order": [
+    "trtllm",
+    "vllm"
+   ],
+   "server": {
+    "startup_s": 108.07183527946472,
+    "gpu_mem_loaded_mib": 6233,
+    "log": "trtllm-single-trtllm-20261030-211848-1793392089.log",
+    "model_name": "merged-clean-trt"
+   },
+   "runs": [
+    {
+     "concurrency": 1,
+     "loadtest_files": [
+      "loadtest_trtllm-single-trtllm_c1_r1_20261030-213129.json"
+     ]
+    },
+    {
+     "concurrency": 4,
+     "loadtest_files": [
+      "loadtest_trtllm-single-trtllm_c4_r1_20261030-213232.json"
+     ]
+    },
+    {
+     "concurrency": 16,
+     "loadtest_files": [
+      "loadtest_trtllm-single-trtllm_c16_r1_20261030-213332.json"
+     ]
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "engine": "vllm",
+   "order": [
+    "trtllm",
+    "vllm"
+   ],
+   "server": {
+    "startup_s": 62.039907932281494,
+    "gpu_mem_loaded_mib": 6438,
+    "log": "trtllm-single-vllm-20261030-211848-1793392419.log",
+    "model_name": "merged-clean"
+   },
+   "runs": [
+    {
+     "concurrency": 1,
+     "loadtest_files": [
+      "loadtest_trtllm-single-vllm_c1_r1_20261030-213526.json"
+     ]
+    },
+    {
+     "concurrency": 4,
+     "loadtest_files": [
+      "loadtest_trtllm-single-vllm_c4_r1_20261030-213559.json"
+     ]
+    },
+    {
+     "concurrency": 16,
+     "loadtest_files": [
+      "loadtest_trtllm-single-vllm_c16_r1_20261030-213629.json"
+     ]
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "engine": "vllm",
+   "order": [
+    "vllm",
+    "trtllm"
+   ],
+   "server": {
+    "startup_s": 52.025973320007324,
+    "gpu_mem_loaded_mib": 6438,
+    "log": "trtllm-single-vllm-20261030-211848-1793392596.log",
+    "model_name": "merged-clean"
+   },
+   "runs": [
+    {
+     "concurrency": 1,
+     "loadtest_files": [
+      "loadtest_trtllm-single-vllm_c1_r1_20261030-213813.json"
+     ]
+    },
+    {
+     "concurrency": 4,
+     "loadtest_files": [
+      "loadtest_trtllm-single-vllm_c4_r1_20261030-213846.json"
+     ]
+    },
+    {
+     "concurrency": 16,
+     "loadtest_files": [
+      "loadtest_trtllm-single-vllm_c16_r1_20261030-213916.json"
+     ]
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "engine": "trtllm",
+   "order": [
+    "vllm",
+    "trtllm"
+   ],
+   "server": {
+    "startup_s": 108.07296204566956,
+    "gpu_mem_loaded_mib": 6233,
+    "log": "trtllm-single-trtllm-20261030-211848-1793392763.log",
+    "model_name": "merged-clean-trt"
+   },
+   "runs": [
+    {
+     "concurrency": 1,
+     "loadtest_files": [
+      "loadtest_trtllm-single-trtllm_c1_r1_20261030-214242.json"
+     ]
+    },
+    {
+     "concurrency": 4,
+     "loadtest_files": [
+      "loadtest_trtllm-single-trtllm_c4_r1_20261030-214345.json"
+     ]
+    },
+    {
+     "concurrency": 16,
+     "loadtest_files": [
+      "loadtest_trtllm-single-trtllm_c16_r1_20261030-214446.json"
+     ]
+    }
+   ]
+  }
+ ]
+}
