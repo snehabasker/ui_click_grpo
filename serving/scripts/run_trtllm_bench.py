@@ -39,7 +39,7 @@ PY = sys.executable
 PORT = {"vllm": 8000, "trtllm": 8003}
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--mode", choices=["bench", "accuracy"], required=True)
+ap.add_argument("--mode", choices=["bench", "accuracy", "tokens"], required=True)
 ap.add_argument("--concurrency", type=int, nargs="+", default=[1, 4, 16])
 ap.add_argument("--rounds", type=int, default=3)
 ap.add_argument("--trace", default="serving/traces/single")
@@ -133,7 +133,15 @@ def write(name: str, rec: dict):
     print("wrote", out.name, flush=True)
 
 
-if a.mode == "accuracy":
+if a.mode == "tokens":
+    # prompt_tokens each engine reports vs what the HF processor produces (needs the HF processor: run it with the vllm venv's python)
+    for engine in ("trtllm", "vllm"):
+        with Server(engine) as s:
+            for set_name in ("screenspot400", "synth300"):
+                r = subprocess.run([str(HOME / "venvs/vllm/bin/python"), str(ROOT / "serving/scripts/check_prompt_tokens.py"), "--base-url", s.base, "--model", s.model,
+                                    "--set", set_name, "--n", "20", "--tag", engine], capture_output=True, text=True)
+                print(engine, set_name, (r.stdout.strip().splitlines() or [r.stderr[-300:]])[-2:], flush=True)
+elif a.mode == "accuracy":
     with Server("trtllm") as s:
         files = accuracy(s, "trtllm")
     write("trtllm_accuracy", record("trtllm_accuracy", {"files": files, "server": s.facts}))
