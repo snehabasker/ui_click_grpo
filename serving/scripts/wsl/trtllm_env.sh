@@ -15,3 +15,4 @@ export OPAL_PREFIX="$HOME/mpi"
 export PATH="$HOME/gcc14/bin:$PATH"
 export CC="$HOME/gcc14/bin/gcc"; export CXX="$HOME/gcc14/bin/g++"
 export CPATH="$V/nvidia/cu13/include:${CPATH:-}"
+export LIBRARY_PATH="$HOME/cuda_stubs:${LIBRARY_PATH:-}"   # libcuda.so for FlashInfer JIT linking (15_trtllm_libcuda_link.sh)
