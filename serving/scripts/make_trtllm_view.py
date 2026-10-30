@@ -5,9 +5,12 @@
 Why: the merged checkpoint was written by transformers 5.x, whose Qwen2-VL config nests the language-model fields under ``text_config``
 and uses ``dtype``. TensorRT-LLM's environment pins transformers 4.57.3, which parses that file but returns ``architectures = None``, and
 TensorRT-LLM then fails with "'NoneType' object is not subscriptable". The weight names already use the original Qwen2-VL layout
-(``model.layers.*``, ``visual.blocks.*``), so only ``config.json`` needs rewriting into the flat 4.x form. Every other file is a symlink,
-so ``model.safetensors`` is byte-identical (same sha256) to the one every other phase served. The script verifies that and refuses to
-write a config whose hidden size, layer count or head counts differ from the source's.
+(``model.layers.*``, ``visual.blocks.*``), so only small text files need rewriting into the 4.x form: ``config.json`` (flat), ``tokenizer_config.json``
+(``extra_special_tokens`` was written as a list, 4.57 wants a mapping; the special tokens themselves live in the symlinked ``tokenizer.json``),
+and the image-processor settings (5.x nests them in ``processor_config.json``, 4.x reads ``preprocessor_config.json``). The image pixel budget is
+set to the same ``max_pixels`` the vLLM runs used (``--mm-processor-kwargs max_pixels=1003520``), otherwise TensorRT-LLM would see different
+prompts. Everything else is a symlink, so ``model.safetensors`` is byte-identical (same sha256) to the one every other phase served. The script
+verifies that and refuses to write a config whose hidden size, layer count or head counts differ from the source's.
 """
 import argparse
 import hashlib
@@ -39,6 +42,23 @@ def check_same_shape(src: dict, flat: dict) -> None:
         raise SystemExit("vision_config changed")
 
 
+def tokenizer_config(src: dict) -> dict:
+    out = dict(src)
+    if not isinstance(out.get("extra_special_tokens"), dict):
+        out["extra_special_tokens"] = {}
+    return out
+
+
+def preprocessor_config(processor_cfg: dict, max_pixels: int) -> dict:
+    ip = dict(processor_cfg["image_processor"])
+    ip["min_pixels"] = ip.get("size", {}).get("shortest_edge", 3136)
+    ip["max_pixels"] = max_pixels
+    ip["size"] = {"shortest_edge": ip["min_pixels"], "longest_edge": max_pixels}
+    ip["image_processor_type"] = "Qwen2VLImageProcessor"
+    ip["processor_class"] = "Qwen2VLProcessor"
+    return ip
+
+
 def sha256(path: Path) -> str:
     h = hashlib.sha256()
     with open(path, "rb") as f:
@@ -51,6 +71,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--src", required=True)
     ap.add_argument("--dst", required=True)
+    ap.add_argument("--max-pixels", type=int, default=1280 * 28 * 28, help="the image pixel budget used by every other engine in this repo (1003520)")
     a = ap.parse_args()
     src, dst = Path(a.src).resolve(), Path(a.dst).expanduser()
     dst.mkdir(parents=True, exist_ok=True)
@@ -58,14 +79,18 @@ if __name__ == "__main__":
     flat = flatten(cfg)
     check_same_shape(cfg, flat)
     for f in src.iterdir():
-        if f.name == "config.json" or f.is_dir():
+        if f.name in ("config.json", "tokenizer_config.json", "processor_config.json") or f.is_dir():
             continue
         link = dst / f.name
         if link.is_symlink() or link.exists():
             link.unlink()
         os.symlink(f, link)
     (dst / "config.json").write_text(json.dumps(flat, indent=1))
-    (dst / "VIEW_OF").write_text(f"{src}\nconfig.json rewritten from the transformers-5 nested form to the flat 4.x form; all other files are symlinks\n")
+    (dst / "tokenizer_config.json").write_text(json.dumps(tokenizer_config(json.loads((src / "tokenizer_config.json").read_text())), indent=1))
+    pc = json.loads((src / "processor_config.json").read_text())
+    (dst / "preprocessor_config.json").write_text(json.dumps(preprocessor_config(pc, a.max_pixels), indent=1))
+    (dst / "processor_config.json").write_text(json.dumps({"processor_class": "Qwen2VLProcessor"}))
+    (dst / "VIEW_OF").write_text(f"{src}\nconfig.json, tokenizer_config.json, preprocessor_config.json, processor_config.json rewritten for transformers 4.x; all other files are symlinks\n")
     same = sha256(dst / "model.safetensors") == sha256(src / "model.safetensors")
     print(f"wrote {dst}; model.safetensors identical to the source: {same}")
     sys.exit(0 if same else 1)

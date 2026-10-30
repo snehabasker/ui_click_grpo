@@ -35,3 +35,17 @@ def test_the_source_config_is_not_modified():
     before = copy.deepcopy(NESTED)
     V.flatten(NESTED)
     assert NESTED == before
+
+
+def test_tokenizer_config_list_becomes_a_mapping_and_a_mapping_is_kept():
+    assert V.tokenizer_config({"extra_special_tokens": ["<|im_start|>"], "eos_token": "<|im_end|>"}) == {"extra_special_tokens": {}, "eos_token": "<|im_end|>"}
+    assert V.tokenizer_config({"extra_special_tokens": {"a": "b"}})["extra_special_tokens"] == {"a": "b"}
+
+
+def test_preprocessor_config_sets_the_pixel_budget_and_keeps_the_normalisation():
+    pc = {"image_processor": {"image_mean": [0.1], "image_std": [0.2], "patch_size": 14, "merge_size": 2,
+                              "size": {"longest_edge": 12845056, "shortest_edge": 3136}}}
+    out = V.preprocessor_config(pc, 1003520)
+    assert out["max_pixels"] == 1003520 and out["size"] == {"shortest_edge": 3136, "longest_edge": 1003520} and out["min_pixels"] == 3136
+    assert out["image_mean"] == [0.1] and out["patch_size"] == 14 and out["merge_size"] == 2
+    assert pc["image_processor"]["size"]["longest_edge"] == 12845056      # the source dict is not modified
