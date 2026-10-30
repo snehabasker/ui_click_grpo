@@ -45,7 +45,7 @@ def load_runs(raw: Path, bench: dict) -> dict:
 
 def tables(raw: Path) -> str:
     out = []
-    for f in sorted(raw.glob("disagg_bench_2*.json")):
+    for f in sorted(p for p in raw.glob("*_bench_2*.json") if p.name.startswith("disagg")):   # not explore_*, not router_bench_*
         b = json.loads(f.read_text())
         runs = load_runs(raw, b)
         s = b["settings"]

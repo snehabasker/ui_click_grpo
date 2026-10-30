@@ -4,7 +4,7 @@ SRC="$HOME/work/ui_click_grpo/serving/results/raw"
 DST="${WIN_REPO:-/mnt/c/Users/Sneha Basker/ui-click-rl}/serving/results/raw"
 mkdir -p "$DST"
 n=0
-for f in "$SRC"/loadtest_*.json "$SRC"/engine_*.json "$SRC"/accuracy_*.json "$SRC"/router_bench_*.json "$SRC"/router_failure_*.json "$SRC"/kernel_bench_*.json "$SRC"/kernel_accuracy_*.json "$SRC"/disagg_bench_2*.json "$SRC"/disagg_accuracy_*.json; do
+for f in "$SRC"/loadtest_*.json "$SRC"/engine_*.json "$SRC"/accuracy_*.json "$SRC"/router_bench_*.json "$SRC"/router_failure_*.json "$SRC"/kernel_bench_*.json "$SRC"/kernel_accuracy_*.json "$SRC"/disagg*_bench_2*.json "$SRC"/disagg_accuracy_*.json; do
   [ -e "$f" ] || continue
   case "$(basename "$f")" in *explore*) continue;; esac
   if [ ! -e "$DST/$(basename "$f")" ]; then cp "$f" "$DST/"; n=$((n+1)); fi
