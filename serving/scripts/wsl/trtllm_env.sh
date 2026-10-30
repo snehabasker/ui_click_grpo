@@ -8,3 +8,6 @@ export CC="${CC:-gcc}"
 TRT_PY="$HOME/venvs/trtllm/bin/python"
 export CUDA_HOME="${CUDA_HOME:-$HOME/cuda132}"
 export PATH="$CUDA_HOME/bin:$PATH"
+# OpenMPI 5 spawns workers through its prte daemon, which sits in the conda prefix
+export PATH="$HOME/mpi/bin:$PATH"
+export OPAL_PREFIX="$HOME/mpi"
