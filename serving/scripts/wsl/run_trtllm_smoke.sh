@@ -6,7 +6,9 @@ for s in sync_clone trtllm_env; do sed 's/\r$//' "$W/$s.sh" > /tmp/$s.sh; done
 bash /tmp/sync_clone.sh | tail -1
 sed 's/\r$//' "$W/serve_trtllm.sh" > /tmp/serve_trtllm.sh
 mkdir -p ~/work/logs; LOG=~/work/logs/trtllm_serve.log; PORT=${PORT:-8003}
-PORT=$PORT setsid bash /tmp/serve_trtllm.sh > "$LOG" 2>&1 &
+# TensorRT-LLM's transformers (4.57.3) cannot read the transformers-5 config of the merged checkpoint: serve a view of it (same weights)
+python3 ~/work/ui_click_grpo/serving/scripts/make_trtllm_view.py --src ~/work/ui_click_grpo/serving/models/merged-clean --dst ~/work/merged-clean-trt || exit 1
+MODEL_DIR=$HOME/work/merged-clean-trt PORT=$PORT setsid bash /tmp/serve_trtllm.sh > "$LOG" 2>&1 &
 SP=$!
 t0=$(date +%s); ready=0
 while [ $(( $(date +%s) - t0 )) -lt "${READY_TIMEOUT:-900}" ]; do
