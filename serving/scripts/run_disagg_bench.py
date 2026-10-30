@@ -46,6 +46,9 @@ ap.add_argument("--kv-gib-split", type=float, default=0.40, help="KV cache per i
 ap.add_argument("--kv-gib-colocated", type=float, default=0.80)
 ap.add_argument("--gpu-util-split", type=float, default=0.40)
 ap.add_argument("--gpu-util-colocated", type=float, default=0.55)
+ap.add_argument("--setups", nargs="+", default=["colocated", "split"], choices=["colocated", "split"])
+ap.add_argument("--producer-extra", default="", help="extra vllm flags for the PREFILL instance only (no spaces inside a flag's value)")
+ap.add_argument("--tag-prefix", default="disagg", help="load-test tag prefix; use explore-disagg for diagnostic runs that are not results")
 ap.add_argument("--max-seqs", type=int, default=8)
 ap.add_argument("--max-len", type=int, default=3072)
 a = ap.parse_args()
@@ -62,6 +65,8 @@ def connector_flag(role: str) -> str:
 
 def start_instance(name: str, port: int, kv_gib: float, util: float, role: str | None) -> Proc:
     extra = f"--quantization fp8 --kv-cache-memory {int(kv_gib * 2**30)}" + (f" {connector_flag(role)}" if role else "")
+    if role == "kv_producer" and a.producer_extra:
+        extra += " " + a.producer_extra
     env = dict(os.environ, PORT=str(port), GPU_UTIL=str(util), MAX_SEQS=str(a.max_seqs), MAX_LEN=str(a.max_len), EXTRA=extra)
     return Proc(name, ["bash", str(SERVE)], env, LOGS / f"disagg-{name}-{ts}.log")
 
@@ -151,12 +156,12 @@ def main_smoke():
 def main_bench():
     rounds = []
     for rnd in range(a.rounds):
-        order = ["colocated", "split"] if rnd % 2 == 0 else ["split", "colocated"]
+        order = [k for k in (["colocated", "split"] if rnd % 2 == 0 else ["split", "colocated"]) if k in a.setups]
         for kind in order:
             with Setup(kind) as s:
                 runs = []
                 for conc in a.concurrency:
-                    files = loadtest(s, conc, f"disagg-{kind}")
+                    files = loadtest(s, conc, f"{a.tag_prefix}-{kind}")
                     size, n = dir_bytes(STORE) if kind == "split" else (None, None)
                     st = s.proxy_stats()
                     runs.append({"concurrency": conc, "loadtest_files": files, "kv_store_bytes_after_run": size, "kv_store_files_after_run": n,
@@ -171,7 +176,7 @@ def main_accuracy():
     res = {}
     for kind in ("split", "colocated"):
         with Setup(kind) as s:
-            res[kind] = {"tag": f"disagg-{kind}", "files": accuracy(s, f"disagg-{kind}"), "proxy": s.proxy_stats()}
+            res[kind] = {"tag": f"{a.tag_prefix}-{kind}", "files": accuracy(s, f"{a.tag_prefix}-{kind}"), "proxy": s.proxy_stats()}
     write("disagg_accuracy", record({"kind": "disagg_accuracy", "results": res}))
 
 
