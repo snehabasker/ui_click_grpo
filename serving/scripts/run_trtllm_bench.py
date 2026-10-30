@@ -69,12 +69,27 @@ def patch_diff() -> str:
     return r.stdout.strip()
 
 
+def wait_port_free(port: int, timeout: float = 180.0):
+    """A server killed a moment ago may still hold its port (TensorRT-LLM binds without SO_REUSEADDR): wait until it can be bound again."""
+    import socket
+    t0 = time.time()
+    while time.time() - t0 < timeout:
+        with socket.socket() as sk:
+            try:
+                sk.bind(("127.0.0.1", port))
+                return time.time() - t0
+            except OSError:
+                time.sleep(2)
+    raise RuntimeError(f"port {port} still in use after {timeout}s")
+
+
 class Server:
     def __init__(self, engine: str):
         self.engine, self.proc, self.facts = engine, None, {}
 
     def __enter__(self):
-        log = LOGS / f"{a.tag_prefix}-{self.engine}-{ts}.log"
+        wait_port_free(PORT[self.engine])
+        log = LOGS / f"{a.tag_prefix}-{self.engine}-{ts}-{int(time.time())}.log"
         if self.engine == "vllm":
             env = dict(os.environ, PORT=str(PORT["vllm"]), PREFIX_CACHING="0", GPU_UTIL="0.85", MAX_SEQS=str(a.max_seqs), MAX_LEN=str(a.max_len))
             self.proc = Proc("vllm", ["bash", str(SERVE_VLLM)], env, log)
@@ -94,7 +109,8 @@ class Server:
 
     def __exit__(self, *exc):
         self.proc.stop()
-        subprocess.run(["pkill", "-f", "[t]rtllm-serve"], capture_output=True)
+        for pat in ("[t]rtllm-serve", "[m]pi4py", "[p]rted", "[p]rterun"):
+            subprocess.run(["pkill", "-f", pat], capture_output=True)
         time.sleep(6)
 
 
