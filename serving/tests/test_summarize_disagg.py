@@ -49,3 +49,12 @@ def test_prefill_step_is_sliced_per_run_and_kv_per_request_is_bytes_over_request
     assert "10.0" in split_c1                       # 100 MiB / 10 requests
     colo = next(l for l in md.splitlines() if l.startswith("| colocated |"))
     assert colo.rstrip().endswith("– | – |")        # no proxy, no KV store
+
+
+def test_accuracy_table_is_a_paired_sign_test_on_the_latest_run_of_each_tag(tmp_path):
+    def acc(tag, hits):
+        return {"tag": tag, "set": "synth300", "score": {"n": len(hits), "acc": sum(hits) / len(hits), "per_item_hit": hits}}
+    (tmp_path / "accuracy_disagg-colocated_synth300_20261030-000000.json").write_text(json.dumps(acc("disagg-colocated", [True] * 8 + [False] * 2)))
+    (tmp_path / "accuracy_disagg-split_synth300_20261030-000000.json").write_text(json.dumps(acc("disagg-split", [True] * 7 + [False] * 3)))
+    md = S.accuracy_table(tmp_path)
+    assert "| synth300 | 10 | 80.00% | 70.00% | -10.00 pts | 1 / 0 | 1.000 |" in md

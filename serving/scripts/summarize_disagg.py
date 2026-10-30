@@ -18,6 +18,7 @@ sys.path.insert(0, str(ROOT / "serving"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from servebench.stats import median_range
+from servebench.stats import sign_test_p
 from summarize_router import COLS, cell
 
 NL = chr(10)
@@ -73,6 +74,22 @@ def tables(raw: Path) -> str:
     return NL.join(out)
 
 
+def accuracy_table(raw: Path, tag_a: str = "disagg-colocated", tag_b: str = "disagg-split") -> str:
+    """Paired comparison of two tags' click accuracy on each fixed set (rule 3): latest run of each tag, sign test on the discordant items."""
+    out = ["| set | n | colocated acc | split acc | delta (split - colocated) | only colocated right / only split right | sign-test p |", "|---|---|---|---|---|---|---|"]
+    for s in ("synth300", "screenspot400"):
+        fa = sorted(raw.glob(f"accuracy_{tag_a}_{s}_*.json"))
+        fb = sorted(raw.glob(f"accuracy_{tag_b}_{s}_*.json"))
+        if not fa or not fb:
+            continue
+        a, b = (json.loads(f[-1].read_text()) for f in (fa, fb))
+        ha, hb = a["score"]["per_item_hit"], b["score"]["per_item_hit"]
+        oa, ob = sum(x and not y for x, y in zip(ha, hb)), sum(y and not x for x, y in zip(ha, hb))
+        out.append(f"| {s} | {a['score']['n']} | {100 * a['score']['acc']:.2f}% | {100 * b['score']['acc']:.2f}% | "
+                   f"{100 * (b['score']['acc'] - a['score']['acc']):+.2f} pts | {oa} / {ob} | {sign_test_p(oa, ob):.3f} |")
+    return NL.join(out)
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--raw", default=str(ROOT / "serving" / "results" / "raw"))
@@ -80,5 +97,6 @@ if __name__ == "__main__":
     a = ap.parse_args()
     out = Path(a.out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.with_suffix(".md").write_text(tables(Path(a.raw)) + NL, encoding="utf-8")
+    acc = accuracy_table(Path(a.raw))
+    out.with_suffix(".md").write_text(tables(Path(a.raw)) + NL + "## Click accuracy through the split path vs one colocated instance" + NL + NL + acc + NL, encoding="utf-8")
     print("wrote", out.with_suffix(".md"))
