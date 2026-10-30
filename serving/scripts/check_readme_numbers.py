@@ -10,7 +10,8 @@ readme = (ROOT / "serving" / "README.md").read_text(encoding="utf-8")
 table = (ROOT / "serving" / "results" / "tables" / "phase1.md").read_text(encoding="utf-8")
 section = readme.split("## Phase 1 results", 1)[1].split("## Phase 2 results", 1)[0]
 section2 = readme.split("## Phase 2 results", 1)[1].split("## Phase 3 results", 1)[0]
-section3 = readme.split("## Phase 3 results", 1)[1].split("## Rules this folder follows", 1)[0]
+section3 = readme.split("## Phase 3 results", 1)[1].split("## Phase 4 results", 1)[0]
+section4 = readme.split("## Phase 4 results", 1)[1].split("## Phase 5 results" if "## Phase 5 results" in readme else "## Rules this folder follows", 1)[0]
 
 cells = set(re.findall(r"\d+(?:\.\d+)?%? \(\d+(?:\.\d+)?%?–\d+(?:\.\d+)?%?\)", section))
 missing = sorted(c for c in cells if c not in table)
@@ -156,4 +157,35 @@ for c in claims:
     ok = c in text3
     bad4 += not ok
     print(f"Phase 3 prose: expected '{c}' -> {'OK' if ok else 'NOT FOUND / MISMATCH'}")
-sys.exit(1 if (bad or bad2 or bad3 or bad4) else 0)
+
+# ---- Phase 4: table rows verbatim from phase4.md / phase4_estimate.md; prose numbers must appear in the generated tables ---------------
+table4 = (ROOT / "serving" / "results" / "tables" / "phase4.md").read_text(encoding="utf-8") + (ROOT / "serving" / "results" / "tables" / "phase4_estimate.md").read_text(encoding="utf-8")
+rows4 = [l.strip() for l in section4.splitlines() if l.startswith("| ") and any(ch.isdigit() for ch in l) and not set(l) <= set("|- ")]
+missing4 = [r for r in rows4 if r not in table4]
+print(f"{len(rows4)} table rows in the README Phase 4 section; not verbatim in phase4*.md: {len(missing4)}")
+for r in missing4:
+    print("  MISSING:", r[:120])
+bad5 = len(missing4)
+text4 = " ".join(section4.split())
+claims4 = [  # (sentence in the README, cells that must exist in the generated tables)
+    ("median time to first token 0.26 s against 0.15 s at 1 client and 0.95 s against 0.54 s at 4 clients", ["0.26 (0.25–0.26)", "0.15 (0.14–0.15)", "0.95 (0.95–1.00)", "0.54 (0.54–0.54)"]),
+    ("and 2.68 against 4.07 requests/s at 1 client and 3.55 against 5.63 at 4", ["2.68 (2.67–2.69)", "4.07 (4.05–4.11)", "3.55 (3.45–3.57)", "5.63 (5.58–5.65)"]),
+    ("At 4 clients 99.2% of requests failed and at 16 clients 100%", ["99.2% (99.2%–99.2%)", "100.0% (100.0%–100.0%)"]),
+    ("At 16 clients it still failed (99.1% of requests)", ["99.1% (99.1%–99.1%)"]),
+    ("median time to first token of 29.60 s and 0.61 requests/s against 1.53 s and 6.38 requests/s", ["29.60 (21.48–30.32)", "0.61 (0.53–0.81)", "1.53 (1.52–1.53)", "6.38 (6.37–6.39)"]),
+    ("(0.2% of requests)", ["0.2% (0.0%–0.4%)"]),
+    ("the prefill step alone (the proxy's own timing) is about 0.20 s of the 0.26 s", ["0.201 (0.199–0.205)"]),
+    ("about 49.5 MiB per request", ["49.5 (49.5–49.5)"]),
+    ("| 5.4% |" if False else "over 10 GbE 5.4%", ["38.2", "5.4%"]),
+    ("No change was detected: 1 and 1 discordant items on the synthetic set, 5 and 4 on ScreenSpot", ["| 1 / 1 | 1.000 |", "| 5 / 4 | 1.000 |"]),
+]
+for sent, cells in claims4:
+    ok = sent in text4 and all(c in table4 for c in cells)
+    bad5 += not ok
+    print(f"Phase 4 prose: '{sent[:70]}...' -> {'OK' if ok else 'NOT FOUND / MISMATCH'}")
+import math
+kv = 2 * 28 * 2 * 128 * 2
+ok = "28,672 bytes" in text4 and kv == 28672 and f"{round(49.5 * 2**20 / kv):,}" == "1,810" and "about 1,810 tokens" in text4
+bad5 += not ok
+print(f"Phase 4 arithmetic (28,672 bytes per token; 49.5 MiB / 28,672 = 1,810 tokens) -> {'OK' if ok else 'MISMATCH'}")
+sys.exit(1 if (bad or bad2 or bad3 or bad4 or bad5) else 0)

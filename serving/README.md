@@ -14,7 +14,7 @@ Nothing under `serving/` changes training code or the published results in `../r
 | 1 | vLLM vs SGLang on the same checkpoint | **done, with caveats** (see Phase 1 results and the follow-up on SGLang's configuration) |
 | 2 | Prefix-aware router in Rust | **done, with a mixed result** (see Phase 2 results: the routing works, the latency benefit is not clear) |
 | 3 | Fused RMSNorm + INT8 quantisation Triton kernel | **done, as a standalone operator** (see Phase 3 results: not integrated into an engine, no end-to-end claim) |
-| 4 | Prefill/decode disaggregation (time-boxed) | not started |
+| 4 | Prefill/decode disaggregation (time-boxed) | **attempted on one GPU, with an analytical estimate**: works at 1 and 4 clients, fails at 16 with default settings (see Phase 4 results); not a two-GPU result |
 | 5 | TensorRT-LLM (time-boxed) | not started |
 
 Hardware: one RTX 5050 Laptop GPU (8 GB, compute capability 12.0, driver 592.82, CUDA 13.1 as reported by the driver),
@@ -578,6 +578,116 @@ model's 53.75% because this run used transformers 5.19.0 in the vLLM venv on Lin
 * The benchmark's baselines are same-math fp32 eager and `torch.compile` of it; a hand-written bf16 module or another fused library kernel was not tried.
 * Results come from a throttled laptop GPU and are bimodal across repeats; the explanation for the `do_bench`/CUDA-graph gap and for the margin over `torch.compile` is not established.
 * Triton 3.7.1 and torch 2.13 in the vLLM venv; the `sgym` venv (Triton 3.6) was not tested.
+
+## Phase 4 results: prefill/decode disaggregation (a one-GPU attempt)
+
+**What this is and is not.** Disaggregated serving puts prompt processing (prefill) and token generation (decode) on different GPUs and ships each
+request's KV cache between them. I have one GPU, so this is **not** a two-GPU measurement. Two parts were done: an **analytical estimate** of the transfer
+cost (labelled as an estimate everywhere), and a **measured one-GPU run** in which a prefill instance and a decode instance of vLLM share the 8 GB GPU and pass
+the KV cache through **files on disk** with vLLM's `ExampleConnector`. The two instances still compete for the same compute and memory bandwidth, and the
+transfer is a disk write and read, not NVLink, PCIe peer-to-peer or RDMA. What the run does show is whether the disaggregated path works end to end on this
+stack, what it costs here, and where it breaks. A real two-GPU run (for example on Kaggle's two T4s) was not done.
+
+### 1. Analytical estimate of the KV transfer (ESTIMATE, not a measurement)
+
+KV cache per token = 2 (K and V) x 28 layers x 2 KV heads x 128 dims x 2 bytes (bf16) = 28,672 bytes, from the model's config. The trace's token counts
+(measured with the real processor) give 1,666 tokens for a session's first turn, so about 45.6 MiB per request. Time at each link's *theoretical line rate*
+(a lower bound: no protocol overhead, no overlap with compute, no copies):
+
+| prompt | tokens | KV dtype | KV size (MiB) | link | line rate (GB/s) | time at line rate (ms) | as a share of the reference TTFT |
+|---|---|---|---|---|---|---|---|
+| first turn of a session | 1666 | bf16 | 45.6 | PCIe 3.0 x16 | 15.75 | 3.0 | 0.4% |
+| first turn of a session | 1666 | bf16 | 45.6 | PCIe 4.0 x16 | 31.51 | 1.5 | 0.2% |
+| first turn of a session | 1666 | bf16 | 45.6 | 10 GbE | 1.25 | 38.2 | 5.4% |
+| first turn of a session | 1666 | bf16 | 45.6 | 100 GbE | 12.50 | 3.8 | 0.5% |
+
+Next to the measured median time to first token of 711 ms (vLLM, prefix caching off, 1 client, Phase 1; it mixes prompt sizes), moving the KV over PCIe 4.0 x16
+would cost at least 0.2% of it, and over 10 GbE 5.4%. The estimate says the wire is not what makes disaggregation hard on a fast interconnect; it says nothing
+about scheduling, memory or software overhead. The estimate's bytes-per-token is consistent with the measured files: the KV store held about 49.5 MiB per request
+in the runs below, which at 28,672 bytes per token is about 1,810 tokens: the same order as the prompt lengths I counted for this trace (1,254 tokens for the shared prefix, 1,666 for a first turn, 1,861 for the last turn measured).
+
+### 2. What was run
+
+* **colocated:** one vLLM instance, FP8 weights, 0.8 GiB KV cache.
+* **split:** a *prefill* instance (`kv_producer`) and a *decode* instance (`kv_consumer`), FP8 weights, 0.4 GiB KV cache each (the same total KV memory), joined by
+  `ExampleConnector` writing safetensors files under `~/work/kvstore`, behind a small proxy (`servebench/disagg_proxy.py`, 8 tests) that sends each request to
+  the prefill instance with `max_tokens=1` and then replays it on the decode instance, streaming that answer back. The proxy also empties the KV store between
+  repeats, because a producer that finds KV for a prompt on disk loads it instead of computing it.
+* The agent trace of Phase 1, concurrency 1, 4 and 16, max_num_seqs 8, max_model_len 3072, 3 rounds; the order of the two setups alternates each round (the lesson of Phase 2).
+
+### 3. The first run failed under concurrency (default flags)
+
+With vLLM's default scheduling the split setup worked at 1 client and failed at 4 and 16 (median (min-max) over 3 rounds; `split` rows only; colocated rows of the same
+run are in `results/tables/phase4.md`):
+
+| setup | TTFT p50 (s) | TTFT p99 (s) | e2e p50 (s) | req/s | prompt tokens from cache | errors | peak temp (C) | median power (W) | prefill step p50 (s) | KV store per request (MiB) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| split | 0.28 (0.27–0.39) | 1.08 (1.05–1.19) | 0.35 (0.34–0.48) | 1.77 (1.76–1.88) | 97% (97%–97%) | 0.0% (0.0%–0.0%) | 65 (55–67) | 46 (27–47) | 0.219 (0.214–0.302) | 49.6 (49.6–49.6) |
+| split | 1.74 (1.37–3.35) | 1.84 (1.45–3.44) | 2.01 (1.58–3.57) | 0.02 (0.02–0.02) | 100% (100%–100%) | 99.2% (99.2%–99.2%) | 70 (57–70) | 42 (26–44) | 0.886 (0.872–1.140) | 48.9 (48.8–49.1) |
+| split | – | – | – | 0.00 (0.00–0.00) | – | 100.0% (100.0%–100.0%) | 78 (77–78) | 61 (60–62) | 4.575 (4.496–4.592) | 38.4 (37.9–39.1) |
+
+At 4 clients 99.2% of requests failed and at 16 clients 100%. The decode instance's engine died with
+`RuntimeError: shape mismatch: value tensor of shape [1248, 2, 256] cannot be broadcast to indexing result of shape [1664, 2, 256]` in
+`example_connector.py` (`inject_kv_into_layer`), after which every request in flight failed (`EngineDeadError`).
+
+**Diagnosis (code reading plus experiments; the mechanism is my reading, not confirmed with the vLLM authors).** `ExampleConnector.build_connector_meta` stores a
+new request's KV at the first step in which the request is scheduled, using the blocks allocated at that step, and names the file by a hash of the whole prompt.
+If the scheduler schedules only part of a prompt in that step, the file holds fewer tokens than its name claims, and the decode instance later loads 1,248 tokens
+into 1,664 slots. The gap, 416 tokens, is about one screenshot (a screenshot is on the order of 400 tokens here; a bare one-image request is 412), which suggests the last image was deferred to a
+later step. With one client a whole prompt always fits in one step, which is why 1 client works. Supporting experiments: with chunked prefill disabled on the prefill
+instance (`--no-enable-chunked-prefill --max-num-batched-tokens=4096`), 4 clients worked (263 of 263 requests, one diagnostic run, `explore_disagg_bench_20261030-181519.json`,
+and 3 full rounds below), but 16 clients still failed with the same error; raising the per-step budget to 16,384 tokens made 16 clients complete.
+
+### 4. Results with the workaround on the prefill instance
+
+Prefill instance started with `--no-enable-chunked-prefill --max-num-batched-tokens=4096`; the colocated instance keeps vLLM's defaults (chunked prefill on). Median (min-max) over 3 rounds:
+
+| setup | TTFT p50 (s) | TTFT p99 (s) | e2e p50 (s) | req/s | prompt tokens from cache | errors | peak temp (C) | median power (W) | prefill step p50 (s) | KV store per request (MiB) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| colocated | 0.15 (0.14–0.15) | 0.41 (0.40–0.41) | 0.22 (0.21–0.22) | 4.07 (4.05–4.11) | 64% (64%–64%) | 0.0% (0.0%–0.0%) | 69 (69–70) | 68 (68–68) | – | – |
+| split | 0.26 (0.25–0.26) | 0.74 (0.73–0.76) | 0.33 (0.32–0.33) | 2.68 (2.67–2.69) | 97% (97%–97%) | 0.0% (0.0%–0.0%) | 68 (67–68) | 54 (53–54) | 0.201 (0.199–0.205) | 49.6 (49.6–49.6) |
+| colocated | 0.54 (0.54–0.54) | 1.08 (1.07–1.08) | 0.63 (0.62–0.63) | 5.63 (5.58–5.65) | 65% (65%–65%) | 0.0% (0.0%–0.0%) | 76 (75–76) | 69 (69–69) | – | – |
+| split | 0.95 (0.95–1.00) | 1.97 (1.94–1.99) | 1.04 (1.03–1.09) | 3.55 (3.45–3.57) | 98% (98%–98%) | 0.0% (0.0%–0.0%) | 74 (74–74) | 54 (54–55) | 0.771 (0.759–0.803) | 49.5 (49.5–49.5) |
+| colocated | 1.53 (1.52–1.53) | 3.07 (3.01–3.09) | 2.36 (2.36–2.36) | 6.38 (6.37–6.39) | 67% (67%–67%) | 0.0% (0.0%–0.0%) | 79 (78–79) | 70 (70–70) | – | – |
+| split | 3.63 (3.49–3.69) | 4.02 (3.70–4.17) | 3.75 (3.61–3.86) | 0.03 (0.03–0.03) | 80% (80%–80%) | 99.1% (99.1%–99.1%) | 78 (78–79) | 62 (60–63) | 4.557 (4.360–4.702) | 46.7 (46.5–46.7) |
+
+* **At 1 and 4 clients the split path works and is slower than colocated**: median time to first token 0.26 s against 0.15 s at 1 client and 0.95 s against 0.54 s at 4 clients,
+  and 2.68 against 4.07 requests/s at 1 client and 3.55 against 5.63 at 4. At 1 client the prefill step alone (the proxy's own timing) is about 0.20 s of the 0.26 s.
+  This is expected on one GPU: the work is the same plus a disk write and read of about 50 MiB per request, and there is no second GPU to take the load.
+* **At 16 clients it still failed (99.1% of requests)** with the 4,096-token budget.
+* "prompt tokens from cache" is 97% to 100% for the split setup because the decode instance counts the KV it loaded through the connector as cached tokens; it is not
+  prefix-cache reuse and is not comparable with the colocated column.
+
+With the 16,384-token budget on the prefill instance (3 rounds, split only, `disagg-bigbudget_bench_20261030-191355.json`) 16 clients completed, at a very high latency
+cost:
+
+| setup | TTFT p50 (s) | TTFT p99 (s) | e2e p50 (s) | req/s | prompt tokens from cache | errors | peak temp (C) | median power (W) | prefill step p50 (s) | KV store per request (MiB) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| split | 29.60 (21.48–30.32) | 40.30 (33.46–47.63) | 29.72 (21.59–30.45) | 0.61 (0.53–0.81) | 96% (96%–96%) | 0.2% (0.0%–0.4%) | 66 (66–67) | 27 (27–29) | 24.514 (17.606–24.664) | 49.4 (49.3–49.5) |
+
+That is median time to first token of 29.60 s and 0.61 requests/s against 1.53 s and 6.38 requests/s for the colocated instance at 16 clients in the previous run (a different
+session; the gap is far larger than the variation I have seen between sessions). 1 to 2 requests of 560 still failed in rounds 2 and 3 (0.2% of requests); I did not investigate those. **I do
+not know why this configuration is so slow**; the connector writes and reads about 49 MiB per request synchronously, but I did not measure where the time goes.
+
+### 5. Click accuracy through the split path (rule 4)
+
+Split vs colocated, both FP8 and vLLM, same fixed sets (16,384-token budget on the prefill instance so the split path does not crash during the 4-client accuracy run):
+
+| set | n | colocated acc | split acc | delta (split - colocated) | only colocated right / only split right | sign-test p |
+|---|---|---|---|---|---|---|
+| synth300 | 300 | 64.67% | 64.67% | +0.00 pts | 1 / 1 | 1.000 |
+| screenspot400 | 400 | 49.75% | 49.50% | -0.25 pts | 5 / 4 | 1.000 |
+
+No change was detected: 1 and 1 discordant items on the synthetic set, 5 and 4 on ScreenSpot. The split path serves the same clicks as one instance.
+
+### Limitations of Phase 4
+
+* One GPU: prefill and decode compete for the same compute and memory bandwidth, so latency here says nothing about what two GPUs would give. A real two-GPU run was not done.
+* The KV moves through disk files with an *example* connector (its source calls it a debug implementation); NIXL, Mooncake, LMCache or NCCL-based connectors were not tried.
+* The default-flag failure is a limitation of this connector with this stack (vLLM 0.32.0), found and diagnosed here; it has not been reported upstream. The mechanism above is inferred, not proven.
+* The workaround changes how prefill is scheduled, so the split rows are not a "default vLLM" measurement; the colocated rows keep the defaults.
+* FP8 weights and a small KV cache (0.4 GiB per instance), as in Phase 2; one trace; at most 16 clients; 3 rounds.
+* The comparison of the 16-client split run with the colocated run crosses two sessions.
 
 ## Rules this folder follows
 
