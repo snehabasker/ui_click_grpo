@@ -11,3 +11,7 @@ export PATH="$CUDA_HOME/bin:$PATH"
 # OpenMPI 5 spawns workers through its prte daemon, which sits in the conda prefix
 export PATH="$HOME/mpi/bin:$PATH"
 export OPAL_PREFIX="$HOME/mpi"
+# nvcc 13.2 rejects gcc > 15: use gcc 14 (14_trtllm_gcc14.sh); cublas headers come from the cu13 pip package
+export PATH="$HOME/gcc14/bin:$PATH"
+export CC="$HOME/gcc14/bin/gcc"; export CXX="$HOME/gcc14/bin/g++"
+export CPATH="$V/nvidia/cu13/include:${CPATH:-}"
